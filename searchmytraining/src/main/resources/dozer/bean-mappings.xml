@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping>
+		<class-a>com.searchmytraining.dto.TrainingEnquiryDTO</class-a>
+		<class-b>com.searchmytraining.entity.TrainingEnquiryEntity</class-b>
+		<field-exclude>
+			<a>cityid</a>
+			<b>cityid</b>
+		</field-exclude>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.searchmytraining.dto.TrainingCategoryDTO</class-a>
+		<class-b>com.searchmytraining.entity.TrainingCategoryEntity</class-b>
+		<field-exclude>
+			<a>trainingcategory</a>
+			<b>trainingcategory</b>
+		</field-exclude>
+	</mapping>
+
+	<mapping>
+		<class-a>com.searchmytraining.dto.TrainerDTO</class-a>
+		<class-b>com.searchmytraining.entity.TrainerEntity</class-b>
+		<field-exclude type="one-way">
+			<a>cnfpassword</a>
+			<b>cnfpassword</b>
+		</field-exclude>
+		
+		<field-exclude type="one-way">
+			<a>city</a>
+			<b>city</b>
+		</field-exclude>
+
+	</mapping>
+
+	<mapping>
+		<class-a>com.searchmytraining.dto.InstituteDTO</class-a>
+		<class-b>com.searchmytraining.entity.InstituteEntity</class-b>
+		<field>
+			<a>history</a>
+			<b>historyOfCompany</b>
+		</field>
+		<field-exclude>
+			<a>workingdays</a>
+			<b>workingdays</b>
+		</field-exclude>
+	</mapping>
+
+	<mapping>
+		<class-a>com.searchmytraining.dto.TraineeDTO</class-a>
+		<class-b>com.searchmytraining.entity.TraineeEntity</class-b>
+		<field-exclude type="one-way">
+			<a>cnfpassword</a>
+			<b>cnfpassword</b>
+		</field-exclude>
+		<field>
+			<a>name</a>
+			<b>fullName</b>
+		</field>
+
+		<field>
+			<a>corporatename</a>
+			<b>organizationName</b>
+		</field>
+
+		<field>
+			<a>traineetype</a>
+			<b>traineeType</b>
+		</field>
+
+		<field>
+			<a>email</a>
+			<b>emailid</b>
+		</field>
+
+		<field>
+			<a>contact</a>
+			<b>phone</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.searchmytraining.dto.ContactDTO</class-a>
+		<class-b>com.searchmytraining.entity.ContactInfoEntity</class-b>
+		<field>
+			<a>email</a>
+			<b>emailId</b>
+		</field>
+		<field>
+			<a>website</a>
+			<b>website</b>
+		</field>
+		<field>
+			<a>contactpersonname</a>
+			<b>cntcPersName</b>
+		</field>
+		<field-exclude>
+			<a>phonetypeid</a>
+			<b>phonetypeid</b>
+		</field-exclude>
+		<field-exclude>
+			<a>phone</a>
+			<b>phone</b>
+		</field-exclude>
+	</mapping>
+
+	<mapping>
+		<class-a>com.searchmytraining.dto.LocationDTO</class-a>
+		<class-b>com.searchmytraining.entity.LocationEntity</class-b>
+		<field>
+			<a>bldng_flatno</a>
+			<b>buildingNo</b>
+		</field>
+		<field-exclude>
+			<a>country</a>
+			<b>country</b>
+		</field-exclude>
+		<field-exclude>
+			<a>state</a>
+			<b>state</b>
+		</field-exclude>
+		<field-exclude>
+			<a>city</a>
+			<b>city</b>
+		</field-exclude>
+		<field-exclude>
+			<a>userid</a>
+			<b>userid</b>
+		</field-exclude>
+	</mapping>
+
+	<mapping>
+		<class-a>com.searchmytraining.dto.ProfessionalAssociationDTO</class-a>
+		<class-b>com.searchmytraining.entity.ProfessionalAssociationEntity
+		</class-b>
+		<field-exclude>
+			<a>assocName</a>
+			<b>assocName</b>
+		</field-exclude>
+		<field-exclude>
+			<a>assocIds</a>
+			<b>assocIds</b>
+		</field-exclude>
+	</mapping>
+
+	<mapping>
+		<class-a>com.searchmytraining.dto.ClientDetailsDTO</class-a>
+		<class-b>com.searchmytraining.entity.ClientEntity</class-b>
+		<field-exclude>
+			<a>clientName</a>
+			<b>clientName</b>
+		</field-exclude>
+		<field-exclude>
+			<a>clientIds</a>
+			<b>clientIds</b>
+		</field-exclude>
+	</mapping>
+
+	<mapping>
+		<class-a>com.searchmytraining.dto.FreelancerDTO</class-a>
+		<class-b>com.searchmytraining.entity.FreelancerEntity</class-b>
+		<field-exclude>
+			<a>password12</a>
+			<b>password12</b>
+		</field-exclude>
+		<field-exclude>
+			<a>city12</a>
+			<b>city12</b>
+		</field-exclude>
+		<field-exclude type="one-way">
+			<a>cnfpassword12</a>
+			<b>cnfpassword12</b>
+		</field-exclude>
+		<field>
+			<a>name12</a>
+			<b>fullName</b>
+		</field>
+		<field>
+			<a>contact12</a>
+			<b>contact</b>
+		</field>
+		<field>
+			<a>email12</a>
+			<b>email</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.searchmytraining.dto.FreelancerDTO</class-a>
+		<class-b>com.searchmytraining.entity.FreeLancerProfileEntity</class-b>
+		<field>
+			<a>name12</a>
+			<b>fullname</b>
+		</field>
+		<field>
+			<a>email12</a>
+			<b>email</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.searchmytraining.dto.EmploymentDTO</class-a>
+		<class-b>com.searchmytraining.entity.EmploymentEntity</class-b>
+		<field-exclude>
+			<a>userid</a>
+			<b>userid</b>
+		</field-exclude>
+	</mapping>
+
+	<mapping>
+		<class-a>com.searchmytraining.dto.CertificationAwardDTO</class-a>
+		<class-b>com.searchmytraining.entity.CertificationAwardEntity
+		</class-b>
+		<field>
+			<a>awrdDetails</a>
+			<b>certfctName</b>
+		</field>
+		<field-exclude>
+			<a>userid</a>
+			<b>userid</b>
+		</field-exclude>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.searchmytraining.dto.EducationDTO</class-a>
+		<class-b>com.searchmytraining.entity.EducationEntity</class-b>
+		<field-exclude>
+			<a>degreeid</a>
+			<b>degreeid</b>
+		</field-exclude>
+	</mapping>
+	
+	
+	
+</mappings> 

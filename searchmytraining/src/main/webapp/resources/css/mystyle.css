@@ -1,0 +1,395 @@
+* { margin: 0; padding: 0; }
+
+a {
+    outline: 0; 
+}
+.image-slider{
+    overflow: hidden;
+    width: 88%;
+    height: 610px;
+    margin: 0 auto;
+    background: #ecf0f3;
+}
+/*============================================image-slider===================================*/
+
+#slider{
+    overflow: hidden;
+    width: 1060px;
+    height: auto;
+    padding: 10px 0px 10px 20px;
+    margin:0px auto;
+}
+.sti-menu{/*Slider Ul*/
+    /*margin-top: 10px;*/
+    /*margin: 10px auto;*/
+}
+.sti-menu li{
+        list-style: none;
+	float:left;
+	width:220px;
+	height:278px;
+	margin:20px;
+       background:#0fa1e0;
+}
+.sti-menu li a{
+/*        background:#a0a0a0;*/
+        background:#0fa1e0;
+        overflow:hidden;
+        display:block;
+	position:relative;
+
+	text-align:center;
+	height:100%;
+	width:100%;
+}
+.sti-menu li a h2{
+	color: white;
+	font-family: Georgia, arial, serif; 
+	font-size:12px;
+	font-style:italic;
+        
+	position:absolute;
+	width:200px;
+	top:160px;
+        
+        margin:0px auto;
+	left:0px;
+	right:0px;
+        
+	line-height:16px;
+}
+.sti-menu li a h3{
+        color: white;	
+        font-family: Georgia, arial, serif; 
+	font-size:13px;
+	font-style:italic;
+	
+	position:absolute;
+	width:190px;
+        top:250px;
+	
+        margin:0px auto;
+        left:0px;
+	right:0px;
+}
+.sti-icon{
+	width:220px;
+	height:206px;
+	position:absolute;
+	background-position:top left;
+	background-repeat:no-repeat;
+	background-color:transparent;
+	left:-11px;
+	top: 0px;
+}
+.sti-icon-branding{
+	background-image:url(../images/slider/training1.png);
+}
+.sti-icon-print{
+	background-image:url(../images/slider/trainp.png);
+}
+.sti-icon-web{
+	background-image:url(../images/slider/traint.png);
+}
+.sti-icon-seo{
+	background-image:url(../images/slider/traino.png);
+}
+.box-shaddow-black{
+    -moz-box-shadow: 0 0 5px black; 
+     -webkit-box-shadow: 0 0 5px black; 
+     box-shadow: 0 0 5px black;
+
+/* -webkit-box-shadow: 5px 0px 3px 0px rgba(50, 50, 50, 0.45);
+    -moz-box-shadow: 5px 0px 9px 0px rgba(50, 50, 50, 0.45);
+    box-shadow: 0px 0px 9px 0px rgba(50, 50, 50, 0.45);*/
+}
+.sti-icon-branding{
+	background-image:url(../images/slider/training1.png);
+}
+.sti-icon-print{
+	background-image:url(../images/slider/trainp.png);
+}
+.sti-icon-web{
+	background-image:url(../images/slider/traint.png);
+}
+.sti-icon-seo{
+	background-image:url(../images/slider/traino.png);
+}
+
+/*============================================================frame-image===================================*/
+.image-slider .ribbon-1{
+    height:150px;
+    width: 46%;
+    margin: 0px auto;
+    /*background: green;*/
+}
+.image-slider .ribbon-1 h1{
+    font-size: 40px;
+    font-family: arial;
+    font-weight: bold;
+    color: #3e3e3e;
+    margin-top: 70px;
+    text-align: center;
+    text-shadow: rgb(224, 224, 224) 2px 2px 0px;
+}
+.image-slider .ribbon-1 .para{
+    height: 90px;
+    width: 500px;
+    text-align: center;
+    margin-top: 25px;
+    line-height: 30px;
+    /*background: lightblue;*/
+}
+.image-slider .ribbon-1 .para p{
+    font-family: lato, sans-serif;
+    font-size: 21px;
+    font-weight: lighter;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    color: #666;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    text-align: center;
+}
+.image-slider .ribbon-1 .box {
+    width: 200px; height: 300px;
+    position: relative;
+    float: left;
+    /*border: 1px solid #BBB;*/
+}
+.ribbon {
+    position: absolute;
+    left: -30px; 
+    top: -15px;
+    z-index: 1;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    margin-left: 30px;
+    text-align: right;
+}
+.ribbon span {
+    font-size: 23px;
+    font-weight: bold;
+    color: #FFF;
+    letter-spacing: 1px;
+    margin-top: 45px;
+    font-family: arial;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 35px;
+    transform: rotate(-45deg);
+    width: 250px;
+    display: block;
+    background: #79A70A;
+    background: linear-gradient(#F70505 0%, #F70505 100%);
+    box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 1);
+    /*text-shadow: 0 2px 2px #000;*/
+    position: absolute;
+    top: 23px; left: -60px;
+}
+.ribbon span::before {
+    content: "";
+    position: absolute; left: 0px; top: 100%;
+    z-index: -1;
+    border-left: 3px solid #1e5799;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #1e5799;
+}
+.ribbon span::after {
+    content: "";
+    position: absolute; right: 0px; top: 100%;
+    z-index: -1;
+    border-left: 3px solid transparent;
+    border-right: 3px solid #1e5799;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #1e5799;
+}
+.partners{
+    height: 540px;
+    width: 100%;
+    margin-top: 20px;
+    overflow: hidden;
+    
+background: rgb(255,255,255); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(246,246,246,1) 97%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(97%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 97%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 97%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 97%,rgba(237,237,237,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 97%,rgba(237,237,237,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+
+/*background: #ecf0f3;*/
+}
+.partners .partners-info{
+    height: 150px;
+    width: 43%;
+    margin: 0px auto;
+    margin-top: 70px;
+    /*background: green;*/
+}
+.partners .partners-info h1{
+    font-size: 40px;
+    font-family: arial;
+    font-weight: bold;
+    color: #3e3e3e;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: rgb(224, 224, 224) 2px 2px 0px;
+}
+.partners .partners-info .para p{
+    margin-top: 40px;
+    font-weight: lighter;
+    font-family: lato, sans-serif;
+    font-size: 21px;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    color: #666;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    text-align: center;
+    line-height: 30px;
+}
+.partners .border-top{
+    width: 100%;
+    height: 150px;
+    margin: 20px auto 10px;
+    overflow: hidden;
+    background: url("../images/line1.png") no-repeat;
+    background-size: 100% 10px;
+    /*background: blue;*/
+}
+
+.partners .border-top2{
+    width: 100%;
+    height: 50px;
+    margin: 5px auto;
+    background: url("../images/line1.png") no-repeat;
+    background-size: 100% 10px;
+    /*background: red;*/
+}
+
+.border-top ul.garagedoor {
+    list-style: none;
+    /*background: url(../images/menu-bg.jpg) no-repeat;*/
+    width:87%;
+    /*background: gray;*/
+    overflow: auto;	
+    margin-left: 180px;
+    /*margin-top: 5px;*/
+}
+.border-top ul.garagedoor li {
+    width: 200px;
+    height: 100px;
+    display: block;
+    float: left;
+    margin-top: 30px;
+}
+
+.csstransitions .garagedoor li {
+    -webkit-transition: background-position 0.6s ease;
+    -moz-transition: background-position 0.6s ease;
+    -o-transition-property: background-position 0.6s ease;
+    margin-right: 10px;
+}
+.csstransitions .garagedoor li:hover {
+    background-position: 0 -100px !important;
+}
+
+.garagedoor #shutter1 {
+    background: url(../images/nhrdn.jpg) 0 0 no-repeat; 
+    background-size: 100% 100%;
+    /*border-radius: 0px 0px 10px 10px;*/
+    /*    -webkit-box-shadow: 0px 50px 6px 0px rgba(50, 50, 50, 0.75);
+        -moz-box-shadow:    0px 50px 6px 0px rgba(50, 50, 50, 0.75);
+        box-shadow:         0px 50px 6px 0px rgba(50, 50, 50, 0.75);
+    
+    
+       
+        
+        -webkit-box-shadow: 2px 4px 13px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 4px 13px 5px rgba(0,0,0,0.75);
+    box-shadow: 2px 4px 13px 5px rgba(0,0,0,0.75);*/
+}
+.garagedoor li#shutter2 {
+    background: url(../images/istd.jpg) 0 0 no-repeat; 
+    background-size: 100% 100%;
+}
+.garagedoor li#shutter3 {
+    background: url(../images/SHRM.png) 0 0 no-repeat;
+    background-size: 100% 100%;
+}
+.garagedoor li#shutter4 {
+    background: url(../images/TT.jpg) 0 0 no-repeat; 
+    background-size: 100% 100%;
+}
+.garagedoor li#shutter5 {
+    background: url(../images/monster.png) 0 0 no-repeat; 
+    background-size: 100% 100%;
+}
+.garagedoor a {
+    width: 200px;
+    height: 100px;
+    display: block;
+    /*background: url(../images/window.png) no-repeat bottom center;*/
+    text-indent: -9999px;
+}
+
+/* =============================Media query========================================= */
+@media  screen and (max-width: 1024px){
+.image-slider{
+
+  width: 90%;
+  height: 100%;
+
+  }
+  .image-slider .ribbon-1 .para p {
+
+  width: 81%;
+ 
+
+}
+.image-slider .ribbon-1 {
+  height: 150px;
+  width: 46%;
+  margin: 0px auto 20px;
+
+}
+#slider {
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+   padding:10px 0px 10px 0px;
+
+}
+.sti-menu li{
+	margin: 5px;
+}
+
+.partners .partners-info {
+  height: 150px;
+  width: 50%;
+  margin: 0px auto;
+  margin-top: 70px;
+
+}
+.border-top ul.garagedoor {
+  list-style: none;
+  width: 100%;
+  overflow: auto;
+  margin-left: 0px;
+
+}
+.border-top ul.garagedoor li {
+  width: 190px;
+}
+
+}

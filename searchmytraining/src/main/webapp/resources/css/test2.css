@@ -1,0 +1,449 @@
+body {background: #f2f2f2;margin: 0px auto;min-width: 960px;background: #FAFAFA;background: #FFFFFF;}
+@font-face {font-family: kiran;src: url('font/kiran-2.ttf');}
+@font-face {font-family: marenc;src: url('font/lekhani_dynamic.ttf');}
+/** {font-family: "Arial Unicode MS";}*/
+.mar{font-family: kiran;font-size: 17px;}
+.marenc{font-family: marenc;font-size: 17px;}
+
+input[type=text], input[type=password], textarea, select {-webkit-transition: all 0.30s ease-in-out;-moz-transition: all 0.30s ease-in-out;-ms-transition: all 0.30s ease-in-out;-o-transition: all 0.30s ease-in-out;outline: none;border: 1px solid #AFAFAF;background: #ffffff;}
+input[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus {box-shadow: 0 0 2px rgba(81, 203, 238, 1);border: 1px solid #3B8CD4;}
+
+.roundtext{-moz-border-radius: 15px;-webkit-border-radius: 15px;-khtml-border-radius: 15px;border-radius: 15px;}
+.roundtext-small{-moz-border-radius: 10px;-webkit-border-radius: 10px;-khtml-border-radius: 10px;border-radius: 10px;}
+.roundtext-big{-moz-border-radius: 50px;-webkit-border-radius: 50px;-khtml-border-radius: 50px;border-radius: 50px;}
+.roundtext-top{-moz-border-radius: 15px 15px 0px 0px;-webkit-border-radius: 15px 15px 0px 0px;-khtml-border-radius: 15px 15px 0px 0px;border-radius: 15px 15px 0px 0px;}
+.roundtext-bottom{-moz-border-radius: 0px 0px 15px 15px;-webkit-border-radius: 0px 0px 15px 15px;-khtml-border-radius: 0px 0px 15px 15px;border-radius: 0px 0px 15px 15px;}
+
+.textshaddow{text-shadow:0px 2px 4px #1d2a28;}
+.textshaddow-white{text-shadow:0px 2px 4px #FFFFFF;}
+.textshaddow-black{text-shadow:0px 2px 4px #000000;}
+.textshaddow-grey{text-shadow:0px 2px 4px #DDDDDD;}
+.textshaddow-coffe{text-shadow: 0px 2px 4px #533302;}
+.textshaddow-coffe{text-shadow: 0px 2px 4px rgba(0,0,0,0.4);}
+
+.box-shaddow-out-white{-moz-box-shadow: 0 0 20px white; -webkit-box-shadow: 0 0 20px white; box-shadow: 0 0 20px white;}
+.box-shaddow-out-black{-moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; box-shadow: 0 0 20px black;}
+.box-shaddow-in-black{-moz-box-shadow:    inset 0 0 20px #000000;-webkit-box-shadow: inset 0 0 20px #000000;box-shadow: inset 0 0 20px #000000;}
+.box-shaddow-top-edge{-webkit-box-shadow: 0 -5px 5px -5px black;-moz-box-shadow: 0 -6px 8px -6px black;box-shadow: 0 -6px 8px -6px black;}
+.box-shadow-bottom-edge{-webkit-box-shadow: 0 8px 6px -6px black;-moz-box-shadow: 0 8px 6px -6px black;box-shadow: 0 8px 6px -6px black;}
+.box-shadow-topNbottom-edge {-webkit-box-shadow: 0 8px 6px -6px black, 0 -5px 5px -5px black;-moz-box-shadow: 0 8px 6px -6px black, 0 -5px 5px -5px black;box-shadow: 0 8px 6px -6px black, 0 -5px 5px -5px black;}
+.box-shaddow-black-faint{-webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .3);-moz-box-shadow: 0 2px 6px rgba(0, 0, 0, .3);box-shadow: 0 2px 6px rgba(0, 0, 0, .3);}
+
+.transition-animate{-webkit-transition: all 500ms ease-in-out;-moz-transition: all 500ms ease-in-out;-ms-transition: all 500ms ease-in-out;-o-transition: all 500ms ease-in-out;transition: all 500ms ease-in-out;}
+.rotate {-webkit-transform: rotate(-90deg);-moz-transform: rotate(-90deg);-ms-transform: rotate(-90deg);-o-transform: rotate(-90deg);transform: rotate(-90deg);-webkit-transform-origin: 50% 50%;-moz-transform-origin: 50% 50%;-ms-transform-origin: 50% 50%;-o-transform-origin: 50% 50%;transform-origin: 50% 50%;filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);}
+
+/************* Horizontal Line Type Ex <hr class="hr-style-one"/> **************/
+/* Flaired edges, by Tomas Theunissen */ hr.hr-style-one { height: 30px; border-style: solid; border-color: black; border-width: 1px 0 0 0; border-radius: 20px; } hr.hr-style-one:before { /* Not really supposed to work, but does */ display: block; content: ""; height: 30px; margin-top: -31px; border-style: solid; border-color: black; border-width: 0 0 1px 0; border-radius: 20px; }
+/* Gradient color1 - color2 - color1 */ hr.hr-style-two { border: 0; height: 1px; background: #333; background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc); background-image: -moz-linear-gradient(left, #ccc, #333, #ccc); background-image: -ms-linear-gradient(left, #ccc, #333, #ccc); background-image: -o-linear-gradient(left, #ccc, #333, #ccc); }
+/* Double-color dashed line */ hr.hr-style-three { border: 0; border-bottom: 1px dashed #ccc; background: #999; }
+/* Single-direction drop shadow */ hr.hr-style-four { height: 12px; border: 0; box-shadow: inset 0 12px 12px -12px rgba(0,0,0,0.5); }
+/* Cloud */ hr.hr-style-five { border: 0; height: 0; /* Firefox... */ box-shadow: 0 0 10px 1px black; } hr.hr-style-five:after { /* Not really supposed to work, but does */ content: "\00a0"; /* Prevent margin collapse */ }
+/* Inset, by Dan Eden */ hr.hr-style-six { border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+/* Gradient transparent - color - transparent */ hr.hr-style-seven { border: 0; height: 1px; background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); }
+/* Glyph, by Harry Roberts */ hr.hr-style-eight { padding: 0; border: none; border-top: medium double #333; color: #333; text-align: center; } hr.hr-style-eight:after { content: "§"; display: inline-block; position: relative; top: -0.7em; font-size: 1.5em; padding: 0 0.25em; background: white; }
+
+/*blue pattern*/.bgcolor-1{background: #1e5799;background: -moz-linear-gradient(top,  #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(50%,#2989d8), color-stop(51%,#207cca), color-stop(100%,#7db9e8));background: -webkit-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);background: -o-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);background: -ms-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);background: linear-gradient(to bottom,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 );}
+/*black*/.bgcolor-2{background: #333333;}
+/*black pattern*/.bgcolor-3{background: rgb(40,52,59);background: -moz-linear-gradient(top,  rgba(40,52,59,1) 0%, rgba(130,140,149,1) 64%, rgba(181,189,200,1) 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(40,52,59,1)), color-stop(64%,rgba(130,140,149,1)), color-stop(100%,rgba(181,189,200,1)));background: -webkit-linear-gradient(top,  rgba(40,52,59,1) 0%,rgba(130,140,149,1) 64%,rgba(181,189,200,1) 100%);background: -o-linear-gradient(top,  rgba(40,52,59,1) 0%,rgba(130,140,149,1) 64%,rgba(181,189,200,1) 100%);background: -ms-linear-gradient(top,  rgba(40,52,59,1) 0%,rgba(130,140,149,1) 64%,rgba(181,189,200,1) 100%);background: linear-gradient(to bottom,  rgba(40,52,59,1) 0%,rgba(130,140,149,1) 64%,rgba(181,189,200,1) 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#28343b', endColorstr='#b5bdc8',GradientType=0 );}
+/*light blue pattern*/.bgcolor-4{background: #7abcff;background: -moz-linear-gradient(top,  #7abcff 0%, #60abf8 44%, #4096ee 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7abcff), color-stop(44%,#60abf8), color-stop(100%,#4096ee));background: -webkit-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%);background: -o-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%);background: -ms-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%);background: linear-gradient(to bottom,  #7abcff 0%,#60abf8 44%,#4096ee 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 );}
+.bgcolor-white{background: #FFFFFF;}
+.bgcolor-but{background: #ffffff;background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ3JSIgc3RvcC1jb2xvcj0iI2VlZWVlZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiNmFkOWUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);background: -moz-linear-gradient(top,  #ffffff 0%, #eeeeee 47%, #b6ad9e 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#eeeeee), color-stop(100%,#b6ad9e));background: -webkit-linear-gradient(top,  #ffffff 0%,#eeeeee 47%,#b6ad9e 100%);background: -o-linear-gradient(top,  #ffffff 0%,#eeeeee 47%,#b6ad9e 100%);background: -ms-linear-gradient(top,  #ffffff 0%,#eeeeee 47%,#b6ad9e 100%);background: linear-gradient(to bottom,  #ffffff 0%,#eeeeee 47%,#b6ad9e 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#b6ad9e',GradientType=0 );}
+.bgcolor-but{background: #D7D9DE;border-radius: 05px;color: #000000;}
+
+* {font-family: Arial, Helvetica, sans-serif;}
+
+.back-to-top {background: url("../images/content/top-up.png") repeat scroll 0 0px #000000;position: fixed;bottom: 40%;right: 35px;width: 50px;height: 50px;border-radius: 10px 10px 10px 10px;transition: all 0.4s ease-in-out 0s;font-size: 0.91667em;display: none;z-index: 99999;-webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .5);-moz-box-shadow: 0 2px 6px rgba(0, 0, 0, .5);box-shadow: 0 2px 6px rgba(0, 0, 0, .5);}
+.back-to-top:hover {background-color: #F1CF00;background-position: 0 -50px;}
+
+.clear{clear: both;}
+.wrapper{ min-width: 1300px;}
+.sub-wrapper{ min-width: 1200px; min-height: 530px;margin-top: 170px;}
+
+a{text-decoration: none;color: #0072FF;}
+a:hover{color: #FF0000;text-decoration: underline;}
+b{color: #333333;}
+/****************************************/
+
+/*------------- Extara's Start -------------*/
+.formtitle{margin-top:20px; width: 100%;background: #E0E0E0;border: 1px solid #CCCCCC;-moz-border-radius: 10px 10px 0px 0px;-webkit-border-radius: 10px 10px 0px 0px;-khtml-border-radius: 10px 10px 0px 0px;border-radius: 10px 10px 0px 0px;}
+.formtitle h1{text-align: center;font-size: 17px;font-style: normal;font-weight: normal;line-height: 12px;padding: 7px;color: #333333;}
+
+.bghead {background: url(../images/content/bg-adbox.png) no-repeat;background-position: center top;background-size: 100%;}
+.bghead span {color: #E61105;}
+.bottom-shadow {background: url(../images/content/shadow.png) no-repeat bottom left;background-size: 100% 100%;margin: 0 auto;padding: 0 10px 38px;position: relative;}
+.break{clear: both;background: url(../images/compo/stripe.png) repeat 0 0 scroll;height: 7px;display: block;margin: 10px auto;width: 90%;}
+.noborder{border: 0;outline:0;}
+.txtleft{text-align: left;}
+.txtcenter{text-align: center;}
+.txtright{text-align: right;}
+/*------------- Extara's End -------------*/
+
+/*------------- Title Start -------------*/
+#title {
+    height: 135px;
+    width: 99%;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    background: #FFFFFF;
+    /*border: 1px solid #838D96;*/
+    border-top: none;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+#title div.topbar{width: 100%;height: 30px;background: #1e5799;}
+
+#title div.topbar div.inseptdate{width: 273px;float: left;margin-left: 30px;line-height: 30px;}
+#title div.topbar div.inseptdate span{font-size: 14px;color: #FFFFFF;}
+#title div.topbar div.inseptdate span b{color: #FFFFFF;font-size: 16px;}
+
+#title div.topbar h2.soname{float: right;color: #ffffff;margin-right: 20px;line-height: 30px;}
+
+#title div.logo{float: left;overflow: hidden;padding: 0px;margin: 5px 0px 0px 5px;}
+#title div.logo img{display: block;float: left;width: 150px;height: 90px;}
+#title div.logo h2.softtitle{
+    float: left;
+    line-height: 90px;
+    margin-left: 20px;
+    font-size: 42px;
+    font-family: "Arial Unicode MS";
+}
+
+#title div.right{float: right;overflow: hidden;padding: 0px;margin: 0px 0px 5px 0px;}
+#title div.right img.title-bg-1{display: block;width: 800px;height: 130px;}
+
+div.bottom-img{display: block;margin: 0 auto;height: 120px;
+background: #FFFFFF url(../images/bg/farmer-corner-banner21.png) 0 0 scroll;
+background-repeat: repeat-x;
+background-size: auto 120px;
+}
+/*--------------------tital end----------------*/
+
+/*----------- Navigation Menu Start -----------*/
+
+#navmenu,.bar{background: #1e5799;width: 99.2%;width: 100%;margin: 0px 0px 0px 0px;height: 32px;-webkit-box-shadow: 0 5px 6px -6px black;-moz-box-shadow: 0 5px 6px -6px black;box-shadow: 0 5px 6px -6px black;z-index: 0;
+position: fixed;
+top: 135px;
+z-index: 1;
+}
+#navmenu{height: 35px;}
+.bar h2 {color: #FFFFFF;text-align: center;font-size: 15px;line-height: 30px;}
+#navmenu div.topmenu {width: 950px;height: 32px;margin: 0 0 0 20px;font-size: 14px;color: #FFF;float: left;height: 10px;}
+#nav {margin: 0;padding: 0px 10px 0;line-height: 100%;}
+
+#navmenu ul.m-1{}
+#navmenu ul.m-2{}
+#navmenu ul.m-3{}
+#navmenu ul.m-4{}
+#navmenu ul.m-5{}
+
+#nav li {padding: 0 0 1px;float: left;position: relative;list-style: none;border-left: 1px solid #79B6E6;border-right: 1px solid #2165AB;}
+#nav li.first {border-left: none;}
+#nav li.last {border-right: none;}
+#nav a{text-decoration: none;display: block;padding: 8px 16px;margin: 1px 0px 0px 0px;color: #ffffff;}
+#nav li a.current, #nav li:hover > a {-moz-box-shadow: inset 0 0 20px #000000;-webkit-box-shadow: inset 0 0 20px #000000;box-shadow: inset 0 0 2px #000000;color: #000000;background: #E6E6E6;}
+#nav ul{display: none;margin: 0;padding: 0;width: 185px;position: absolute;top: 32px;left: 0;box-shadow: 0 1px 3px rgba(0, 0, 0, .3);z-index: 999;background: #E6E6E6;border: 1px solid #999999;border-top: none;-webkit-box-shadow: inset 0 6px 6px -6px black;-moz-box-shadow: inset 0 6px 6px -6px black;box-shadow: inset 0 6px 4px -6px black;}
+#nav ul li {float: none;margin: 0;padding: 0;border: none;border-top: 1px solid #CCCCCC;border-bottom: 1px solid #999999;}
+#nav ul a{color: #000000;}
+#nav li:hover > ul{display: block;}
+#nav li ul li:hover > a {background: #1e5799;color: #FFFFFF;}
+#nav ul ul{left: 185px;left: 184px;top: -1px;}
+#nav ul li:first-child > a{}
+#nav ul li:last-child > a{}
+#nav:after{content: ".";display: block;clear: both;visibility: hidden;line-height: 0;height: 0;}
+#nav{display: inline-block;}
+html[xmlns] #nav{display: block;}
+* html #nav{height: 1%;}
+
+#nav li.home-page a{background: url(../images/nav/home-page-img.png) 0 0 no-repeat;background-size: 75% 75%;background-position: center center;height: 15px;}
+#nav li.home-page a.current{background: #24B1E5 url(../images/nav/home-page-img.png) 0 0 no-repeat;background-size: 75% 75%;background-position: center center;height: 15px;}
+#navmenu div.inseptdate{width: 273px;float: right;line-height: 32px;}
+#navmenu div.inseptdate span{font-size: 14px;color: #FFFFFF;}
+#navmenu div.inseptdate span b{color: #FFFFFF;font-size: 16px;}
+
+/*#nav a:after {content: ' ▶';}*/
+/*#nav a:hover:after{content:'\25bc'}*/
+/*----------- Navigation Menu End -----------*/
+
+div.back-but{
+    /*background: red;*/
+    width: 80px;
+    height: 30px;
+    position: fixed;
+    top: 170px;
+    left: 0px;
+    z-index: 9999;
+    border-radius: 0px 7px 7px 0px;
+}
+
+div.back-but a{
+ background: #333333;   
+ color: #FFFFFF;
+ display: block;
+ line-height: 30px;
+ text-align: center;
+ border-radius: 0px 7px 7px 0px;
+}
+
+
+/*------------- FieldSet -------------*/
+fieldset {
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+fieldset label {
+    float: left;
+    line-height: 25px;
+    font-size: 15px;
+    color: #000000;
+    text-align: left;
+}
+fieldset label.address {
+    line-height: 100px;
+}
+
+fieldset input {
+    float: right;
+    height: 21px;
+    padding-left: 15px;
+    font-size: 13px;
+}
+fieldset input.noborder{border: 0;outline:0;text-decoration: underline;}
+fieldset input.noborder:focus{border: 0;outline:0;border: none;transition: none;box-shadow: none;}
+fieldset input.txtleft{text-align: left;}
+fieldset input.txtcenter{text-align: center;}
+fieldset input.txtright{text-align: right;}
+
+fieldset input.right{
+    text-align: right;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+fieldset textarea {
+    float: right;
+    height: 100px;
+    padding-left: 7px;
+    resize: none;
+    font-size: 13px;
+}
+fieldset select {
+    float: right;
+    line-height: 25px;
+    font-size: 13px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: normal;
+}
+fieldset select option{
+    text-align: left;
+    padding-left: 15px;
+    /*padding-top: 5px;*/
+}
+input[type="button"],input[type="submit"],input[type="reset"] {
+    width: 120px;
+    height: 27px;
+    margin-left: 05px;
+    cursor: pointer;
+    float: left;
+    padding: 0px;
+    background: #24B1E5;
+    color: #FFFFFF;
+    font-size: 14px;
+    /*font-weight: bold;*/
+
+    border-top: 1px solid #3B8CD4;
+    border-left: 1px solid #3B8CD4;
+    border-right: 2px solid #1E5799;
+    border-bottom: 2px solid #1E5799;
+
+    border-radius: 5px;
+}
+input[type="button"]:active,input[type="submit"]:active,input[type="reset"]:active {
+    border-top: 2px solid #1E5799;
+    border-left: 2px solid #1E5799;
+    border-right: 1px solid #3B8CD4;
+    border-bottom: 1px solid #3B8CD4;
+}
+
+.floatLeft {float: left;}
+.floatceter {margin: 0 auto;}
+.floatRight {float: right;}
+
+fieldset label span.reqfiled{
+    color: red;
+}
+/*----------- Fieldset End ------------*/
+
+/*---------- Home Page Start -------*/
+#main {
+    width: 98%;
+    margin: 30px auto;
+    overflow: hidden;
+}
+
+/*------- Login Start--------*/
+.loginpage div.first {float: left;width: 389px;padding: 1%;}
+.loginpage div.second {float: left;width: 557px;}
+.loginpage div.third {float: left;width: 391px;padding: 1%;}
+.loginpage div.first h2,.loginpage div.third h2 {text-align: center;font-size: 25px;padding: 15px;}
+.loginpage div.first h2 b,.loginpage div.third h2 b {color: #862e06;}
+.loginpage div.first p,.loginpage div.third p {padding: 0;color: #9b8d84;font: 14px/24px Arial, Helvetica, sans-serif;text-indent: 50px;text-align: justify;}
+.loginpage div.first a,.loginpage div.third a {color: #9b8d84;font: 12px/24px Arial, Helvetica, sans-serif;text-decoration: underline;display: block;text-align: right;}
+.loginpage div.first a:hover,.loginpage div.third a:hover {color: #F1AA00;}
+
+.login {
+    background: #FFFFFF;
+    border: 2px solid #DDDDDD;
+    width: 80%;margin: 5% auto 0% auto;
+    border-radius: 7px;
+}
+
+.login div.tithead{
+    background: #0F518E;
+    height: 50px;
+    border-radius: 7px 7px 0px 0px;
+    -webkit-box-shadow: 0 -5px 5px -5px black;-moz-box-shadow: 0 -6px 8px -6px black;
+    box-shadow: 0 -4px 8px -3px black;
+}
+.login h2 div.tithead {
+    font: Arial, Helvetica, sans-serif;
+}
+.login div.tithead h2.fi{
+    float: left;
+    color: #FFFFFF;
+    font-size: 20px;
+    margin-left: 10px;
+    line-height: 50px;
+}
+.login div.tithead h2.se{
+    float: right;
+    color: #000000;
+    font-size: 17px;
+    vertical-align: bottom;
+    margin-right: 15px;
+    margin-top: 23px;
+    background: #FFFFFF;
+    padding: 5px 12px;
+    border-radius: 5px 5px 0px 0px;
+}
+.login h2 b {color: #FFFFFF;font-weight: normal;}
+
+.login div.loginpanel{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 5px;
+    overflow: hidden;
+
+}
+.login fieldset {width: 75%;}
+.login fieldset label {color: #000000;}
+.login fieldset input {width: 205px;padding-left: 45px;height: 25px;border-radius: 5px;}
+.login div.but {width: 205px;margin-top: 12px;float: right;margin-right: 39px;overflow: hidden;}
+.login div.but input[type="button"],.login .but input[type="reset"] {width: 95px;height: 25px;}
+.login a.fpass {font-size: 15px;margin-left: 43px;margin-top: 20px;float: left;}
+.login fieldset input.username {background-image: url(../images/content/username_field.png);background-repeat: no-repeat;background-position: -15px -5px;}
+.login fieldset input.password {background-image: url(../images/content/password_field.png);background-repeat: no-repeat;background-position: -15px -5px;}
+/*------------- Login Start --------*/
+
+/*------- Change Password ------------*/
+.chngpass fieldset{width: 370px;}
+.chngpass fieldset label{width: 40%;line-height: 30px;}
+.chngpass div.but{width: 260px;margin-right: 06px;}
+.chngpass .but input[type="button"]{background: url(../images/compo/submit_btn.png) no-repeat center center;background-size: 100%;margin-left: 0;}
+.chngpass .but input[type="submit"]{background: url(../images/compo/submit_btn.png) no-repeat center center;background-size: 100%;margin-left: 0;}
+/*------- Change Password End ----------*/
+
+/*------------ Form Started ---------------*/
+.form{display: block;margin: 0px auto 0px auto;padding-top: 15px;overflow: hidden;background: #ffffff;border: 1px solid #CCCCCC;border-top: none;}
+.form div.top {display: block;overflow: hidden;margin-bottom: 10px;}
+.form div.top fieldset.main {padding: 0;display: block;width: 97%;margin: 0px auto 10px auto;border: 1px dotted #BCDBEA;background: #FCFDFF;}
+.form div.top fieldset.submain {padding: 0;width: 97%;margin: 0px auto 10px auto;border: 1px dotted #B8D8E7;display: block;background: #F5F7FA;}
+legend {padding: 0.3em 0.7em;border:1px solid #BCDBEA;font-size: 15px;margin-left: 15px;text-align:center;color: #FFFFFF;background: #3B8CD4;-moz-border-radius: 5px;-webkit-border-radius: 5px;-khtml-border-radius: 5px;border-radius: 5px;}
+.form div.top fieldset.submain legend {}
+.form div label[for="head"]{display: block;margin: 5px 0px 15px 20px;color: #862e06;}
+.form div label[for="head"].center{text-align: center;}
+
+/*----- Form Element Started --------*/
+.form fieldset {width: 370px;}
+.home fieldset {margin-bottom: 20px;}
+.form fieldset select {width: 222px;text-align: center;vertical-align: central;}
+div.setcenter{margin: 0 auto;}
+/*----- Form Element Ended --------*/
+
+/*-------- member kraj khate start ------------*/
+.form div.top div.set-img {clear: both;margin-bottom: 0px;overflow: hidden;}
+.form div.top div.set-img div.l {width: 80%;float: left;margin-top: 50px;overflow: hidden;}
+.form div.top div.set-img div.r {width: 20%;float: right;overflow: hidden;}
+.form div.top div.set-img div.r table {}
+.photo label input {overflow: hidden;position: relative;top: 0;right: 0;margin: 0;width: 120px;opacity: 0.0;cursor: pointer;}
+.photo label {position: relative;cursor: pointer;text-align: center;overflow: visible;overflow: hidden;margin-top: 10px;height: 35px;background: url(../images/compo/brows.png) no-repeat;background-size: 100% 100%;border: 1px solid #ffffff;}
+.form div.top div.set {clear: both;}
+.form div.top div.set div {display: inline-block;margin: 5px 15px 5px;}
+#main .mkk div.top div.set div fieldset {margin-bottom: 0px;}
+.form div.top div.set div fieldset.s label {margin-left: 30px;text-align: left;}
+.form fieldset input[type="text"],.form fieldset input[type="password"],.form fieldset textarea{width: 205px;background: #FFFFFF;}
+.form div.top div.set div.midle {width: 370px;margin: 10px auto 20px;display: block;}
+.form div.top div.set-1,.form div.top div.set-2 {float: left;width: 49%;margin-left: 0px;}
+.form div.top div.set-1 div,.form div.top div.set-2 div {clear: both;}
+/*-------- member kraj khate end ------------*/
+
+/*-------- account master create start ------------*/
+.form div.top div div fieldset div.radio {margin: 0;padding: 0;}
+.form div.top div div fieldset div.radio label {float: left;margin-left: 12px;}
+.form div.top div div fieldset div.radio input {width: auto;height: auto;margin: 5px 12px 0px 15px;padding: 0;float: left;}
+.form div.top div.large div fieldset {width: 450px;}
+.form div.top div.twoinput div fieldset {}
+.form div.top div.twoinput div fieldset input[type="text"].f {float: left;}
+
+.border-r {border-right: 1px dashed #341c12;}
+.border-l {border-left: 1px dashed #341c12;}
+/*-------- account master create end ------------*/
+
+.four div {overflow: hidden;width: 20%;}
+.four div fieldset {width: 100%;}
+.four div fieldset input[type="text"],.four div fieldset select {width: 50%;}
+.threeBig div {width: 24%;}
+.threeBig div:last-child {width: 12%;}
+.threeBig div fieldset input[type="text"],.threeBig div fieldset select{width: 65%;}
+.threeBig div:last-child fieldset select {width: 50%;}
+
+.form div.but1 {width: 180px;margin: 0 auto;overflow: hidden;}
+.form div.but1 input[type="button"] {float: right;}
+.form div.but2 {width: 350px;margin: 0 auto;overflow: hidden;}
+.form div.but2 input {margin: 0px 20px 0px;}
+.form div.but2 input[type="button"] {float: none;display: inline-block;}
+.form div.but3 {width: 520px;margin: 0 auto;overflow: hidden;}
+
+.form div.repbut1 {width: 150px;margin: 0 auto;overflow: hidden;}
+.form div.repbut {width: 350px;margin: 0 auto;overflow: hidden;}
+.form div.repbut input[type="submit"],.form div.repbut input[type="button"],.form div.repbut input[type="reset"]{
+    float: right;
+}
+.form div.but4 input[type="button"] {float: none;display: inline-block;}
+
+.form div.inline{clear: both;margin: 0 auto;overflow: hidden;}
+.form div.inline fieldset{float: left;margin-left: 25px;}
+.form div.inline fieldset:first-child{margin-left: 0;}
+
+/*------------ Temporary adjustment --------*/
+.form div.inline fieldset{}
+.form div.inline fieldset label{float: left;line-height: 20px;font-size: 13px;color: #000000;}
+.form div.inline fieldset input{width: 190px;float: right;height: 20px;padding: 0px 5px;font-size: 13px;}
+.form div.inline fieldset textarea{width: 190px;height: 70px;float: right;height: 100px;padding: 5px;resize: none;font-size: 13px;}
+.form div.inline fieldset select{padding: 0px;height: 23px;width: 212px;float: right;line-height: 25px;font-size: 13px;text-align: center;padding: 2px;}
+.form div.inline fieldset select option{text-align: left;font-size: 13px;}
+/*------------ Temporary adjustment End--------*/
+
+.form div.one-in fieldset{width: 90%;}
+
+.form div.two-in fieldset{width: 48%;}
+.form div.two-in fieldset.left{float: left;}
+.form div.two-in fieldset.right{float: right;}
+
+.form div.three-in fieldset{width: 32%;}
+.form div.three-in fieldset input[type="text"],.form div.three-in fieldset input[type="password"]{width: 172px;}
+.form div.three-in fieldset select{width: 190px;}
+/*----- Set Ended --------*/

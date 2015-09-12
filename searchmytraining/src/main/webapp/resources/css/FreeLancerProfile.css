@@ -1,0 +1,1024 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 9, 2015, 12:30:32 PM
+    Author     : Tejashri Pawar
+*/
+body {
+	overflow-x: hidden;
+}
+
+.container .container-form-wrapar .banner {
+	height: 200px;
+	width: 100%;
+	/* background: #0094FF; */
+}
+
+.acord {
+	width: 90%;
+}
+
+.acord .acord_head {
+	cursor: pointer;
+	padding: 10px 25px;
+	margin: 3px 0 0 0;
+	background-color: #f5f5f5;
+	font-size: 17px;
+	color: #000;
+	position: relative;
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+}
+
+.acord .acord_head:hover {
+	background-color: #cecece;
+}
+
+.acord .plus span, .acord .minus span {
+	background: url(../../resources/images/acordSprite2.png) no-repeat; 
+	width: 8px; 
+	height: 8px; 
+	top: 17px; 
+	left: 10px; 
+	position: absolute; 
+	}
+.acord .minus span { 
+	background-position: 0px -9px; 
+	}
+.acord .plus span {
+	background-position: 0px 0px; 
+	}
+
+.acord .acord_cont {
+	padding: 2.5em 2.2em;
+	border-top: 0;
+	overflow: auto;
+	display: none;
+	border: solid #ccc;
+	border-width: 1px;
+	width: 85%;
+}
+text{
+	color: red;
+}
+.acord .acord_cont .photo img {
+	margin-left: 330px;
+	margin-bottom: 10px;
+	border: 1px groove #000;
+}
+
+.acord .acord_cont .photo .fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin-left: -120px;
+    margin-top:35px;
+    float: inherit;
+}
+.acord .acord_cont .photo .fileUpload span{
+	
+	 color: #fff !important;
+	 margin: 0px 0px 0px -13px;
+}
+.acord .acord_cont .photo .fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.acord .acord_cont .photo  .btn-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+ 
+}
+.acord .acord_cont .photo .btn {
+  display: inline-block;
+  padding: 6px 20px;
+  margin-bottom: 0;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.acord .acord_cont .name {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+	
+}
+
+.acord .acord_cont .Email {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+
+}
+.acord .acord_cont .contact {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+	/*background: red;*/
+}
+
+.acord .acord_cont #achiv {
+	height: auto;
+	margin: 0px 0px 10px 0px;
+	width: 100%;
+	float: left;
+	/*background: red;*/
+}
+
+.acord .acord_cont #association {
+	height: auto;
+	margin: 0px 0px 10px 0px;
+	width: 100%;
+	float: left;
+}
+
+.acord .acord_cont #client {
+	height: auto;
+	margin-left: 30px;
+	width: 100%;
+	float: left;
+}
+
+.acord .acord_cont #client p label {
+	font-size: 16px;
+	width: 250px;
+	float: left;
+	text-align: right;
+	color: #000;
+	clear: left;
+	margin: 6px 4px 0px 0px;
+	font-family: arial;
+}
+
+.acord .acord_cont #client textarea {
+	resize: none;
+	height: 100px;
+	width: 300px;
+	padding: 5px 10px;
+	font-family: arial;
+}
+
+.acord .acord_cont h3 {
+	margin-left: 445px;
+	font-family: arial;
+}
+
+.acord .acord_cont #Achievement {
+	height: auto;
+	margin: 0px 0px 10px 0px;
+	width: 100%;
+	float: left;
+	/*        background: black;*/
+}
+
+.acord .acord_cont #Achievement p {
+	background: red;
+}
+
+.acord .acord_cont #achiv p input[type=text] {
+	width: 215px;
+	height: 33px;
+}
+
+.acord .acord_cont .multi .add {
+	margin-left: 490px;
+	margin-top: -30px;
+}
+
+p a {
+	color: #999;
+	text-decoration: none;
+	font-size: 15px;
+	margin-left: 5px;
+}
+
+p a img {
+	/*background: red;*/
+	
+}
+
+.acord .acord_cont .year {
+	height: 30px;
+	width: 700px;
+	float:left;
+	margin-bottom: 20px;
+}
+
+.acord .acord_cont .methodology {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+
+.acord .acord_cont .history {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+
+.acord .acord_cont .w-days {
+	height: 30px;
+	margin: 70px 0px 20px 0px;
+}
+
+.acord .acord_cont form label {
+	font-size: 16px;
+	width: 250px;
+	float: left;
+	text-align: right;
+	color: #000;
+	clear: left;
+	margin: 6px 4px 0px 0px;
+	font-family: arial;
+}
+
+input[type="button"] {
+	margin-left: 530px;
+	cursor: pointer;
+	border-radius: 5px;
+	height: 30px;
+	width: 30px;
+	font-size: 20px;
+	color: dimgray;
+	margin-bottom: 20px;
+}
+
+input[type=checkbox] {
+	/*margin-top: 2px;*/
+	height: 14px;
+	width: 14px;
+	margin: 7px;
+}
+
+input[type=text] {
+	padding-left: 10px;
+	height: 30px;
+	width: 300px;
+	font-size: 13px;
+	float: left;
+}
+
+input[type=text]:FOCUS, input[type=email]:FOCUS, textarea:FOCUS {
+	border: 1px solid #40A9DF;
+	box-shadow: 0 0 3px #40A9DF;
+	-webkit-box-shadow: 0 0 3px #40A9DF;
+	-o-box-shadow: 0 0 3px #40A9DF;
+	-moz-box-shadow: 0 0 3px #40A9DF;
+}
+
+input[type=password] {
+	padding-left: 10px;
+	height: 30px;
+	width: 300px;
+	font-size: 13px;
+}
+
+input
+[
+type
+=
+password
+]
+:FOCUS
+,
+{
+border
+:
+ 
+1
+px
+ 
+solid
+ 
+#40A9DF
+;
+box-shadow
+:
+0
+0
+3px
+#40A9DF;
+-webkit-box-shadow
+:
+0
+0
+3px
+#40A9DF;
+-o-box-shadow
+:
+0
+0
+3px
+#40A9DF;
+-moz-box-shadow
+:
+0
+0
+3px
+#40A9DF;
+}
+input[type=email] {
+	padding-left: 10px;
+	height: 30px;
+	width: 300px;
+	font-size: 13px;
+}
+
+button {
+	height: 28px;
+	width: 80px;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+fieldset {
+	border: 1px solid gray;
+	/* width: 850px;
+	padding-top: 10px;
+	margin-bottom: 40px; */
+}
+
+legend {
+	margin-left: 30px;
+	font-size: 20px;
+}
+
+.acord .acord_cont .flatNo {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+	width: 80%;
+}
+
+.acord .acord_cont .street {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+	width: 80%;
+}
+
+.acord .acord_cont .landmark {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+	width: 80%;
+}
+
+.acord .acord_cont .pin {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+	width: 80%;
+}
+
+.acord .acord_cont .country {
+	float: left;
+	height: 30px;
+	width: 300px;
+	margin: 0px 0px 20px 0px;
+	height: 30px;
+}
+
+.acord .acord_cont .country label {
+	width: 150px;
+}
+
+.acord .acord_cont .country select {
+	width: 130px;
+}
+ 
+.acord .acord_cont .state {
+	float: left;
+	height: 30px;
+	width: 250px;
+	margin: 0px 0px 20px 0px;
+}
+
+.acord .acord_cont .state label {
+	width: 100px;
+}
+
+ .acord .acord_cont .state select {
+	width: 130px;
+} 
+
+.acord .acord_cont .city {
+	float: left;
+	height: 30px;
+	width: 230px;
+	margin: 0px 0px 20px 0px;
+}
+
+.acord .acord_cont .city label {
+	width: 80px;
+}
+
+.acord .acord_cont .city select {
+	width: 130px;
+} 
+
+.acord .acord_cont form .save {
+	height: 30px;
+	margin: 0px 0px 30px 0px;
+}
+
+.acord .acord_cont #cont {
+	height: auto;
+	
+	width: 100%;
+	float: left;
+}
+
+.acord .acord_cont #cont p {
+	float: left;
+	margin-bottom: 20px;
+}
+
+.acord .acord_cont #cont p input[type=text] {
+	width: 188px;
+	height: 30px;
+	float: left;
+}
+
+.acord .acord_cont #cont p select {
+	width: 100px;
+	margin-right: 10px;
+} 
+
+.acord .acord_cont #cont p label {
+	line-height: 20px;
+}
+
+.acord .acord_cont .btn {
+	float: left;
+	height: 20px;
+	width: 5%;
+	cursor:pointer;
+	margin-left: 15px;
+}
+
+.btn img {
+	cursor: pointer;
+	border-radius: 5px;
+	height: 30px;
+	width: 30px;
+	font-size: 20px;
+	color: dimgray;
+	margin-left: 0px;
+}
+
+.acord .acord_cont .website {
+	float: left;
+	width: 100%;
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+
+.acord .acord_cont .qua {
+	height: 30px;
+	margin-bottom: 20px;
+width: 60%;
+margin-top: 20px;
+}
+
+.acord .acord_cont .spec {
+	height: 30px;
+	margin-bottom: 20px;
+	width: 700px;
+	float: left;
+}
+.acord .acord_cont .dtype {
+	height: 30px;
+	margin-bottom: 20px;
+	width: 700px;
+	float: left;
+}
+.acord .acord_cont .university {
+	height: 30px;
+	float:left;
+	margin-bottom: 20px;
+}
+
+.acord .acord_cont form select {
+	font-family: Georgia;
+	font-size: 12px;
+	float: left;
+	width: 130px;
+	border: 1px solid #cccccc;
+	margin: 0px 4px 2px 2px;
+	color: #999;
+	height: 30px;
+	padding: 3px;
+	/*  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      -webkit-border-radius: 1px;
+      -moz-border-radius: 1px;  */
+}
+
+.acord .acord_cont .oldpass {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+
+.acord .acord_cont .newpass {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+
+.acord .acord_cont .conpass {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+
+.acord .active {
+	display: block;
+}
+
+.acord .disable {
+	background-color: #C0C0C0;
+}
+.acord .acord_cont span{
+	color: red;
+	font-family: arial;
+	font-size: 12px;
+	line-height: 30px;
+	margin-left: 10px;
+}
+.acord .acord_cont #cont input[type="button"].addcontact {
+	height: 25px;
+	width: 25px;
+	border-radius:50%;
+	margin-left:10px;
+	margin-top: 2px;
+	font-weight: bold;
+}
+.acord .acord_cont input[type="button"] {
+	float: left;
+	border: none;
+	width:180px;
+	font-size: 18px;
+	height: 30px;
+	color: #FFFFFF;
+	margin-left: 265px;
+	margin-top:20px;
+	border-radius: 5px;
+	cursor: pointer;
+	background: rgb(135, 224, 253); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(135,
+		224, 253, 1)), color-stop(40%, rgba(83, 203, 241, 1)),
+		color-stop(100%, rgba(5, 171, 224, 1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd',
+		endColorstr='#05abe0', GradientType=0);
+	border: none; /* IE6-9 */
+}
+.acord .acord_cont input[type="submit"] {
+	float: left;
+	border: none;
+	width:180px;
+	font-size: 18px;
+	height: 30px;
+	color: #FFFFFF;
+	margin-left: 270px;
+	margin-top:20px;
+	border-radius: 5px;
+	cursor: pointer;
+	background: rgb(135, 224, 253); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(135,
+		224, 253, 1)), color-stop(40%, rgba(83, 203, 241, 1)),
+		color-stop(100%, rgba(5, 171, 224, 1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd',
+		endColorstr='#05abe0', GradientType=0);
+	border: none; /* IE6-9 */
+}
+.acord .acord_cont input#skip1{
+	float: left;
+	border: none;
+	width: 80px;
+	font-size: 18px;
+	height: 30px;
+	color: #FFFFFF;
+	margin-left: 10px;
+	margin-top:20px;
+	border-radius: 5px;
+	cursor: pointer;
+	background: rgb(135, 224, 253); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(135,
+		224, 253, 1)), color-stop(40%, rgba(83, 203, 241, 1)),
+		color-stop(100%, rgba(5, 171, 224, 1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd',
+		endColorstr='#05abe0', GradientType=0);
+	border: none; /* IE6-9 */
+}
+
+
+/* ==========================Edit calender======================================================== */
+
+
+.acord .acord_cont .title {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+.acord .acord_cont .fdate {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+.acord .acord_cont .fdate #Fdate{
+	background: url("../../resources/images/calender/calendar.png") 275px center no-repeat;
+	border: 1px solid #ccc;
+}
+
+.acord .acord_cont .Tdate #Tdate{
+	background: url("../../resources/images/calender/calendar.png") 275px center no-repeat;
+	border: 1px solid #ccc;
+}
+.acord .acord_cont .Tdate {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+.acord .acord_cont .Industry {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+.acord .acord_cont .Industry select{
+	width: 300px;
+}
+.acord .acord_cont .Ctype {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+.acord .acord_cont .Category {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+.acord .acord_cont .Category select{
+	width: 300px;
+}
+
+.acord .acord_cont .SubCategory {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+.acord .acord_cont .SubCategory select{
+	width: 300px;
+}
+.acord .acord_cont .Ctype {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+.acord .acord_cont .Ctype select{
+	width: 300px;
+}
+.acord .acord_cont .price {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+.acord .acord_cont .description {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+.acord .acord_cont .keyCode {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+
+}
+.acord .acord_cont .browse {
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+.acord .acord_cont .submit {
+	height: 30px;
+	margin: 0px 20px 20px 0px;
+}
+
+.acord .acord_cont .submit  input[type="submit"] {
+	float: left;
+	border: none;
+	width: 150px ;
+	font-size: 18px;
+	height: 30px;
+	color: #FFFFFF;
+	margin-right:10px;
+	margin-left:250px ;
+	margin-top: 20px ;
+	border-radius: 5px;
+	cursor: pointer;
+	background: rgb(135, 224, 253); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(135,
+		224, 253, 1)), color-stop(40%, rgba(83, 203, 241, 1)),
+		color-stop(100%, rgba(5, 171, 224, 1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(135, 224, 253, 1) 0%,
+		rgba(83, 203, 241, 1) 40%, rgba(5, 171, 224, 1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd',
+		endColorstr='#05abe0', GradientType=0);
+	border: none; /* IE6-9 */
+}
+.acord .acord_cont  .fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin-left: 5px;
+    float: left;
+}
+.acord .acord_cont  .fileUpload span{
+	
+	 color: #fff !important;
+	 margin: 0px -5px;
+	 line-height: 25px;
+}
+.acord .acord_cont  .fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.acord .acord_cont  .btn-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+.acord .acord_cont  .btn {
+  display: inline-block;
+  padding: 5px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.acord .acord_cont .browse #uploadFile{
+	height:30px;
+	font-size:16px;
+	margin-left:10px;
+	border-radius:6px;
+	text-align:center;
+	border:none;
+	color: gray;
+
+}
+
+/* =================================View Calender============================================ */
+#recentadd_Calender .table_search{
+
+	height: 40px;
+}
+#recentadd_Calender .pager {
+  float:right;
+    margin: 1em 0;
+}
+
+#recentadd_Calender .pager span {
+    display: inline-block;
+    width: 1.8em;
+    height: 1.8em;
+    line-height: 1.8;
+    text-align: center;
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+    margin-right: 0.5em;
+}
+
+#recentadd_Calender .table_search label{
+	float: left;
+	line-height: 30px;
+	font-family: arial;
+	font-size: 18px;
+	margin-right: 5px;
+}
+
+#recentadd_Calender table{
+	
+	width: 100%;
+	height: 100%;
+    font-family: arial;
+    text-align: center;
+}
+#recentadd_Calender table tr{
+	padding: 10px;
+	text-align: center;
+	font-size: 18px;
+}
+#recentadd_Calender table tr:HOVER{
+	background: #66E0FF;
+}
+#recentadd_Calender table tr:nth-child(odd){
+	background: #D6EBFF;	
+	
+}
+#recentadd_Calender table tr td{
+	text-align: center;
+	font-size: 16px;
+	padding: 8px;
+	border-right: 1px solid #fff; 
+}
+#recentadd_Calender table th{
+	background:#66CCFF;
+	padding: 10px;
+	text-align: center;
+	color: #fff;
+	font-family: arial;
+	font-size: 18px;
+	border-right: 1px solid #fff; 
+	
+}
+/* ===========================================view all calender======================================================= */
+
+#viewall_calender .table_search2{
+
+	height: 40px;
+}
+#viewall_calender .pager {
+  float:right;
+    margin: 1em 0;
+}
+
+#viewall_calender .pager span {
+    display: inline-block;
+    width: 1.8em;
+    height: 1.8em;
+    line-height: 1.8;
+    text-align: center;
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+    margin-right: 0.5em;
+}
+#viewall_calender .table_search2 label{
+	float: left;
+	line-height: 30px;
+	font-family: arial;
+	font-size: 18px;
+	margin-right: 5px;
+}
+
+#viewall_calender table{
+	
+	width: 100%;
+	height: 100%;
+	  font-family: arial;
+    text-align: center;
+}
+#viewall_calender table tr{
+	padding: 10px;
+	text-align: center;
+	font-size: 18px;
+}
+#viewall_calender table tr:HOVER{
+	background: #66E0FF;
+}
+#viewall_calender table tr:nth-child(odd){
+	background: #D6EBFF;	
+	
+}
+#viewall_calender table tr td{
+	text-align: center;
+	font-size: 16px;
+	padding: 8px;
+	border-right: 1px solid #fff; 
+}
+#viewall_calender table th{
+	background:#66CCFF;
+	padding: 10px;
+	text-align: center;
+	color: #fff;
+	font-family: arial;
+	font-size: 18px;
+	border-right: 1px solid #fff; 
+	
+}
+/* =========================================Tag css====================================================== */
+ol,
+ul { list-style: outside none none; }
+
+
+
+.tags {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #ccc;
+  display: table;
+  padding: 0.3em;
+  width: 70%;
+  float: left;
+}
+
+.tags li.tagAdd,
+.tags li.addedTag {
+  float: left;
+  margin-left: 0.20em;
+  margin-right: 0.20em;
+}
+
+.tags li.addedTag {
+  background: none repeat scroll 0 0 #08D7F9;
+  border-radius: 5px;
+  color: #fff;
+  padding: .1em;
+}
+.tags input[type='text']{
+	width: 150px;
+}
+.tags input,
+li.addedTag {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  box-shadow: none;
+  display: block;
+  padding: 0.3em;
+}
+
+.tags input:hover { border: 1px solid #000; }
+
+span.tagRemove {
+  cursor: pointer;
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+span.tagRemove:hover { color: #222222; }
+
+
+p { color: #ccc; }
+
+h1 {
+  color: #6b6b6b;
+  font-size: 1.0em;
+}
+
+

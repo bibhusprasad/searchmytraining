@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<sec:http auto-config="true">
+		<sec:session-management>
+			<sec:concurrency-control max-sessions="1"
+				expired-url="/your-page-here" />
+		</sec:session-management>
+
+		<!-- <sec:form-login login-page="/login" default-target-url="/main" authentication-failure-url="/loginError" 
+			/> -->
+		<sec:intercept-url pattern="/main" access="ROLE_ADMIN" />
+		<sec:intercept-url pattern="/trainingprovider_updateprofile" access="ROLE_TPI" />
+		<sec:intercept-url pattern="/sendOTP" access="ROLE_ANONYMOUS" />
+		<sec:intercept-url pattern="/tpf" access="ROLE_TPF" />
+<!--  AJAX based login -->
+		<sec:form-login login-page="/rest/security/login" default-target-url="/rest/security/authentication-success"
+			authentication-failure-url="/rest/security/authentication-failure" username-parameter="username"
+			 password-parameter="password" /><!--authentication-success-handler-ref="smtSuccessHandler" />--> 
+		<sec:logout logout-success-url="/rest/security/logout-success"
+			logout-url="/j_spring_security_logout" />
+	</sec:http>
+
+	<!-- <beans:bean id="smtSuccessHandler"
+		class="com.searchmytraining.security.SMTLoginSuccessHandler">
+	</beans:bean> -->
+
+	<beans:bean id="encoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<!-- <sec:authentication-manager alias="authenticationManager"> <sec:authentication-provider 
+		user-service-ref="myUserDetailsService"> <sec:password-encoder hash="bcrypt" 
+		/> </sec:authentication-provider> <sec:jdbc-user-service id="userDetailsService" 
+		data-source-ref="dataSource" users-by-username-query="SELECT username, password, 
+		enabled FROM USERS WHERE username=?" authorities-by-username-query="SELECT 
+		users.username, roles.role as authorities FROM user_roles roles, USERS users 
+		WHERE roles.user_id=users.user_id and users.username=?" /> </sec:authentication-provider> 
+		</sec:authentication-manager> -->
+
+	<!-- <sec:global-method-security secured-annotations="enabled" /> -->
+
+	<!-- <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" /> <beans:property 
+		name="url" value="jdbc:mysql://localhost:3306/searchmytraining" /> <beans:property 
+		name="username" value="root" /> <beans:property name="password" value="123456" 
+		/> </beans:bean> -->
+
+	<beans:bean id="authenticationProvider"
+		class="com.searchmytraining.security.SMTAuthenticationProvider">
+		<beans:property name="passwordEncoder" ref="encoder" />
+	</beans:bean>
+
+	<sec:authentication-manager>
+		<sec:authentication-provider ref="authenticationProvider" />
+	</sec:authentication-manager>
+	<sec:global-method-security
+		secured-annotations="enabled" />
+
+</beans:beans>

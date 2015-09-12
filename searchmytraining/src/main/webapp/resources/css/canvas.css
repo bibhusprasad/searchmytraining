@@ -1,0 +1,21 @@
+body {
+	overflow-x: hidden;
+}
+#CanvasContainer{
+	width: 100%;
+	overflow: hidden;
+}
+#CanvasContainer #chartContainer{
+	width: 30%;
+	height:400px;
+	margin: 10px;
+	float: left;
+	
+}
+#CanvasContainer #MchartContainer{
+	width: 30%;
+	height:400px;
+	margin: 10px;
+	float: left;
+	
+}

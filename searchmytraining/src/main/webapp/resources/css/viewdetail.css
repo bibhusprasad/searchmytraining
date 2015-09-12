@@ -1,0 +1,206 @@
+@CHARSET "ISO-8859-1";
+body{
+	background: #fff;
+	overflow-x:hidden; 
+}
+.detail_wrapar{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	font-family: arial;
+	background: #fff;
+
+}
+.detail_wrapar .instiute-info-wrapar{
+	width: 90%;
+	height: 100%;
+	margin: 0px auto;
+	background: #fff;
+		overflow: hidden;
+}
+.detail_wrapar .instiute-info-wrapar .institute-info{
+	width: 100%;
+	height: 100px;
+
+
+}
+.detail_wrapar .instiute-info-wrapar .institute-info .institue-logo{
+	width: 25%;
+	height: 100%;
+	float: left;
+}
+.detail_wrapar .instiute-info-wrapar .institute-info .institue-logo img{
+	width: 80px;
+	height: 80px;
+	margin-left: 100px;
+	margin-top: 10px;
+}
+.detail_wrapar .instiute-info-wrapar .institute-info .institute-name{
+	width: 70%;
+	height: 100%;
+	float: left;
+}
+
+.detail_wrapar .instiute-info-wrapar .institute-info .institute-name h1{
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 100px;
+}
+
+
+.detail_wrapar .instiute-info-wrapar .crossline{
+	width: 100%;
+	height: 20px;
+	background: url('../images/crosslines.png');
+	margin-bottom: 25px;
+}
+
+
+.detail_wrapar .instiute-info-wrapar .institute-location-wrapar{
+	width: 100%;
+	height: 200px;
+	border-bottom: 2px groove #ccc;
+}
+.detail_wrapar .instiute-info-wrapar .institute-location-wrapar h1{
+	text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    
+}
+.detail_wrapar .instiute-info-wrapar .institute-location-wrapar .address{
+	width: 49%;
+	height:100%;
+	float: left;
+	border-right: 2px groove #ccc;
+	
+}
+.detail_wrapar .instiute-info-wrapar .institute-location-wrapar .address h3{
+	text-align: center;
+	font-weight: bold;
+	line-height: 50px;
+}
+.detail_wrapar .instiute-info-wrapar .institute-location-wrapar .address p{
+	width: 50%;
+	margin:5px auto;
+	line-height: 30px;
+	text-align: justify;
+
+}
+.detail_wrapar .instiute-info-wrapar .institute-location-wrapar .contact{
+		width: 50%;
+	float: left;
+}
+
+.detail_wrapar .instiute-info-wrapar .institute-location-wrapar .contact p{
+
+	margin: 10px 0px 10px 150px;
+}
+.detail_wrapar .instiute-info-wrapar .institute-location-wrapar .contact p i{
+	float: left;
+	width:20px;
+	margin-right: 5px;
+	margin-top: 5px;
+}
+.detail_wrapar .instiute-info-wrapar .institute-location-wrapar .contact a{
+	text-decoration: none;
+}
+.detail_wrapar .instiute-info-wrapar .institute-location-wrapar .contact ul{
+	width: 400px;
+	margin-left: 200px;
+}
+.detail_wrapar .instiute-info-wrapar .institute-location-wrapar .contact  ul li{
+	line-height: 25px;
+}
+
+.detail_wrapar .instiute-info-wrapar .history{
+	width: 100%;
+	height: 200px;
+	border-bottom: 1px solid #ccc;
+}
+.detail_wrapar .instiute-info-wrapar .history h1{
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 45px;
+}
+.detail_wrapar .instiute-info-wrapar .history p{
+	width:80%;
+	text-align: justify;
+	line-height: 25px;
+	margin: 5px auto;
+}
+.detail_wrapar .instiute-info-wrapar .associates{
+	width: 100%;
+	height: 200px;
+	border-bottom: 1px solid #ccc;
+
+}
+.detail_wrapar .instiute-info-wrapar .associates h1{
+		text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 45px;
+}
+
+.detail_wrapar .instiute-info-wrapar .associates .assciation-list{
+	
+	width: 40%;
+	float: left;
+	margin: 5px 5px 0px 110px; 
+	list-style-type: none;
+}
+.detail_wrapar .instiute-info-wrapar .associates .assciation-list li{
+	line-height: 25px;
+}
+
+.detail_wrapar .instiute-info-wrapar .keyclient{
+	width: 100%;
+	height: 200px;
+	border-bottom: 1px solid #ccc;
+}
+
+.detail_wrapar .instiute-info-wrapar .keyclient h1{
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 45px;
+}
+
+.detail_wrapar .instiute-info-wrapar .keyclient .clinet-list{
+	
+	width: 40%;
+	float: left;
+	margin: 5px 5px 0px 110px; 
+	list-style-type: none;
+}
+.detail_wrapar .instiute-info-wrapar .keyclient .clinet-list li{
+	line-height: 25px;
+}
+.detail_wrapar .instiute-info-wrapar .keyclient{
+	width: 100%;
+	height: 200px;
+	border-bottom: 1px solid #ccc;
+}
+
+.detail_wrapar .instiute-info-wrapar .award{
+	width: 100%;
+	height: 200px;
+	border-bottom: 1px solid #ccc;
+}
+.detail_wrapar .instiute-info-wrapar .award h1{
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 45px;
+}
+
+.detail_wrapar .instiute-info-wrapar .award .award-list{
+	
+	width: 40%;
+	float: left;
+	margin: 5px 5px 0px 110px; 
+	list-style-type: none;
+}
+.detail_wrapar .instiute-info-wrapar .award .award-list li{
+	line-height: 25px;
+}

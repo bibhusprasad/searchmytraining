@@ -1,0 +1,446 @@
+body {
+	overflow-x: hidden;
+}
+
+.Log_container {
+	width: 100%;
+	height: 100%;
+	background: url("../images/textu.png");
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+.Log_container .Log_warapar {
+	width: 900px;
+	height: 500px;
+	margin: 10px auto;
+	overflow: hidden;
+	font-family: arial;
+}
+
+.Log_container .Log_warapar .log_bar {
+	width: 50%;
+	height: 100%;
+	float: right;
+}
+
+.Log_container .Log_warapar .log_bar .form_container {
+	width: 80%;
+	height: 85%;
+	background: #fff;
+	margin: 30px auto;
+	box-shadow: 1px 2px 3px 0px rgba(86, 86, 86, 0.75);
+	font-family: arial;
+}
+
+.Log_container .Log_warapar .log_bar .form_container .msg {
+	width: 300px;
+	height: 30px;
+	font-family: arial;
+	font-size: 14px;
+	background: red;
+	margin: 0 auto;
+}
+
+.Log_container .Log_warapar .log_bar .form_container h1 {
+	font-family: arial;
+	font-size: 25px;
+	text-align: center;
+	line-height: 45px;
+	color: #8080ff;
+}
+
+.Log_container .Log_warapar .log_bar .form_container form .user {
+	width: 100%;
+	height: 45px;
+	margin-bottom: 15px;
+}
+
+.Log_container .Log_warapar .log_bar .form_container form .pass {
+	width: 100%;
+	height: 45px;
+	margin-bottom: 15px;
+}
+
+.Log_container .Log_warapar .log_bar .form_container form .submit {
+	width: 100%;
+	height: 40px;
+	margin-bottom: 15px;
+}
+
+.Log_container .Log_warapar .log_bar .form_container form .submit a {
+	font-size: 14px;
+	font-family: arial;
+}
+
+.Log_container .Log_warapar .log_bar .form_container .social {
+	width: 100%;
+	height: 90px;
+	border-top: 1px solid #e1e1e1;
+}
+
+.Log_container .Log_warapar .log_bar .form_container .social h1 {
+	font-size: 17px;
+}
+
+.Log_container .Log_warapar .log_bar .form_container .social ul {
+	list-style: none;
+	width: 100%;
+	height: 35px;
+}
+
+.Log_container .Log_warapar .log_bar .form_container .social ul li {
+	list-style: none;
+	float: left;
+	display: inline;
+	margin-left: 10px;
+}
+
+.Log_container .Log_warapar .log_bar .form_container .social ul li:nth-child(1)
+	{
+	margin-left: 55px;
+}
+
+.Log_container .Log_warapar .log_bar .form_container .Nuser {
+	width: 100%;
+	height: 50px;
+	border-top: 2px solid #e1e1e1;
+	line-height: 50px;
+}
+
+.Log_container .Log_warapar .log_bar .form_container .Nuser p {
+	margin-left: 25px;
+	width: 50%;
+	float: left;
+	font-size: 16px;
+	color: #2f94d0;
+}
+
+.Log_container .Log_warapar .log_bar .form_container .Nuser a {
+	text-decoration: none;
+	width: 100px;
+	height: 35px;
+	border: none;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 2px;
+	margin: 8px 10px;
+	background: #3e3e3e;
+	box-shadow: 1px 1px 1px rgba(10, 10, 10, 0.8);
+	padding: 10px 13px;
+}
+
+.Log_container .Log_warapar .log_bar .form_container .Nuser a:HOVER {
+	box-shadow: none;
+	background: #000;
+}
+
+.Log_container .Log_warapar .advertise {
+	width: 50%;
+	height: 85%;
+	float: left;
+	margin-top: 30px;
+	box-shadow: 1px 2px 3px 0px rgba(86, 86, 86, 0.75);
+	background: url("../images/sample.jpg");
+	background-size: 100% 100%;
+}
+
+.Log_container .Log_warapar .log_bar .form_container form input[type=email]
+	{
+	width: 300px;
+	padding: 12px 6px;
+	border-radius: 0.2em;
+	border: 1px solid #c3c5c8;
+	margin-left: 30px;
+	background: url(../images/us.png) no-repeat 280px center;
+	margin-left: 30px;
+	color: #ccc;
+}
+.Log_container .Log_warapar .log_bar .form_container form input[type=email]:FOCUS{
+	border: 1px solid #40A9DF;
+	box-shadow: 0 0 10px #40A9DF;
+	-webkit-box-shadow: 0 0 10px #40A9DF;
+	-o-box-shadow: 0 0 10px #40A9DF;
+	-moz-box-shadow: 0 0 10px #40A9DF;
+}
+
+.Log_container .Log_warapar .log_bar .form_container form input[type=password]
+	{
+	width: 300px;
+	padding: 12px 6px;
+	border-radius: 0.2em;
+	margin-left: 30px;
+	background: url(../images/pass.png) no-repeat 280px center;
+	border: 1px solid #c3c5c8;
+	color: #ccc;
+}
+.Log_container .Log_warapar .log_bar .form_container form input[type=password]:FOCUS{
+	border: 1px solid #40A9DF;
+	box-shadow: 0 0 3px #40A9DF;
+	-webkit-box-shadow: 0 0 3px #40A9DF;
+	-o-box-shadow: 0 0 3px #40A9DF;
+	-moz-box-shadow: 0 0 3px #40A9DF;
+}
+
+.Log_container .Log_warapar .log_bar .form_container form input[type=submit]
+	{
+	width: 100px;
+	height: 40px;
+	border: none;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 2px;
+	margin: 0px 30px;
+	background: #3e3e3e;
+	box-shadow: 1px 1px 1px rgba(10, 10, 10, 0.8);
+}
+.Log_container .Log_warapar .log_bar .form_container form input[type=submit]:HOVER{
+	box-shadow: none;
+	background: #000;
+}
+/* ===================================
+ForgotPassword Page
+====================================== */
+.Fpass_wrapar {
+	width: 100%;
+	height: 700px;
+	overflow: hidden;
+	background: #fff;
+	font-family: arial;
+}
+
+.Fpass_wrapar .Fpass_container {
+	width: 500px;
+	height: 350px;
+	margin: 100px auto;
+	background-color: #fff;
+	border-radius: 10px;
+	font-family: arial;
+	border: 8px solid #ECF0F3;
+	/* box-shadow: 1px 2px 3px 0px rgba(86, 86, 86, 0.75); */
+	font-family: arial;
+}
+
+.Fpass_wrapar .Fpass_container h1 {
+	color: #222;
+	font-size: 20px;
+	padding: 10px;
+	font-weight: normal;
+	line-height: 28px;
+	text-align: center;
+	margin-bottom: 20px;
+	color: #fff;
+	background: #3e9cbf;
+	border-radius: 5px 5px 0px 0px;
+	text-shadow: -2px 2px 4px #000;
+	background: #3e3e3e;
+}
+
+.Fpass_wrapar .Fpass_container h3 {
+	color: green;
+	font-style: italic;
+	text-align: center;
+}
+
+.Fpass_wrapar .Fpass_container form {
+	margin: 20px auto;
+}
+
+.Fpass_wrapar .Fpass_container form .email {
+	width: 80%;
+	height: 60px;
+	margin: 10px auto;
+
+}
+
+
+.Fpass_wrapar .Fpass_container form .email input[type="email"] {
+	width: 220px;
+	padding: 10px 10px;
+	border: 1px solid #c3c5c8;
+	margin-left: 10px;
+	color: #000;
+
+}
+.Fpass_wrapar .Fpass_container form .email input[type="email"]:FOCUS{
+	border: 1px solid #40A9DF;
+	box-shadow: 0 0 3px #40A9DF;
+	-webkit-box-shadow: 0 0 3px #40A9DF;
+	-o-box-shadow: 0 0 3px #40A9DF;
+	-moz-box-shadow: 0 0 3px #40A9DF;
+	
+}
+.Fpass_wrapar .Fpass_container form .email #edit{
+	
+	width: 55px;
+	height: 37px;
+	border: none;
+	margin-left:-5px;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 2px;
+	background: #3e3e3e;
+	
+	
+}
+.Fpass_wrapar .Fpass_container form .email #otp{
+	
+	width: 80px;
+	height: 37px;
+	border: none;
+	margin-left:10px;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 2px;
+	background: #3e3e3e;
+}
+
+.Fpass_wrapar .Fpass_container form .email input[type="button"] {
+	
+	color: #fff;
+	background: #3e3e3e;
+	box-shadow: 1px 1px 1px rgba(10, 10, 10, 0.8);
+}
+.Fpass_wrapar .Fpass_container form .email input[type="button"]:HOVER{
+		box-shadow: none;
+	background: #000;
+}
+.Fpass_wrapar .Fpass_container form .email p{
+	line-height: 20px;
+	font-size: 14px;
+	color: #7e7e7e;
+	margin-left: 10px;
+}
+
+
+
+
+
+
+.Fpass_wrapar .Fpass_container form .radio-option {
+	width: 100%;
+	margin: 10px 20px;
+}
+
+.Fpass_wrapar .Fpass_container form .radio-option .hide-wrapar {
+	width: 320px;
+	height: 70px;
+	margin: 10px 5px;
+}
+
+.Fpass_wrapar .Fpass_container form .radio-option #hiden-box1 {
+	display: none;
+}
+
+.Fpass_wrapar .Fpass_container form .radio-option #hiden-box2 {
+	display: none;
+}
+
+.Fpass_wrapar .Fpass_container form .radio-option .hide-wrapar p {
+	line-height: 40px;
+	margin-left: 10px;
+	color: #ccc;
+	font-size: 14px;
+}
+
+.Fpass_wrapar .Fpass_container form .radio-option input[type="text"] {
+	width: 200px;
+	padding: 5px 6px;
+	border-radius: 0.2em;
+	border: 1px solid #c3c5c8;
+	margin-left: 10px;
+	color: #000;
+}
+
+.Fpass_wrapar .Fpass_container form .hideable{
+	width: 80%;
+	margin: 10px auto;
+	display: none;
+}
+.Fpass_wrapar .Fpass_container form .verifiaction {
+	width: 100%;
+
+}
+.Fpass_wrapar .Fpass_container form .verifiaction p{
+	line-height: 40px;
+	margin-left: 10px;
+	color: #7e7e7e;
+	font-size: 14px;
+	
+}
+
+.Fpass_wrapar .Fpass_container form .verifiaction input[type="text"] {
+	width: 275px;
+	padding: 10px 10px;
+	border-radius: 0.2em;
+	border: 1px solid #c3c5c8;
+	margin-left: 10px;
+	color: #000;
+}
+.Fpass_wrapar .Fpass_container form .verifiaction input[type="text"]:FOCUS{
+border: 1px solid #40A9DF;
+	box-shadow: 0 0 3px #40A9DF;
+	-webkit-box-shadow: 0 0 3px #40A9DF;
+	-o-box-shadow: 0 0 3px #40A9DF;
+	-moz-box-shadow: 0 0 3px #40A9DF;
+}
+.Fpass_wrapar .Fpass_container form .verifiaction input[type="button"] {
+	width: 55px;
+	height: 25px;
+	border: none;
+	margin-left:5px;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 2px;
+	background: #3e3e3e;
+	border-radius: 5px;
+	box-shadow: 1px 1px 1px rgba(10, 10, 10, 0.8);
+}
+.Fpass_wrapar .Fpass_container form .verifiaction input[type="button"]:HOVER{
+	box-shadow: none;
+	background: #000;
+}
+
+.Fpass_wrapar .Fpass_container form .Npass {
+	width: 100%;
+	margin-top: 10px;
+	
+}
+
+.Fpass_wrapar .Fpass_container form .Npass input[type="password"] {
+	width: 275px;
+	padding: 10px 10px;
+	border-radius: 0.2em;
+	border: 1px solid #c3c5c8;
+	margin-left: 10px;
+	color: #000;
+}
+.Fpass_wrapar .Fpass_container form .Npass input[type="password"]:FOCUS{
+border: 1px solid #40A9DF;
+	box-shadow: 0 0 3px #40A9DF;
+	-webkit-box-shadow: 0 0 3px #40A9DF;
+	-o-box-shadow: 0 0 3px #40A9DF;
+	-moz-box-shadow: 0 0 3px #40A9DF;
+}
+.Fpass_wrapar .Fpass_container form .vsubmit {
+	width: 100%;
+	margin: 10px 20px;
+}
+
+.Fpass_wrapar .Fpass_container form .vsubmit input[type="button"] {
+	width: 100px;
+	height: 30px;
+	border: none;
+	font-size: 14px;
+	color: #fff;
+	margin: 5px 125px;
+	background: #3e3e3e;
+	box-shadow: 1px 1px 1px rgba(10, 10, 10, 0.8);
+	border-radius: 5px;
+	
+}
+.Fpass_wrapar .Fpass_container form .vsubmit input[type="button"]:HOVER {
+	box-shadow: none;
+	background: #000;
+}
+

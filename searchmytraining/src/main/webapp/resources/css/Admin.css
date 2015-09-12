@@ -1,0 +1,172 @@
+body{
+	font-family: arial;
+	overflow-x:hidden; 
+}
+.head{
+	width: 100%;
+	height: 50px;
+	top: 0;
+	background: #141414;
+	background: -moz-linear-gradient(top, #333333 0%, #141414 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #333333),
+		color-stop(100%, #141414));
+	background: -webkit-linear-gradient(top, #333333 0%, #141414 100%);
+	background: -o-linear-gradient(top, #333333 0%, #141414 100%);
+	background: -ms-linear-gradient(top, #333333 0%, #141414 100%);
+	background: linear-gradient(to bottom, #333333 0%, #141414 100%);
+	border-bottom: 3px solid #0fa1e0;
+	z-index: 99;
+	
+}
+.head h1{
+	color: #49c0f0;
+	font-size: 28px;
+	margin-left: 40%;
+	line-height: 50px;
+	font-weight: bold;
+}
+.container{
+	width: 100%;
+	background: #f4f4f4;
+	overflow: hidden;
+	font-family: arial;
+}
+.container .header{
+	width: 100%;
+	height: 50px;
+	background: skyblue;
+}
+.container .header h1{
+	font-size: 40px;
+	line-height: 50px;
+text-align: center;
+color:#fff;
+text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.container .Apanel{
+	
+	width: 800px;
+	height:400px;
+	
+	margin: 100px auto;
+	overflow: hidden;
+	border-radius:15px;
+	border: 1px solid #ccc;
+}
+.container .Apanel .AdminTitle{
+	width: 100%;
+	height: 50px;
+	border-bottom:4px solid #499bea;
+	border-radius:15px 15px 0px 0px;
+	background: #7d7e7d; /* Old browsers */
+    background: -moz-linear-gradient(top,  #7d7e7d 0%, #0e0e0e 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #7d7e7d 0%,#0e0e0e 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #7d7e7d 0%,#0e0e0e 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #7d7e7d 0%,#0e0e0e 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #7d7e7d 0%,#0e0e0e 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
+}
+ 
+.container .Apanel .AdminTitle h1{
+	color:#fff;
+	line-height: 40px;
+	font-size: 25px;
+	text-align: center;	
+}
+
+.container .Apanel .logcontainer{
+	width: 100%;
+	height: 400px;
+	margin: 10px auto;
+	overflow:display;
+	border-radius:10px; 
+	float: right;
+	/*  -webkit-box-shadow: -1px -1px 17px -4px rgba(0,0,0,0.75);
+-moz-box-shadow: -1px -1px 17px -4px rgba(0,0,0,0.75);
+box-shadow: -1px -1px 17px -4px rgba(0,0,0,0.75);
+	 */	
+}
+.container .Apanel .logcontainer .Subhead{
+	width: 100%;
+	height: 40px;
+	background: #f4f4f4;
+	margin-top: 10px;
+	
+}
+
+.container .Apanel .logcontainer .Subhead h1{
+	font-size: 25px;
+	line-height: 40px;
+	margin-left: 470px;
+	color: #49c0f0;
+}
+.container .Apanel .logcontainer .image{
+	width: 49%;
+	height: 100%;
+	float: left;
+	
+}
+
+.container .Apanel .logcontainer .logbar{
+	
+	width: 50%;
+	height: 100%;
+	float: left;
+	
+	
+}
+.container .Apanel .logcontainer .logbar .panel{	
+	width: 80%;
+	height: 200px;
+	background:whitesmoke;
+	margin: 20px auto;
+	border-radius:15px;
+	border: 1px solid #ccc;
+	padding: 20px 0px;
+}
+
+.container .Apanel .logcontainer .logbar .panel label {
+	width: 80px;
+	float: left;
+	line-height: 50px;
+	margin-left: 20px;
+}
+.container .Apanel .logcontainer .logbar .panel input[type=text], input[type=password] {
+	padding-left: 10px;
+	height: 30px;
+	width: 250px;
+	font-size: 13px;
+	margin-top:20px;
+	margin-left: 20px;
+	box-shadow:inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07);
+}
+ .container .Apanel .logcontainer .logbar .panel input[type=text]:focus, input[type=password]:focus {
+	border: 1px solid #40A9DF;
+	box-shadow: 0 0 3px #40A9DF;
+	-webkit-box-shadow: 0 0 3px #40A9DF;
+	-o-box-shadow: 0 0 3px #40A9DF;
+	-moz-box-shadow: 0 0 3px #40A9DF;
+}
+.container .Apanel .logcontainer .logbar .panel input[type=submit]{
+	cursor:pointer;
+	height:40px; 	
+	width:100px;
+	font-family:arial;
+	font-size:18px;
+	margin: 20px 100px;
+	border: none;
+	color:#fff;
+	background: #4096ee; /* Old browsers */
+background: -moz-linear-gradient(top,  #4096ee 0%, #4096ee 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4096ee), color-stop(100%,#4096ee)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #4096ee 0%,#4096ee 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #4096ee 0%,#4096ee 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #4096ee 0%,#4096ee 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #4096ee 0%,#4096ee 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4096ee', endColorstr='#4096ee',GradientType=0 ); /* IE6-9 */
+	
+}
+.container .Apanel .logcontainer .logbar .panel input[type=submit]:HOVER {
+	 background: #3071B9;
+}

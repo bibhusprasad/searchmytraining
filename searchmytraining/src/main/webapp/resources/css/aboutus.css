@@ -1,0 +1,674 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	overflow-x: hidden;
+}
+
+#main {
+	height: 900px;
+}
+
+#main .about_banner {
+	height: 150px;
+	width: 90%;
+	margin: 0px auto;
+}
+
+#main .about_banner img {
+	height: 100%;
+	width: 100%;
+}
+
+.clear {
+	clear: both;
+}
+
+#main .about {
+	height: 700px;
+	width: 90%;
+	margin: 10px auto;
+}
+
+#main .left {
+	height: 100%;
+	width: 20%;
+	margin-right: 25px;
+	float: left;
+	background: #fff;
+}
+
+#main .left .Service {
+	width: 100%;
+	height: 300px;
+	font-family: arial;
+}
+
+#main .left .Service h1 {
+	text-align: center;
+	margin-top: 25px;
+	font-size: 25px;
+	font-weight: bold;
+	text-shadow: 1px 1px 4px rgba(150, 150, 150, 1);
+}
+
+#main .left .Service p {
+	width: 80%;
+	background: #f4f4f4;
+	padding: 10px 20px;
+	margin: 10px auto;
+	text-align: center;
+	border-radius: 10px;
+	line-height: 25px;
+}
+
+#main .left .testimonial {
+	width: 100%;
+	height: 300px;
+	font-family: arial;
+}
+
+#main .left .testimonial h1 {
+	text-align: center;
+	margin-bottom: 25px;
+	font-size: 25px;
+	font-weight: bold;
+	text-shadow: 1px 1px 4px rgba(150, 150, 150, 1);
+}
+
+#main .left .testimonial p {
+	line-height: 20px;
+}
+
+#main .left .testo {
+	position: relative;
+	padding: 15px 30px;
+	margin: 0;
+	color: #000;
+	border-radius: 10px;
+	background: #f4f4f4;
+	display: block;
+}
+
+#main .left .testo:AFTER {
+	content: "";
+	position: absolute;
+	bottom: -30px;
+	right: 70px;
+	border-width: 0 0 30px 20px;
+	border-style: solid;
+	border-color: transparent #fff;
+	display: block;
+	width: 0;
+}
+
+#main .left .testo:before {
+	content: "";
+	position: absolute;
+	bottom: -30px;
+	right: 40px;
+	border-width: 0 0 30px 50px;
+	border-style: solid;
+	border-color: transparent #f4f4f4;
+	display: block;
+	width: 0;
+}
+
+#main .left .author {
+	font-style: italic;
+	font-size: 16px;
+	margin: 5px 5px 0px 25px;
+}
+
+#main .right {
+	height: 100%;
+	width: 75%;
+	float: left;
+	background: #fff;
+	font-family: arial;
+	/* -webkit-box-shadow: 0 0 5px rgba(0,0,0,.4);
+	  box-shadow: 0 0 5px rgba(0,0,0,.4); */
+}
+
+#main .right .title h1 {
+	font-size: 28px;
+	line-height: 50px;
+	font-weight: bold; margin : 20px 0px 25px 10px;
+	background-image: url("../images/crosslines.png");
+	text-shadow: 1px 1px 4px rgba(150, 150, 150, 1);
+	margin: 20px 0px 25px 10px;
+}
+
+#main .right p {
+	font-size: 1.0em;
+	line-height: 1.40em;
+	color: #7d7d7d;
+	font-weight: normal;
+	margin-bottom: 10px;
+	float: left;
+	margin-left: 10px;
+	text-align: justify;
+	text-justify: inter-word;
+}
+#main .right p a{
+	text-decoration:none;
+}
+#main .right p a:hover{
+	color: blue;
+}
+
+/* ====================================Contact Us=================================== */
+#contact {
+	height: 900px;
+	background: #ECF0F3;
+}
+
+#contact .contact_banner {
+	height: 150px;
+	width: 100%;
+}
+
+#contact .contact_banner img {
+	height: 100%;
+	width: 100%;
+}
+
+#contact h1 {
+	margin-top: 20px;
+	text-transform: uppercase;
+	text-align: center;
+	color: gray;
+	line-height: 1.1;
+	font-size: 36px;
+}
+
+#contact .contact_info {
+	height: 400px;
+	width: 90%;
+	margin: 20px auto;
+}
+
+#contact .contact_info .contact_form {
+	height: 100%;
+	width: 50%;
+	float: left;
+}
+
+#contact .contact_info .address_info {
+	height: 100%;
+	width: 50%;
+	float: left;
+}
+
+#contact .contact_info .contact_form input[type="text"] {
+	border: 0 none;
+	height: 45px;
+	width: 80%;
+	margin-top: 20px;
+	margin-left: 60px;
+	color: #555;
+	font-family: arial;
+	font-size: 16px;
+	padding: 0px 10px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+	background: #fff;
+}
+
+#contact .contact_info .contact_form input:FOCUS, #contact .contact_info .contact_form textarea:FOCUS
+	{
+	box-shadow: 0 0 2px #40A9DF;
+	-webkit-box-shadow: 0 0 2px #40A9DF;
+	-o-box-shadow: 0 0 2px #40A9DF;
+	-moz-box-shadow: 0 0 2px #40A9DF;
+}
+
+#contact .contact_info .contact_form textarea {
+	margin: 20px 0px 20px 60px;
+	border: 0 none;
+	resize: none;
+	color: #555;
+	font-family: arial;
+	font-size: 16px;
+	padding: 10px;
+}
+
+#contact .contact_info .contact_form input[type="button"] {
+	height: 45px;
+	background: #4392e3 none repeat scroll 0 0;
+	border: 0 none;
+	color: #fff;
+	margin-left: 60px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+#contact .contact_info .contact_form input[type="button"]:HOVER {
+	background: #3C83CD;
+}
+
+#contact .address_info p {
+	margin-top: 20px;
+	color: #7e7e7e;
+	font-family: arial;
+	font-size: 17px;
+	padding-bottom: 10px;
+	text-align: left;
+}
+
+#contact .content {
+	height: 200px;
+	width: 90%;
+	margin: 0px auto;
+}
+
+#contact .content .left-content {
+	height: 100%;
+	width: 40%;
+	padding-top: 30px;
+}
+
+#contact .content .left-content p {
+	line-height: 24px;
+	margin-left: 150px;
+	color: #7d7d7d;
+	font-family: arial;
+	font-size: 16px;
+	padding: 10px 0px;
+	text-align: left;
+}
+
+#contact .content .left-content p img {
+	height: 15px;
+	width: 15px;
+}
+
+/* =================End Of Contact============================= */
+
+/* =================Our Team============================= */
+#main {
+	height: 900px;
+	font-family: arial;
+}
+
+#main .about_banner {
+	height: 150px;
+	width: 90%;
+	margin: 0px auto;
+}
+
+#main .about_banner img {
+	height: 100%;
+	width: 100%;
+}
+
+.clear {
+	clear: both;
+}
+
+#main .team_container {
+	width: 90%;
+	margin: 10px auto;
+	position: relative;
+}
+
+#main .team_container .intro {
+	width: 80%;
+	margin: 5px auto;
+}
+
+#main .team_container .intro h2 {
+	font-size: 28px;
+	line-height: 1.5em;
+	text-align:center;
+	margin-top: 40px;
+	margin-bottom:50px;
+	font-weight: 400;
+	color: #000;
+	background-image: url("../images/crosslines.png");
+	text-transform: none;
+	text-shadow: 1px 1px 4px rgba(150, 150, 150, 1);
+}
+
+#main .team_container .intro p {
+	line-height: 120%;
+	font-size: 1.1em;
+	font-style: italic;
+	margin: 0 0 35px;
+}
+
+#main .team_container .profile_container {
+	width: 45%;
+	margin: 10px 25px 10px 10px;
+	float: left;
+}
+
+#main .team_container .profile_container .profile_info {
+	width: 30%;
+	float: left;
+	overflow: hidden;
+}
+
+#main .team_container .profile_container .profile_info .Profile_pic {
+	width: 100%;
+	height: 100px;
+}
+
+#main .team_container .profile_container .profile_info .Profile_pic .image-round
+	{
+	width: 60%;
+	height: 100%;
+	margin: 10px 0px 0px 20px;
+	border-radius: 50%;
+}
+
+#main .team_container .profile_container .profile_info .profile_link {
+	width: 125px;
+	margin: 20px auto;
+}
+
+#main .team_container .profile_container .profile_info .profile_link a:first:child
+	{
+	margin-left: 40px;
+}
+
+#main .team_container .profile_container .profile_info .profile_link a {
+	line-height: 18px;
+	margin: 0 5px;
+	display: inline-block;
+	text-decoration: none;
+}
+
+#main .team_container .profile_container .profile_containt {
+	width: 65%;
+	float: left;
+	padding: 30px 20px 0 0;
+	position: relative;
+}
+
+#main .team_container .profile_container .profile_containt:before {
+	content: '';
+	width: 36px;
+	height: 3px;
+	background: #dededc;
+	position: absolute;
+	top: 0;
+}
+
+#main .team_container .profile_container .profile_containt h3 {
+	font-size: 18px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	color: #0080ff;
+	font-weight: 400;
+	line-height: 25px;
+}
+
+#main .team_container .profile_container .profile_containt .position {
+	font-size: 1.0em;
+	line-height: 100%;
+	font-style: italic;
+	margin: 3px 0 20px;
+}
+
+#main .team_container .profile_container .profile_containt p {
+	color: #1A0000;
+	line-height: 20px;
+	text-align: justify;
+}
+
+/* =================Career With Us============================= */
+#main {
+	height: 900px;
+	font-family: arial;
+}
+
+#main .Career_banner {
+	height: 150px;
+	width: 90%;
+	margin: 0px auto;
+}
+
+#main .Career_banner img {
+	height: 100%;
+	width: 100%;
+}
+
+.clear {
+	clear: both;
+}
+
+#main .career_container {
+	width: 90%;
+	margin: 30px auto;
+	position: relative;
+}
+
+#main .career_container .career_left {
+	height: 100%;
+	width: 20%;
+	margin-right: 25px;
+	float: left;
+}
+
+#main .career_container .career_left h2 {
+	Color: black;
+	font-weight: bold;
+	font-family: 18px;
+}
+
+#main .career_container .career_right {
+	height: 100%;
+	width: 78%;
+	float: left;
+}
+
+#main .career_container .career_right h2 {
+	Color: black;
+	font-weight: bold;
+	font-size: 28px;
+	line-height: 40px;
+	margin-bottom: 10px;
+	text-shadow: 1px 1px 4px rgba(150, 150, 150, 1);
+	background-image: url("../images/crosslines.png")
+}
+
+#main .career_container .career_right .sub_baner img {
+	width: 100%;
+	height: 250px;
+}
+
+#main .career_container .career_right .career-containt p {
+	text-align: justify;
+	line-height: 20px;
+	color: #7d7d7d;
+	margin-bottom: 10px;
+}
+
+/* ================= End Career With Us============================= */
+
+/* ================= News Page start============================= */
+#main {
+	height: 900px;
+	font-family: arial;
+}
+
+#main .News_banner {
+	height: 150px;
+	width: 90%;
+	margin: 0px auto;
+}
+
+#main .News_banner img {
+	height: 100%;
+	width: 100%;
+}
+
+.clear {
+	clear: both;
+}
+
+#main .news_container {
+	width: 90%;
+	margin: 30px auto;
+	position: relative;
+}
+
+#main .news_container .news_left {
+	height: 100%;
+	width: 20%;
+	margin-right: 25px;
+	float: left;
+    border: 1px solid #ccc;
+}
+#main .news_container .news_left .News-line h3{
+	text-align: center;
+	font-weight: bold;
+	font-size: 15px;
+	line-height: 50px;
+	margin-bottom: 10px;
+	color:#fff;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4096ee+0,4096ee+100;Blue+Flat+%232 */
+background: #4096ee; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzQwOTZlZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0MDk2ZWUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  #4096ee 0%, #4096ee 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4096ee), color-stop(100%,#4096ee)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #4096ee 0%,#4096ee 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #4096ee 0%,#4096ee 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #4096ee 0%,#4096ee 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #4096ee 0%,#4096ee 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4096ee', endColorstr='#4096ee',GradientType=0 ); /* IE6-8 */
+
+}
+#main .news_container .news_left .News-line h1{
+	line-height: 30px;
+	text-align: center;
+}
+
+#main .news_container .news_right {
+	height: 100%;
+	width: 77%;
+	float: left;
+
+}
+
+#main .news_container .news_right h2 {
+	Color: black;
+	font-weight: bold;
+	font-size: 28px;
+	line-height: 40px;
+	margin-bottom: 10px;
+	text-shadow: 1px 1px 4px rgba(150, 150, 150, 1);
+	background-image: url("../images/crosslines.png")
+}
+#main .news_container .news_right h3{
+	Color: black;
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 40px;
+	margin-bottom: 10px;
+	color: #8080ff;
+	
+}
+#main .news_container .news_right p{
+	text-align: justify;
+	line-height: 20px;
+	color: #7d7d7d;
+}
+
+/* ============End Of NEWS==================================== */
+
+/* ==================Benefit Page============================== */
+
+
+#main {
+	height: 900px;
+	font-family: arial;
+}
+
+#main .benefit_banner {
+	height: 150px;
+	width: 90%;
+	margin: 0px auto;
+}
+
+#main .benefit_banner img {
+	height: 100%;
+	width: 100%;
+}
+
+.clear {
+	clear: both;
+}
+
+#main .benefit_container {
+	width: 90%;
+	margin: 30px auto;
+	position: relative;
+
+}
+#main .benefit_container .benefit_left {
+	height: 100%;
+	width: 20%;
+	margin-right: 25px;
+	float: left;
+
+}
+#main .benefit_container .benefit_right {
+	height: 100%;
+	width: 77%;
+	float: left;
+
+
+}
+#main .benefit_container .benefit_right h2 {
+	Color: black;
+	font-weight: bold;
+	font-size: 28px;
+	line-height: 40px;
+	margin-bottom: 10px;
+	text-shadow: 1px 1px 4px rgba(150, 150, 150, 1);
+	background-image: url("../images/crosslines.png")
+}
+#main .benefit_container .benefit_right .trainee_benifit .why h3{
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+#main .benefit_container .benefit_right .trainee_benifit .why p{
+	text-align: justify;
+	line-height: 25px;
+	color: #7d7d7d;
+}
+#main .benefit_container .benefit_right .trainee_benifit .tr_benefit h3{
+	font-size: 20px;
+	font-weight: bold;
+	margin-top:20px;
+    margin-bottom: 15px;
+    line-height: 40px;
+    background-image: url("../images/crosslines.png");
+}
+#main .benefit_container .benefit_right .trainee_benifit .tr_benefit ul{
+	margin-left: 80px;
+    list-style-image: url("../images/list-arrow.png");
+}
+#main .benefit_container .benefit_right .trainee_benifit .tr_benefit ul li{
+	line-height: 25px;
+	color: #7d7d7d;
+
+}
+
+#main .benefit_container .benefit_right .trainee_benifit .sub_banner{
+	width: 100%;
+	height: 200px;
+    margin-top: 20px;
+}
+#main .benefit_container .benefit_right .trainee_benifit .sub_banner img{
+	width: 500px;
+	height: 100%;
+}
+
+
+
+/* *******************************
+//Responsive code
+**********************************/

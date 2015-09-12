@@ -1,0 +1,42 @@
+
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="true"
+	monitoring="autodetect" dynamicConfig="true">
+
+	<diskStore path="java.io.tmpdir" />
+
+	<cache name="autoCompleteCache" maxEntriesLocalHeap="10000"
+		maxEntriesLocalDisk="1000" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="300" timeToLiveSeconds="600"
+		memoryStoreEvictionPolicy="LFU" transactionalMode="off">
+		<persistence strategy="localTempSwap" />
+	</cache>
+
+	<cache name="countryCache" maxElementsInMemory="1000" eternal="true"
+		overflowToDisk="false" memoryStoreEvictionPolicy="LFU">
+	</cache>
+
+	<cache name="stateCache" maxElementsInMemory="1000" eternal="true"
+		overflowToDisk="false" memoryStoreEvictionPolicy="LFU">
+	</cache>
+	
+	<cache name="cityCache" maxEntriesLocalHeap="10000"
+		maxEntriesLocalDisk="1000" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="300" timeToLiveSeconds="600"
+		memoryStoreEvictionPolicy="LFU" transactionalMode="off">
+		<persistence strategy="localTempSwap" />
+	</cache>
+
+	<cache name="industryCache" maxElementsInMemory="1000" eternal="true"
+		overflowToDisk="false" memoryStoreEvictionPolicy="LFU">
+	</cache>
+	<cache name="industryCatCache" maxElementsInMemory="1000"
+		eternal="true" overflowToDisk="false" memoryStoreEvictionPolicy="LFU">
+	</cache>
+	<cache name="industrySubCatCache" maxElementsInMemory="1000"
+		eternal="true" overflowToDisk="false" memoryStoreEvictionPolicy="LFU">
+	</cache>
+
+
+
+</ehcache>

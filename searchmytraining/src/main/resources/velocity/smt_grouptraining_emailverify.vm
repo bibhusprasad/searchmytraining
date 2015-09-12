@@ -1,0 +1,22 @@
+<html>
+	<body>
+		<h3>Search My Training</h3>
+		<p>
+			<img src="/searchymytraining/resources/images/cloudtechoindia.jpg" />
+		</p>
+		<pre>
+			Dear, ${toemail}
+		</pre>
+		<h3>
+			Search My Training Details
+		</h3>
+		<p>
+			To make sure you receive important email communications from searchmytraining.com,
+			please click on the below link to verify your email address: 
+		</p>
+		<a href="http://localhost:8080/searchmytraining/request/verify/email/?username=${toemail}&c=${uuid}">Verify</a><br>
+		<h3>Or Copy and Paste the link below in web browser</h3>
+		<a href="http://localhost:8080/searchmytraining/request/verify/email/?username=${toemail}&c=${uuid}">http://localhost:8080/searchmytraining/request/verify/email/?username=${toemail}&c=${uuid}</a><br>
+	</body>
+
+</html>

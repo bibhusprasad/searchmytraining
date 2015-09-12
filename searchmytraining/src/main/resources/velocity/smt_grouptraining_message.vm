@@ -1,0 +1,24 @@
+<html>
+	<body>
+		<h3>Group Training Request</h3>
+		<p>
+			<img src="/searchymytraining/resources/images/cloudtechoindia.jpg" />
+		</p>
+		<p>
+			Name - ${newMessage.contactname} / ${newMessage.email} 
+		</p>
+		<h3>
+			Search My Training Details
+		</h3>
+		<p>
+			${newMessage.phone}
+		</p>
+		<h3>
+			You got this new request
+		</h3>
+		<p>
+			${newMessage.trainingneeds}
+		</p>
+	</body>
+
+</html>
