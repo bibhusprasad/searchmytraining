@@ -76,10 +76,10 @@ public class FreelancerService implements IFreelancerService
 		UserEntity user = (UserEntity)context.getBean("userEntity");
 		user.setUserName(entity.getEmail());
 		user.setPassword(encoder.encode(freelancerDto.getPassword12()));
-		user.setEnabled(1);
-		user.setAccountNonExpired(1);
-		user.setAccountNonLocked(1);
-		user.setCredentialsNonExpired(1);
+		user.setEnabled(Boolean.TRUE);
+		user.setAccountNonExpired(Boolean.TRUE);
+		user.setAccountNonLocked(Boolean.TRUE);
+		user.setCredentialsNonExpired(Boolean.TRUE);
 		user.setStatus(status);
 		// Insertion of user in users table
 		userdao.addUser(user);

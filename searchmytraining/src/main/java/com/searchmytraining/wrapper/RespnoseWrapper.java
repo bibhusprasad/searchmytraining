@@ -8,26 +8,44 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 public class RespnoseWrapper {
+
+	private Long responseWrapperId;
 	
-	private Integer id;
-	private Map<String,String> errorMsg;
-	public boolean validation_error;
-	public Integer getId() {
-		return id;
+	private Map<String, String> errorMsg;
+	
+	public boolean validationError;
+	
+	public boolean successMessage;
+
+	public Long getResponseWrapperId() {
+		return responseWrapperId;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+
+	public void setResponseWrapperId(Long responseWrapperId) {
+		this.responseWrapperId = responseWrapperId;
 	}
-	public boolean isValidation_error() {
-		return validation_error;
+
+	public boolean isValidationError() {
+		return validationError;
 	}
-	public void setValidation_error(boolean validation_error) {
-		this.validation_error = validation_error;
+
+	public void setValidationError(boolean validationError) {
+		this.validationError = validationError;
 	}
-	public Map<String,String> getErrorMsg() {
+
+	public Map<String, String> getErrorMsg() {
 		return errorMsg;
 	}
-	public void setErrorMsg(Map<String,String> errorMsg) {
+
+	public void setErrorMsg(Map<String, String> errorMsg) {
 		this.errorMsg = errorMsg;
+	}
+
+	public boolean isSuccessMessage() {
+		return successMessage;
+	}
+
+	public void setSuccessMessage(boolean successMessage) {
+		this.successMessage = successMessage;
 	}
 }

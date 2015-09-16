@@ -798,7 +798,15 @@ CREATE TABLE `users` (
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`statusId`) REFERENCES `tbl_statusmaster` (`statusId`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
 
+ALTER TABLE `searchmytraining`.`users` 
+CHANGE COLUMN `enabled` `enabled` BIT(1) NOT NULL DEFAULT b'0' COMMENT '' ,
+CHANGE COLUMN `accountNonExpired` `accountNonExpired` BIT(1) NOT NULL DEFAULT b'0' COMMENT '' ,
+CHANGE COLUMN `accountNonLocked` `accountNonLocked` BIT(1) NOT NULL DEFAULT b'0' COMMENT '' ,
+CHANGE COLUMN `credentialsNonExpired` `credentialsNonExpired` BIT(1) NOT NULL DEFAULT b'0' COMMENT '' ,
+CHANGE COLUMN `emailVerified` `emailVerified` BIT(1) NULL DEFAULT b'0' COMMENT '' ;
+
 /*Data for the table `users` */
+
 
 insert  into `users`(`userId`,`username`,`password`,`enabled`,`accountNonExpired`,`accountNonLocked`,`credentialsNonExpired`,`created_on`,`created_by`,`Modified_on`,`Modified_by`,`statusId`,`emailVerified`,`uuid`) values (79,'info@seed.com','$2a$10$aALqfEeXdiZB1UsjyjwuLu2ZCOqX7rY5Yrlon3yGWjO3Ss8jp6rl.',1,1,0,1,'2015-07-23 12:41:11','SELF','2015-07-16 12:47:29','SELF',1,0,NULL),(80,'info@mind.com','$2a$10$rryfrTKtSr3kkodwrRGZa.Zs67kh91edRI7Gpj3jRSpt8dfzYcYXC',1,1,1,1,'2015-07-16 12:49:05','SELF','2015-07-16 12:49:05','SELF',1,0,NULL),(81,'chetan@yahoo.com','$2a$10$lZdmuW1XDdqz/Si0mZETZ.m1qFqFkmw7yRN9Q/Mr35UH68hST55Q2',1,1,1,1,'2015-07-16 13:10:39','SELF','2015-07-16 13:10:39','SELF',1,0,NULL),(82,'harsh@gmail.com','$2a$10$kZipQLGLVN41u2bD08A4V.AIxEYjePlxJf/ALDFP2A3Fdxv9NiJsG',1,1,1,1,'2015-07-16 13:44:14','SELF','2015-07-16 13:44:14','SELF',1,0,NULL),(83,'ranjit@softinfology.com','$2a$10$FiuL764tvFJjTUfJnSKBeON4iIe2Y6i0pfIFaAEhmjqYndleLLMaS',1,1,1,1,'2015-07-16 20:33:20','SELF','2015-07-16 20:33:20','SELF',1,0,NULL),(84,'info@mindchips.com','$2a$10$hR.v38fV6mp4heuaXmVsquhXi1DFOuwXQd7U.BfGYw2uRFng/S/fa',1,1,1,1,'2015-07-17 12:42:19','SELF','2015-07-17 12:42:19','SELF',1,0,NULL),(85,'soft@soft.com','$2a$10$fOiiXvPY44/O8i3v9wcQ4enA.TO6qwBiR01oA/WOZyMeJm7cFoISO',1,1,1,1,'2015-07-17 18:08:16','SELF','2015-07-17 18:08:16','SELF',1,0,NULL),(86,'info@mzos.com','$2a$10$2bI3i726oIN6y6TuNCM4VOzsb73iI/QpRrxVKgDCFB4pMARoHERmS',1,1,1,1,'2015-07-17 18:52:24','SELF','2015-07-17 18:52:24','SELF',1,0,NULL),(87,'info@impetuss.com','$2a$10$Trst237HcQzfKsSLnA5sju7/zPLNokh2p6UTvCAVI92wf91smBE.K',1,1,1,1,'2015-07-22 20:00:35','SELF','2015-07-22 20:00:35','SELF',1,0,NULL),(88,'info@boston.com','$2a$10$UEx2qhyxLyFeaPsuqUGpr.01tzru79lTQ2G5LmvLx0ARwAzlRMkhu',1,1,1,1,'2015-07-24 13:46:16','SELF','2015-07-24 13:46:16','SELF',1,0,NULL),(89,'chetan@wewe.com','$2a$10$3WkvphjwnMZNIFf8s09CyuyDYZANTu2EcWYbNIPUFz794xmMqrzSy',1,1,1,1,'2015-07-24 20:20:38','SELF','2015-07-24 20:20:38','SELF',1,0,NULL),(90,'chetan@iii.com','$2a$10$cEO65K2TZhKGmMgFasu1ReScCMuHA9Z2sp7xQrUT2BEbobwsuLZdS',1,1,1,1,'2015-07-24 20:38:18','SELF','2015-07-24 20:38:18','SELF',1,0,NULL),(91,'iuiu@gmail.com','$2a$10$303.7NVdtrzIAFl.ek0I.OwvZ3Q78ZJ4OR/kcgqzvBRGFaxa7nALG',1,1,1,1,'2015-08-05 19:59:10','SELF','2015-08-05 19:59:10','SELF',1,NULL,NULL);
 

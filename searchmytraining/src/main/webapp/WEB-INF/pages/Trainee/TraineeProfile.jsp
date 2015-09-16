@@ -1,9 +1,5 @@
+<%@ include file="/WEB-INF/layouts/includes.jspf"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html lang=''>
 <head>
 <title>Trainee Profile</title>
@@ -82,7 +78,7 @@ $(document).ready(function () {
 </script>
 <script type="text/javascript">
 function TNPload(){
-	$("#home-content").load("<%=request.getContextPath()%>/trainprofile", function(responseText, statusText, xhr)
+	$("#home-content").load("<%=request.getContextPath()%>/trainee/profile", function(responseText, statusText, xhr)
 	        {
 	                if(statusText == "success")
 	                        /*  alert("Successfully loaded the content!");  */

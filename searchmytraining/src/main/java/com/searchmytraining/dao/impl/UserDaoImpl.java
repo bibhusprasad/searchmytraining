@@ -1,9 +1,11 @@
 package com.searchmytraining.dao.impl;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.searchmytraining.dao.AbstractJpaDAO;
@@ -13,7 +15,11 @@ import com.searchmytraining.entity.UserEntity;
 @Repository
 public class UserDaoImpl extends AbstractJpaDAO<UserEntity> implements UserDAO {
 
-	EntityManager entityManager;
+	@PersistenceContext
+	private EntityManager entityManager;
+	
+	private final Logger log = Logger.getLogger(this.getClass().getName());
+
 	
 	@Override
 	public void addUser(UserEntity entity) {
@@ -44,19 +50,14 @@ public class UserDaoImpl extends AbstractJpaDAO<UserEntity> implements UserDAO {
 	@Override
 	public UserEntity getUser(String username) {
 		String query = "from UserEntity user where user.userName=?";
-		entityManager = getEntityManager();
-		TypedQuery<UserEntity> query1 = entityManager.createQuery(query,UserEntity.class);
-		query1.setParameter(1, username.trim());
+		TypedQuery<UserEntity> tQuery = entityManager.createQuery(query,UserEntity.class);
+		tQuery.setParameter(1, username.trim());
 		UserEntity userentity = null;
-		try
-		{
-			userentity = query1.getSingleResult();
+		try {
+			userentity = tQuery.getSingleResult();
+		} catch (javax.persistence.NoResultException e) {
+			log.error("User Name Not Found");
 		}
-		catch(javax.persistence.NoResultException e)
-		{
-			System.out.println("Session Expired...No result found for userid(null)");
-		}
-		System.out.println(userentity.getUserId());
 		return userentity;
 	}
 
@@ -79,7 +80,7 @@ public class UserDaoImpl extends AbstractJpaDAO<UserEntity> implements UserDAO {
 			userentity = query1.getSingleResult();
 			if(userentity.getUuid().equals(uuid))
 			{
-				userentity.setEmailVerified(1);
+				userentity.setEmailVerified(Boolean.TRUE);
 				update(userentity);
 				System.out.println("Email Verified...");
 				return true;

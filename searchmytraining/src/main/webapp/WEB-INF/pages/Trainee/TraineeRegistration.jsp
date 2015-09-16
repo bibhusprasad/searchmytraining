@@ -1,12 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
-
+<%@ include file="/WEB-INF/layouts/includes.jspf"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
 <title>Trainee Registration</title>
 <link rel="stylesheet"
@@ -33,7 +29,7 @@
 		if (flag) {
 			try {
 				$.ajax({
-							url : './trainee_reg',
+							url : './registration/trainee',
 							type : 'post',
 							dataType : 'json',
 							data : JSON.stringify({
@@ -52,31 +48,23 @@
 										response.errorMsg,
 									  		function(val, key) {
 												if (key == "traineetype")
-													$('#error00').text(
-															val);
+													$('#error00').text(val);
 												else if (key == "corporatename")
-													$('#error00').text(
-															val);
+													$('#error00').text(val);
 												else if (key == "name")
-															$('#error01').text(
-																	val);
-														else if (key == "contact")
-															$('#error02').text(
-																	val);
-														else if (key == "email")
-															$('#error04').text(
-																	val);
-														else if (key == "password")
-															$('#error04').text(
-																	val);
+													$('#error01').text(val);
+												else if (key == "contact")
+													$('#error02').text(val);
+												else if (key == "email")
+													$('#error04').text(val);
+												else if (key == "password")
+													$('#error04').text(val);
 													});
-								} else {
-									alert("Thank you for Your Registration, Please Update Your Profile:");
+								} else if(response.successMessage) {
 									doLoginTrainee();
-									/* window.location.href = path
-											+ "/trainee_updateprofile"; */
+								}else{
+									console.log(response);
 								}
-
 							}
 						});
 			} catch (ex) {
@@ -92,9 +80,8 @@
 		$.ajax({
 			url : "${ctx}/searchmytraining/j_spring_security_check",
 			type : "POST",
-			//contentType : "application/json",
 			beforeSend : function(xhr) {
-				xhr.withCredentials = true;
+			xhr.withCredentials = true;
 			},
 			data : credentials,
 			success : function(data, status) {
@@ -103,7 +90,6 @@
 						$('#auth_error_mesg').html(data.message);
 						$("#auth_error_div").show();
 					} else if (data.success == true) {										
-						/* location.href = "${ctx}/searchmytraining" + data.page+"?username="+username; */
 						$('#url').val(username);
 						$("#loginformhidden").attr("action","${ctx}/searchmytraining" + data.page);
 						$('#loginformhidden').submit();
@@ -125,13 +111,17 @@ function randString(x){
 	        text += charset.charAt(Math.floor(Math.random() * charset.length));
 	    
           $(".Ccode").html(text);
-	
-		
 	}
 
 </script>
+<script type="text/javascript">
+	$(function() {
+	 randString(5);
+	});
+</script>
+
 </head>
-<body onload="randString(5);">
+<body>
 
 	<div class="reg_form">
 		<div class="head">

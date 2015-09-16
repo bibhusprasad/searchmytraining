@@ -1,13 +1,18 @@
 package com.searchmytraining.service.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.collections.map.HashedMap;
+import org.apache.log4j.Logger;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.WebApplicationContext;
 
+import com.searchmytraining.common.constant.SearchMyTrainingConstant;
 import com.searchmytraining.dao.RoleDAO;
 import com.searchmytraining.dao.StatusDAO;
 import com.searchmytraining.dao.TraineeDAO;
@@ -17,62 +22,70 @@ import com.searchmytraining.entity.RoleEntity;
 import com.searchmytraining.entity.StatusEntity;
 import com.searchmytraining.entity.TraineeEntity;
 import com.searchmytraining.entity.UserEntity;
+import com.searchmytraining.exception.SearchMyTrainingException;
 import com.searchmytraining.service.ITraineeService;
 @Component
 @Service
 public class TraineeService implements ITraineeService {
+	
+	private final Logger log = Logger.getLogger(this.getClass().getName());
+
 	@Autowired
-	public WebApplicationContext context;
+	public StatusDAO statusDAO;
+	
 	@Autowired
-	public TraineeDAO traineedao;
+	public TraineeDAO traineeDAO;
+	
+	@Autowired
+	public UserDAO userDAO;
+	
+	@Autowired
+	public RoleDAO roleDAO;
+	
 	@Autowired
 	public DozerBeanMapper mapper;
-	@Autowired
-	public UserDAO userdao;
-	@Autowired
-	public RoleDAO roledao;
-	@Autowired
-	public StatusDAO statusdao;
-	@Autowired
-	public RoleEntity role;
-	@Autowired
-	public UserEntity userentity;
+	
 	@Autowired
 	public BCryptPasswordEncoder encoder;
 	
 	@Override
 	@Transactional
-	public Integer registerTrainee(TraineeDTO traineedto) {
+	public Map<Integer,Boolean> registerTrainee(TraineeDTO traineedto) throws SearchMyTrainingException{
 		TraineeEntity traineeentity = mapper.map(traineedto, TraineeEntity.class);
-		System.out.println(traineeentity);
-		StatusEntity status = statusdao.getStatus(1);
-		UserEntity userentity = (UserEntity)context.getBean("userEntity");
-		userentity.setUserName(traineedto.getEmail());
-		userentity.setPassword(encoder.encode(traineedto.getPassword()));
-		userentity.setEnabled(1);
-		userentity.setAccountNonExpired(1);
-		userentity.setAccountNonLocked(1);
-		userentity.setCredentialsNonExpired(1);
-		userentity.setStatus(status);
-		
-		//Insertion of User first
-		userdao.addUser(userentity);
-		
-		//Insertion of Role in user_roles table
-		RoleEntity role = (RoleEntity)context.getBean("roleEntity");
-		role.setROLE("TRAINEE");
-		role.setUser(userentity);
-		roledao.setRoleToUser(role);
-		traineeentity.setUser(userentity);
-		
-		//Insertion of Trainee
-		traineedao.registerTrainee(traineeentity);
-		return userentity.getUserId();
+		log.debug(traineeentity);
+		Map<Integer,Boolean> statusMap=new HashMap<Integer,Boolean>();
+		UserEntity userEntity = null;
+		RoleEntity roleEntity = null;
+		//one is default for new registration
+		userEntity = userDAO.getUser(traineedto.getEmail());
+		if(null == userEntity){
+			userEntity=new UserEntity();
+			StatusEntity status = statusDAO.getStatus(SearchMyTrainingConstant.ONE);
+			userEntity.setUserName(traineedto.getEmail());
+			userEntity.setPassword(encoder.encode(traineedto.getPassword()));
+			userEntity.setEnabled(Boolean.TRUE);
+			userEntity.setAccountNonExpired(Boolean.TRUE);
+			userEntity.setAccountNonLocked(Boolean.TRUE);
+			userEntity.setCredentialsNonExpired(Boolean.TRUE);
+			userEntity.setStatus(status);
+			//persist method not required
+			userDAO.addUser(userEntity);
+			roleEntity=new RoleEntity();
+			roleEntity.setROLE(SearchMyTrainingConstant.TRAINEE);
+			roleEntity.setUser(userEntity);
+			roleDAO.setRoleToUser(roleEntity);
+			traineeentity.setUser(userEntity);
+			traineeDAO.registerTrainee(traineeentity);
+			statusMap.put(userEntity.getUserId(), true);
+		}else{
+			statusMap.put(userEntity.getUserId(), false);	
+		}
+		return statusMap;
 	}
 
 	@Override
 	public TraineeEntity getTrainee(Integer userid) {
-		return traineedao.getTrainee(userid);
+		return traineeDAO.getTrainee(userid);
 	}
 
 }

@@ -34,16 +34,16 @@ public class UserEntity implements Serializable{
 	private String password;
 	
 	@Column(name="enabled")
-	private Integer enabled;
+	private boolean enabled;
 	
 	@Column(name="accountNonExpired")
-	private Integer accountNonExpired;
+	private boolean accountNonExpired;
 	
 	@Column(name="accountNonLocked")
-	private Integer accountNonLocked;
+	private boolean accountNonLocked;
 	
 	@Column(name="credentialsNonExpired")
-	private Integer credentialsNonExpired;
+	private boolean credentialsNonExpired;
 	
 	@Column(name="created_on")
 	private String created_On;
@@ -62,15 +62,15 @@ public class UserEntity implements Serializable{
 	private StatusEntity status;
 	
 	@Column(name="emailVerified")
-	private Integer emailVerified;
+	private boolean emailVerified;
 	
 	@Column(name="uuid")
 	private String uuid;
 	
-	public Integer getEmailVerified() {
+	public boolean isEmailVerified() {
 		return emailVerified;
 	}
-	public void setEmailVerified(Integer emailVerified) {
+	public void setEmailVerified(boolean emailVerified) {
 		this.emailVerified = emailVerified;
 	}
 	public String getUuid() {
@@ -103,33 +103,34 @@ public class UserEntity implements Serializable{
 	public String getPassword() {
 		return password;
 	}
+	public boolean isEnabled() {
+		return enabled;
+	}
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	public boolean isAccountNonExpired() {
+		return accountNonExpired;
+	}
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+	public boolean isAccountNonLocked() {
+		return accountNonLocked;
+	}
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+	public boolean isCredentialsNonExpired() {
+		return credentialsNonExpired;
+	}
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
+	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Integer getEnabled() {
-		return enabled;
-	}
-	public void setEnabled(Integer enabled) {
-		this.enabled = enabled;
-	}
-	public Integer getAccountNonExpired() {
-		return accountNonExpired;
-	}
-	public void setAccountNonExpired(Integer accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
-	}
-	public Integer getAccountNonLocked() {
-		return accountNonLocked;
-	}
-	public void setAccountNonLocked(Integer accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
-	}
-	public Integer getCredentialsNonExpired() {
-		return credentialsNonExpired;
-	}
-	public void setCredentialsNonExpired(Integer credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
-	}
+	
 	public String getCreated_On() {
 		return created_On;
 	}

@@ -92,11 +92,11 @@ public class TrainingProviderController
 			@RequestBody @Valid TrainerDTO trainerdto, BindingResult result,
 			ModelMap model, HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception {
 		RespnoseWrapper response1 = (RespnoseWrapper)context.getBean("respnoseWrapper");
-		response1.setValidation_error(true);
-		response1.setId(501);
+		response1.setValidationError(true);
+		response1.setResponseWrapperId(501l);
 		if (result.hasErrors()) {
-			response1.setId(101);
-			response1.setValidation_error(true);
+			response1.setResponseWrapperId(101l);
+			response1.setValidationError(true);
 
 			List<FieldError> errors = result.getFieldErrors();
 			Map<String, String> errorMsg = new HashMap<String, String>();
@@ -107,7 +107,7 @@ public class TrainingProviderController
 			}
 			response1.setErrorMsg(errorMsg);
 		} else {
-			response1.setValidation_error(false);
+			response1.setValidationError(false);
 			Integer userid = trainerservice.registerTrainer(trainerdto);
 			session.setAttribute("userid",userid);
 		}

@@ -63,7 +63,7 @@ public class AuthenticationController {
 			page = "/freelancer/mapFLUpdateProfile";
 
 		} else if (roles.contains("ROLE_TRAINEE")) {
-			page = "/trainee_updateprofile";
+			page = "/trainee/login";
 		}
 
 		return new ResponseEntity<String>("{\"success\" : true, \"page\" : \""

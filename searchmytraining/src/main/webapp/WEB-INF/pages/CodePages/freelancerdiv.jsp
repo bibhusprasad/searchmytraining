@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ include file="/WEB-INF/layouts/includes.jspf"%>
 <html>
 <script>
 	$(document).ready(function() {

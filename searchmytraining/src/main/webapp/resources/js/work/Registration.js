@@ -38,7 +38,7 @@ function traineeRegistration(path) {
 							} else {
 								alert("Thank you for Your Registration, Please Update Your Profile:");
 								window.location.href = path
-										+ "/trainee_updateprofile";
+										+ "/registration/trainee/fetchUserDetails";
 							}
 
 						}

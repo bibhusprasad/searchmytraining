@@ -63,10 +63,10 @@ import com.searchmytraining.service.ITrainingProviderService;
 		
 		user.setUserName(entity.getEmail());
 		user.setPassword(encoder.encode(entity.getPassword()));
-		user.setEnabled(1);
-		user.setAccountNonExpired(1);
-		user.setAccountNonLocked(1);
-		user.setCredentialsNonExpired(1);
+		user.setEnabled(Boolean.TRUE);
+		user.setAccountNonExpired(Boolean.TRUE);
+		user.setAccountNonLocked(Boolean.TRUE);
+		user.setCredentialsNonExpired(Boolean.TRUE);
 		user.setStatus(status);
 		userdao.addUser(user);
 		

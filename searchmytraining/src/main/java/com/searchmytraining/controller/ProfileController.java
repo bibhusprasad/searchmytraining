@@ -107,7 +107,7 @@ public class ProfileController {
 		RespnoseWrapper responsewrapper = new RespnoseWrapper();
 		if(result.hasErrors())
 		{
-			responsewrapper.setValidation_error(true);
+			responsewrapper.setValidationError(true);
 			List<FieldError> errors=result.getFieldErrors();
 			Map<String,String> errorMsg = new HashMap<String, String>();
 			for(FieldError error: errors)
@@ -119,7 +119,7 @@ public class ProfileController {
 		}
 		else
 		{
-			responsewrapper.setValidation_error(false);
+			responsewrapper.setValidationError(false);
 			emplservice.updateEmpldet(empldto);
 			return responsewrapper;
 		}
