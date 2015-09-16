@@ -52,7 +52,7 @@ public class SearchController {
 	{
 		System.out.println("original keyword: "+inputkeyword);
 		inputkeyword = inputkeyword.toLowerCase();
-		InputStream in = request.getServletContext().getResourceAsStream("whitelist.txt");
+		InputStream in = request.getSession().getServletContext().getResourceAsStream("/whitelist.txt");
 		InputStreamReader inr = new InputStreamReader(in);
 		BufferedReader bfr = new BufferedReader(inr);
 		String str_whitelist = bfr.readLine();

@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<%@include file="../../pages/GroupTrainingRequest.jsp"%>
+
 	<div id="t" class="clearfix">
 		<ul id="tabmenu">
 			<li class="open hvr-underline-reveal"
