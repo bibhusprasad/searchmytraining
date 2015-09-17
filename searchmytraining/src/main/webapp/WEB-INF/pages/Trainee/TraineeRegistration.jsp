@@ -61,7 +61,7 @@
 													$('#error04').text(val);
 													});
 								} else if(response.successMessage) {
-									doLoginTrainee();
+									dologin($('#email').val(),$('#pass1').val());
 								}else{
 									console.log(response);
 								}
@@ -72,47 +72,43 @@
 			}
 		}
 	}
-	
-	function doLoginTrainee()
-	{
-		var username = $('#email').val();
-		var credentials = {username:$('#email').val(),password:$('#pass1').val()};
-		$.ajax({
-			url : "${ctx}/searchmytraining/j_spring_security_check",
-			type : "POST",
-			beforeSend : function(xhr) {
+</script>
+<script type="text/javascript">
+function dologin(email,pass)
+{
+	$.ajax({
+		url : "${ctx}/searchmytraining/j_spring_security_check",
+		type : "POST",
+		beforeSend : function(xhr) {
 			xhr.withCredentials = true;
-			},
-			data : credentials,
-			success : function(data, status) {
-				if (data != null) {
-					if (data.success == false) {
-						$('#auth_error_mesg').html(data.message);
-						$("#auth_error_div").show();
-					} else if (data.success == true) {										
-						$('#url').val(username);
-						$("#loginformhidden").attr("action","${ctx}/searchmytraining" + data.page);
-						$('#loginformhidden').submit();
-					}
+		},
+		data : {username:email, password:pass},
+		success : function(response) {
+				console.log(response.success);
+				if (!response.success) {
+					$('#auth_error_mesg1').html(response.message);
+					$("#auth_error_div1").show();
+				} else if (response.success) {
+					$('#url').val(email);
+					$("#loginformhidden").attr("action",
+							"${ctx}/searchmytraining" + response.page);
+					$('#loginformhidden').submit();
 				}
-			},
-			error : loginFailed
-		});
-	}
+		},
+		error : function(response) {
+			console.log(response);
+		},
+	});
+}
 </script>
 <script type="text/javascript">
 function randString(x){
-    
 	 var text = " ";
-
 	    var charset = "QWERTYUIOPASDFGHJKLZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789";
-
 	    for( var i=0; i < x; i++ )
 	        text += charset.charAt(Math.floor(Math.random() * charset.length));
-	    
           $(".Ccode").html(text);
 	}
-
 </script>
 <script type="text/javascript">
 	$(function() {

@@ -145,7 +145,6 @@ function dologin()
 	$.ajax({
 		url : "${ctx}/searchmytraining/j_spring_security_check",
 		type : "POST",
-		//contentType : "application/json",
 		beforeSend : function(xhr) {
 			xhr.withCredentials = true;
 		},

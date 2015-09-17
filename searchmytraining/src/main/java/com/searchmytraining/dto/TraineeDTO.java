@@ -11,7 +11,7 @@ public class TraineeDTO {
 	private String traineetype;
 	
 	private String corporatename;
-	@Size(min=6, max=50,message="{name.length}")
+	@Size(min=6, max=50,message="Name length Must be between 4 to 50")
 	private String name;
 	@NotEmpty(message="Please Enter the Phone Number")
 	private String contact;
