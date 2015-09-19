@@ -32,17 +32,15 @@ import com.searchmytraining.service.IUserService;
 @RequestMapping("/uploadFile")
 public class UploadFileController {
 	
-	@Autowired
-	public WebApplicationContext context;
 	
 	@Autowired
-	public ICalenderService calnderService;
+	private ICalenderService calnderService;
 	
 	@Autowired
-	public ICityService cityservice;
+	private ICityService cityservice;
 	
 	@Autowired
-	public IUserService userService;
+	private IUserService userService;
 
 	/*
 	 * @Autowired IKeywordService keywordService;
@@ -76,9 +74,9 @@ public class UploadFileController {
 		fileExtension = fileName.substring(fileName.indexOf(".") + 1,
 				fileName.length());
 
-		CalenderEntity entity = (CalenderEntity)context.getBean("calenderEntity");
+		CalenderEntity entity = new CalenderEntity();
 		UserEntity usrEntity = new UserEntity();
-		IndustrySubCategoryEntity industrySubCat = (IndustrySubCategoryEntity)context.getBean("industrySubCategoryEntity");
+		IndustrySubCategoryEntity industrySubCat = new IndustrySubCategoryEntity();
 
 		Calendar calendar = Calendar.getInstance();
 		Timestamp currentTime = new Timestamp(calendar.getTime().getTime());
