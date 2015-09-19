@@ -33,13 +33,16 @@ import com.searchmytraining.service.IUserService;
 public class UploadFileController {
 	
 	@Autowired
-	private ICalenderService calnderService;
+	public WebApplicationContext context;
 	
 	@Autowired
-	private ICityService cityservice;
+	public ICalenderService calnderService;
 	
 	@Autowired
-	private IUserService userService;
+	public ICityService cityservice;
+	
+	@Autowired
+	public IUserService userService;
 
 	/*
 	 * @Autowired IKeywordService keywordService;
@@ -73,9 +76,9 @@ public class UploadFileController {
 		fileExtension = fileName.substring(fileName.indexOf(".") + 1,
 				fileName.length());
 
-		CalenderEntity entity = new CalenderEntity();
-		UserEntity usrEntity = new UserEntity();
-		IndustrySubCategoryEntity industrySubCat = new IndustrySubCategoryEntity();
+		CalenderEntity entity = (CalenderEntity)context.getBean("calenderEntity");
+		UserEntity usrEntity = userService.getUser(Integer.parseInt(session.getAttribute("userid").toString()));
+		IndustrySubCategoryEntity industrySubCat = (IndustrySubCategoryEntity)context.getBean("industrySubCategoryEntity");
 
 		Calendar calendar = Calendar.getInstance();
 		Timestamp currentTime = new Timestamp(calendar.getTime().getTime());
@@ -94,15 +97,15 @@ public class UploadFileController {
 			trnIndstrSubCatId = Integer.parseInt(request.getParameter("Itype"));
 			usrEntity.setUserId(userid);
 			industrySubCat.setTrnIndstrSubCatId(trnIndstrSubCatId);
-			String keString[]=null;
+			String keyString[]=null;
 			if(null != keyCode && keyCode.indexOf(",") != -1){
-				keString=keyCode.split(","); 
+				keyString=keyCode.split(","); 
 			}else{
-				keString=new String[1];
-				keString[0]=keyCode;
+				keyString=new String[1];
+				keyString[0]=keyCode;
 			}
 			StringBuilder stringBuilder=new StringBuilder();
-			for (String element : keString) {
+			for (String element : keyString) {
 				stringBuilder = stringBuilder.append(element.trim()).append(",");
 			}
 
@@ -117,7 +120,7 @@ public class UploadFileController {
 			entity.setEnd_date(Tdate);
 			entity.setStatus("New");
 			
-			CityEntity city = cityservice.getCity(place);
+			CityEntity city = cityservice.getCity(Integer.parseInt(place));
 			entity.setCity(city);
 			entity.setType(Ctype);
 			entity.setPrice(cPrice);
