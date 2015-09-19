@@ -32,7 +32,6 @@ import com.searchmytraining.service.IUserService;
 @RequestMapping("/uploadFile")
 public class UploadFileController {
 	
-	
 	@Autowired
 	private ICalenderService calnderService;
 	
