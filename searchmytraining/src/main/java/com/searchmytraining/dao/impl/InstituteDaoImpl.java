@@ -1,7 +1,7 @@
 package com.searchmytraining.dao.impl;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -11,18 +11,22 @@ import com.searchmytraining.dao.InstituteDAO;
 import com.searchmytraining.entity.InstituteEntity;
 
 @Repository
-public class InstituteDaoImpl extends AbstractJpaDAO<InstituteEntity> implements InstituteDAO {
+public class InstituteDaoImpl extends AbstractJpaDAO<InstituteEntity> implements
+		InstituteDAO {
 
+	@PersistenceContext
+	private EntityManager entityManager;
+	
 	@Override
 	public void updateInstituteDetails(InstituteEntity entity) {
-		InstituteEntity institute = getInstituteInfo(entity.getUser().getUserId().longValue());
-		if(institute!=null)
-		{
+		InstituteEntity institute = getInstituteInfo(entity.getUser()
+				.getUserId().longValue());
+		if (null != institute) {
 			entity.setCompInfoId(institute.getCompInfoId());
 			update(entity);
-		}
-		else
+		} else{
 			create(entity);
+		}
 	}
 
 	@Override
@@ -32,19 +36,16 @@ public class InstituteDaoImpl extends AbstractJpaDAO<InstituteEntity> implements
 
 	@Override
 	public InstituteEntity getInstituteInfo(Long userid) {
-		EntityManager entityManager = getEntityManager();
 		String strquery = "from InstituteEntity inst where inst.user.userId=?";
-		TypedQuery<InstituteEntity> typedquery = entityManager.createQuery(strquery,InstituteEntity.class);
-		try{
+		TypedQuery<InstituteEntity> typedquery = entityManager.createQuery(
+				strquery, InstituteEntity.class);
 			typedquery.setParameter(1, userid.intValue());
-			InstituteEntity institute = typedquery.getSingleResult();
-			return institute;
-		}
-		catch(NoResultException e)
-		{
-			System.out.println("Exception caughted: "+e.getMessage());
-			System.out.println("Institute Info is not available...");
-			return null;
-		}
+			InstituteEntity instituteEntity=null;
+			try {
+				instituteEntity= typedquery.getSingleResult();
+			}catch(Exception e){
+				
+			}
+			return instituteEntity;
 	}
 }

@@ -3,6 +3,7 @@ package com.searchmytraining.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.cache.annotation.Cacheable;
@@ -13,28 +14,27 @@ import com.searchmytraining.dao.IIndustrySubCategoryDAO;
 import com.searchmytraining.entity.IndustrySubCategoryEntity;
 
 @Repository
-public class IndustrySubCategoryDAO extends AbstractJpaDAO<IndustrySubCategoryEntity> implements IIndustrySubCategoryDAO {
+public class IndustrySubCategoryDAO extends
+		AbstractJpaDAO<IndustrySubCategoryEntity> implements
+		IIndustrySubCategoryDAO {
 
-	EntityManager entityManager;
-	
+	@PersistenceContext
+	private EntityManager entityManager;
+
 	@Override
-	@Cacheable(value="industrySubCatCache")
-	public List<IndustrySubCategoryEntity> getIndustrySubCategories(Integer subid) 
-	{
-		System.out.println("from getIndustrySubCategories method");
+	@Cacheable(value = "industrySubCatCache")
+	public List<IndustrySubCategoryEntity> getIndustrySubCategories(
+			Integer subid) {
 		String query = "select indsubcategory from IndustrySubCategoryEntity indsubcategory where indsubcategory.industrycategory.trnIndstrCatId=?";
-		entityManager = getEntityManager();
-		TypedQuery<IndustrySubCategoryEntity> query1 = entityManager.createQuery(query, IndustrySubCategoryEntity.class);
+		TypedQuery<IndustrySubCategoryEntity> query1 = entityManager
+				.createQuery(query, IndustrySubCategoryEntity.class);
 		query1.setParameter(1, subid);
-		List<IndustrySubCategoryEntity> list = query1.getResultList();
-		return list;
+		return query1.getResultList();
 	}
 
 	@Override
-	/*@Cacheable(value="industrySubCatCache")*/
 	public IndustrySubCategoryEntity getIndustrySubCategory(
 			Integer industrysubcatid) {
-		System.out.println("from getIndustrySubCategory method");
 		setClazz(IndustrySubCategoryEntity.class);
 		return findOne(industrysubcatid);
 	}
@@ -44,7 +44,5 @@ public class IndustrySubCategoryDAO extends AbstractJpaDAO<IndustrySubCategoryEn
 		setClazz(IndustrySubCategoryEntity.class);
 		return findAll();
 	}
-	
-	
 
 }

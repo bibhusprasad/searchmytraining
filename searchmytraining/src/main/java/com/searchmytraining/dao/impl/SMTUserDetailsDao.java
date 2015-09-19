@@ -15,7 +15,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
-import com.searchmytraining.controller.PasswordController;
 import com.searchmytraining.security.SMTUser;
 
 @Repository("smtUserDetailsDao")
@@ -41,7 +40,6 @@ public class SMTUserDetailsDao {
 					new Object[] { username }, new RowMapper<SMTUser>() {
 						public SMTUser mapRow(ResultSet rs, int rowNum)
 								throws SQLException {
-
 							long userId = rs.getInt(1);
 							String userName = rs.getString(2);
 							String password = rs.getString(3);
@@ -62,17 +60,17 @@ public class SMTUserDetailsDao {
 
 		}
 		if (null == smtUser) {
-			throw new UsernameNotFoundException("The user name or password entered is not correct", username);
+			throw new UsernameNotFoundException(
+					"The user name or password entered is not correct",
+					username);
 		}
-
 		return smtUser;
-
 	}
 
 	/**
 	 * Loads authorities by executing the SQL from
 	 * <tt>authoritiesByUsernameQuery</tt>.
-	 *
+	 * 
 	 * @return a list of GrantedAuthority objects for the user
 	 */
 	protected List<GrantedAuthority> loadUserRoles(Long userId) {
@@ -81,7 +79,6 @@ public class SMTUserDetailsDao {
 					public GrantedAuthority mapRow(ResultSet rs, int rowNum)
 							throws SQLException {
 						String roleName = rolePrefix + rs.getString(2);
-
 						return new SimpleGrantedAuthority(roleName);
 					}
 				});

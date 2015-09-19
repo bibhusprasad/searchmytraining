@@ -29,8 +29,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.searchmytraining.dao.IPhoneDAO;
 import com.searchmytraining.dao.IPhoneTypeDAO;
 import com.searchmytraining.dto.TrainerDTO;
@@ -59,8 +57,7 @@ import com.searchmytraining.service.IUserService;
 import com.searchmytraining.wrapper.RespnoseWrapper;
 
 @Controller
-public class TrainingProviderController 
-{
+public class TrainingProviderController {
 	@Autowired
 	public WebApplicationContext context;
 	@Autowired
@@ -85,13 +82,15 @@ public class TrainingProviderController
 	public IPhoneTypeDAO phonetypedao;
 	@Autowired
 	public IIndustrySubCategoryService subcatservice;
-	
+
 	@RequestMapping(value = "/trainingprovider_reg", method = RequestMethod.POST, produces = { "application/json" }, consumes = { "application/json" })
 	@ResponseBody
 	public RespnoseWrapper TrainingProviderRegistration(
 			@RequestBody @Valid TrainerDTO trainerdto, BindingResult result,
-			ModelMap model, HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception {
-		RespnoseWrapper response1 = (RespnoseWrapper)context.getBean("respnoseWrapper");
+			ModelMap model, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		RespnoseWrapper response1 = (RespnoseWrapper) context
+				.getBean("respnoseWrapper");
 		response1.setValidationError(true);
 		response1.setResponseWrapperId(501l);
 		if (result.hasErrors()) {
@@ -109,25 +108,28 @@ public class TrainingProviderController
 		} else {
 			response1.setValidationError(false);
 			Integer userid = trainerservice.registerTrainer(trainerdto);
-			session.setAttribute("userid",userid);
+			session.setAttribute("userid", userid);
 		}
 		return response1;
 	}
 
-	@RequestMapping(value="/trainingprovider_updateprofile",method=RequestMethod.POST)
-	public String TrainingProviderProfileMapping(@RequestParam("username") String username,ModelMap model, HttpSession session) {
+	@RequestMapping(value = "/trainingprovider_updateprofile", method = RequestMethod.POST)
+	public String TrainingProviderProfileMapping(
+			@RequestParam("username") String username, ModelMap model,
+			HttpSession session) {
 		UserEntity user = userservice.getUser(username);
 		session.setAttribute("userid", user.getUserId());
-		System.out.println("userid: "+user.getUserId());
-		TrainerEntity trainer = trainerservice.getTrainerByUserid(user.getUserId().longValue());
-		if(trainer!=null)
-		{
+		System.out.println("userid: " + user.getUserId());
+		TrainerEntity trainer = trainerservice.getTrainerByUserid(user
+				.getUserId().longValue());
+		if (trainer != null) {
 			session.setAttribute("trainer", trainer);
 		}
-		InstituteEntity instituteinfo = instituteservice.getInstituteInfo(trainer.getUser().getUserId().longValue());
-		ActorDetails actordetails = (ActorDetails)context.getBean("actorDetails");
-		if(instituteinfo!=null)
-		{
+		InstituteEntity instituteinfo = instituteservice
+				.getInstituteInfo(trainer.getUser().getUserId().longValue());
+		ActorDetails actordetails = (ActorDetails) context
+				.getBean("actorDetails");
+		if (instituteinfo != null) {
 			actordetails.setName(instituteinfo.getCompanyName());
 			actordetails.setUser(instituteinfo.getUser());
 			actordetails.setPicture(instituteinfo.getInstitutelogo());
@@ -137,92 +139,99 @@ public class TrainingProviderController
 	}
 
 	@RequestMapping("/trainerprofile")
-	public String trainerProfile(ModelMap model,HttpSession session) {
-		
-		TrainerEntity trainer = (TrainerEntity)session.getAttribute("trainer");
-		if(trainer!=null)
-		{
+	public String trainerProfile(ModelMap model, HttpSession session) {
+
+		TrainerEntity trainer = (TrainerEntity) session.getAttribute("trainer");
+		if (trainer != null) {
 			// Institute Information
-			
-			InstituteEntity instituteinfo = instituteservice.getInstituteInfo(trainer.getUser().getUserId().longValue());
-			if(instituteinfo!=null)
+
+			InstituteEntity instituteinfo = instituteservice
+					.getInstituteInfo(trainer.getUser().getUserId().longValue());
+			if (instituteinfo != null)
 				model.addAttribute("instituteinfo", instituteinfo);
-			
+
 			// Contact Inforamtion
-			
-			ContactInfoEntity contactinfo = contactinfoservice.getContactInfoDetailsByUserId(trainer.getUser().getUserId().longValue());
-			if(contactinfo!=null)
+
+			ContactInfoEntity contactinfo = contactinfoservice
+					.getContactInfoDetailsByUserId(trainer.getUser()
+							.getUserId().longValue());
+			if (contactinfo != null)
 				model.addAttribute("contactinfo", contactinfo);
-			
+
 			// Phone Information
-			List<PhoneEntity> phones = phonedao.getPhoneByUserId(trainer.getUser().getUserId().longValue());
-			if(phones.size()>0)
+			List<PhoneEntity> phones = phonedao.getPhoneByUserId(trainer
+					.getUser().getUserId().longValue());
+			if (phones.size() > 0)
 				model.addAttribute("phones", phones);
 			// Location Information
-			
-			LocationEntity location = locservice.findLocDet(trainer.getUser().getUserId());
-			if(location!=null)
-			{
-				List<StateEntity> states = stateservice.getStates(location.getCity().getState().getCountry().getCountryId());
-				List<CityEntity> cities = cityservice.getCities(location.getCity().getState().getStateId());
-				Long country_value = location.getCity().getState().getCountry().getCountryId();
-				model.addAttribute("country_value",country_value);
+
+			LocationEntity location = locservice.findLocDet(trainer.getUser()
+					.getUserId());
+			if (location != null) {
+				List<StateEntity> states = stateservice.getStates(location
+						.getCity().getState().getCountry().getCountryId());
+				List<CityEntity> cities = cityservice.getCities(location
+						.getCity().getState().getStateId());
+				Long country_value = location.getCity().getState().getCountry()
+						.getCountryId();
+				model.addAttribute("country_value", country_value);
 				model.addAttribute("location", location);
-				model.addAttribute("states",new JSONArray(states));
-				model.addAttribute("cities",new JSONArray(cities));
+				model.addAttribute("states", new JSONArray(states));
+				model.addAttribute("cities", new JSONArray(cities));
 			}
-			
+
 			// Professional Association
-			
-			List<ProfessionalAssociationEntity> profassoc = instituteservice.getProfAssocByUserId(trainer.getUser().getUserId().longValue());
-			if(profassoc!=null)
+
+			List<ProfessionalAssociationEntity> profassoc = instituteservice
+					.getProfAssocByUserId(trainer.getUser().getUserId()
+							.longValue());
+			if (null != profassoc && profassoc.size() > 0)
 				model.addAttribute("profassoc", profassoc);
-			else
-			{
+			else {
 				ProfessionalAssociationEntity profentity = new ProfessionalAssociationEntity();
 				profassoc = new ArrayList<ProfessionalAssociationEntity>();
 				profassoc.add(profentity);
 				model.addAttribute("profassoc", profassoc);
 			}
-				
+
 			// Key Client Details
-			
-			List<ClientEntity> clientlist = instituteservice.getClientDetailsByUserId(trainer.getUser().getUserId().longValue());
-			if(clientlist!=null)
+
+			List<ClientEntity> clientlist = instituteservice
+					.getClientDetailsByUserId(trainer.getUser().getUserId()
+							.longValue());
+			if (null != clientlist && clientlist.size() > 0) {
 				model.addAttribute("clientlist", clientlist);
-			else
-			{
+			} else {
 				ClientEntity client = new ClientEntity();
 				clientlist = new ArrayList<ClientEntity>();
 				clientlist.add(client);
 				model.addAttribute("clientlist", clientlist);
 			}
-			
 			model.addAttribute("phonetypes", phonetypedao.getAllPhoneTypes());
-			model.addAttribute("countries",countryservice.getAllCountries());
-		}
-		else
-		{
+			model.addAttribute("countries", countryservice.getAllCountries());
+		} else {
 			System.out.println("Please Login again...");
 			return "pages/Sign-In";
 		}
-			
+
 		return "pages/TrainingProvider/TPprofile";
 	}
-	
+
 	@RequestMapping("/uploadInstituteLogo")
-	public String uploadInstituteLogo(@RequestParam CommonsMultipartFile picture,@RequestParam("userid") Integer userId,HttpSession session)
-	{
-		InstituteEntity institute = instituteservice.getInstituteInfo(userId.longValue());
-		if(institute!=null)
-		{
+	public String uploadInstituteLogo(
+			@RequestParam CommonsMultipartFile picture,
+			@RequestParam("userid") Integer userId, HttpSession session) {
+		InstituteEntity institute = instituteservice.getInstituteInfo(userId
+				.longValue());
+		if (institute != null) {
 			institute.setInstitutelogo(picture.getBytes());
 			instituteservice.uploadInstituteLogo(institute);
 		}
-		InstituteEntity instituteinfo = instituteservice.getInstituteInfo(userId.longValue());
-		ActorDetails actordetails = (ActorDetails)context.getBean("actorDetails");
-		if(instituteinfo!=null)
-		{
+		InstituteEntity instituteinfo = instituteservice
+				.getInstituteInfo(userId.longValue());
+		ActorDetails actordetails = (ActorDetails) context
+				.getBean("actorDetails");
+		if (instituteinfo != null) {
 			actordetails.setName(instituteinfo.getCompanyName());
 			actordetails.setUser(instituteinfo.getUser());
 			actordetails.setPicture(instituteinfo.getInstitutelogo());
@@ -230,60 +239,63 @@ public class TrainingProviderController
 		}
 		return "pages/TrainingProvider/TrainingProviderProfile";
 	}
-	
+
 	@RequestMapping("/downloadInstituteLogo/{userId}")
-	public String downloadInstituteLogo(@PathVariable("userId") Integer userId, HttpServletResponse response)
-	{
-		InstituteEntity institute = instituteservice.getInstituteInfo(userId.longValue());
-		try
-		{
-			if(institute.getInstitutelogo()!=null)
-			{
-				response.setHeader("Content-Disposition", "inline;filename=\""+institute.getCompanyName()+"\"");
+	public String downloadInstituteLogo(@PathVariable("userId") Integer userId,
+			HttpServletResponse response) {
+		InstituteEntity institute = instituteservice.getInstituteInfo(userId
+				.longValue());
+		try {
+			if (institute.getInstitutelogo() != null) {
+				response.setHeader("Content-Disposition", "inline;filename=\""
+						+ institute.getCompanyName() + "\"");
 				OutputStream out = response.getOutputStream();
 				response.setContentType("image/gif");
-				ByteArrayInputStream bis = new ByteArrayInputStream(institute.getInstitutelogo());
+				ByteArrayInputStream bis = new ByteArrayInputStream(
+						institute.getInstitutelogo());
 				IOUtils.copy(bis, out);
 				out.flush();
 				out.close();
 			}
-		}
-		catch(IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	@RequestMapping("/tp/tc")
-	public String getTrainingCategories(ModelMap model)
-	{
-		model.addAttribute("trainings", subcatservice.getAllIndustrySubCategories());
+	public String getTrainingCategories(ModelMap model) {
+		model.addAttribute("trainings",
+				subcatservice.getAllIndustrySubCategories());
 		model.addAttribute("userId", 86);
-		model.addAttribute("selectedTraningCats", instituteservice.getAllTrainingCategories(86L));
+		model.addAttribute("selectedTraningCats",
+				instituteservice.getAllTrainingCategories(86L));
 		return "pages/TrainingProvider/TrainingCategories";
 	}
-	
-	@RequestMapping(value="/tp/addTC/{userId}")
-	public @ResponseBody TrainingCategoryEntity addTrainingCategories(@RequestBody TrainingCategoryDTO trainingcategorydto,@PathVariable("userId") Integer userId,ModelMap model,HttpServletResponse response)
-	{
+
+	@RequestMapping(value = "/tp/addTC/{userId}")
+	public @ResponseBody
+	TrainingCategoryEntity addTrainingCategories(
+			@RequestBody TrainingCategoryDTO trainingcategorydto,
+			@PathVariable("userId") Integer userId, ModelMap model,
+			HttpServletResponse response) {
 		response.setContentType("application/json");
-		System.out.println("userId: "+userId);
+		System.out.println("userId: " + userId);
 		System.out.println(trainingcategorydto);
-		TrainingCategoryEntity trngcatentity = instituteservice.addTrainingCategoryEntity(trainingcategorydto,userId.longValue());
+		TrainingCategoryEntity trngcatentity = instituteservice
+				.addTrainingCategoryEntity(trainingcategorydto,
+						userId.longValue());
 		System.out.println(trngcatentity);
 		return trngcatentity;
 	}
-	
+
 	@RequestMapping("/int")
-	public String getTpInsights()
-	{
+	public String getTpInsights() {
 		return "pages/TrainingProvider/Insights";
 	}
-	
+
 	@RequestMapping("/str")
-	public String getTpSettings()
-	{
+	public String getTpSettings() {
 		return "pages/TrainingProvider/TPsetting";
 	}
 }

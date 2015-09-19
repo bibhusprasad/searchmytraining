@@ -10,10 +10,11 @@ import com.searchmytraining.dao.IIndustryDAO;
 import com.searchmytraining.entity.IndustryEntity;
 
 @Repository
-public class IndustryDAO extends AbstractJpaDAO<IndustryEntity>implements IIndustryDAO {
+public class IndustryDAO extends AbstractJpaDAO<IndustryEntity> implements
+		IIndustryDAO {
 
 	@Override
-	@Cacheable(value="industryCache")
+	@Cacheable(value = "industryCache")
 	public List<IndustryEntity> getIndustries() {
 		setClazz(IndustryEntity.class);
 		List<IndustryEntity> industries = (List<IndustryEntity>) findAll();

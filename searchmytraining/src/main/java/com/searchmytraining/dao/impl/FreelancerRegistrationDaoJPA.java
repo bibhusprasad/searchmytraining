@@ -2,6 +2,7 @@ package com.searchmytraining.dao.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -11,13 +12,16 @@ import com.searchmytraining.dao.FreelancerDAO;
 import com.searchmytraining.entity.FreelancerEntity;
 
 @Repository
-public class FreelancerRegistrationDaoJPA extends AbstractJpaDAO<FreelancerEntity> implements FreelancerDAO 
-{
+public class FreelancerRegistrationDaoJPA extends
+		AbstractJpaDAO<FreelancerEntity> implements FreelancerDAO {
+
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	@Override
 	public void registerFreelancer(FreelancerEntity entity) {
-		create(entity);		
-		
+		create(entity);
+
 	}
 
 	@Override
@@ -32,18 +36,15 @@ public class FreelancerRegistrationDaoJPA extends AbstractJpaDAO<FreelancerEntit
 
 	@Override
 	public FreelancerEntity getFreeLancerDetByUserId(Long userid) {
-		EntityManager em = getEntityManager();
 		String strquery = "from FreelancerEntity flentity where flentity.user.userId=?";
-		TypedQuery<FreelancerEntity> typedquery = em.createQuery(strquery,FreelancerEntity.class);
-		try
-		{
+		TypedQuery<FreelancerEntity> typedquery = entityManager.createQuery(
+				strquery, FreelancerEntity.class);
+		typedquery.setParameter(1, userid.intValue());
+		try {
 			typedquery.setParameter(1, userid.intValue());
 			FreelancerEntity flentity = typedquery.getSingleResult();
 			return flentity;
-		}
-		catch(NoResultException e)
-		{
-			System.out.println("Freelancer Entity is not available, use is NEW...");
+		} catch (NoResultException e) {
 			return null;
 		}
 	}

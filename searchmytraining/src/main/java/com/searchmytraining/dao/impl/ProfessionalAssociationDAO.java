@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -13,31 +14,36 @@ import com.searchmytraining.dao.IProfessionalAssociationDAO;
 import com.searchmytraining.entity.ProfessionalAssociationEntity;
 
 @Repository
-public class ProfessionalAssociationDAO extends AbstractJpaDAO<ProfessionalAssociationEntity> implements IProfessionalAssociationDAO {
+public class ProfessionalAssociationDAO extends
+		AbstractJpaDAO<ProfessionalAssociationEntity> implements
+		IProfessionalAssociationDAO {
+
+	@PersistenceContext
+	private EntityManager entitymanager;
 
 	@Override
 	public void addAssociation(ProfessionalAssociationEntity entity) {
-		if(entity.getAsscoId()!=null)
+		if (entity.getAsscoId() != null) {
 			update(entity);
-		else
+		} else {
 			create(entity);
+		}
 	}
+
 	@Override
 	public List<ProfessionalAssociationEntity> getProfAssocByUserId(Long userid) {
-		EntityManager entitymanager = getEntityManager();
 		String strquery = "from ProfessionalAssociationEntity prof where prof.user.userId=?";
-		TypedQuery<ProfessionalAssociationEntity> typedquery  = entitymanager.createQuery(strquery,ProfessionalAssociationEntity.class);
-		System.out.println("userid from profassoc: "+userid);
-		try{
+		TypedQuery<ProfessionalAssociationEntity> typedquery = entitymanager
+				.createQuery(strquery, ProfessionalAssociationEntity.class);
+		typedquery.setParameter(1, userid.intValue());
+		try {
 			typedquery.setParameter(1, userid.intValue());
-			List<ProfessionalAssociationEntity> associations = typedquery.getResultList();
-			if(associations.size()!=0)
-				return associations;
-		}
-		catch(NoResultException e)
-		{
-			System.out.println(e.getMessage()+"\nProfessional Association Info is not Available");
+			List<ProfessionalAssociationEntity> associations = typedquery
+					.getResultList();
+			return associations;
+		} catch (NoResultException e) {
 		}
 		return null;
+
 	}
 }

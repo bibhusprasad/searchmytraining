@@ -2,6 +2,7 @@ package com.searchmytraining.dao.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -11,7 +12,11 @@ import com.searchmytraining.dao.IFLProfileDAO;
 import com.searchmytraining.entity.FreeLancerProfileEntity;
 
 @Repository
-public class FLProfileDAO extends AbstractJpaDAO<FreeLancerProfileEntity> implements IFLProfileDAO{
+public class FLProfileDAO extends AbstractJpaDAO<FreeLancerProfileEntity>
+		implements IFLProfileDAO {
+
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	@Override
 	public void insertFlProfDet(FreeLancerProfileEntity entity) {
@@ -20,19 +25,15 @@ public class FLProfileDAO extends AbstractJpaDAO<FreeLancerProfileEntity> implem
 
 	@Override
 	public FreeLancerProfileEntity getFLProfileDet(Long userId) {
-		
-		EntityManager em = getEntityManager();
 		String strqry = "from FreeLancerProfileEntity flprofdet where flprofdet.user.userId=?";
-		TypedQuery<FreeLancerProfileEntity> typedqry = em.createQuery(strqry, FreeLancerProfileEntity.class);
-		try
-		{
+		TypedQuery<FreeLancerProfileEntity> typedqry = entityManager
+				.createQuery(strqry, FreeLancerProfileEntity.class);
+		typedqry.setParameter(1, userId.intValue());
+		try {
 			typedqry.setParameter(1, userId.intValue());
 			FreeLancerProfileEntity entity = typedqry.getSingleResult();
 			return entity;
-		}
-		catch(NoResultException e)
-		{
-			System.out.println("from getFLProfileDet: "+e.getMessage());
+		} catch (NoResultException e) {
 			return null;
 		}
 	}

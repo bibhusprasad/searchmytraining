@@ -11,16 +11,8 @@ public abstract class AbstractJpaDAO<T extends Serializable> {
 
 	private Class<T> clazz;
 
-	EntityManager entityManager;
-	
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
-
 	@PersistenceContext
-    public void setEntityManager(EntityManager entityManager) {
-        this. entityManager = entityManager;
-    }
+	private EntityManager entityManager;
 
 	public final void setClazz(Class<T> clazzToSet) {
 		this.clazz = clazzToSet;
@@ -29,7 +21,7 @@ public abstract class AbstractJpaDAO<T extends Serializable> {
 	public T findOne(long id) {
 		return entityManager.find(clazz, id);
 	}
-	
+
 	public T findOne(Integer id) {
 		return entityManager.find(clazz, id);
 	}
@@ -44,7 +36,7 @@ public abstract class AbstractJpaDAO<T extends Serializable> {
 		entityManager.persist(entity);
 		entityManager.flush();
 	}
-	
+
 	public void create1(T entity) {
 		entityManager.persist(entity);
 	}
@@ -59,25 +51,23 @@ public abstract class AbstractJpaDAO<T extends Serializable> {
 
 	public void deleteById(long entityId) {
 		T entity = findOne(entityId);
-		if(null!= entity){
+		if (null != entity) {
 			delete(entity);
 		}
 	}
-	
-	public Integer getMaxId(String classname,String idcolumn)
-	{
-		
-		String query = "select max(e."+idcolumn+") from "+ classname + " e";
+
+	public Integer getMaxId(String classname, String idcolumn) {
+
+		String query = "select max(e." + idcolumn + ") from " + classname
+				+ " e";
 		Query q = entityManager.createQuery(query);
-		Integer maxid=(Integer)q.getSingleResult();	
+		Integer maxid = (Integer) q.getSingleResult();
 		return maxid;
 	}
-	
-	public Object getQueryResult(String query1)
-	{
+
+	public Object getQueryResult(String query1) {
 		Query query = entityManager.createQuery(query1);
 		return query.getSingleResult();
 	}
-	
-	
+
 }

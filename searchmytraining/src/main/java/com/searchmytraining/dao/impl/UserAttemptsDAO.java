@@ -37,15 +37,11 @@ public class UserAttemptsDAO extends JdbcDaoSupport implements IUserAttemptsDAO 
 
 	@Override
 	public void updateFailAttempts(String username) {
-
 		UserAttempts userAttempts = getUserAttempts(username);
-
 		if (userAttempts != null && userAttempts.getUserId() > 0) {
-
 			// if no record, insert a new
 			getJdbcTemplate().update(SQL_USER_ATTEMPTS_UPSERT,
 					new Object[] { userAttempts.getUserId(), 1 });
-
 			if (userAttempts.getAttempts() + 1 >= MAX_ATTEMPTS) {
 				// locked user
 				getJdbcTemplate().update(SQL_USERS_UPDATE_LOCKED,
@@ -53,43 +49,33 @@ public class UserAttemptsDAO extends JdbcDaoSupport implements IUserAttemptsDAO 
 				// throw exception
 				throw new LockedException("User Account is locked!");
 			}
-
 		}
-
 	}
 
 	@Override
 	public UserAttempts getUserAttempts(String username) {
-
 		try {
-
 			UserAttempts userAttempts = getJdbcTemplate().queryForObject(
 					SQL_USER_ATTEMPTS_GET, new Object[] { username },
 					new RowMapper<UserAttempts>() {
 						public UserAttempts mapRow(ResultSet rs, int rowNum)
 								throws SQLException {
-
 							UserAttempts userAttempts = new UserAttempts();
 							userAttempts.setUserId(rs.getLong("userid"));
-							userAttempts.setAttempts(rs.getInt("attempts"));				
+							userAttempts.setAttempts(rs.getInt("attempts"));
 							return userAttempts;
 						}
-
 					});
 			return userAttempts;
-
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
-
 	}
 
 	@Override
-	public void resetFailAttempts(Long  userId) {
-
+	public void resetFailAttempts(Long userId) {
 		getJdbcTemplate().update(SQL_USER_ATTEMPTS_RESET_ATTEMPTS,
 				new Object[] { new Date(), userId });
-
 	}
 
 }

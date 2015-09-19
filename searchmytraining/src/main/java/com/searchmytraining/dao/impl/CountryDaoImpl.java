@@ -10,7 +10,8 @@ import com.searchmytraining.dao.CountryDAO;
 import com.searchmytraining.entity.CountryEntity;
 
 @Repository
-public class CountryDaoImpl extends AbstractJpaDAO<CountryEntity> implements CountryDAO {
+public class CountryDaoImpl extends AbstractJpaDAO<CountryEntity> implements
+		CountryDAO {
 
 	@Override
 	public CountryEntity getCountry(Long id) {
@@ -19,20 +20,20 @@ public class CountryDaoImpl extends AbstractJpaDAO<CountryEntity> implements Cou
 
 	@Override
 	public CountryEntity getCountry(String countryname) {
-			
-		String query = "select country.countryId from CountryEntity country where country.countryName= '"+countryname+"'";
-		Integer countryid =	(Integer)getQueryResult(query);
+
+		String query = "select country.countryId from CountryEntity country where country.countryName= '"
+				+ countryname + "'";
+		Integer countryid = (Integer) getQueryResult(query);
 		System.out.println(countryid);
 		setClazz(CountryEntity.class);
 		return findOne(countryid);
 	}
 
 	@Override
-	@Cacheable(value="countryCache")
+	@Cacheable(value = "countryCache")
 	public List<CountryEntity> getAllCountries() {
 		setClazz(CountryEntity.class);
 		return findAll();
 	}
-	
-	
+
 }

@@ -9,7 +9,8 @@ import com.searchmytraining.dao.IEducationDegreeDAO;
 import com.searchmytraining.entity.EducationDegreeEntity;
 
 @Repository
-public class EducationDegreeDAO extends AbstractJpaDAO<EducationDegreeEntity> implements IEducationDegreeDAO {
+public class EducationDegreeDAO extends AbstractJpaDAO<EducationDegreeEntity>
+		implements IEducationDegreeDAO {
 
 	@Override
 	public List<EducationDegreeEntity> getAllEducation() {

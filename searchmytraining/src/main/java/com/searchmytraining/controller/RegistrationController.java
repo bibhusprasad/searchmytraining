@@ -141,55 +141,36 @@ public class RegistrationController {
 	@RequestMapping("/trainee/profile")
 	public String updateTraineeProfile(ModelMap model, HttpSession session) {
 		TraineeEntity trainee = (TraineeEntity) session.getAttribute("trainee");
-		Integer indcatid = 0;
+		Integer indSubCatId = 0;
 		try {
 			EmploymentEntity emplentity = employmentservice.findEmplDet(trainee.getUser().getUserId());
 			if (emplentity != null) {
-				indcatid = emplentity.getIndsubcat().getIndustrycategory()
-						.getTrnIndstrCatId();
-				List<IndustrySubCategoryEntity> indsubsubcatlist = indsubcatindservice
-						.getIndustrySubCategories(indcatid);
-				Integer indid = emplentity.getIndsubcat().getIndustrycategory()
-						.getIndustry().getTrnIndstrId();
-				List<IndustryCategoryEntity> indcatlist = industrycategoryser
-						.getIndustryCategories(indid);
-				for (IndustryCategoryEntity indcatName : indcatlist)
-					System.out.println(indcatName.getIndstrCatName());
-				model.addAttribute("industrycategories", new JSONArray(
-						indcatlist));
-				model.addAttribute("industrysubcat", new JSONArray(
-						indsubsubcatlist));
+				indSubCatId = emplentity.getIndsubcat().getIndustrycategory().getTrnIndstrCatId();
+				List<IndustrySubCategoryEntity> indsubsubcatlist = indsubcatindservice.getIndustrySubCategories(indSubCatId);
+				Integer trainingIndId = emplentity.getIndsubcat().getIndustrycategory().getIndustry().getTrnIndstrId();
+				List<IndustryCategoryEntity> indcatlist = industrycategoryser.getIndustryCategories(trainingIndId);
+				model.addAttribute("industrycategories", new JSONArray(indcatlist));
+				model.addAttribute("industrysubcat", new JSONArray(indsubsubcatlist));
 				model.addAttribute("employmentdetails", emplentity);
 			}
-
-			// Location Details
-
-			LocationEntity location = locservice.findLocDet(trainee.getUser()
-					.getUserId());
+			LocationEntity location = locservice.findLocDet(trainee.getUser().getUserId());
 			System.out.println(location);
 			if (location != null) {
-				List<StateEntity> states = stateservice.getStates(location
-						.getCity().getState().getCountry().getCountryId());
-				List<CityEntity> cities = cityservice.getCities(location
-						.getCity().getState().getStateId());
-				Long country_value = location.getCity().getState().getCountry()
-						.getCountryId();
+				List<StateEntity> states = stateservice.getStates(location.getCity().getState().getCountry().getCountryId());
+				List<CityEntity> cities = cityservice.getCities(location.getCity().getState().getStateId());
+				Long country_value = location.getCity().getState().getCountry().getCountryId();
 				model.addAttribute("country_value", country_value);
 				model.addAttribute("locentity", location);
 				model.addAttribute("states", new JSONArray(states));
 				model.addAttribute("cities", new JSONArray(cities));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("New User... No result available");
-			model.addAttribute("industrycategories", new JSONArray(
-					industrycategoryser.getIndustryCategories()));
+			model.addAttribute("industrycategories", new JSONArray(industrycategoryser.getIndustryCategories()));
 			model.addAttribute("industry_value", 0);
 			model.addAttribute("industry_cat_value", 0);
 			model.addAttribute("industry_subcat_value", 0);
 		} finally {
-			model.addAttribute("industries",
-					new JSONArray(industryservice.getIndustries()));
+			model.addAttribute("industries",new JSONArray(industryservice.getIndustries()));
 			model.addAttribute("countries", countryservice.getAllCountries());
 		}
 		return "pages/Trainee/Trainprofile";

@@ -26,7 +26,6 @@ public class SerachInstituteDAOImpl extends AbstractJpaDAO<InstituteSearchEntity
 	@Override
 	public List<InstituteSearchEntity> searchInstitues(String keyword,
 			String city) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
