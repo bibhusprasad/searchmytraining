@@ -24,6 +24,7 @@ import com.searchmytraining.entity.IndustrySubCategoryEntity;
 import com.searchmytraining.entity.UserEntity;
 import com.searchmytraining.service.ICalenderService;
 import com.searchmytraining.service.ICityService;
+import com.searchmytraining.service.IUserService;
 
 /*import com.searchmytraining.service.IKeywordService;*/
 
@@ -40,7 +41,9 @@ public class UploadFileController {
 	@Autowired
 	public ICityService cityservice;
 	
-	
+	@Autowired
+	public IUserService userService;
+
 	/*
 	 * @Autowired IKeywordService keywordService;
 	 */
@@ -51,7 +54,6 @@ public class UploadFileController {
 			throws Exception {
 
 		String path = null;
-		String userType = null;
 		String fileName = null;
 		String fileExtension = null;
 		String ctitle = null;
@@ -59,13 +61,12 @@ public class UploadFileController {
 		String Tdate = null;
 		String Ctype = null;
 		Double cPrice = null;
-		Integer place = null;
-		String[] keyCode = null;
+		String place = null;
+		String keyCode = null;
 		String keyword = null;
 		String CDesc = null;
 		Integer userid = 0;
 		Integer trnIndstrSubCatId = 0;
-
 		if (request.getServletContext().getInitParameter("uploadpath") != null) {
 			path = request.getServletContext().getInitParameter("uploadpath");
 
@@ -76,7 +77,7 @@ public class UploadFileController {
 				fileName.length());
 
 		CalenderEntity entity = (CalenderEntity)context.getBean("calenderEntity");
-		UserEntity usrEntity = (UserEntity)context.getBean("userEntity");
+		UserEntity usrEntity = new UserEntity();
 		IndustrySubCategoryEntity industrySubCat = (IndustrySubCategoryEntity)context.getBean("industrySubCategoryEntity");
 
 		Calendar calendar = Calendar.getInstance();
@@ -90,25 +91,30 @@ public class UploadFileController {
 			Ctype = request.getParameter("Ctype");
 			cPrice = Double.parseDouble(request.getParameter("cPrice"));
 			CDesc = request.getParameter("CDesc");
-			place = Integer.parseInt(request.getParameter("place"));
-			keyCode = request.getParameterValues("tags[]");
-			userType = request.getParameter("userType");
+			place = request.getParameter("place");
+			keyCode = request.getParameter("tags-field");
 			userid = Integer
 					.parseInt(session.getAttribute("userid").toString());
 			trnIndstrSubCatId = Integer.parseInt(request.getParameter("Itype"));
 			usrEntity.setUserId(userid);
 			industrySubCat.setTrnIndstrSubCatId(trnIndstrSubCatId);
-
-			for (String element : keyCode) {
-
-				keyword = keyword + "," + element.trim();
+			String keString[]=null;
+			if(null != keyCode && keyCode.indexOf(",") != -1){
+				keString=keyCode.split(","); 
+			}else{
+				keString=new String[1];
+				keString[0]=keyCode;
+			}
+			StringBuilder stringBuilder=new StringBuilder();
+			for (String element : keString) {
+				stringBuilder = stringBuilder.append(element.trim()).append(",");
 			}
 
 			entity.setBrochure(path + fileUpload.getOriginalFilename());
 			entity.setTitle(ctitle);
 			entity.setCode("keyCode");
 			entity.setContenttype("" + fileUpload.getContentType());
-			entity.setCreatedBy("aaa");
+			entity.setCreatedBy(usrEntity.getUserName());
 			entity.setCreatedOn(currentTime);
 			entity.setDescription(CDesc);
 			entity.setStart_date(Fdate);
@@ -124,7 +130,7 @@ public class UploadFileController {
 			entity.setRank(0);
 			entity.setvFlag("Not Varified");
 			entity.setUpdatedOn(currentTime);
-			entity.setKeyword(keyword.substring(1));
+			entity.setKeyword(stringBuilder.substring(0, stringBuilder.length()-1).toString());
 
 			// Mapping Entity
 			entity.setUser(usrEntity);
@@ -152,7 +158,7 @@ public class UploadFileController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (userType.equalsIgnoreCase("freelancer")) {
+		if (userService.getUserRole(usrEntity).equalsIgnoreCase("freelancer")) {
 			return "pages/FreeLancer/FreeLancerProfile";
 		} else {
 			return "pages/TrainingProvider/TrainingProviderProfile";

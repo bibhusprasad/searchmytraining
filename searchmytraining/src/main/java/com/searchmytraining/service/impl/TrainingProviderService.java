@@ -24,80 +24,79 @@ import com.searchmytraining.entity.StatusEntity;
 import com.searchmytraining.entity.TrainerEntity;
 import com.searchmytraining.entity.UserEntity;
 import com.searchmytraining.service.ICityService;
-import com.searchmytraining.service.IInstituteServiceDetails;
 import com.searchmytraining.service.ITrainingProviderService;
 
 @Service
   public class TrainingProviderService implements ITrainingProviderService {
 	
 	@Autowired
-	public WebApplicationContext context; 
+	private WebApplicationContext context; 
 	
 	@Autowired
-	public TrainerDAO regdao;
+	private TrainerDAO regdao;
 	@Autowired
-	public DozerBeanMapper mapper;
+	private DozerBeanMapper mapper;
 	@Autowired
-	public RoleDAO roledao;
+	private RoleDAO roledao;
 	@Autowired
-	public StatusDAO statusdao;
+	private StatusDAO statusdao;
 	@Autowired
-	public UserDAO userdao;
+	private UserDAO userdao;
 	@Autowired
-	public ICityService cityservice;
+	private ICityService cityservice;
 	@Autowired
-	public BCryptPasswordEncoder encoder;
+	private BCryptPasswordEncoder encoder;
 	@Autowired
-	public InstituteDAO institutedao;
+	private InstituteDAO institutedao;
 	@Autowired
-	public IPhoneDAO phonedao;
+	private IPhoneDAO phonedao;
 	@Autowired
-	public IContactInfoDAO contactdao;
+	private IContactInfoDAO contactdao;
 	
 	@Override
 	@Transactional
 	public Integer registerTrainer(TrainerDTO trainerdto) {
-		UserEntity user = (UserEntity)context.getBean("userEntity");
+		UserEntity userEntity = (UserEntity)context.getBean("userEntity");
 		StatusEntity status = statusdao.getStatus(1);
 		TrainerEntity entity = mapper.map(trainerdto, TrainerEntity.class);
 		
-		user.setUserName(entity.getEmail());
-		user.setPassword(encoder.encode(entity.getPassword()));
-		user.setEnabled(Boolean.TRUE);
-		user.setAccountNonExpired(Boolean.TRUE);
-		user.setAccountNonLocked(Boolean.TRUE);
-		user.setCredentialsNonExpired(Boolean.TRUE);
-		user.setStatus(status);
-		userdao.addUser(user);
+		userEntity.setUserName(entity.getEmail());
+		userEntity.setPassword(encoder.encode(entity.getPassword()));
+		userEntity.setEnabled(Boolean.TRUE);
+		userEntity.setAccountNonExpired(Boolean.TRUE);
+		userEntity.setAccountNonLocked(Boolean.TRUE);
+		userEntity.setCredentialsNonExpired(Boolean.TRUE);
+		userEntity.setStatus(status);
+		userdao.addUser(userEntity);
 		
 		InstituteEntity institute = (InstituteEntity)context.getBean("instituteEntity");
 		institute.setCompanyName(entity.getOrg_name());
-		institute.setUser(user);
+		institute.setUser(userEntity);
 		
 		ContactInfoEntity contact = (ContactInfoEntity)context.getBean("contactInfoEntity");
 		contact.setEmailId(entity.getEmail());
-		contact.setUser(user);
+		contact.setUser(userEntity);
 		contactdao.insertContactInfo(contact);
 		
 		PhoneEntity phone = (PhoneEntity)context.getBean("phoneEntity");
 		phone.setPhoneValue(entity.getContact());
-		phone.setUser(user);
+		phone.setUser(userEntity);
 		phonedao.insertPhoneDetails(phone);
 		
 		institutedao.updateInstituteDetails(institute);
 
-		entity.setUser(user);
+		entity.setUser(userEntity);
 		
 		RoleEntity role = (RoleEntity)context.getBean("roleEntity");
 		role.setROLE("TPI");
-		role.setUser(user);
+		role.setUser(userEntity);
 		roledao.setRoleToUser(role);
 		
 		CityEntity city = (CityEntity)context.getBean("cityEntity");
 		city = cityservice.getCity(trainerdto.getCity());
 		entity.setCity(city);
 		regdao.registerTrainer(entity);
-		return user.getUserId();
+		return userEntity.getUserId();
 	}
 	@Override
 	public TrainerEntity getTrainer(Long id) {

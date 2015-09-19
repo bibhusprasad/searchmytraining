@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.searchmytraining.dao.RoleDAO;
 import com.searchmytraining.dao.UserDAO;
 import com.searchmytraining.entity.UserEntity;
 import com.searchmytraining.service.IUserService;
@@ -13,6 +14,10 @@ public class UserService implements IUserService {
 
 	@Autowired
 	public UserDAO userdao;
+	
+	@Autowired
+	public RoleDAO roleDAO;
+	
 	
 	@Override
 	@Transactional
@@ -47,5 +52,10 @@ public class UserService implements IUserService {
 	@Transactional
 	public boolean verifyEmail(String username, String uuid) {
 		return userdao.verifyEmail(username, uuid);
+	}
+
+	@Override
+	public String getUserRole(UserEntity usrEntity) {
+		return roleDAO.getRoleByUserId(Long.valueOf(usrEntity.getUserId())).getROLE();
 	}
 }

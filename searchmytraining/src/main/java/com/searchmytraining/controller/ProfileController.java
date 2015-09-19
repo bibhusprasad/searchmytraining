@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,6 +27,7 @@ import com.searchmytraining.service.IContactInfoService;
 import com.searchmytraining.service.IEmploymentService;
 import com.searchmytraining.service.IInstituteServiceDetails;
 import com.searchmytraining.service.ILocationService;
+import com.searchmytraining.service.impl.IndustryService;
 import com.searchmytraining.wrapper.RespnoseWrapper;
 
 @Controller
@@ -33,6 +35,9 @@ public class ProfileController {
 	
 	@Autowired
 	public IInstituteServiceDetails instituteservice;
+	
+	@Autowired
+	private IndustryService industryservice;
 	
 	@Autowired
 	public ILocationService locservice;
@@ -95,8 +100,8 @@ public class ProfileController {
 	@RequestMapping("/TPcalender")
 	public String TPcalender(ModelMap model)
 	{
-		/*model.addAttribute("trainerdto",this.trainerdto1);
-		model.addAttribute("user",user);*/
+		model.addAttribute("industries",
+				new JSONArray(industryservice.getIndustries()));
 		return "pages/TrainingProvider/TPcalender";
 	}
 	

@@ -93,24 +93,25 @@ function doLoginTP()
 	});
 }
 
-function randString(x){
-   
-	 var text = " ";
-
-	    var charset = "QWERTYUIOPASDFGHJKLZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789";
-
-	    for( var i=0; i < x; i++ )
-	        text += charset.charAt(Math.floor(Math.random() * charset.length));
-	    
-          $(".Ccode").html(text);
-	
-		
-	}
-
 </script>
 </head>
 
-<body onload="randString(5);">
+<script type="text/javascript">
+function randString(x){
+	 var text = " ";
+	    var charset = "QWERTYUIOPASDFGHJKLZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789";
+	    for( var i=0; i < x; i++ )
+	        text += charset.charAt(Math.floor(Math.random() * charset.length));
+          $(".Ccode").html(text);
+	}
+</script>
+<script type="text/javascript">
+	$(function() {
+	 randString(5);
+	});
+</script>
+
+<body>
 
 		<div class="reg_form">
 			<div class="head">

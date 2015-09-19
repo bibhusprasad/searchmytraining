@@ -10,12 +10,9 @@ import org.springframework.stereotype.Component;
 public class RespnoseWrapper {
 
 	private Long responseWrapperId;
-	
 	private Map<String, String> errorMsg;
-	
-	public boolean validationError;
-	
-	public boolean successMessage;
+	private boolean validationError;
+	private boolean successMessage;
 
 	public Long getResponseWrapperId() {
 		return responseWrapperId;

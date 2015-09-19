@@ -10,4 +10,5 @@ public interface IUserService {
 	public UserEntity getUser(String username);
 	public void updateUserUUID(String username,String uuid);
 	public boolean verifyEmail(String username, String uuid);
+	String getUserRole(UserEntity usrEntity);
 }
