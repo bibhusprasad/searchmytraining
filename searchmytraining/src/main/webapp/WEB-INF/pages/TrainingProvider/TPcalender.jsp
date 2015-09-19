@@ -75,6 +75,7 @@ $('#fdate,#Tdate').datepicker();
 						$(document).ready(function() {
 							$('#Fdate,#Tdate').datepicker();
 							loadIndustries();
+							loadCity();
 						});
 						
 						function loadIndustries()
@@ -88,6 +89,18 @@ $('#fdate,#Tdate').datepicker();
 							jQuery.each(jsonindustries, function(index, item) {
 								$('#Itype').append(
 									$("<option></option>").text(this.indstrName).val(this.trnIndstrId));
+							});
+						}
+						function loadCity(){
+							var cities = '${cities}';
+							var jsoncities = $.parseJSON(cities);
+							$('#place').find('option').remove().end();
+							$('#place').attr('enabled','true');
+							$('#place').append(
+									$("<option value='0'></option>").text("--Select--"));
+							jQuery.each(jsoncities, function(index, item) {
+								$('#place').append(
+									$("<option></option>").text(this.cityName).val(this.cityId));
 							});
 						}
 </script>
@@ -131,7 +144,8 @@ $('#fdate,#Tdate').datepicker();
 						placeholder="price" name="cPrice" />
 				</div>
 				<div class="price">
-					<label>Place:</label> <input type="text" id="place" name="place" />
+					<label>Place:</label> <select id="place" name="place">
+					</select>
 				</div>
 				<div class="description">
 					<label>Description:</label> <input type="text" id="CDesc"

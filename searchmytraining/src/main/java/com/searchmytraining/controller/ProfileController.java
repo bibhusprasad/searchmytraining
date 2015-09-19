@@ -23,6 +23,7 @@ import com.searchmytraining.dto.EmploymentDTO;
 import com.searchmytraining.dto.InstituteDTO;
 import com.searchmytraining.dto.LocationDTO;
 import com.searchmytraining.dto.ProfessionalAssociationDTO;
+import com.searchmytraining.service.ICityService;
 import com.searchmytraining.service.IContactInfoService;
 import com.searchmytraining.service.IEmploymentService;
 import com.searchmytraining.service.IInstituteServiceDetails;
@@ -36,6 +37,8 @@ public class ProfileController {
 	@Autowired
 	public IInstituteServiceDetails instituteservice;
 	
+	@Autowired
+	private ICityService iCityService;
 	@Autowired
 	private IndustryService industryservice;
 	
@@ -102,6 +105,9 @@ public class ProfileController {
 	{
 		model.addAttribute("industries",
 				new JSONArray(industryservice.getIndustries()));
+		model.addAttribute("cities",
+				new JSONArray(iCityService.getAllCities()));
+		
 		return "pages/TrainingProvider/TPcalender";
 	}
 	

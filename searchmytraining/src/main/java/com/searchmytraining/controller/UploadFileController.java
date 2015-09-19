@@ -93,8 +93,7 @@ public class UploadFileController {
 			CDesc = request.getParameter("CDesc");
 			place = request.getParameter("place");
 			keyCode = request.getParameter("tags-field");
-			userid = Integer
-					.parseInt(session.getAttribute("userid").toString());
+			userid = Integer.parseInt(session.getAttribute("userid").toString());
 			trnIndstrSubCatId = Integer.parseInt(request.getParameter("Itype"));
 			usrEntity.setUserId(userid);
 			industrySubCat.setTrnIndstrSubCatId(trnIndstrSubCatId);
