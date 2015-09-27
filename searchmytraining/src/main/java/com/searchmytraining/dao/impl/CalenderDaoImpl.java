@@ -127,7 +127,7 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 						.stringValue()));
 				cal.setKeyword(doc.getField("keyword").stringValue());
 				cal.setTitle(doc.getField("title").stringValue());
-				cal.setCity(city);
+				//cal.setCity(city);
 				cal.setDescription(doc.getField("description").stringValue());
 				cal.setType(doc.getField("type").stringValue());
 				cal.setBrochure(doc.getField("brochure").stringValue());
@@ -156,11 +156,11 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 				query1 = queryParser.parse(cal.getKeyword());
 				query.add(query1, BooleanClause.Occur.MUST);
 			}
-			if (cal.getCity().getCityName() != null) {
+			/*if (cal.getCity().getCityName() != null) {
 				queryParser = new QueryParser("place", analyzer);
 				query1 = queryParser.parse(cal.getCity().getCityName());
 				query.add(query1, BooleanClause.Occur.MUST);
-			}
+			}*/
 			// For Date Range Query
 			/*
 			 * if(fromDate != null && toDate != null){ Term begin = new
@@ -191,7 +191,7 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 						.stringValue()));
 				cal.setKeyword(doc.getField("keyword").stringValue());
 				cal.setTitle(doc.getField("title").stringValue());
-				cal.setCity(city);
+				//cal.setCity(city);
 				cal.setDescription(doc.getField("description").stringValue());
 				cal.setType(doc.getField("type").stringValue());
 				lstCal.add(cal);

@@ -121,7 +121,7 @@ public class UploadFileController {
 			entity.setStatus("New");
 			
 			CityEntity city = cityservice.getCity(Integer.parseInt(place));
-			entity.setCity(city);
+			//entity.setCity(city);
 			entity.setType(Ctype);
 			entity.setPrice(cPrice);
 			entity.setTitle(ctitle);

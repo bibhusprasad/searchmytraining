@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
@@ -20,7 +21,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "tbl_trngcalender")
 public class CalenderEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 15456654646L;
 
 	@Id
 	@GeneratedValue
@@ -74,14 +75,10 @@ public class CalenderEntity implements Serializable {
 
 	@Column(name = "vFlag")
 	private String vFlag;
-	
+
 	@Column(name = "keyword")
 	private String keyword;
-	
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = CityEntity.class)
-	@JoinColumn(name = "place")
-	private CityEntity city;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = UserEntity.class)
 	@JoinColumn(name = "userId")
 	private UserEntity user;
@@ -89,6 +86,21 @@ public class CalenderEntity implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = IndustrySubCategoryEntity.class)
 	@JoinColumn(name = "trnIndstrSubCatId")
 	private IndustrySubCategoryEntity indstrySubcat;
+	
+	
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = InstituteAddress.class)
+	@JoinColumn(name = "paId")
+	private InstituteAddress instituteAddress;
+
+	
+	@OneToOne(fetch = FetchType.EAGER, targetEntity = TrainingOverview.class)
+	@JoinColumn(name = "overviewId")
+	private TrainingOverview trainingOverview;
+
+	
+	@OneToOne(fetch = FetchType.EAGER, targetEntity = TrainerInstituteOverview.class)
+	@JoinColumn(name = "trngoverviewId")
+	private TrainerInstituteOverview trainerInstituteOverview;
 
 	public Integer getTrngId() {
 		return trngId;
@@ -209,7 +221,7 @@ public class CalenderEntity implements Serializable {
 	public void setContenttype(String contenttype) {
 		this.contenttype = contenttype;
 	}
-	
+
 	public Integer getRank() {
 		return rank;
 	}
@@ -234,14 +246,6 @@ public class CalenderEntity implements Serializable {
 		this.keyword = keyword;
 	}
 	
-	public CityEntity getCity() {
-		return city;
-	}
-
-	public void setCity(CityEntity city) {
-		this.city = city;
-	}
-
 	public UserEntity getUser() {
 		return user;
 	}
@@ -258,6 +262,4 @@ public class CalenderEntity implements Serializable {
 		this.indstrySubcat = indstrySubcat;
 	}
 
-	
-	
 }

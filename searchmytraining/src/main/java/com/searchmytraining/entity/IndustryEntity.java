@@ -15,10 +15,13 @@ public class IndustryEntity implements Serializable {
 	@Id
 	@Column(name="trnIndstrId")
 	private Integer trnIndstrId;
+	
 	@Column(name="indstrName")
 	private String indstrName;
+	
 	@Column(name="indstrDescrption")
 	private String indstrDescrption;
+	
 	public Integer getTrnIndstrId() {
 		return trnIndstrId;
 	}

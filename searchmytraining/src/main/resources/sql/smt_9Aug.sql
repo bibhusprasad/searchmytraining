@@ -814,3 +814,39 @@ insert  into `users`(`userId`,`username`,`password`,`enabled`,`accountNonExpired
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+CREATE TABLE `searchmytraining`.`tbl_instaddress` (
+  `paId` INT(11) NOT NULL COMMENT '',
+  `addressLine1` VARCHAR(4000) NOT NULL COMMENT '',
+  `addressLine2` VARCHAR(4000) NULL COMMENT '',
+  `landmark` VARCHAR(200) NOT NULL COMMENT '',
+  `cityId` INT(11) NOT NULL COMMENT '',
+  `stateId` INT(11) NOT NULL COMMENT '',
+  `countryId` INT(11) NOT NULL COMMENT '',
+  `pincode` INT(6) NOT NULL COMMENT '',
+  PRIMARY KEY (`paId`)  COMMENT '');
+  
+  CREATE TABLE `searchmytraining`.`tbl_trnginstituteoverview` (
+  `trngoverviewId` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  `facultyDetails` VARCHAR(2000) NOT NULL COMMENT '',
+  `howtoregister` VARCHAR(2000) NOT NULL COMMENT '',
+  `detailsOfProvider` VARCHAR(1000) NOT NULL COMMENT '',
+  `calenderPdf` LONGBLOB NOT NULL COMMENT '',
+  PRIMARY KEY (`trngoverviewId`)  COMMENT '');
+  
+  
+  CREATE TABLE `searchmytraining`.`new_table` (
+  `overviewId` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  `trngQuickView` VARCHAR(2000) NOT NULL COMMENT '',
+  `trngOverView` VARCHAR(2000) NOT NULL COMMENT '',
+  `trngTakeAway` VARCHAR(2000) NOT NULL COMMENT '',
+  `trngMethodology` VARCHAR(2000) NOT NULL COMMENT '',
+  `trngAttandant` VARCHAR(500) NOT NULL COMMENT '',
+  `trngKey` VARCHAR(500) NOT NULL COMMENT '',
+  PRIMARY KEY (`overviewId`)  COMMENT '');
+  
+ALTER TABLE `searchmytraining`.`tbl_trngcalender` 
+ADD COLUMN `paId` INT(11) NOT NULL COMMENT '' AFTER `userId`,
+ADD COLUMN `trngoverviewId` INT(11) NOT NULL COMMENT '' AFTER `paId`,
+ADD COLUMN `overviewId` INT(11) NOT NULL COMMENT '' AFTER `trngoverviewId`;
+

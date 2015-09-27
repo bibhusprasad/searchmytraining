@@ -18,8 +18,10 @@ public class IndustryCategoryEntity implements Serializable {
 	@Id
 	@Column(name="trnIndstrCatId")
 	private Integer trnIndstrCatId;
+	
 	@Column(name="indstrCatName")
 	private String indstrCatName;
+	
 	@Column(name="indstrCatDescrption")
 	private String indstrCatDescrption;
 	

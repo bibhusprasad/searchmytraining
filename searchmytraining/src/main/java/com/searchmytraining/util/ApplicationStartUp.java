@@ -158,17 +158,19 @@ public class ApplicationStartUp implements ServletContextListener{
 		doc.add(idxEndDate);
 		IndexableField idxPrice = new Field("price",cal.getPrice().toString(),Store.YES,Index.ANALYZED);
 		doc.add(idxPrice);
-		IndexableField idxPlace = new Field("place",cal.getCity().getCityName(),Store.YES,Index.ANALYZED);
+		/*IndexableField idxPlace = new Field("place",cal.getCity().getCityName(),Store.YES,Index.ANALYZED);
 		doc.add(idxPlace);
+		*/
 		IndexableField idxType = new Field("type",cal.getType(),Store.YES,Index.ANALYZED);
 		doc.add(idxType);
 		IndexableField idxDesc = new Field("description",cal.getDescription(),Store.YES,Index.ANALYZED_NO_NORMS);
 		doc.add(idxDesc);
-		IndexableField idxBroucher = new Field("brochure",cal.getBrochure(),Store.YES,Index.ANALYZED_NO_NORMS);
+		/*IndexableField idxBroucher = new Field("brochure",cal.getBrochure(),Store.YES,Index.ANALYZED_NO_NORMS);
 		doc.add(idxBroucher);
-		IndexableField idxBasicSearch = new Field("BasicSearchString",cal.getTitle()+" "+cal.getDescription()+" "+cal.getKeyword()+" "+cal.getCity().getCityName()+" "+cal.getPrice().toString(),Store.NO,Index.ANALYZED);
+		*/
+		/*IndexableField idxBasicSearch = new Field("BasicSearchString",cal.getTitle()+" "+cal.getDescription()+" "+cal.getKeyword()+" "+cal.getCity().getCityName()+" "+cal.getPrice().toString(),Store.NO,Index.ANALYZED);
 		doc.add(idxBasicSearch);
-		
+		*/
 		return doc;
 	}
 	

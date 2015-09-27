@@ -10,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -23,8 +22,10 @@ public class IndustrySubCategoryEntity implements Serializable {
 	@Id
 	@Column(name="trnIndstrSubCatId")
 	private Integer trnIndstrSubCatId;
+	
 	@Column(name="indstrSubCatName")
 	private String indstrSubCatName;
+	
 	@Column(name="indstrSubCatDescrption")
 	private String indstrSubCatDescrption;
 	
