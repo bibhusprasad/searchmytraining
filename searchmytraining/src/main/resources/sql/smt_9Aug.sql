@@ -835,7 +835,7 @@ CREATE TABLE `searchmytraining`.`tbl_instaddress` (
   PRIMARY KEY (`trngoverviewId`)  COMMENT '');
   
   
-  CREATE TABLE `searchmytraining`.`new_table` (
+  CREATE TABLE `searchmytraining`.`tbl_trngoverview` (
   `overviewId` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
   `trngQuickView` VARCHAR(2000) NOT NULL COMMENT '',
   `trngOverView` VARCHAR(2000) NOT NULL COMMENT '',
