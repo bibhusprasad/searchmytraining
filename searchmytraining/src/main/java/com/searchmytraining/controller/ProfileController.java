@@ -1,5 +1,6 @@
 package com.searchmytraining.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.searchmytraining.common.constant.CalenderType;
 import com.searchmytraining.dto.ClientDetailsDTO;
 import com.searchmytraining.dto.ContactDTO;
 import com.searchmytraining.dto.EmploymentDTO;
@@ -28,6 +30,7 @@ import com.searchmytraining.service.IContactInfoService;
 import com.searchmytraining.service.IEmploymentService;
 import com.searchmytraining.service.IInstituteServiceDetails;
 import com.searchmytraining.service.ILocationService;
+import com.searchmytraining.service.IStateService;
 import com.searchmytraining.service.impl.IndustryService;
 import com.searchmytraining.wrapper.RespnoseWrapper;
 
@@ -39,6 +42,8 @@ public class ProfileController {
 	
 	@Autowired
 	private ICityService iCityService;
+	@Autowired
+	private IStateService iStateService;
 	@Autowired
 	private IndustryService industryservice;
 	
@@ -107,8 +112,15 @@ public class ProfileController {
 				new JSONArray(industryservice.getIndustries()));
 		model.addAttribute("cities",
 				new JSONArray(iCityService.getAllCities()));
-		
-		return "pages/TrainingProvider/TPcalender";
+		model.addAttribute("states",
+				new JSONArray(iStateService.getAllStates()));
+		List<String> calType = new ArrayList<String>();
+		for (CalenderType cal : CalenderType.values()) {
+			calType.add(cal.getVal());
+		}
+		model.addAttribute("calenderTypes", new JSONArray(calType));
+		//return "pages/TrainingProvider/TPcalender";
+		return "pages/TrainingProvider/PostCalender";
 	}
 	
 	@RequestMapping(value="/updateempdet",method = RequestMethod.POST,produces={"application/json"}, consumes={"application/json"})

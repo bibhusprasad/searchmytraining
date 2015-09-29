@@ -730,6 +730,7 @@ height: 42px;
 border-radius:8px;
 border:none;
 text-align: center;
+margin-top:932px;
 }
 .acord .acord_cont .browse #uploadFile [disabled]{
 	color: #fff !important;

@@ -36,4 +36,11 @@ public class StateDaoImpl extends AbstractJpaDAO<StateEntity> implements
 				StateEntity.class);
 		return query1.getResultList();
 	}
+
+	@Override
+	@Cacheable(value="stateCache")
+	public List<StateEntity> getAllStates() {
+		setClazz(StateEntity.class);
+		return findAll();
+	}
 }

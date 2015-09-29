@@ -19,5 +19,11 @@ public class StateService implements IStateService {
 	public List<StateEntity> getStates(Long countryid) {
 		return statedao.getStates(countryid);
 	}
+	
+	public List<StateEntity> getAllStates(){
+		return statedao.getAllStates();
+	}
+	
+	
 
 }

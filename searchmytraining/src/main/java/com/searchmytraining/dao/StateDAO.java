@@ -8,5 +8,6 @@ public interface StateDAO {
 	
 	public StateEntity getState(Integer id);
 	public List<StateEntity> getStates(Long countryid);
+	public List<StateEntity> getAllStates();
 
 }
