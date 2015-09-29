@@ -1,115 +1,78 @@
-package com.searchmytraining.entity;
+package com.searchmytraining.dto;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import org.hibernate.validator.constraints.NotEmpty;
 
-@Component
-@Scope("prototype")
-@Entity
-@Table(name = "tbl_trngcalender")
-public class CalenderEntity implements Serializable {
-	private static final long serialVersionUID = 15456654646L;
+import com.searchmytraining.entity.IndustrySubCategoryEntity;
+import com.searchmytraining.entity.UserEntity;
 
-	@Id
-	@GeneratedValue
-	@Column(name = "trngId")
-	private Integer trngId;
-
-	@Column(name = "code")
+public class TrainingProviderCalenderDTO {
+	
 	private String code;
 
-	@Column(name = "title")
+	@NotNull(message="Please enter a valid title")     
 	private String title;
 
-	@Column(name = "start_date")
-	private String start_date;
+	@NotNull(message="Please enter a valid date")     
+	@Future (message="Only the Future is valid")     
+	private Date startDate;
 
-	@Column(name = "end_date")
-	private String end_date;
+	@NotNull(message="Please enter a valid date")     
+	@Future (message="Only the Future is valid")     
+	private Date endDate;
 
-	@Column(name = "price")
+	@NotNull(message="Please enter price")     
 	private Double price;
 
-	@Column(name = "brochure")
 	private String brochure;
 
-	@Column(name = "type")
 	private String type;
 
-	@Column(name = "status")
 	private String status;
 
-	@Column(name = "createdOn")
 	private Timestamp createdOn;
 
-	@Column(name = "createdBy")
 	private String createdBy;
 
-	@Column(name = "updatedOn")
 	private Timestamp updatedOn;
 
-	@Column(name = "updatedBy")
 	private String updatedBy;
 
-	@Column(name = "description")
+	@NotEmpty(message="Please enter valid description")
 	private String description;
 
-	@Column(name = "contenttype")
 	private String contenttype;
 
-	@Column(name = "rank")
 	private Integer rank;
 
-	@Column(name = "vFlag")
 	private String vFlag;
 
-	@Column(name = "keyword")
+	@NotEmpty(message="Please enter valid Keyword")
 	private String keyword;
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = UserEntity.class)
-	@JoinColumn(name = "userId")
 	private UserEntity user;
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = IndustrySubCategoryEntity.class)
-	@JoinColumn(name = "trnIndstrSubCatId")
 	private IndustrySubCategoryEntity indstrySubcat;
 	
+	@Valid
+	private InstituteAddressDTO instituteAddressDTO;
+
+	@Valid
+	private TrainingOverviewDTO trainingOverviewDTO;
+
+	@Valid
+	private TrainerInstituteOverviewDTO trainerInstituteOverviewDTO;
 	
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = InstituteAddress.class)
-	@JoinColumn(name = "paId")
-	private InstituteAddress instituteAddress;
-
+	private boolean savedraft;
 	
-	@OneToOne(fetch = FetchType.EAGER, targetEntity = TrainingOverviewEntity.class)
-	@JoinColumn(name = "overviewId")
-	private TrainingOverviewEntity trainingOverview;
-
+	private boolean showprice;
 	
-	@OneToOne(fetch = FetchType.EAGER, targetEntity = TrainerInstituteOverviewEntity.class)
-	@JoinColumn(name = "trngoverviewId")
-	private TrainerInstituteOverviewEntity trainerInstituteOverview;
-
-	public Integer getTrngId() {
-		return trngId;
-	}
-
-	public void setTrngId(Integer trngId) {
-		this.trngId = trngId;
-	}
-
 	public String getCode() {
 		return code;
 	}
@@ -126,20 +89,20 @@ public class CalenderEntity implements Serializable {
 		this.title = title;
 	}
 
-	public String getStart_date() {
-		return start_date;
+	public Date getStartDate() {
+		return startDate;
 	}
 
-	public void setStart_date(String start_date) {
-		this.start_date = start_date;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
-	public String getEnd_date() {
-		return end_date;
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setEnd_date(String end_date) {
-		this.end_date = end_date;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public Double getPrice() {
@@ -245,7 +208,7 @@ public class CalenderEntity implements Serializable {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-	
+
 	public UserEntity getUser() {
 		return user;
 	}
@@ -262,4 +225,44 @@ public class CalenderEntity implements Serializable {
 		this.indstrySubcat = indstrySubcat;
 	}
 
+	public InstituteAddressDTO getInstituteAddressDTO() {
+		return instituteAddressDTO;
+	}
+
+	public void setInstituteAddressDTO(InstituteAddressDTO instituteAddressDTO) {
+		this.instituteAddressDTO = instituteAddressDTO;
+	}
+
+	public TrainingOverviewDTO getTrainingOverviewDTO() {
+		return trainingOverviewDTO;
+	}
+
+	public void setTrainingOverviewDTO(TrainingOverviewDTO trainingOverviewDTO) {
+		this.trainingOverviewDTO = trainingOverviewDTO;
+	}
+
+	public TrainerInstituteOverviewDTO getTrainerInstituteOverviewDTO() {
+		return trainerInstituteOverviewDTO;
+	}
+
+	public void setTrainerInstituteOverviewDTO(
+			TrainerInstituteOverviewDTO trainerInstituteOverviewDTO) {
+		this.trainerInstituteOverviewDTO = trainerInstituteOverviewDTO;
+	}
+
+	public boolean isSavedraft() {
+		return savedraft;
+	}
+
+	public void setSavedraft(boolean savedraft) {
+		this.savedraft = savedraft;
+	}
+
+	public boolean isShowprice() {
+		return showprice;
+	}
+
+	public void setShowprice(boolean showprice) {
+		this.showprice = showprice;
+	}
 }

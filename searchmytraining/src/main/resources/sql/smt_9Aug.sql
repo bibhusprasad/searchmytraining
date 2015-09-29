@@ -850,3 +850,22 @@ ADD COLUMN `paId` INT(11) NOT NULL COMMENT '' AFTER `userId`,
 ADD COLUMN `trngoverviewId` INT(11) NOT NULL COMMENT '' AFTER `paId`,
 ADD COLUMN `overviewId` INT(11) NOT NULL COMMENT '' AFTER `trngoverviewId`;
 
+ALTER TABLE `searchmytraining`.`tbl_instaddress` 
+CHANGE COLUMN `addressLine1` `addressLine1` VARCHAR(500) NOT NULL COMMENT '' ,
+CHANGE COLUMN `addressLine2` `addressLine2` VARCHAR(500) NULL COMMENT '' ,
+CHANGE COLUMN `landmark` `landmark` VARCHAR(200) NOT NULL COMMENT '' ;
+
+ALTER TABLE `searchmytraining`.`tbl_trnginstituteoverview` 
+CHANGE COLUMN `facultyDetails` `facultyDetails` VARCHAR(1000) NOT NULL COMMENT '' ;
+
+
+ALTER TABLE `searchmytraining`.`tbl_trngoverview` 
+CHANGE COLUMN `trngQuickView` `trngQuickView` VARCHAR(1000) NOT NULL COMMENT '' ,
+CHANGE COLUMN `trngTakeAway` `trngTakeAway` VARCHAR(1000) NOT NULL COMMENT '' ,
+CHANGE COLUMN `trngMethodology` `trngMethodology` VARCHAR(1000) NOT NULL COMMENT '' ,
+CHANGE COLUMN `trngKey` `trngKey` VARCHAR(200) NOT NULL COMMENT '' ;
+
+ALTER TABLE `searchmytraining`.`tbl_trngcalender` 
+ADD COLUMN `savedraft` BIT(1) NULL DEFAULT b'0' COMMENT '' AFTER `overviewId`,
+ADD COLUMN `showprice` BIT(1) NULL DEFAULT b'0' COMMENT '' AFTER `savedraft`;
+

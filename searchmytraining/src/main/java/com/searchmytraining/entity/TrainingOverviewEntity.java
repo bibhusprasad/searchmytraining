@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 @Entity
 @Table(name = "tbl_trngoverview")
-public class TrainingOverview implements Serializable{
+public class TrainingOverviewEntity implements Serializable{
 
 	/**
 	 * 
