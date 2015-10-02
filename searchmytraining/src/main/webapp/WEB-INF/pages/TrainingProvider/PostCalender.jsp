@@ -1,5 +1,4 @@
 <%@ include file="/WEB-INF/layouts/includes.jspf"%>
-<%@ page import="com.searchmytraining.common.constant.CalenderType" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,10 +7,6 @@
 	src="<%=request.getContextPath()%>/resources/js/datepicker/cdate.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/Validations/common.js"></script>	
-
-<%-- <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/screen.css"
-	type="text/css"> --%>
 
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/Validations/calender_validation.js"></script>
@@ -127,13 +122,102 @@ $('#Fdate,#Tdate').datepicker();
 						}
 </script>
 
+<script type="text/javascript">
+function postCalender() {
+	var flag = CalenderValidate();
+	var trainingProviderCalenderDTO = null;
+	var hour = $('#Chour').val();
+	var min = $('#Cmin').val();
+	var ampm = $('#Campm').val();
+	var allTime = hour+":"+min+":"+ampm;
+	if (flag) {
+		try {
+			$.ajax({
+						url : '/calender/postCalender',
+						type : 'post',
+						dataType : 'json',
+						
+						trainingProviderCalenderDTO:{
+							"title" : $('#ctitle').val(),
+							"type" : $('#Ctype').val(),
+							"industryType" : $('#Itype').val(),
+							"startDate" : $('#Fdate').val(),
+							"endDate" : $('#Tdate').val(),
+							"price" : $('#cPrice').val(),
+							"showprice" : $('#cpBox').val(),
+							"brochure" : $('#fileUpload').val(),
+							"time" : allTime,
+							
+							instituteAddressDTO:{
+								"addressLine1" : $('#Caddress1').val(),
+								"addressLine2" : $('#Caddress2').val(),
+								"landmark" : $('#Clmark').val(),
+								"city" : $('#place').val(),
+								"state" : $('#state').val(),
+								"country" : $('#Ccountry').val(),
+								"pincode" : $('#Cpincode').val(),
+							},
+							trainingOverviewDTO:{
+								"trngQuickView" : $('#Qview').val(),
+								"trngOverView" : $('#Pview').val(),
+								"trngTakeAway" : $('#Taway').val(),
+								"trngMethodology" : $('#Tmethod').val(),
+								"trngAttandant" : $('#wsa').val(),
+								"trngKey" : $('#kword').val(),
+							},
+							trainerInstituteOverviewDTO:{
+								"facultyDetails" : $('#fdetails').val(),
+								"howtoregister" : $('#helpregister').val(),
+								"detailsOfProvider" : $('#TPdetails').val(),
+								"calenderPdf" : $('#uploadFile').val(),
+							},
+						},
+						
+						data:trainingProviderCalenderDTO,
+						
+						contentType : "application/json",
+						success : function(response) {
+							if (response.errorMsg) {
+								$.map(
+									response.errorMsg,
+								  		function(val, key) {
+											if (key == "traineetype")
+												$('#error00').text(val);
+											else if (key == "corporatename")
+												$('#error00').text(val);
+											else if (key == "name")
+												$('#error01').text(val);
+											else if (key == "contact")
+												$('#error02').text(val);
+											else if (key == "email")
+												$('#error04').text(val);
+											else if (key == "password")
+												$('#error04').text(val);
+												});
+							} else if(response.successMessage) {
+								dologin($('#email').val(),$('#pass1').val());
+							}else{
+								console.log(response);
+							}
+						}
+					});
+		} catch (ex) {
+			alert("Exception: " + ex);
+		}
+	}
+}
+
+
+
+</script>
+
 </head>
 <body>
 	<div id="acord2" class="acord">
 		<h3 class="acord_head">ADD Calendar</h3>
 		<div class="acord_cont">
 			<form id="Add_calender" method="post" enctype="multipart/form-data"
-				action="uploadFile" onSubmit="return Validate();">
+			 onSubmit="postCalender();">
 
 				<div class="title">
 					<label>Course Title:</label> <input type="text" id="ctitle"
@@ -160,7 +244,7 @@ $('#Fdate,#Tdate').datepicker();
 				</div>
 								
 				<div class="Ctime">
-					<label>Time:</label><select id="Chour">
+					<label>Time:</label><select id="Chour" name="Chour">
 						<option>HH</option></select>
 					<select id="Cmin" name="Cmin">
 						<option>MM</option>

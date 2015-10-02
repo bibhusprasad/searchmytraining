@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -115,11 +116,16 @@ public class TrainingProviderController {
 
 	@RequestMapping(value = "/trainingprovider_updateprofile", method = RequestMethod.POST)
 	public String TrainingProviderProfileMapping(
-			@RequestParam("username") String username, ModelMap model,
+			@RequestParam(value = "username",required=false)String username , ModelMap model,
 			HttpSession session) {
-		UserEntity user = userservice.getUser(username);
+		UserEntity user=null;
+		if(null == username){
+			Integer userId=(Integer) session.getAttribute("userid");
+			user=userservice.getUser(userId);
+		}else{
+			user= userservice.getUser(username);
+		}
 		session.setAttribute("userid", user.getUserId());
-		System.out.println("userid: " + user.getUserId());
 		TrainerEntity trainer = trainerservice.getTrainerByUserid(user
 				.getUserId().longValue());
 		if (trainer != null) {

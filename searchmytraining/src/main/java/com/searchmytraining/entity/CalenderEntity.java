@@ -35,10 +35,10 @@ public class CalenderEntity implements Serializable {
 	private String title;
 
 	@Column(name = "start_date")
-	private String start_date;
+	private String startDate;
 
 	@Column(name = "end_date")
-	private String end_date;
+	private String endDate;
 
 	@Column(name = "price")
 	private Double price;
@@ -78,6 +78,8 @@ public class CalenderEntity implements Serializable {
 
 	@Column(name = "keyword")
 	private String keyword;
+	
+	private String time;
 
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = UserEntity.class)
 	@JoinColumn(name = "userId")
@@ -88,9 +90,9 @@ public class CalenderEntity implements Serializable {
 	private IndustrySubCategoryEntity indstrySubcat;
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = InstituteAddress.class)
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = InstituteAddressEntity.class)
 	@JoinColumn(name = "paId")
-	private InstituteAddress instituteAddress;
+	private InstituteAddressEntity instituteAddress;
 
 	
 	@OneToOne(fetch = FetchType.EAGER, targetEntity = TrainingOverviewEntity.class)
@@ -101,6 +103,14 @@ public class CalenderEntity implements Serializable {
 	@OneToOne(fetch = FetchType.EAGER, targetEntity = TrainerInstituteOverviewEntity.class)
 	@JoinColumn(name = "trngoverviewId")
 	private TrainerInstituteOverviewEntity trainerInstituteOverview;
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
 
 	public Integer getTrngId() {
 		return trngId;
@@ -126,20 +136,20 @@ public class CalenderEntity implements Serializable {
 		this.title = title;
 	}
 
-	public String getStart_date() {
-		return start_date;
+	public String getStartDate() {
+		return startDate;
 	}
 
-	public void setStart_date(String start_date) {
-		this.start_date = start_date;
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 
-	public String getEnd_date() {
-		return end_date;
+	public String getEndDate() {
+		return endDate;
 	}
 
-	public void setEnd_date(String end_date) {
-		this.end_date = end_date;
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 
 	public Double getPrice() {
@@ -260,6 +270,30 @@ public class CalenderEntity implements Serializable {
 
 	public void setIndstrySubcat(IndustrySubCategoryEntity indstrySubcat) {
 		this.indstrySubcat = indstrySubcat;
+	}
+
+	public InstituteAddressEntity getInstituteAddress() {
+		return instituteAddress;
+	}
+
+	public void setInstituteAddress(InstituteAddressEntity instituteAddress) {
+		this.instituteAddress = instituteAddress;
+	}
+
+	public TrainingOverviewEntity getTrainingOverview() {
+		return trainingOverview;
+	}
+
+	public void setTrainingOverview(TrainingOverviewEntity trainingOverview) {
+		this.trainingOverview = trainingOverview;
+	}
+
+	public TrainerInstituteOverviewEntity getTrainerInstituteOverview() {
+		return trainerInstituteOverview;
+	}
+
+	public void setTrainerInstituteOverview(TrainerInstituteOverviewEntity trainerInstituteOverview) {
+		this.trainerInstituteOverview = trainerInstituteOverview;
 	}
 
 }

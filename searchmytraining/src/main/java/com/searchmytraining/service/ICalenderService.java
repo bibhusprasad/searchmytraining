@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import com.searchmytraining.dto.SearchCalendarDTO;
+import com.searchmytraining.dto.TrainingProviderCalenderDTO;
 import com.searchmytraining.entity.CalenderEntity;
 
 public interface ICalenderService 
@@ -16,5 +17,6 @@ public interface ICalenderService
 	public void removeCalender(long calenderId);
 	public List<CalenderEntity> getCalendersByKeyword(String kyeword) throws Exception;
 	public List<CalenderEntity> getCalendersOnSearch(SearchCalendarDTO searchcaldto);
+	public void savePostCalenser(TrainingProviderCalenderDTO trainingProviderCalenderDTO);
 	
 }

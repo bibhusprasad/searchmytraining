@@ -121,8 +121,8 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 				cal.setTrngId(Integer.parseInt(doc.getField("trngId")
 						.stringValue()));
 				cal.setTitle(doc.getField("title").stringValue());
-				cal.setStart_date(doc.getField("start_date").stringValue());
-				cal.setEnd_date(doc.getField("end_date").stringValue());
+				cal.setStartDate(doc.getField("start_date").stringValue());
+				cal.setEndDate(doc.getField("end_date").stringValue());
 				cal.setPrice(Double.parseDouble(doc.getField("price")
 						.stringValue()));
 				cal.setKeyword(doc.getField("keyword").stringValue());
@@ -185,8 +185,8 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 				CityEntity city = cityservice.getCity(doc.getField("place")
 						.stringValue().trim());
 				cal.setTitle(doc.getField("title").stringValue());
-				cal.setStart_date(doc.getField("start_date").stringValue());
-				cal.setEnd_date(doc.getField("end_date").stringValue());
+				cal.setStartDate(doc.getField("start_date").stringValue());
+				cal.setEndDate(doc.getField("end_date").stringValue());
 				cal.setPrice(Double.parseDouble(doc.getField("price")
 						.stringValue()));
 				cal.setKeyword(doc.getField("keyword").stringValue());

@@ -20,6 +20,16 @@ public class TrainerInstituteOverviewDTO {
 	
 	private byte[] calenderPdf;
 	
+	private String previewCalender;
+	
+	public String getPreviewCalender() {
+		return previewCalender;
+	}
+
+	public void setPreviewCalender(String previewCalender) {
+		this.previewCalender = previewCalender;
+	}
+
 	public String getHowtoregister() {
 		return howtoregister;
 	}

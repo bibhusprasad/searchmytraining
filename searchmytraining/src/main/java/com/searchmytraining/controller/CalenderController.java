@@ -43,7 +43,7 @@ public class CalenderController {
 	@RequestMapping("/getAllCalender")
 	public void getAllCalender(HttpSession session) {
 		List<CalenderEntity> list = null;
-		list = iCalnder.getAllCalender();
+		//list = iCalnder.getAllCalender();
 		for (CalenderEntity entity : list) {
 			System.out.println("Brouchre " + entity.getBrochure() + ": Title "
 					+ entity.getTitle() + ": Training Type " + entity.getType()

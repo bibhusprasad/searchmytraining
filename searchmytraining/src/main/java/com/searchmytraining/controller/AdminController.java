@@ -126,8 +126,8 @@ public class AdminController
 	@RequestMapping(value="/tpreports")
 	public String showTPReports(ModelMap model)
 	{
-		List<CalenderEntity> callist = calservice.getAllCalender();
-		model.addAttribute("callist",callist);
+		//List<CalenderEntity> callist = calservice.getAllCalender();
+		//model.addAttribute("callist",callist);
 		return "pages/admin/tpreport";
 	}
 }

@@ -98,7 +98,7 @@ public class SuggestTraining {
     public void init(){
     	index_dir = new RAMDirectory();
         analyzer = new StandardAnalyzer();
-        List<CalenderEntity> trainings = calendarservice.getAllCalender();/* new ArrayList<TrainingEntity>(); //This should be replaced with code to load all the traning from DB*/
+       // List<CalenderEntity> trainings = calendarservice.getAllCalender();/* new ArrayList<TrainingEntity>(); //This should be replaced with code to load all the traning from DB*/
         /*TrainingEntity training1 = new TrainingEntity("Spring Framework", "java,spring,framework,advance", "Spring Framework is a Java Framework and developed in java which is based on principle of IOC", "programming,technology", 1);
         TrainingEntity training2 = new TrainingEntity("Hibernate", "hibernate,java,orm,orm tool,framework,database tool", "Hibernate is a java framework which is called as ORM tool that is Object Relational Mapping tool", "programming,technology", 2);
         TrainingEntity training3 = new TrainingEntity("Personaliy Developement", "communication,speaking,personality,self developement", "In Personality Developement several things will taugh how to talk how to behave so you can develope your personality and impress all ur peoples around you", "communication", 3);
@@ -108,7 +108,7 @@ public class SuggestTraining {
         
         try {
 			suggester = new AnalyzingInfixSuggester(index_dir, analyzer);
-			suggester.build(new TrainingIterator(trainings.iterator()));
+			//suggester.build(new TrainingIterator(trainings.iterator()));
 		} catch (IOException e) {			
 			e.printStackTrace();
 		}

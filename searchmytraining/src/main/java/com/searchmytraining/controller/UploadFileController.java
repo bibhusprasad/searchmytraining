@@ -1,54 +1,94 @@
 package com.searchmytraining.controller;
 
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.sql.Timestamp;
-import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.searchmytraining.entity.CalenderEntity;
-import com.searchmytraining.entity.CityEntity;
-import com.searchmytraining.entity.IndustrySubCategoryEntity;
-/*import com.searchmytraining.entity.KeywordEntity;*/
-import com.searchmytraining.entity.UserEntity;
+import com.searchmytraining.common.constant.SearchMyTrainingConstant;
+import com.searchmytraining.dto.TrainingProviderCalenderDTO;
+import com.searchmytraining.exception.SearchMyTrainingException;
 import com.searchmytraining.service.ICalenderService;
-import com.searchmytraining.service.ICityService;
-import com.searchmytraining.service.IUserService;
+import com.searchmytraining.wrapper.RespnoseWrapper;
 
 /*import com.searchmytraining.service.IKeywordService;*/
 
 @Controller
-@RequestMapping("/uploadFile")
 public class UploadFileController {
 	
-	@Autowired
-	public WebApplicationContext context;
+	private final Logger log = Logger.getLogger(this.getClass().getName());
 	
 	@Autowired
 	public ICalenderService calnderService;
 	
 	@Autowired
-	public ICityService cityservice;
-	
-	@Autowired
-	public IUserService userService;
+	private RespnoseWrapper respnoseWrapper;
 
-	/*
-	 * @Autowired IKeywordService keywordService;
-	 */
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/calender/postCalender" ,method = RequestMethod.POST, produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8)
+	@ResponseBody
+	public RespnoseWrapper postCalenderRegistration(@RequestBody @Valid TrainingProviderCalenderDTO trainingProviderCalenderDTO,
+			BindingResult bindingResult, ModelMap model, @RequestParam MultipartFile fileUpload,
+			HttpServletRequest request,Locale locale,HttpSession session) throws SearchMyTrainingException{
+		Map<String, String> errorMsg = new HashMap<>();
+		try{
+			if (bindingResult.hasErrors()) {
+				respnoseWrapper.setResponseWrapperId((long) Math.random());
+				respnoseWrapper.setValidationError(true);
+				List<FieldError> errors = bindingResult.getFieldErrors();
+				for (FieldError error : errors) {
+					errorMsg.put(error.getField(), error.getDefaultMessage());
+					log.error(error.getField() + " : "+ error.getDefaultMessage());
+				}
+				respnoseWrapper.setErrorMsg(errorMsg);
+				respnoseWrapper.setSuccessMessage(false);
+				return respnoseWrapper;
+			}else{
+				respnoseWrapper.setValidationError(false);
+				calnderService.savePostCalenser(trainingProviderCalenderDTO);
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				}
+			}catch(Exception e){
+				
+			}
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	/*@RequestMapping(method = RequestMethod.POST)
 	public String create(HttpServletRequest request,
 			@RequestParam CommonsMultipartFile fileUpload, HttpSession session)
 			throws Exception {
@@ -76,9 +116,9 @@ public class UploadFileController {
 		fileExtension = fileName.substring(fileName.indexOf(".") + 1,
 				fileName.length());
 
-		CalenderEntity entity = (CalenderEntity)context.getBean("calenderEntity");
+		CalenderEntity entity = new CalenderEntity();
 		UserEntity usrEntity = userService.getUser(Integer.parseInt(session.getAttribute("userid").toString()));
-		IndustrySubCategoryEntity industrySubCat = (IndustrySubCategoryEntity)context.getBean("industrySubCategoryEntity");
+		IndustrySubCategoryEntity industrySubCat = new IndustrySubCategoryEntity();
 
 		Calendar calendar = Calendar.getInstance();
 		Timestamp currentTime = new Timestamp(calendar.getTime().getTime());
@@ -116,8 +156,8 @@ public class UploadFileController {
 			entity.setCreatedBy(usrEntity.getUserName());
 			entity.setCreatedOn(currentTime);
 			entity.setDescription(CDesc);
-			entity.setStart_date(Fdate);
-			entity.setEnd_date(Tdate);
+			entity.setStartDate(Fdate);
+			entity.setEndDate(Tdate);
 			entity.setStatus("New");
 			
 			CityEntity city = cityservice.getCity(Integer.parseInt(place));
@@ -163,5 +203,5 @@ public class UploadFileController {
 			return "pages/TrainingProvider/TrainingProviderProfile";
 		}
 
-	}
+	}*/
 }

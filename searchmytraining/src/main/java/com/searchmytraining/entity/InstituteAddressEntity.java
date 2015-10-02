@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 @Entity
 @Table(name = "tbl_instaddress")
-public class InstituteAddress implements Serializable {
+public class InstituteAddressEntity implements Serializable {
 
 	
 	private static final long serialVersionUID = 18978778678L;

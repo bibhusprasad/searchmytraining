@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
 	var from = $("#Fdate").val();
-	var to = $("#Tdate").val();
-	
-	
+	var to = $("#Tdate").val();	
+	var date=new Date();
 	
 $(function() {
+
     $("#Fdate").datepicker({
         dateFormat: "yy-mm-dd",
         changeMonth: true,

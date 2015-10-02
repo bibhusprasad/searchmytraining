@@ -1,23 +1,24 @@
 package com.searchmytraining.dto;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
-import com.searchmytraining.entity.IndustrySubCategoryEntity;
-import com.searchmytraining.entity.UserEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 public class TrainingProviderCalenderDTO {
 	
-	private String code;
-
 	@NotNull(message="Please enter a valid title")     
 	private String title;
+
+	private String calenderType;
+	
+	private String industryType;
+	
+	@NotNull(message="Please enter price")     
+	private Double price;
 
 	@NotNull(message="Please enter a valid date")     
 	@Future (message="Only the Future is valid")     
@@ -27,39 +28,10 @@ public class TrainingProviderCalenderDTO {
 	@Future (message="Only the Future is valid")     
 	private Date endDate;
 
-	@NotNull(message="Please enter price")     
-	private Double price;
-
-	private String brochure;
-
-	private String type;
-
-	private String status;
-
-	private Timestamp createdOn;
-
-	private String createdBy;
-
-	private Timestamp updatedOn;
-
-	private String updatedBy;
-
-	@NotEmpty(message="Please enter valid description")
-	private String description;
-
-	private String contenttype;
-
-	private Integer rank;
-
-	private String vFlag;
-
-	@NotEmpty(message="Please enter valid Keyword")
-	private String keyword;
-
-	private UserEntity user;
-
-	private IndustrySubCategoryEntity indstrySubcat;
+	private String time;
 	
+	private MultipartFile brochure;
+
 	@Valid
 	private InstituteAddressDTO instituteAddressDTO;
 
@@ -73,12 +45,36 @@ public class TrainingProviderCalenderDTO {
 	
 	private boolean showprice;
 	
-	public String getCode() {
-		return code;
+	public String getCalenderType() {
+		return calenderType;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setCalenderType(String calenderType) {
+		this.calenderType = calenderType;
+	}
+
+	public String getIndustryType() {
+		return industryType;
+	}
+
+	public void setIndustryType(String industryType) {
+		this.industryType = industryType;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public MultipartFile getBrochure() {
+		return brochure;
+	}
+
+	public void setBrochure(MultipartFile brochure) {
+		this.brochure = brochure;
 	}
 
 	public String getTitle() {
@@ -113,117 +109,6 @@ public class TrainingProviderCalenderDTO {
 		this.price = price;
 	}
 
-	public String getBrochure() {
-		return brochure;
-	}
-
-	public void setBrochure(String brochure) {
-		this.brochure = brochure;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public Timestamp getCreatedOn() {
-		return createdOn;
-	}
-
-	public void setCreatedOn(Timestamp createdOn) {
-		this.createdOn = createdOn;
-	}
-
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Timestamp getUpdatedOn() {
-		return updatedOn;
-	}
-
-	public void setUpdatedOn(Timestamp updatedOn) {
-		this.updatedOn = updatedOn;
-	}
-
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getContenttype() {
-		return contenttype;
-	}
-
-	public void setContenttype(String contenttype) {
-		this.contenttype = contenttype;
-	}
-
-	public Integer getRank() {
-		return rank;
-	}
-
-	public void setRank(Integer rank) {
-		this.rank = rank;
-	}
-
-	public String getvFlag() {
-		return vFlag;
-	}
-
-	public void setvFlag(String vFlag) {
-		this.vFlag = vFlag;
-	}
-
-	public String getKeyword() {
-		return keyword;
-	}
-
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-
-	public UserEntity getUser() {
-		return user;
-	}
-
-	public void setUser(UserEntity user) {
-		this.user = user;
-	}
-
-	public IndustrySubCategoryEntity getIndstrySubcat() {
-		return indstrySubcat;
-	}
-
-	public void setIndstrySubcat(IndustrySubCategoryEntity indstrySubcat) {
-		this.indstrySubcat = indstrySubcat;
-	}
 
 	public InstituteAddressDTO getInstituteAddressDTO() {
 		return instituteAddressDTO;

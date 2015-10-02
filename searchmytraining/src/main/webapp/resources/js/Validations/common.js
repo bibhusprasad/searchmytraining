@@ -2,7 +2,7 @@
  * 
  */
 
-function Validate() {
+function CalenderValidate() {
 	var image = document.getElementById("fileupload").value;
 	if (typeof image === 'undefined' && image == '' && image == null) {
 		alert("Please enter Image Path");

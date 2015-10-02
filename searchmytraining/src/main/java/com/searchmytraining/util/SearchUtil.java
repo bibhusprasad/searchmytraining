@@ -73,9 +73,9 @@ public class SearchUtil {
 			doc.add(idxKeyword);
 			IndexableField idxTitle = new Field("title", cal.getTitle(), Store.YES, Index.ANALYZED);
 			doc.add(idxTitle);
-			IndexableField idxStartDate = new Field("start_date",cal.getStart_date(),Store.YES,Index.ANALYZED);
+			IndexableField idxStartDate = new Field("start_date",cal.getStartDate(),Store.YES,Index.ANALYZED);
 			doc.add(idxStartDate);
-			IndexableField idxEndDate = new Field("end_date",cal.getEnd_date(),Store.YES,Index.ANALYZED);
+			IndexableField idxEndDate = new Field("end_date",cal.getEndDate(),Store.YES,Index.ANALYZED);
 			doc.add(idxEndDate);
 			IndexableField idxPrice = new Field("price",cal.getPrice().toString(),Store.YES,Index.ANALYZED);
 			doc.add(idxPrice);
