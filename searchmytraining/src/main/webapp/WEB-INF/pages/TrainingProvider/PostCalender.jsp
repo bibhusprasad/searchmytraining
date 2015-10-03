@@ -65,7 +65,6 @@ $('#Fdate,#Tdate').datepicker();
 							loadCity();
 							loadCalenderType();
 							loadState();
-							loadHours();
 						});
 						
 						function loadIndustries()
@@ -125,56 +124,59 @@ $('#Fdate,#Tdate').datepicker();
 <script type="text/javascript">
 function postCalender() {
 	var flag = CalenderValidate();
+	alert(flag);
 	var trainingProviderCalenderDTO = null;
 	var hour = $('#Chour').val();
 	var min = $('#Cmin').val();
 	var ampm = $('#Campm').val();
 	var allTime = hour+":"+min+":"+ampm;
-	if (flag) {
+	var instituteAddress = {
+			"addressLine1" : $('#Caddress1').val(),
+			"addressLine2" : $('#Caddress2').val(),
+			"landmark" : $('#Clmark').val(),
+			"city" : $('#place').val(),
+			"state" : $('#state').val(),
+			"country" : $('#Ccountry').val(),
+			"pincode" : $('#Cpincode').val()
+	};
+
+	var trainingOverview = {
+		"trngQuickView" : $('#Qview').val(),
+		"trngOverView" : $('#Pview').val(),
+		"trngTakeAway" : $('#Taway').val(),
+		"trngMethodology" : $('#Tmethod').val(),
+		"trngAttandant" : $('#wsa').val(),
+		"trngKey" : $('#kword').val(),
+	};
+	trainerInstituteOverview = {
+		"facultyDetails" : $('#fdetails').val(),
+		"howtoregister" : $('#helpregister').val(),
+		"detailsOfProvider" : $('#TPdetails').val(),
+		"calenderPdf" : $('#uploadFile').val(),
+	};
+	trainingProviderCalenderDTO={
+		"title" : $('#ctitle').val(),
+		"type" : $('#Ctype').val(),
+		"industryType" : $('#Itype').val(),
+		"startDate" : $('#Fdate').val(),
+		"endDate" : $('#Tdate').val(),
+		"price" : $('#cPrice').val(),
+		"showprice" : $('#cpBox').val(),
+		"brochure" : $('#fileUpload').val(),
+		"time" : allTime,
+		"trainingOverviewDTO":trainingOverview,
+		"trainerInstituteOverviewDTO":trainerInstituteOverview,
+		"instituteAddressDTO":instituteAddress,	
+		};
+	
+	if (true) {
+		alert("hi");
 		try {
 			$.ajax({
-						url : '/calender/postCalender',
+						url : './trainingprovider_updateprofile/postCalender',
 						type : 'post',
 						dataType : 'json',
-						
-						trainingProviderCalenderDTO:{
-							"title" : $('#ctitle').val(),
-							"type" : $('#Ctype').val(),
-							"industryType" : $('#Itype').val(),
-							"startDate" : $('#Fdate').val(),
-							"endDate" : $('#Tdate').val(),
-							"price" : $('#cPrice').val(),
-							"showprice" : $('#cpBox').val(),
-							"brochure" : $('#fileUpload').val(),
-							"time" : allTime,
-							
-							instituteAddressDTO:{
-								"addressLine1" : $('#Caddress1').val(),
-								"addressLine2" : $('#Caddress2').val(),
-								"landmark" : $('#Clmark').val(),
-								"city" : $('#place').val(),
-								"state" : $('#state').val(),
-								"country" : $('#Ccountry').val(),
-								"pincode" : $('#Cpincode').val(),
-							},
-							trainingOverviewDTO:{
-								"trngQuickView" : $('#Qview').val(),
-								"trngOverView" : $('#Pview').val(),
-								"trngTakeAway" : $('#Taway').val(),
-								"trngMethodology" : $('#Tmethod').val(),
-								"trngAttandant" : $('#wsa').val(),
-								"trngKey" : $('#kword').val(),
-							},
-							trainerInstituteOverviewDTO:{
-								"facultyDetails" : $('#fdetails').val(),
-								"howtoregister" : $('#helpregister').val(),
-								"detailsOfProvider" : $('#TPdetails').val(),
-								"calenderPdf" : $('#uploadFile').val(),
-							},
-						},
-						
 						data:trainingProviderCalenderDTO,
-						
 						contentType : "application/json",
 						success : function(response) {
 							if (response.errorMsg) {
@@ -216,8 +218,7 @@ function postCalender() {
 	<div id="acord2" class="acord">
 		<h3 class="acord_head">ADD Calendar</h3>
 		<div class="acord_cont">
-			<form id="Add_calender" method="post" enctype="multipart/form-data"
-			 onSubmit="postCalender();">
+			<form id="Add_calender" method="post" enctype="multipart/form-data">
 
 				<div class="title">
 					<label>Course Title:</label> <input type="text" id="ctitle"
@@ -354,7 +355,7 @@ function postCalender() {
 				
 				<div class="submit">
 					<input type="submit" id="PPC" value="Preview & Post Calendar"/>
-					<input type="submit" id="SPL" value="Save & Post Later"/>
+					<input type="submit" id="SPL" value="Save & Post Later" onclick="postCalender()"/>
 				</div>
 				
 				<input type="hidden" name="userType" value="trainer">
