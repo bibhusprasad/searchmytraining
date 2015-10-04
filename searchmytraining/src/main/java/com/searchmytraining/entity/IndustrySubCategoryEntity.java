@@ -57,11 +57,5 @@ public class IndustrySubCategoryEntity implements Serializable {
 	public void setIndustrycategory(IndustryCategoryEntity industrycategory) {
 		this.industrycategory = industrycategory;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
-	
 	
 }

@@ -33,7 +33,7 @@ public class CalenderController {
 		recentelyAdded = iCalnder.getRecentelyAdded(userId, currentTime);
 		for (CalenderEntity entity : recentelyAdded) {
 			System.out.println("Brouchre " + entity.getBrochure() + ": Title "
-					+ entity.getTitle() + ": Training Type " + entity.getType()
+					+ entity.getCourseTitle() + ": Training Type " + entity.getCalenderType()
 					+ ": TCreated ON" + entity.getCreatedOn());
 		}
 		model.addAttribute("recentelyAdded",recentelyAdded);
@@ -46,7 +46,7 @@ public class CalenderController {
 		//list = iCalnder.getAllCalender();
 		for (CalenderEntity entity : list) {
 			System.out.println("Brouchre " + entity.getBrochure() + ": Title "
-					+ entity.getTitle() + ": Training Type " + entity.getType()
+					+ entity.getCourseTitle() + ": Training Type " + entity.getCalenderType()
 					+ ": TCreated ON" + entity.getCreatedOn());
 		}
 	}
@@ -60,7 +60,7 @@ public class CalenderController {
 		userAllCalender = iCalnder.getUserCalender(userId);
 		for (CalenderEntity entity : userAllCalender) {
 			System.out.println("Brouchre " + entity.getBrochure() + ": Title "
-					+ entity.getTitle() + ": Training Type " + entity.getType()
+					+ entity.getCourseTitle() + ": Training Type " + entity.getCalenderType()
 					+ ": TCreated ON" + entity.getCreatedOn());
 		}
 		model.addAttribute("userAllCalender",userAllCalender);

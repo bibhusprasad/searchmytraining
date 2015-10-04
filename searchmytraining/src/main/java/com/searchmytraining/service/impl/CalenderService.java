@@ -7,20 +7,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.searchmytraining.controller.SMTException;
 import com.searchmytraining.dao.CalenderDAO;
 import com.searchmytraining.dto.SearchCalendarDTO;
 import com.searchmytraining.dto.TrainingProviderCalenderDTO;
 import com.searchmytraining.entity.CalenderEntity;
-import com.searchmytraining.entity.IndustrySubCategoryEntity;
-import com.searchmytraining.entity.InstituteAddressEntity;
-import com.searchmytraining.entity.TrainerInstituteOverviewEntity;
-import com.searchmytraining.entity.TrainingOverviewEntity;
+import com.searchmytraining.entity.IndustryEntity;
 import com.searchmytraining.service.ICalenderService;
+import com.searchmytraining.service.ICityService;
+import com.searchmytraining.service.ICountryService;
+import com.searchmytraining.service.IIndustrySerivice;
+import com.searchmytraining.service.IStateService;
 
 @Service
 public class CalenderService implements ICalenderService {
 	@Autowired
-	CalenderDAO calenderDAO;
+	private CalenderDAO calenderDAO;
+
+	@Autowired
+	private IIndustrySerivice iIndustrySerivice;
+
+	@Autowired
+	private ICityService iCityService;
+
+	@Autowired
+	private IStateService iStateService;
+
+	@Autowired
+	private ICountryService iCountryService;
 
 	@Override
 	@Transactional
@@ -29,7 +43,8 @@ public class CalenderService implements ICalenderService {
 	}
 
 	@Override
-	public List<CalenderEntity> getRecentelyAdded(Integer userId, Timestamp timestamp) {
+	public List<CalenderEntity> getRecentelyAdded(Integer userId,
+			Timestamp timestamp) {
 		return calenderDAO.getRecentelyAdded(userId, timestamp);
 	}
 
@@ -56,59 +71,54 @@ public class CalenderService implements ICalenderService {
 	}
 
 	@Override
-	public List<CalenderEntity> getCalendersByKeyword(String kyeword) throws Exception {
+	public List<CalenderEntity> getCalendersByKeyword(String kyeword)
+			throws Exception {
 		return calenderDAO.getCalendersByKeyword(kyeword);
 	}
 
 	@Override
-	public List<CalenderEntity> getCalendersOnSearch(SearchCalendarDTO searchcaldto) {
+	public List<CalenderEntity> getCalendersOnSearch(
+			SearchCalendarDTO searchcaldto) {
 		return calenderDAO.getCalendersOnSearch(searchcaldto);
 	}
 
 	@Override
-	public void savePostCalenser(TrainingProviderCalenderDTO tpcalDTO) {
+	public void savePostCalenser(TrainingProviderCalenderDTO tpcalDTO)
+			throws SMTException {
 		CalenderEntity calenderEntity = new CalenderEntity();
 
-		calenderEntity.setTitle(tpcalDTO.getTitle());
-		calenderEntity.setType(tpcalDTO.getCalenderType());
+		calenderEntity.setCourseTitle(tpcalDTO.getCourseTitle());
+		calenderEntity.setCalenderType(tpcalDTO.getCalenderType());
 		calenderEntity.setPrice(tpcalDTO.getPrice());
-		calenderEntity.setStartDate(tpcalDTO.getStartDate().toString());
-		calenderEntity.setEndDate(tpcalDTO.getEndDate().toString());
+		calenderEntity.setFromDate(tpcalDTO.getFromDate());
+		calenderEntity.setToDate(tpcalDTO.getToDate());
 		calenderEntity.setTime(tpcalDTO.getTime());
 
-		// create industrysubcategory
-		int trnIndstrSubCatId = Integer.parseInt(tpcalDTO.getIndustryType());
-		IndustrySubCategoryEntity industrySubCat = new IndustrySubCategoryEntity();
-		industrySubCat.setTrnIndstrSubCatId(trnIndstrSubCatId);
-		calenderEntity.setIndstrySubcat(industrySubCat);
+		// create industry sub category
+		IndustryEntity industryEntity = iIndustrySerivice
+				.getIndustryById(tpcalDTO.getIndustryId());
+		calenderEntity.setIndustryId(industryEntity);
 
-		// create InstituteAddress
-		InstituteAddressEntity instituteAddress = new InstituteAddressEntity();
-		instituteAddress.setAddressLine1(tpcalDTO.getInstituteAddressDTO().getAddressLine1());
-		instituteAddress.setAddressLine2(tpcalDTO.getInstituteAddressDTO().getAddressLine2());
-		instituteAddress.setLandmark(tpcalDTO.getInstituteAddressDTO().getLandmark());
-		instituteAddress.setCity(tpcalDTO.getInstituteAddressDTO().getCity());
-		instituteAddress.setState(tpcalDTO.getInstituteAddressDTO().getState());
-		instituteAddress.setCountry(tpcalDTO.getInstituteAddressDTO().getCountry());
-		instituteAddress.setPincode(tpcalDTO.getInstituteAddressDTO().getPincode());
-		calenderEntity.setInstituteAddress(instituteAddress);
+		calenderEntity.setAddressLine1(tpcalDTO.getAddressLine1());
+		calenderEntity.setAddressLine2(tpcalDTO.getAddressLine2());
+		calenderEntity.setLandmark(tpcalDTO.getLandmark());
+		calenderEntity.setCity(iCityService.getCity(tpcalDTO.getCity()));
+		calenderEntity.setState(iStateService.getStateEntityById(tpcalDTO
+				.getState()));
+		calenderEntity.setCountry(iCountryService.getCountry((long) tpcalDTO
+				.getCountry()));
+		calenderEntity.setPincode(tpcalDTO.getPincode());
 
-		// create traine overview
-		TrainingOverviewEntity trainingOverviewDTO = new TrainingOverviewEntity();
-		trainingOverviewDTO.setTrngQuickView(tpcalDTO.getTrainingOverviewDTO().getTrngQuickView());
-		trainingOverviewDTO.setTrngOverView(tpcalDTO.getTrainingOverviewDTO().getTrngOverView());
-		trainingOverviewDTO.setTrngTakeAway(tpcalDTO.getTrainingOverviewDTO().getTrngTakeAway());
-		trainingOverviewDTO.setTrngMethodology(tpcalDTO.getTrainingOverviewDTO().getTrngMethodology());
-		trainingOverviewDTO.setTrngAttandant(tpcalDTO.getTrainingOverviewDTO().getTrngAttandant());
-		trainingOverviewDTO.setTrngKey(tpcalDTO.getTrainingOverviewDTO().getTrngKey());
-		calenderEntity.setTrainingOverview(trainingOverviewDTO);
+		calenderEntity.setTrngQuickView(tpcalDTO.getTrngQuickView());
+		calenderEntity.setTrngOverView(tpcalDTO.getTrngOverView());
+		calenderEntity.setTrngTakeAway(tpcalDTO.getTrngTakeAway());
+		calenderEntity.setTrngMethodology(tpcalDTO.getTrngMethodology());
+		calenderEntity.setTrngAttandant(tpcalDTO.getTrngAttandant());
+		calenderEntity.setTrainingKey(tpcalDTO.getTrainingKey());
 
-		TrainerInstituteOverviewEntity tiOverviewEntity = new TrainerInstituteOverviewEntity();
-		tiOverviewEntity.setFacultyDetails(tpcalDTO.getTrainerInstituteOverviewDTO().getFacultyDetails());
-		tiOverviewEntity.setHowtoregister(tpcalDTO.getTrainerInstituteOverviewDTO().getHowtoregister());
-		tiOverviewEntity.setDetailsOfProvider(tpcalDTO.getTrainerInstituteOverviewDTO().getDetailsOfProvider());
-		tiOverviewEntity.setCalenderPdf(tpcalDTO.getTrainerInstituteOverviewDTO().getCalenderPdf());
-		calenderEntity.setTrainerInstituteOverview(tiOverviewEntity);
+		calenderEntity.setFacultyDetails(tpcalDTO.getFacultyDetails());
+		calenderEntity.setHowtoregister(tpcalDTO.getHowtoregister());
+		calenderEntity.setDetailsOfProvider(tpcalDTO.getDetailsOfProvider());
 		calenderDAO.addCalender(calenderEntity);
 	}
 

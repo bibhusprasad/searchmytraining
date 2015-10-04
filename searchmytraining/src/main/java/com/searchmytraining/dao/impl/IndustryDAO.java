@@ -21,4 +21,11 @@ public class IndustryDAO extends AbstractJpaDAO<IndustryEntity> implements
 		return industries;
 	}
 
+	@Override
+	public IndustryEntity getIndustryById(int indId) {
+		setClazz(IndustryEntity.class);
+		IndustryEntity industry = findOne(indId);
+		return industry;
+	}
+
 }

@@ -31,7 +31,6 @@ import com.searchmytraining.dao.AbstractJpaDAO;
 import com.searchmytraining.dao.CalenderDAO;
 import com.searchmytraining.dto.SearchCalendarDTO;
 import com.searchmytraining.entity.CalenderEntity;
-import com.searchmytraining.entity.CityEntity;
 import com.searchmytraining.service.ICityService;
 import com.searchmytraining.util.SearchUtil;
 
@@ -115,22 +114,15 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 			for (ScoreDoc scoredoc : scoreDosArray) {
 				// Retrieve the matched document and show relevant details
 				Document doc = searcher.doc(scoredoc.doc);
-				CityEntity city = cityservice.getCity(doc.getField("place")
-						.stringValue().trim());
 				cal = new CalenderEntity();
-				cal.setTrngId(Integer.parseInt(doc.getField("trngId")
+				cal.setCalenderId(Integer.parseInt(doc.getField("calenderId")
 						.stringValue()));
-				cal.setTitle(doc.getField("title").stringValue());
-				cal.setStartDate(doc.getField("start_date").stringValue());
-				cal.setEndDate(doc.getField("end_date").stringValue());
+				cal.setCourseTitle(doc.getField("courseTitle").stringValue());
+				cal.setFromDate((Timestamp) doc.getField("fromDate"));
+				cal.setToDate((Timestamp) doc.getField("toDate"));
 				cal.setPrice(Double.parseDouble(doc.getField("price")
 						.stringValue()));
-				cal.setKeyword(doc.getField("keyword").stringValue());
-				cal.setTitle(doc.getField("title").stringValue());
-				//cal.setCity(city);
-				cal.setDescription(doc.getField("description").stringValue());
-				cal.setType(doc.getField("type").stringValue());
-				cal.setBrochure(doc.getField("brochure").stringValue());
+				cal.setTrainingKey(doc.getField("trainingKey").stringValue());
 				list.add(cal);
 			}
 
@@ -151,9 +143,9 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 			IndexReader reader = DirectoryReader.open(dir);
 			IndexSearcher searcher = new IndexSearcher(reader);
 			query = new BooleanQuery();
-			if (cal.getKeyword() != null) {
+			if (cal.getTrainingKey() != null) {
 				queryParser = new QueryParser("BasicSearchString", analyzer);
-				query1 = queryParser.parse(cal.getKeyword());
+				query1 = queryParser.parse(cal.getTrainingKey());
 				query.add(query1, BooleanClause.Occur.MUST);
 			}
 			/*if (cal.getCity().getCityName() != null) {
@@ -182,18 +174,12 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 				 * .getField("Code").stringValue());
 				 */
 				cal = new CalenderEntity();
-				CityEntity city = cityservice.getCity(doc.getField("place")
-						.stringValue().trim());
-				cal.setTitle(doc.getField("title").stringValue());
-				cal.setStartDate(doc.getField("start_date").stringValue());
-				cal.setEndDate(doc.getField("end_date").stringValue());
+				cal.setCourseTitle(doc.getField("courseTitle").stringValue());
+				cal.setFromDate((Timestamp) doc.getField("fromDate"));
+				cal.setToDate((Timestamp) doc.getField("toDate"));
 				cal.setPrice(Double.parseDouble(doc.getField("price")
 						.stringValue()));
-				cal.setKeyword(doc.getField("keyword").stringValue());
-				cal.setTitle(doc.getField("title").stringValue());
-				//cal.setCity(city);
-				cal.setDescription(doc.getField("description").stringValue());
-				cal.setType(doc.getField("type").stringValue());
+				cal.setTrainingKey(doc.getField("trainingKey").stringValue());
 				lstCal.add(cal);
 			}
 		} catch (Exception ex) {

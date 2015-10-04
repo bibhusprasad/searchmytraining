@@ -9,12 +9,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import com.searchmytraining.common.constant.CalenderType;
 
 @Component
 @Scope("prototype")
@@ -25,131 +27,142 @@ public class CalenderEntity implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "trngId")
-	private Integer trngId;
-
-	@Column(name = "code")
-	private String code;
-
+	@Column(name = "calenderId")
+	private Integer calenderId;
+	
 	@Column(name = "title")
-	private String title;
+	private String courseTitle;
 
-	@Column(name = "start_date")
-	private String startDate;
+	@Column(name = "calType")
+	private CalenderType calenderType;
 
-	@Column(name = "end_date")
-	private String endDate;
-
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = IndustryEntity.class)
+	@JoinColumn(name = "industryId")
+	private IndustryEntity industryId;
+	
 	@Column(name = "price")
 	private Double price;
+	
+	@Column(name = "saveDraft")
+	private boolean saveDraft;
+	
+	@Column(name = "showPrice")
+	private boolean showPrice;
+	
+	@Column(name = "fromDate")
+	private Timestamp fromDate;
 
+	@Column(name = "toDate")
+	private Timestamp toDate;
+	
+	@Column(name = "time")
+	private String time;
+
+	//section 2
+	@Column(name = "addressLine1")
+	private String addressLine1;
+	
+	@Column(name = "addressLine2")
+	private String addressLine2;
+	
+	@Column(name = "landmark")
+	private String landmark;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="cityId")
+	private CityEntity city;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="stateId")
+	private StateEntity state;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="countryId")
+	private CountryEntity country;
+	
+	@Column(name = "pincode")
+	private int pincode;
+	
+	//start of section 3
+	@Column(name = "trngQuickView")
+	private String trngQuickView;
+	
+	@Column(name = "trngOverView")
+	private String trngOverView;
+	
+	@Column(name = "trngTakeAway")
+	private String trngTakeAway;
+	
+	@Column(name = "trngMethodology")
+	private String trngMethodology;
+	
+	@Column(name = "trngAttandant")
+	private String trngAttandant;
+	
+	@Column(name = "trainingKey")
+	private String trainingKey;
+
+	//section 4
+	@Column(name = "facultyDetails")
+	private String facultyDetails;
+	
+	@Column(name = "howtoregister")
+	private String howtoregister;
+	
+	@Column(name = "detailsOfProvider")
+	private String detailsOfProvider;
+	
+	@Lob
 	@Column(name = "brochure")
-	private String brochure;
+	private byte[] brochure;
 
-	@Column(name = "type")
-	private String type;
-
-	@Column(name = "status")
-	private String status;
-
+	//table  log
 	@Column(name = "createdOn")
 	private Timestamp createdOn;
 
 	@Column(name = "createdBy")
-	private String createdBy;
+	private UserEntity createdBy;
 
 	@Column(name = "updatedOn")
 	private Timestamp updatedOn;
 
 	@Column(name = "updatedBy")
-	private String updatedBy;
-
-	@Column(name = "description")
-	private String description;
-
-	@Column(name = "contenttype")
-	private String contenttype;
-
-	@Column(name = "rank")
-	private Integer rank;
-
-	@Column(name = "vFlag")
-	private String vFlag;
-
-	@Column(name = "keyword")
-	private String keyword;
-	
-	private String time;
+	private UserEntity updatedBy;
 
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = UserEntity.class)
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "trnProId")
 	private UserEntity user;
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = IndustrySubCategoryEntity.class)
-	@JoinColumn(name = "trnIndstrSubCatId")
-	private IndustrySubCategoryEntity indstrySubcat;
-	
-	
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = InstituteAddressEntity.class)
-	@JoinColumn(name = "paId")
-	private InstituteAddressEntity instituteAddress;
-
-	
-	@OneToOne(fetch = FetchType.EAGER, targetEntity = TrainingOverviewEntity.class)
-	@JoinColumn(name = "overviewId")
-	private TrainingOverviewEntity trainingOverview;
-
-	
-	@OneToOne(fetch = FetchType.EAGER, targetEntity = TrainerInstituteOverviewEntity.class)
-	@JoinColumn(name = "trngoverviewId")
-	private TrainerInstituteOverviewEntity trainerInstituteOverview;
-
-	public String getTime() {
-		return time;
+	public Integer getCalenderId() {
+		return calenderId;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+	public void setCalenderId(Integer calenderId) {
+		this.calenderId = calenderId;
 	}
 
-	public Integer getTrngId() {
-		return trngId;
+	public String getCourseTitle() {
+		return courseTitle;
 	}
 
-	public void setTrngId(Integer trngId) {
-		this.trngId = trngId;
+	public void setCourseTitle(String courseTitle) {
+		this.courseTitle = courseTitle;
 	}
 
-	public String getCode() {
-		return code;
+	public CalenderType getCalenderType() {
+		return calenderType;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setCalenderType(CalenderType calenderType) {
+		this.calenderType = calenderType;
 	}
 
-	public String getTitle() {
-		return title;
+	public IndustryEntity getIndustryId() {
+		return industryId;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-
-	public String getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
+	public void setIndustryId(IndustryEntity industryId) {
+		this.industryId = industryId;
 	}
 
 	public Double getPrice() {
@@ -160,28 +173,182 @@ public class CalenderEntity implements Serializable {
 		this.price = price;
 	}
 
-	public String getBrochure() {
+	public boolean isSaveDraft() {
+		return saveDraft;
+	}
+
+	public void setSaveDraft(boolean saveDraft) {
+		this.saveDraft = saveDraft;
+	}
+
+	public boolean isShowPrice() {
+		return showPrice;
+	}
+
+	public void setShowPrice(boolean showPrice) {
+		this.showPrice = showPrice;
+	}
+
+	
+
+	public Timestamp getFromDate() {
+		return fromDate;
+	}
+
+	public void setFromDate(Timestamp fromDate) {
+		this.fromDate = fromDate;
+	}
+
+	public Timestamp getToDate() {
+		return toDate;
+	}
+
+	public void setToDate(Timestamp toDate) {
+		this.toDate = toDate;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getAddressLine1() {
+		return addressLine1;
+	}
+
+	public void setAddressLine1(String addressLine1) {
+		this.addressLine1 = addressLine1;
+	}
+
+	public String getAddressLine2() {
+		return addressLine2;
+	}
+
+	public void setAddressLine2(String addressLine2) {
+		this.addressLine2 = addressLine2;
+	}
+
+	public String getLandmark() {
+		return landmark;
+	}
+
+	public void setLandmark(String landmark) {
+		this.landmark = landmark;
+	}
+
+	public CityEntity getCity() {
+		return city;
+	}
+
+	public void setCity(CityEntity city) {
+		this.city = city;
+	}
+
+	public StateEntity getState() {
+		return state;
+	}
+
+	public void setState(StateEntity state) {
+		this.state = state;
+	}
+
+	public CountryEntity getCountry() {
+		return country;
+	}
+
+	public void setCountry(CountryEntity country) {
+		this.country = country;
+	}
+
+	public int getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(int pincode) {
+		this.pincode = pincode;
+	}
+
+	public String getTrngQuickView() {
+		return trngQuickView;
+	}
+
+	public void setTrngQuickView(String trngQuickView) {
+		this.trngQuickView = trngQuickView;
+	}
+
+	public String getTrngOverView() {
+		return trngOverView;
+	}
+
+	public void setTrngOverView(String trngOverView) {
+		this.trngOverView = trngOverView;
+	}
+
+	public String getTrngTakeAway() {
+		return trngTakeAway;
+	}
+
+	public void setTrngTakeAway(String trngTakeAway) {
+		this.trngTakeAway = trngTakeAway;
+	}
+
+	public String getTrngMethodology() {
+		return trngMethodology;
+	}
+
+	public void setTrngMethodology(String trngMethodology) {
+		this.trngMethodology = trngMethodology;
+	}
+
+	public String getTrngAttandant() {
+		return trngAttandant;
+	}
+
+	public void setTrngAttandant(String trngAttandant) {
+		this.trngAttandant = trngAttandant;
+	}
+
+	public String getTrainingKey() {
+		return trainingKey;
+	}
+
+	public void setTrainingKey(String trainingKey) {
+		this.trainingKey = trainingKey;
+	}
+
+	public String getFacultyDetails() {
+		return facultyDetails;
+	}
+
+	public void setFacultyDetails(String facultyDetails) {
+		this.facultyDetails = facultyDetails;
+	}
+
+	public String getHowtoregister() {
+		return howtoregister;
+	}
+
+	public void setHowtoregister(String howtoregister) {
+		this.howtoregister = howtoregister;
+	}
+
+	public String getDetailsOfProvider() {
+		return detailsOfProvider;
+	}
+
+	public void setDetailsOfProvider(String detailsOfProvider) {
+		this.detailsOfProvider = detailsOfProvider;
+	}
+
+	public byte[] getBrochure() {
 		return brochure;
 	}
 
-	public void setBrochure(String brochure) {
+	public void setBrochure(byte[] brochure) {
 		this.brochure = brochure;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public Timestamp getCreatedOn() {
@@ -191,15 +358,7 @@ public class CalenderEntity implements Serializable {
 	public void setCreatedOn(Timestamp createdOn) {
 		this.createdOn = createdOn;
 	}
-
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
+	
 	public Timestamp getUpdatedOn() {
 		return updatedOn;
 	}
@@ -208,54 +367,6 @@ public class CalenderEntity implements Serializable {
 		this.updatedOn = updatedOn;
 	}
 
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getContenttype() {
-		return contenttype;
-	}
-
-	public void setContenttype(String contenttype) {
-		this.contenttype = contenttype;
-	}
-
-	public Integer getRank() {
-		return rank;
-	}
-
-	public void setRank(Integer rank) {
-		this.rank = rank;
-	}
-
-	public String getvFlag() {
-		return vFlag;
-	}
-
-	public void setvFlag(String vFlag) {
-		this.vFlag = vFlag;
-	}
-
-	public String getKeyword() {
-		return keyword;
-	}
-
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-	
 	public UserEntity getUser() {
 		return user;
 	}
@@ -264,36 +375,20 @@ public class CalenderEntity implements Serializable {
 		this.user = user;
 	}
 
-	public IndustrySubCategoryEntity getIndstrySubcat() {
-		return indstrySubcat;
+	public UserEntity getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setIndstrySubcat(IndustrySubCategoryEntity indstrySubcat) {
-		this.indstrySubcat = indstrySubcat;
+	public void setCreatedBy(UserEntity createdBy) {
+		this.createdBy = createdBy;
 	}
 
-	public InstituteAddressEntity getInstituteAddress() {
-		return instituteAddress;
+	public UserEntity getUpdatedBy() {
+		return updatedBy;
 	}
 
-	public void setInstituteAddress(InstituteAddressEntity instituteAddress) {
-		this.instituteAddress = instituteAddress;
+	public void setUpdatedBy(UserEntity updatedBy) {
+		this.updatedBy = updatedBy;
 	}
-
-	public TrainingOverviewEntity getTrainingOverview() {
-		return trainingOverview;
-	}
-
-	public void setTrainingOverview(TrainingOverviewEntity trainingOverview) {
-		this.trainingOverview = trainingOverview;
-	}
-
-	public TrainerInstituteOverviewEntity getTrainerInstituteOverview() {
-		return trainerInstituteOverview;
-	}
-
-	public void setTrainerInstituteOverview(TrainerInstituteOverviewEntity trainerInstituteOverview) {
-		this.trainerInstituteOverview = trainerInstituteOverview;
-	}
-
+	
 }

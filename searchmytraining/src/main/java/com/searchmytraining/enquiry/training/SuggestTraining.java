@@ -64,7 +64,7 @@ public class SuggestTraining {
                 CalenderEntity calEntity = getCalenders(result);
                 if (calEntity != null) {
                     /*lstResults.add(trainEnt.getTitle() + ":" + trainEnt.getDescription() );*/
-                	lstResults.add(calEntity.getTitle());
+                	lstResults.add(calEntity.getCourseTitle());
                 }
             }
         } catch (IOException e) {

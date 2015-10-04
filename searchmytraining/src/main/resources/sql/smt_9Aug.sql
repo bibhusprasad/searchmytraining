@@ -553,38 +553,6 @@ insert  into `tbl_trangcatdetails`(`trngcatid`,`subcatid`,`exp`,`userId`) values
 
 /*Table structure for table `tbl_trngcalender` */
 
-DROP TABLE IF EXISTS `tbl_trngcalender`;
-
-CREATE TABLE `tbl_trngcalender` (
-  `trngId` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) DEFAULT NULL,
-  `code` varchar(100) DEFAULT NULL,
-  `start_date` date DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
-  `price` double DEFAULT NULL,
-  `brochure` varchar(150) DEFAULT NULL,
-  `type` varchar(30) DEFAULT NULL,
-  `status` varchar(30) DEFAULT NULL,
-  `createdOn` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `createdBy` varchar(30) DEFAULT 'SELF',
-  `updatedOn` timestamp NULL DEFAULT '0000-00-00 00:00:00',
-  `updatedBy` varchar(30) DEFAULT NULL,
-  `description` varchar(200) DEFAULT NULL,
-  `contenttype` varchar(100) DEFAULT NULL,
-  `rank` int(11) DEFAULT NULL,
-  `vFlag` varchar(30) DEFAULT NULL,
-  `keyword` text,
-  `place` int(11) DEFAULT NULL,
-  `trnIndstrSubCatId` int(11) DEFAULT NULL,
-  `userId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`trngId`),
-  KEY `userId` (`userId`),
-  KEY `trnIndstrSubCatId` (`trnIndstrSubCatId`),
-  KEY `place` (`place`),
-  CONSTRAINT `tbl_trngcalender_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`),
-  CONSTRAINT `tbl_trngcalender_ibfk_2` FOREIGN KEY (`trnIndstrSubCatId`) REFERENCES `tbl_trnsubcatmaster` (`trnIndstrSubCatId`),
-  CONSTRAINT `tbl_trngcalender_ibfk_3` FOREIGN KEY (`place`) REFERENCES `tbl_citymaster` (`cityId`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_trngcalender` */
 
@@ -815,57 +783,41 @@ insert  into `users`(`userId`,`username`,`password`,`enabled`,`accountNonExpired
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-CREATE TABLE `searchmytraining`.`tbl_instaddress` (
-  `paId` INT(11) NOT NULL COMMENT '',
-  `addressLine1` VARCHAR(4000) NOT NULL COMMENT '',
-  `addressLine2` VARCHAR(4000) NULL COMMENT '',
-  `landmark` VARCHAR(200) NOT NULL COMMENT '',
-  `cityId` INT(11) NOT NULL COMMENT '',
-  `stateId` INT(11) NOT NULL COMMENT '',
-  `countryId` INT(11) NOT NULL COMMENT '',
-  `pincode` INT(6) NOT NULL COMMENT '',
-  PRIMARY KEY (`paId`)  COMMENT '');
-  
-  CREATE TABLE `searchmytraining`.`tbl_trnginstituteoverview` (
-  `trngoverviewId` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
-  `facultyDetails` VARCHAR(2000) NOT NULL COMMENT '',
-  `howtoregister` VARCHAR(2000) NOT NULL COMMENT '',
-  `detailsOfProvider` VARCHAR(1000) NOT NULL COMMENT '',
-  `calenderPdf` LONGBLOB NOT NULL COMMENT '',
-  PRIMARY KEY (`trngoverviewId`)  COMMENT '');
-  
-  
-  CREATE TABLE `searchmytraining`.`tbl_trngoverview` (
-  `overviewId` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
-  `trngQuickView` VARCHAR(2000) NOT NULL COMMENT '',
+DROP TABLE IF EXISTS `tbl_instaddress`;
+DROP TABLE IF EXISTS `tbl_trnginstituteoverview`;
+DROP TABLE IF EXISTS `tbl_trngoverview`;
+DROP TABLE IF EXISTS `tbl_trngcalender`;
+ 
+CREATE TABLE `searchmytraining`.`tbl_trngcalender` (
+  `calenderId` INT(11) NOT NULL COMMENT '',
+  `courseTitle` VARCHAR(50) NOT NULL COMMENT '',
+  `calenderType` VARCHAR(50) NOT NULL COMMENT '',
+  `industryId` INT(11) NOT NULL COMMENT '',
+  `price` DOUBLE NULL COMMENT '',
+  `saveDraft` BIT(1) NOT NULL DEFAULT b'0' COMMENT '',
+  `showPrice` BIT(1) NULL DEFAULT b'0' COMMENT '',
+  `fromDate` TIMESTAMP NOT NULL COMMENT '',
+  `toDate` TIMESTAMP NOT NULL COMMENT '',
+  `time` VARCHAR(50) NOT NULL COMMENT '',
+  `addressLine1` VARCHAR(1000) NULL COMMENT '',
+  `addressLine2` VARCHAR(1000) NULL COMMENT '',
+  `landmark` VARCHAR(100) NULL COMMENT '',
+  `city` INT(11) NOT NULL COMMENT '',
+  `state` INT(11) NOT NULL COMMENT '',
+  `country` INT(11) NOT NULL COMMENT '',
+  `pincode` INT(6) NULL COMMENT '',
+  `trngQuickView` VARCHAR(250) NOT NULL COMMENT '',
   `trngOverView` VARCHAR(2000) NOT NULL COMMENT '',
-  `trngTakeAway` VARCHAR(2000) NOT NULL COMMENT '',
-  `trngMethodology` VARCHAR(2000) NOT NULL COMMENT '',
-  `trngAttandant` VARCHAR(500) NOT NULL COMMENT '',
-  `trngKey` VARCHAR(500) NOT NULL COMMENT '',
-  PRIMARY KEY (`overviewId`)  COMMENT '');
-  
-ALTER TABLE `searchmytraining`.`tbl_trngcalender` 
-ADD COLUMN `paId` INT(11) NOT NULL COMMENT '' AFTER `userId`,
-ADD COLUMN `trngoverviewId` INT(11) NOT NULL COMMENT '' AFTER `paId`,
-ADD COLUMN `overviewId` INT(11) NOT NULL COMMENT '' AFTER `trngoverviewId`;
-
-ALTER TABLE `searchmytraining`.`tbl_instaddress` 
-CHANGE COLUMN `addressLine1` `addressLine1` VARCHAR(500) NOT NULL COMMENT '' ,
-CHANGE COLUMN `addressLine2` `addressLine2` VARCHAR(500) NULL COMMENT '' ,
-CHANGE COLUMN `landmark` `landmark` VARCHAR(200) NOT NULL COMMENT '' ;
-
-ALTER TABLE `searchmytraining`.`tbl_trnginstituteoverview` 
-CHANGE COLUMN `facultyDetails` `facultyDetails` VARCHAR(1000) NOT NULL COMMENT '' ;
-
-
-ALTER TABLE `searchmytraining`.`tbl_trngoverview` 
-CHANGE COLUMN `trngQuickView` `trngQuickView` VARCHAR(1000) NOT NULL COMMENT '' ,
-CHANGE COLUMN `trngTakeAway` `trngTakeAway` VARCHAR(1000) NOT NULL COMMENT '' ,
-CHANGE COLUMN `trngMethodology` `trngMethodology` VARCHAR(1000) NOT NULL COMMENT '' ,
-CHANGE COLUMN `trngKey` `trngKey` VARCHAR(200) NOT NULL COMMENT '' ;
-
-ALTER TABLE `searchmytraining`.`tbl_trngcalender` 
-ADD COLUMN `savedraft` BIT(1) NULL DEFAULT b'0' COMMENT '' AFTER `overviewId`,
-ADD COLUMN `showprice` BIT(1) NULL DEFAULT b'0' COMMENT '' AFTER `savedraft`;
-
+  `trngTakeAway` VARCHAR(500) NULL COMMENT '',
+  `trngMethodology` VARCHAR(250) NULL COMMENT '',
+  `trngAttandant` VARCHAR(250) NULL COMMENT '',
+  `trainingKey` VARCHAR(25) NOT NULL COMMENT '',
+  `facultyDetails` VARCHAR(500) NULL COMMENT '',
+  `howtoregister` VARCHAR(250) NULL COMMENT '',
+  `detailsOfProvider` VARCHAR(500) NULL COMMENT '',
+  `brochure` LONGBLOB NULL COMMENT '',
+  `createdOn` TIMESTAMP NULL COMMENT '',
+  `createdBy` INT(11) NULL COMMENT '',
+  `updatedOn` TIMESTAMP NULL COMMENT '',
+  `updatedBy` INT(11) NULL COMMENT '',
+  PRIMARY KEY (`calenderId`)  COMMENT '');

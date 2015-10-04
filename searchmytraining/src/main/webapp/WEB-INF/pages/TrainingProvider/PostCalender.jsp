@@ -354,8 +354,8 @@ function postCalender() {
 				</div>
 				
 				<div class="submit">
-					<input type="submit" id="PPC" value="Preview & Post Calendar"/>
-					<input type="submit" id="SPL" value="Save & Post Later" onclick="postCalender()"/>
+					<input type="button" id="PPC" value="Preview & Post Calendar"/>
+					<input type="button" id="SPL" value="Save & Post Later" onclick="postCalender()"/>
 				</div>
 				
 				<input type="hidden" name="userType" value="trainer">

@@ -67,24 +67,24 @@ public class SearchUtil {
 		try {
 			idx = getIndexforCalenderEntities();
 			Document doc = (Document)context.getBean("lucenedocument");
-			IndexableField idxCalId = new Field("trngId",cal.getTrngId().toString(),Store.NO, Index.NOT_ANALYZED);
+			IndexableField idxCalId = new Field("trngId",cal.getCalenderId().toString(),Store.NO, Index.NOT_ANALYZED);
 			doc.add(idxCalId);
-			IndexableField idxKeyword = new Field("keyword",cal.getKeyword(),Store.YES,Index.ANALYZED);
+			IndexableField idxKeyword = new Field("keyword",cal.getTrainingKey(),Store.YES,Index.ANALYZED);
 			doc.add(idxKeyword);
-			IndexableField idxTitle = new Field("title", cal.getTitle(), Store.YES, Index.ANALYZED);
+			IndexableField idxTitle = new Field("title", cal.getCourseTitle(), Store.YES, Index.ANALYZED);
 			doc.add(idxTitle);
-			IndexableField idxStartDate = new Field("start_date",cal.getStartDate(),Store.YES,Index.ANALYZED);
+			IndexableField idxStartDate = new Field("start_date",cal.getFromDate().toString(),Store.YES,Index.ANALYZED);
 			doc.add(idxStartDate);
-			IndexableField idxEndDate = new Field("end_date",cal.getEndDate(),Store.YES,Index.ANALYZED);
+			IndexableField idxEndDate = new Field("end_date",cal.getToDate().toString(),Store.YES,Index.ANALYZED);
 			doc.add(idxEndDate);
 			IndexableField idxPrice = new Field("price",cal.getPrice().toString(),Store.YES,Index.ANALYZED);
 			doc.add(idxPrice);
 			/*IndexableField idxPlace = new Field("place",cal.getCity().getCityName(),Store.YES,Index.ANALYZED);
 			doc.add(idxPlace);*/
-			IndexableField idxType = new Field("type",cal.getType(),Store.YES,Index.ANALYZED);
+			IndexableField idxType = new Field("type",cal.getCalenderType().toString(),Store.YES,Index.ANALYZED);
 			doc.add(idxType);
-			IndexableField idxDesc = new Field("description",cal.getDescription(),Store.YES,Index.ANALYZED_NO_NORMS);
-			doc.add(idxDesc);
+			/*IndexableField idxDesc = new Field("description",cal.getDescription(),Store.YES,Index.ANALYZED_NO_NORMS);
+			doc.add(idxDesc);*/
 			/*IndexableField idxBasicSearch = new Field("BasicSearchString",cal.getTitle()+" "+cal.getDescription()+" "+cal.getKeyword()+" "+cal.getCity().getCityName()+" "+cal.getPrice().toString(),Store.NO,Index.ANALYZED);
 			doc.add(idxBasicSearch);*/
 			

@@ -23,6 +23,11 @@ public class StateService implements IStateService {
 	public List<StateEntity> getAllStates(){
 		return statedao.getAllStates();
 	}
+
+	@Override
+	public StateEntity getStateEntityById(int stateId) {
+		return statedao.getState(stateId);
+	}
 	
 	
 

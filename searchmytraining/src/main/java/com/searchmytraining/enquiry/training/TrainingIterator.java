@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -27,7 +26,7 @@ public class TrainingIterator implements InputIterator {
 		if(calIterator.hasNext()){
 			currTraining = calIterator.next();
 			try{
-				return new BytesRef((currTraining.getTitle()+currTraining.getKeyword()).getBytes("UTF8"));
+				return new BytesRef((currTraining.getCourseTitle()+currTraining.getTrainingKey()).getBytes("UTF8"));
 			}catch(UnsupportedEncodingException ex){
 				throw new Error("Not able to convert to UTF8");
 			}
@@ -41,13 +40,14 @@ public class TrainingIterator implements InputIterator {
 	}
 	
 	public Set<BytesRef> contexts() {
-		try {
+		return null;
+		/*try {
             Set<BytesRef> addlParams = new HashSet<BytesRef>();
-            addlParams.add(new BytesRef(currTraining.getDescription().getBytes("UTF8")));
+            //addlParams.add(new BytesRef(currTraining.getDescription().getBytes("UTF8")));
             return addlParams;
         } catch (UnsupportedEncodingException e) {
             throw new Error("Couldn't convert to UTF-8");
-        }
+        }*/
 	}
  
 	public boolean hasPayloads() {
@@ -70,7 +70,8 @@ public class TrainingIterator implements InputIterator {
 	}
 
 	public long weight() {
-		return currTraining.getRank();    /*getPriority();*/
+		return 0;
+		//return currTraining.getRank();    /*getPriority();*/
 	}
 	
 	 public Comparator<BytesRef> getComparator() {

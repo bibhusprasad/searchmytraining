@@ -8,4 +8,5 @@ public interface IIndustrySerivice {
 	
 	public List<IndustryEntity> getIndustries();
 
+	public IndustryEntity getIndustryById(int indId);
 }

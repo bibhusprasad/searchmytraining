@@ -21,4 +21,11 @@ public class IndustryService implements IIndustrySerivice {
 		return industrydao.getIndustries();
 	}
 
+
+	@Override
+	public IndustryEntity getIndustryById(int indId) {
+		return industrydao.getIndustryById(indId);
+	}
+
+	
 }
