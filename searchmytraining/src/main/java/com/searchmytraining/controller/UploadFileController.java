@@ -2,10 +2,10 @@ package com.searchmytraining.controller;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -18,9 +18,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.searchmytraining.common.constant.SearchMyTrainingConstant;
 import com.searchmytraining.dto.TrainingProviderCalenderDTO;
@@ -41,21 +39,20 @@ public class UploadFileController {
 
 	private final Logger log = Logger.getLogger(this.getClass().getName());
 
-	@RequestMapping(value = "/trainingprovider_updateprofile/postCalender", method = RequestMethod.POST, produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8)
+	@RequestMapping(value = "/calender/postCalender", method = RequestMethod.POST, produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8)
 	@ResponseBody
 	public RespnoseWrapper postCalenderRegistration(
-			@RequestBody @Valid TrainingProviderCalenderDTO trainingProviderCalenderDTO,
-			BindingResult bindingResult, ModelMap model,
-			@RequestParam (required = false) MultipartFile fileUpload, HttpServletRequest request,
-			Locale locale, HttpSession session)
+			@RequestBody @Valid TrainingProviderCalenderDTO trainingProviderCalenderDTO, BindingResult result,
+			ModelMap model, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session)
 			throws SearchMyTrainingException {
 		Map<String, String> errorMsg = new HashMap<>();
 		System.out.println("hi");
 		try {
-			if (bindingResult.hasErrors()) {
+			if (result.hasErrors()) {
 				respnoseWrapper.setResponseWrapperId((long) Math.random());
 				respnoseWrapper.setValidationError(true);
-				List<FieldError> errors = bindingResult.getFieldErrors();
+				List<FieldError> errors = result.getFieldErrors();
 				for (FieldError error : errors) {
 					errorMsg.put(error.getField(), error.getDefaultMessage());
 					log.error(error.getField() + " : "

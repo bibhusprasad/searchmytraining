@@ -90,8 +90,8 @@ public class CalenderService implements ICalenderService {
 		calenderEntity.setCourseTitle(tpcalDTO.getCourseTitle());
 		calenderEntity.setCalenderType(tpcalDTO.getCalenderType());
 		calenderEntity.setPrice(tpcalDTO.getPrice());
-		calenderEntity.setFromDate(tpcalDTO.getFromDate());
-		calenderEntity.setToDate(tpcalDTO.getToDate());
+		//calenderEntity.setFromDate(tpcalDTO.getFromDate());
+		//calenderEntity.setToDate(tpcalDTO.getToDate());
 		calenderEntity.setTime(tpcalDTO.getTime());
 
 		// create industry sub category
@@ -105,8 +105,8 @@ public class CalenderService implements ICalenderService {
 		calenderEntity.setCity(iCityService.getCity(tpcalDTO.getCity()));
 		calenderEntity.setState(iStateService.getStateEntityById(tpcalDTO
 				.getState()));
-		calenderEntity.setCountry(iCountryService.getCountry((long) tpcalDTO
-				.getCountry()));
+		/*calenderEntity.setCountry(iCountryService.getCountry((long) tpcalDTO
+				.getCountry()));*/
 		calenderEntity.setPincode(tpcalDTO.getPincode());
 
 		calenderEntity.setTrngQuickView(tpcalDTO.getTrngQuickView());

@@ -1,8 +1,5 @@
 package com.searchmytraining.dto;
 
-import java.sql.Timestamp;
-
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -12,9 +9,11 @@ import com.searchmytraining.common.constant.CalenderType;
 
 public class TrainingProviderCalenderDTO {
 	
-	@NotNull(message="Please enter course Title")     
+	@NotNull(message="Please enter Course Title")
+	@Size(min=2, max=50,message="Course Title Must be between {min} to {max}")
 	private String courseTitle;
 	
+	@NotNull(message="Please enter calender Type")
 	private CalenderType calenderType;
 	
 	private int industryId;
@@ -26,68 +25,62 @@ public class TrainingProviderCalenderDTO {
 	private boolean showPrice;
 	
 	@NotNull(message="Please enter a valid date")     
-	@Future (message="Only the Future is valid")     
-	private Timestamp fromDate;
+	private String fromDate;
 	
 	@NotNull(message="Please enter a valid date")     
-	@Future (message="Only the Future is valid")     
-	private Timestamp toDate;
+	private String toDate;
 
-	@NotNull(message="Please enter a valid time")     
+	@NotNull(message="Please enter a valid time") 
+	@Size(min=5, max=50,message="Time Length Must be between {min} to {max}")
 	private String time;
 	
-	@NotEmpty(message="Please enter a valid address")
-	@Size(min=5, max=500,message="Name length Must be between {min} to {max}")
+	@Size(min=0, max=1000,message="Quick View length Must be between {min} to {max}")
 	private String addressLine1;
 	
+	@Size(min=0, max=1000,message="Quick View length Must be between {min} to {max}")
 	private String addressLine2;
 	
-	@NotEmpty(message="Please enter a valid landmark")
-	@Size(min=10, max=200,message="Name length Must be between {min} to {max}")
 	private String landmark;
 	
+	@NotNull(message="Please enter a valid city")     
 	private int city;
 	
+	@NotNull(message="Please enter a valid state")     
 	private int state;
 	
-	private int country;
+	@NotNull(message="Please enter a valid country")     
+	private String country;
 	
 	private int pincode;
 	
 	@NotEmpty(message="Please enter a valid Quick View")
-	@Size(min=10, max=1000,message="Quick View length Must be between {min} to {max}")
+	@Size(min=10, max=250,message="Quick View length Must be between {min} to {max}")
 	private String trngQuickView;
 	
 	@NotEmpty(message="Please enter a valid Training Overview")
-	@Size(min=10, max=2000,message="Training Overview length Must be between {min} to {max}")
+	@Size(min=0, max=2000,message="Training Overview length Must be between {min} to {max}")
 	private String trngOverView;
 	
-	@NotEmpty(message="Please enter a Description For training")
-	@Size(min=10, max=1000,message="Description For training Must be between {min} to {max}")
+	@Size(min=0, max=250,message="Description For training Must be between {min} to {max}")
 	private String trngTakeAway;
 	
-	@NotEmpty(message="Please enter a Description For training Methodology")
-	@Size(min=10, max=1000,message="training Methodology Must be between {min} to {max}")
+	@Size(min=0, max=250,message="training Methodology Must be between {min} to {max}")
 	private String trngMethodology;
 	
-	@NotEmpty(message="Please enter a Description For training Attandant")
-	@Size(min=10, max=500,message="training Attandant Must be between {min} to {max}")
+	@Size(min=0, max=250,message="training Attandant Must be between {min} to {max}")
 	private String trngAttandant;
 	
-	@NotEmpty(message="Please enter a valid Key")
-	@Size(min=2, max=200,message="valid Keylength must be between {min} to {max}")
+	@NotEmpty(message="Please enter a valid Training Key")
+	@Size(min=1, max=200,message="valid Training Keylength must be between {min} to {max}")
 	private String trainingKey;
 	
-	@NotEmpty(message="Please enter valid faculty details")
-	@Size(min=10, max=1000,message="faculty Details length Must be between {min} to {max}")
+	@Size(min=0, max=500,message="faculty Details length Must be between {min} to {max}")
 	private String facultyDetails;
 	
-	@NotEmpty(message="Please enter a valid description")
-	@Size(min=10, max=2000,message="Registration Details length Must be between {min} to {max}")
+	@Size(min=0, max=250,message="Registration Details length Must be between {min} to {max}")
 	private String howtoregister;
 	
-	@NotEmpty(message="Please enter a valid Training Provider")
-	@Size(min=10, max=1000,message="Training Provider details Must be between {min} to {max}")
+	@Size(min=0, max=500,message="Training Provider details Must be between {min} to {max}")
 	private String detailsOfProvider;
 
 	public String getCourseTitle() {
@@ -186,11 +179,11 @@ public class TrainingProviderCalenderDTO {
 		this.state = state;
 	}
 
-	public int getCountry() {
+	public String getCountry() {
 		return country;
 	}
 
-	public void setCountry(int country) {
+	public void setCountry(String country) {
 		this.country = country;
 	}
 
@@ -274,20 +267,19 @@ public class TrainingProviderCalenderDTO {
 		this.detailsOfProvider = detailsOfProvider;
 	}
 
-	public Timestamp getFromDate() {
+	public String getFromDate() {
 		return fromDate;
 	}
 
-	public void setFromDate(Timestamp fromDate) {
+	public void setFromDate(String fromDate) {
 		this.fromDate = fromDate;
 	}
 
-	public Timestamp getToDate() {
+	public String getToDate() {
 		return toDate;
 	}
 
-	public void setToDate(Timestamp toDate) {
+	public void setToDate(String toDate) {
 		this.toDate = toDate;
-	}
-	
+	}	
 }

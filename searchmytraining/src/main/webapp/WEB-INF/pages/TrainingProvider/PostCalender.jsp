@@ -122,6 +122,20 @@ $('#Fdate,#Tdate').datepicker();
 </script>
 
 <script type="text/javascript">
+function GetDateFormat(controlName) {
+    if ($('#' + controlName).val() != "") {      
+        var d1 = Date.parse($('#' + controlName).val());
+        if (d1 == null) {
+            alert('Date Invalid.');
+            $('#' + controlName).val("");
+        }
+            var array = d1.toString('dd-MMM-yyyy');
+            $('#' + controlName).val(array);
+    }
+}
+
+
+
 function postCalender() {
 	var flag = CalenderValidate();
 	alert(flag);
@@ -130,53 +144,42 @@ function postCalender() {
 	var min = $('#Cmin').val();
 	var ampm = $('#Campm').val();
 	var allTime = hour+":"+min+":"+ampm;
-	var instituteAddress = {
-			"addressLine1" : $('#Caddress1').val(),
-			"addressLine2" : $('#Caddress2').val(),
-			"landmark" : $('#Clmark').val(),
-			"city" : $('#place').val(),
-			"state" : $('#state').val(),
-			"country" : $('#Ccountry').val(),
-			"pincode" : $('#Cpincode').val()
-	};
 
-	var trainingOverview = {
-		"trngQuickView" : $('#Qview').val(),
-		"trngOverView" : $('#Pview').val(),
-		"trngTakeAway" : $('#Taway').val(),
-		"trngMethodology" : $('#Tmethod').val(),
-		"trngAttandant" : $('#wsa').val(),
-		"trngKey" : $('#kword').val(),
-	};
-	trainerInstituteOverview = {
-		"facultyDetails" : $('#fdetails').val(),
-		"howtoregister" : $('#helpregister').val(),
-		"detailsOfProvider" : $('#TPdetails').val(),
-		"calenderPdf" : $('#uploadFile').val(),
-	};
-	trainingProviderCalenderDTO={
-		"title" : $('#ctitle').val(),
-		"type" : $('#Ctype').val(),
-		"industryType" : $('#Itype').val(),
-		"startDate" : $('#Fdate').val(),
-		"endDate" : $('#Tdate').val(),
-		"price" : $('#cPrice').val(),
-		"showprice" : $('#cpBox').val(),
-		"brochure" : $('#fileUpload').val(),
-		"time" : allTime,
-		"trainingOverviewDTO":trainingOverview,
-		"trainerInstituteOverviewDTO":trainerInstituteOverview,
-		"instituteAddressDTO":instituteAddress,	
-		};
-	
 	if (true) {
 		alert("hi");
 		try {
 			$.ajax({
-						url : './trainingprovider_updateprofile/postCalender',
+						url : './calender/postCalender',
 						type : 'post',
 						dataType : 'json',
-						data:trainingProviderCalenderDTO,
+						stringify : true,
+						data:JSON.stringify({
+								"courseTitle" : $('#ctitle').val(),
+								"calenderType" : $('#Ctype').val(),
+								"industryId" : $('#Itype').val(),
+								"price" : $('#cPrice').val(),
+								"saveDraft" : false,
+								"showPrice" :false,
+								"fromDate" : $('#Fdate').val(),
+								"toDate" : $('#Tdate').val(),
+								"time" : allTime,
+								"addressLine1" : $('#Caddress1').val(),
+								"addressLine2" : $('#Caddress2').val(),
+								"landmark" : $('#Clmark').val(),
+								"city" : $('#place').val(),
+								"state" : $('#state').val(),
+								"country" : $('#Ccountry').val(),
+								"pincode" : $('#Cpincode').val(),
+								"trngQuickView" : $('#Qview').val(),
+								"trngOverView" : $('#Pview').val(),
+								"trngTakeAway" : $('#Taway').val(),
+								"trngMethodology" : $('#Tmethod').val(),
+								"trngAttandant" : $('#wsa').val(),
+								"trainingKey" : $('#kword').val(),
+								"facultyDetails" : $('#fdetails').val(),
+								"howtoregister" : $('#helpregister').val(),
+								"detailsOfProvider" : $('#TPdetails').val()
+								}),
 						contentType : "application/json",
 						success : function(response) {
 							if (response.errorMsg) {
