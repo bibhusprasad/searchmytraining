@@ -1,6 +1,10 @@
 package com.searchmytraining.service.impl;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,7 @@ import com.searchmytraining.dto.SearchCalendarDTO;
 import com.searchmytraining.dto.TrainingProviderCalenderDTO;
 import com.searchmytraining.entity.CalenderEntity;
 import com.searchmytraining.entity.IndustryEntity;
+import com.searchmytraining.entity.UserEntity;
 import com.searchmytraining.service.ICalenderService;
 import com.searchmytraining.service.ICityService;
 import com.searchmytraining.service.ICountryService;
@@ -60,7 +65,6 @@ public class CalenderService implements ICalenderService {
 
 	@Override
 	public String updateCalender(CalenderEntity entity) {
-		// TODO Auto-generated method stub
 		return calenderDAO.updateCalender(entity);
 	}
 
@@ -82,18 +86,28 @@ public class CalenderService implements ICalenderService {
 		return calenderDAO.getCalendersOnSearch(searchcaldto);
 	}
 
+	public Timestamp convertStringToTimestamp(String datesString) {
+	    try {
+	      DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+	      Date date = (Date) formatter.parse(datesString);
+	      java.sql.Timestamp timeStampDate = new Timestamp(date.getTime());
+	      return timeStampDate;
+	    } catch (ParseException e) {
+	      return null;
+	    }
+	}
+
 	@Override
-	public void savePostCalenser(TrainingProviderCalenderDTO tpcalDTO)
+	public void savePostCalenser(TrainingProviderCalenderDTO tpcalDTO, UserEntity user)
 			throws SMTException {
 		CalenderEntity calenderEntity = new CalenderEntity();
 
 		calenderEntity.setCourseTitle(tpcalDTO.getCourseTitle());
 		calenderEntity.setCalenderType(tpcalDTO.getCalenderType());
 		calenderEntity.setPrice(tpcalDTO.getPrice());
-		//calenderEntity.setFromDate(tpcalDTO.getFromDate());
-		//calenderEntity.setToDate(tpcalDTO.getToDate());
+		calenderEntity.setFromDate(convertStringToTimestamp(tpcalDTO.getFromDate()));
+		calenderEntity.setToDate(convertStringToTimestamp(tpcalDTO.getToDate()));
 		calenderEntity.setTime(tpcalDTO.getTime());
-
 		// create industry sub category
 		IndustryEntity industryEntity = iIndustrySerivice
 				.getIndustryById(tpcalDTO.getIndustryId());
@@ -105,8 +119,8 @@ public class CalenderService implements ICalenderService {
 		calenderEntity.setCity(iCityService.getCity(tpcalDTO.getCity()));
 		calenderEntity.setState(iStateService.getStateEntityById(tpcalDTO
 				.getState()));
-		/*calenderEntity.setCountry(iCountryService.getCountry((long) tpcalDTO
-				.getCountry()));*/
+		calenderEntity.setCountry(iCountryService.getCountry(tpcalDTO
+				.getCountry()));
 		calenderEntity.setPincode(tpcalDTO.getPincode());
 
 		calenderEntity.setTrngQuickView(tpcalDTO.getTrngQuickView());
@@ -115,7 +129,10 @@ public class CalenderService implements ICalenderService {
 		calenderEntity.setTrngMethodology(tpcalDTO.getTrngMethodology());
 		calenderEntity.setTrngAttandant(tpcalDTO.getTrngAttandant());
 		calenderEntity.setTrainingKey(tpcalDTO.getTrainingKey());
-
+		calenderEntity.setCreatedBy(user);
+		calenderEntity.setUpdatedBy(user);
+		calenderEntity.setCreatedOn((Timestamp) new Date());
+		calenderEntity.setUpdatedOn((Timestamp) new Date());
 		calenderEntity.setFacultyDetails(tpcalDTO.getFacultyDetails());
 		calenderEntity.setHowtoregister(tpcalDTO.getHowtoregister());
 		calenderEntity.setDetailsOfProvider(tpcalDTO.getDetailsOfProvider());

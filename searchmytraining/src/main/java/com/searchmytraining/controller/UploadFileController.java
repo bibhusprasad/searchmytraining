@@ -18,12 +18,16 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.searchmytraining.common.constant.SearchMyTrainingConstant;
 import com.searchmytraining.dto.TrainingProviderCalenderDTO;
+import com.searchmytraining.entity.UserEntity;
 import com.searchmytraining.exception.SearchMyTrainingException;
 import com.searchmytraining.service.ICalenderService;
+import com.searchmytraining.service.impl.UserService;
 import com.searchmytraining.wrapper.RespnoseWrapper;
 
 /*import com.searchmytraining.service.IKeywordService;*/
@@ -35,6 +39,9 @@ public class UploadFileController {
 	public ICalenderService calnderService;
 
 	@Autowired
+	private UserService userService;
+	
+	@Autowired
 	private RespnoseWrapper respnoseWrapper;
 
 	private final Logger log = Logger.getLogger(this.getClass().getName());
@@ -44,10 +51,10 @@ public class UploadFileController {
 	public RespnoseWrapper postCalenderRegistration(
 			@RequestBody @Valid TrainingProviderCalenderDTO trainingProviderCalenderDTO, BindingResult result,
 			ModelMap model, HttpServletRequest request,
+			@RequestParam (required = false) MultipartFile fileUpload,
 			HttpServletResponse response, HttpSession session)
 			throws SearchMyTrainingException {
 		Map<String, String> errorMsg = new HashMap<>();
-		System.out.println("hi");
 		try {
 			if (result.hasErrors()) {
 				respnoseWrapper.setResponseWrapperId((long) Math.random());
@@ -63,7 +70,8 @@ public class UploadFileController {
 				return respnoseWrapper;
 			} else {
 				respnoseWrapper.setValidationError(false);
-				calnderService.savePostCalenser(trainingProviderCalenderDTO);
+				UserEntity user=userService.getUser((Integer)session.getAttribute("userid"));
+				calnderService.savePostCalenser(trainingProviderCalenderDTO, user);
 			}
 		} catch (SMTException smtException) {
 			log.error("exception occured", smtException);

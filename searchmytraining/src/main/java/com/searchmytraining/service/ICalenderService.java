@@ -7,6 +7,7 @@ import com.searchmytraining.controller.SMTException;
 import com.searchmytraining.dto.SearchCalendarDTO;
 import com.searchmytraining.dto.TrainingProviderCalenderDTO;
 import com.searchmytraining.entity.CalenderEntity;
+import com.searchmytraining.entity.UserEntity;
 
 public interface ICalenderService 
 {
@@ -18,6 +19,6 @@ public interface ICalenderService
 	public void removeCalender(long calenderId);
 	public List<CalenderEntity> getCalendersByKeyword(String kyeword) throws Exception;
 	public List<CalenderEntity> getCalendersOnSearch(SearchCalendarDTO searchcaldto);
-	public void savePostCalenser(TrainingProviderCalenderDTO trainingProviderCalenderDTO) throws SMTException;
+	public void savePostCalenser(TrainingProviderCalenderDTO trainingProviderCalenderDTO, UserEntity user) throws SMTException;
 	
 }
