@@ -158,7 +158,7 @@ public class RegistrationController {
 			if (location != null) {
 				List<StateEntity> states = stateservice.getStates(location.getCity().getState().getCountry().getCountryId());
 				List<CityEntity> cities = cityservice.getCities(location.getCity().getState().getStateId());
-				Long country_value = location.getCity().getState().getCountry().getCountryId();
+				Integer country_value = location.getCity().getState().getCountry().getCountryId();
 				model.addAttribute("country_value", country_value);
 				model.addAttribute("locentity", location);
 				model.addAttribute("states", new JSONArray(states));

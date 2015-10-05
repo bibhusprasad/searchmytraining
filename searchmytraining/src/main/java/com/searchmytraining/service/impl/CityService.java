@@ -16,7 +16,7 @@ public class CityService implements ICityService {
 	public CityDAO citydao;
 	
 	@Override
-	public List<CityEntity> getCities(Long stateid) {
+	public List<CityEntity> getCities(Integer stateid) {
 		return citydao.getCities(stateid);
 	}
 

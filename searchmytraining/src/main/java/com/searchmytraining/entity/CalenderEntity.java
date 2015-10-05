@@ -2,6 +2,7 @@ package com.searchmytraining.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,10 +51,10 @@ public class CalenderEntity implements Serializable {
 	private boolean showPrice;
 	
 	@Column(name = "fromDate")
-	private Timestamp fromDate;
+	private Date fromDate;
 
 	@Column(name = "toDate")
-	private Timestamp toDate;
+	private Date toDate;
 	
 	@Column(name = "time")
 	private String time;
@@ -118,13 +119,13 @@ public class CalenderEntity implements Serializable {
 
 	//table  log
 	@Column(name = "createdOn")
-	private Timestamp createdOn;
+	private Date createdOn;
 
 	@Column(name = "createdBy")
 	private UserEntity createdBy;
 
 	@Column(name = "updatedOn")
-	private Timestamp updatedOn;
+	private Date updatedOn;
 
 	@Column(name = "updatedBy")
 	private UserEntity updatedBy;
@@ -189,21 +190,19 @@ public class CalenderEntity implements Serializable {
 		this.showPrice = showPrice;
 	}
 
-	
-
-	public Timestamp getFromDate() {
+	public Date getFromDate() {
 		return fromDate;
 	}
 
-	public void setFromDate(Timestamp fromDate) {
+	public void setFromDate(Date fromDate) {
 		this.fromDate = fromDate;
 	}
 
-	public Timestamp getToDate() {
+	public Date getToDate() {
 		return toDate;
 	}
 
-	public void setToDate(Timestamp toDate) {
+	public void setToDate(Date toDate) {
 		this.toDate = toDate;
 	}
 
@@ -351,19 +350,19 @@ public class CalenderEntity implements Serializable {
 		this.brochure = brochure;
 	}
 
-	public Timestamp getCreatedOn() {
+	public Date getCreatedOn() {
 		return createdOn;
 	}
 
-	public void setCreatedOn(Timestamp createdOn) {
+	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
-	
-	public Timestamp getUpdatedOn() {
+
+	public Date getUpdatedOn() {
 		return updatedOn;
 	}
 
-	public void setUpdatedOn(Timestamp updatedOn) {
+	public void setUpdatedOn(Date updatedOn) {
 		this.updatedOn = updatedOn;
 	}
 

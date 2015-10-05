@@ -110,14 +110,14 @@ public class CalenderService implements ICalenderService {
 		calenderEntity.setTime(tpcalDTO.getTime());
 		// create industry sub category
 		IndustryEntity industryEntity = iIndustrySerivice
-				.getIndustryById(tpcalDTO.getIndustryId());
+				.getIndustryById((Integer)tpcalDTO.getIndustryId());
 		calenderEntity.setIndustryId(industryEntity);
 
 		calenderEntity.setAddressLine1(tpcalDTO.getAddressLine1());
 		calenderEntity.setAddressLine2(tpcalDTO.getAddressLine2());
 		calenderEntity.setLandmark(tpcalDTO.getLandmark());
-		calenderEntity.setCity(iCityService.getCity(tpcalDTO.getCity()));
-		calenderEntity.setState(iStateService.getStateEntityById(tpcalDTO
+		calenderEntity.setCity(iCityService.getCity((Integer)tpcalDTO.getCity()));
+		calenderEntity.setState(iStateService.getStateEntityById((Integer)tpcalDTO
 				.getState()));
 		calenderEntity.setCountry(iCountryService.getCountry(tpcalDTO
 				.getCountry()));
@@ -131,8 +131,8 @@ public class CalenderService implements ICalenderService {
 		calenderEntity.setTrainingKey(tpcalDTO.getTrainingKey());
 		calenderEntity.setCreatedBy(user);
 		calenderEntity.setUpdatedBy(user);
-		calenderEntity.setCreatedOn((Timestamp) new Date());
-		calenderEntity.setUpdatedOn((Timestamp) new Date());
+		calenderEntity.setCreatedOn(new Date());
+		calenderEntity.setUpdatedOn(new Date());
 		calenderEntity.setFacultyDetails(tpcalDTO.getFacultyDetails());
 		calenderEntity.setHowtoregister(tpcalDTO.getHowtoregister());
 		calenderEntity.setDetailsOfProvider(tpcalDTO.getDetailsOfProvider());

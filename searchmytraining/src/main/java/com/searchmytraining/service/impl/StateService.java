@@ -16,7 +16,7 @@ public class StateService implements IStateService {
 	public StateDAO statedao;
 	
 	@Override
-	public List<StateEntity> getStates(Long countryid) {
+	public List<StateEntity> getStates(Integer countryid) {
 		return statedao.getStates(countryid);
 	}
 	
@@ -25,7 +25,7 @@ public class StateService implements IStateService {
 	}
 
 	@Override
-	public StateEntity getStateEntityById(int stateId) {
+	public StateEntity getStateEntityById(Integer stateId) {
 		return statedao.getState(stateId);
 	}
 	

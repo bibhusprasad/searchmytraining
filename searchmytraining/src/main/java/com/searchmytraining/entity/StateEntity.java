@@ -18,7 +18,7 @@ public class StateEntity implements Serializable {
 	
 	@Id
 	@Column(name="stateId")
-	private Long stateId;
+	private Integer stateId;
 	
 	@Column(name="stateName")
 	private String stateName;
@@ -27,11 +27,11 @@ public class StateEntity implements Serializable {
 	@JoinColumn(name="countryId")
 	private CountryEntity country;
 
-	public Long getStateId() {
+	public Integer getStateId() {
 		return stateId;
 	}
 
-	public void setStateId(Long stateId) {
+	public void setStateId(Integer stateId) {
 		this.stateId = stateId;
 	}
 

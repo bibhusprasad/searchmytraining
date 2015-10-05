@@ -26,6 +26,7 @@ import org.apache.lucene.store.FSDirectory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.searchmytraining.dao.AbstractJpaDAO;
 import com.searchmytraining.dao.CalenderDAO;
@@ -51,6 +52,7 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 	public ICityService cityservice;
 
 	@Override
+	@Transactional
 	public void addCalender(CalenderEntity entity) {
 		create(entity);
 	}

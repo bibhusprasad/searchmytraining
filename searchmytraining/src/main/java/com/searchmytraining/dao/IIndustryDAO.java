@@ -8,6 +8,6 @@ public interface IIndustryDAO {
 
 	public List<IndustryEntity> getIndustries();
 
-	public IndustryEntity getIndustryById(int indId);
+	public IndustryEntity getIndustryById(Integer indId);
 	
 }

@@ -76,14 +76,14 @@ public class CommonController {
 	public List<StateEntity> getStates(@RequestParam("countryid") Integer countryid)
 	{
 		System.out.println("in getStates(...)");
-		return state.getStates(countryid.longValue());
+		return state.getStates(countryid.intValue());
 	}
 	
 	@RequestMapping("/getCities")
 	@ResponseBody
 	public List<CityEntity> getCitites(@RequestParam("stateid") Integer stateid)
 	{
-		return city.getCities(stateid.longValue());
+		return city.getCities(stateid.intValue());
 	}
 	
 	@RequestMapping("/downloadPicture/{userId}")

@@ -41,7 +41,7 @@ public class CityDaoImpl extends AbstractJpaDAO<CityEntity> implements CityDAO {
 	}
 
 	@Cacheable(value = "cityCache")
-	public List<CityEntity> getCities(Long stateid) {
+	public List<CityEntity> getCities(Integer stateid) {
 		setClazz(CityEntity.class);
 		String query = "select cities from CityEntity cities where cities.state.stateId='"
 				+ stateid + "'";

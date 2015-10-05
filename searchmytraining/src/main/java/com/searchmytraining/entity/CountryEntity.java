@@ -15,16 +15,16 @@ public class CountryEntity implements Serializable {
 
 	@Id
 	@Column(name="countryId")
-	private Long countryId;
+	private Integer countryId;
 	
 	@Column(name="countryName",nullable=false)
 	private String countryName;
 
-	public Long getCountryId() {
+	public Integer getCountryId() {
 		return countryId;
 	}
 
-	public void setCountryId(Long countryId) {
+	public void setCountryId(Integer countryId) {
 		this.countryId = countryId;
 	}
 

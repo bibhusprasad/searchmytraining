@@ -28,7 +28,7 @@ public class StateDaoImpl extends AbstractJpaDAO<StateEntity> implements
 
 	@Override
 	@Cacheable(value = "stateCache")
-	public List<StateEntity> getStates(Long countryid) {
+	public List<StateEntity> getStates(Integer countryid) {
 		setClazz(StateEntity.class);
 		String query = "select states from StateEntity states where states.country.countryId='"
 				+ countryid + "'";

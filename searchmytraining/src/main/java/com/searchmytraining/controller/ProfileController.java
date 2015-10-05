@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.json.JSONArray;
@@ -25,12 +26,16 @@ import com.searchmytraining.dto.EmploymentDTO;
 import com.searchmytraining.dto.InstituteDTO;
 import com.searchmytraining.dto.LocationDTO;
 import com.searchmytraining.dto.ProfessionalAssociationDTO;
+import com.searchmytraining.entity.TrainerEntity;
+import com.searchmytraining.entity.UserEntity;
 import com.searchmytraining.service.ICityService;
 import com.searchmytraining.service.IContactInfoService;
 import com.searchmytraining.service.IEmploymentService;
 import com.searchmytraining.service.IInstituteServiceDetails;
 import com.searchmytraining.service.ILocationService;
 import com.searchmytraining.service.IStateService;
+import com.searchmytraining.service.ITrainingProviderService;
+import com.searchmytraining.service.IUserService;
 import com.searchmytraining.service.impl.IndustryService;
 import com.searchmytraining.wrapper.RespnoseWrapper;
 
@@ -38,7 +43,10 @@ import com.searchmytraining.wrapper.RespnoseWrapper;
 public class ProfileController {
 	
 	@Autowired
-	public IInstituteServiceDetails instituteservice;
+	private IInstituteServiceDetails instituteservice;
+	
+	@Autowired
+	private ITrainingProviderService trainerservice;
 	
 	@Autowired
 	private ICityService iCityService;
@@ -48,13 +56,16 @@ public class ProfileController {
 	private IndustryService industryservice;
 	
 	@Autowired
-	public ILocationService locservice;
+	private IUserService userService;
 	
 	@Autowired
-	public IEmploymentService emplservice;
+	private ILocationService locservice;
 	
 	@Autowired
-	public IContactInfoService contactinfoservice;
+	private IEmploymentService emplservice;
+	
+	@Autowired
+	private IContactInfoService contactinfoservice;
 	
 	@RequestMapping(value="/updateinstitutedetails",method = RequestMethod.POST, produces={"application/json"}, consumes={"application/json"})
 	@ResponseBody
@@ -106,7 +117,7 @@ public class ProfileController {
 	}
 
 	@RequestMapping("/TPcalender")
-	public String TPcalender(ModelMap model)
+	public String TPcalender(ModelMap model,HttpSession session)
 	{
 		model.addAttribute("industries",
 				new JSONArray(industryservice.getIndustries()));
@@ -115,6 +126,18 @@ public class ProfileController {
 		model.addAttribute("states",
 				new JSONArray(iStateService.getAllStates()));
 		List<String> calType = new ArrayList<String>();
+		
+		UserEntity user=null;
+		Integer userId=(Integer) session.getAttribute("userid");
+		user=userService.getUser(userId);
+		if(null != user){
+			session.setAttribute("userid", user.getUserId());
+			TrainerEntity trainer = trainerservice.getTrainerByUserid(user
+					.getUserId().longValue());
+			if (trainer != null) {
+				session.setAttribute("trainer", trainer);
+			}
+		}
 		for (CalenderType cal : CalenderType.values()) {
 			calType.add(cal.getVal());
 		}

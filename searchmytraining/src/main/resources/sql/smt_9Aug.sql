@@ -821,3 +821,8 @@ CREATE TABLE `searchmytraining`.`tbl_trngcalender` (
   `updatedOn` TIMESTAMP NULL COMMENT '',
   `updatedBy` INT(11) NULL COMMENT '',
   PRIMARY KEY (`calenderId`)  COMMENT '');
+  
+ALTER TABLE `searchmytraining`.`tbl_trngcalender` 
+CHANGE COLUMN `createdOn` `createdOn` DATE NULL DEFAULT NULL COMMENT '' ,
+CHANGE COLUMN `updatedOn` `updatedOn` DATE NULL DEFAULT NULL COMMENT '' ;
+

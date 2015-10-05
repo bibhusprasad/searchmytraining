@@ -9,6 +9,6 @@ public interface CityDAO {
 	public CityEntity getCity(Integer id);
 	public CityEntity getCity(String cityname);
 	public List<CityEntity> getAllCities();
-	public List<CityEntity> getCities(Long stateid);
+	public List<CityEntity> getCities(Integer stateid);
 
 }

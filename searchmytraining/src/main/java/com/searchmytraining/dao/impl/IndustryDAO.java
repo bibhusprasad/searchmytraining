@@ -22,10 +22,12 @@ public class IndustryDAO extends AbstractJpaDAO<IndustryEntity> implements
 	}
 
 	@Override
-	public IndustryEntity getIndustryById(int indId) {
+	public IndustryEntity getIndustryById(Integer indId) {
 		setClazz(IndustryEntity.class);
 		IndustryEntity industry = findOne(indId);
 		return industry;
 	}
+
+	
 
 }

@@ -16,7 +16,6 @@ import javax.validation.Valid;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -27,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.searchmytraining.dao.IPhoneDAO;
@@ -59,30 +57,39 @@ import com.searchmytraining.wrapper.RespnoseWrapper;
 
 @Controller
 public class TrainingProviderController {
+	
 	@Autowired
-	public WebApplicationContext context;
+	private ITrainingProviderService trainerservice;
+	
 	@Autowired
-	public ITrainingProviderService trainerservice;
+	private IUserService userservice;
+	
 	@Autowired
-	public IUserService userservice;
+	private IInstituteServiceDetails instituteservice;
+	
 	@Autowired
-	public IInstituteServiceDetails instituteservice;
+	private IContactInfoService contactinfoservice;
+	
 	@Autowired
-	public IContactInfoService contactinfoservice;
+	private ILocationService locservice;
+	
 	@Autowired
-	public ILocationService locservice;
+	private IStateService stateservice;
+	
 	@Autowired
-	public IStateService stateservice;
+	private ICityService cityservice;
+	
 	@Autowired
-	public ICityService cityservice;
+	private ICountryService countryservice;
+	
 	@Autowired
-	public ICountryService countryservice;
+	private IPhoneDAO phonedao;
+	
 	@Autowired
-	public IPhoneDAO phonedao;
+	private IPhoneTypeDAO phonetypedao;
+	
 	@Autowired
-	public IPhoneTypeDAO phonetypedao;
-	@Autowired
-	public IIndustrySubCategoryService subcatservice;
+	private IIndustrySubCategoryService subcatservice;
 
 	@RequestMapping(value = "/trainingprovider_reg", method = RequestMethod.POST, produces = { "application/json" }, consumes = { "application/json" })
 	@ResponseBody
@@ -90,8 +97,7 @@ public class TrainingProviderController {
 			@RequestBody @Valid TrainerDTO trainerdto, BindingResult result,
 			ModelMap model, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
-		RespnoseWrapper response1 = (RespnoseWrapper) context
-				.getBean("respnoseWrapper");
+		RespnoseWrapper response1 = new RespnoseWrapper();
 		response1.setValidationError(true);
 		response1.setResponseWrapperId(501l);
 		if (result.hasErrors()) {
@@ -116,14 +122,14 @@ public class TrainingProviderController {
 
 	@RequestMapping(value = "/trainingprovider_updateprofile", method = RequestMethod.POST)
 	public String TrainingProviderProfileMapping(
-			@RequestParam(value = "username",required=false)String username , ModelMap model,
-			HttpSession session) {
-		UserEntity user=null;
-		if(null == username){
-			Integer userId=(Integer) session.getAttribute("userid");
-			user=userservice.getUser(userId);
-		}else{
-			user= userservice.getUser(username);
+			@RequestParam(value = "username", required = false) String username,
+			ModelMap model, HttpSession session) {
+		UserEntity user = null;
+		if (null == username) {
+			Integer userId = (Integer) session.getAttribute("userid");
+			user = userservice.getUser(userId);
+		} else {
+			user = userservice.getUser(username);
 		}
 		session.setAttribute("userid", user.getUserId());
 		TrainerEntity trainer = trainerservice.getTrainerByUserid(user
@@ -133,8 +139,7 @@ public class TrainingProviderController {
 		}
 		InstituteEntity instituteinfo = instituteservice
 				.getInstituteInfo(trainer.getUser().getUserId().longValue());
-		ActorDetails actordetails = (ActorDetails) context
-				.getBean("actorDetails");
+		ActorDetails actordetails = new ActorDetails();
 		if (instituteinfo != null) {
 			actordetails.setName(instituteinfo.getCompanyName());
 			actordetails.setUser(instituteinfo.getUser());
@@ -178,7 +183,7 @@ public class TrainingProviderController {
 						.getCity().getState().getCountry().getCountryId());
 				List<CityEntity> cities = cityservice.getCities(location
 						.getCity().getState().getStateId());
-				Long country_value = location.getCity().getState().getCountry()
+				Integer country_value = location.getCity().getState().getCountry()
 						.getCountryId();
 				model.addAttribute("country_value", country_value);
 				model.addAttribute("location", location);
@@ -235,8 +240,7 @@ public class TrainingProviderController {
 		}
 		InstituteEntity instituteinfo = instituteservice
 				.getInstituteInfo(userId.longValue());
-		ActorDetails actordetails = (ActorDetails) context
-				.getBean("actorDetails");
+		ActorDetails actordetails = new ActorDetails();
 		if (instituteinfo != null) {
 			actordetails.setName(instituteinfo.getCompanyName());
 			actordetails.setUser(instituteinfo.getUser());

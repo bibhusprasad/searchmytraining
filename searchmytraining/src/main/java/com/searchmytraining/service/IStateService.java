@@ -6,8 +6,8 @@ import com.searchmytraining.entity.StateEntity;
 
 public interface IStateService {
 	
-	public List<StateEntity> getStates(Long countryid);
+	public List<StateEntity> getStates(Integer integer);
 	public List<StateEntity> getAllStates();
-	public StateEntity getStateEntityById(int stateId);
+	public StateEntity getStateEntityById(Integer stateId);
 
 }
