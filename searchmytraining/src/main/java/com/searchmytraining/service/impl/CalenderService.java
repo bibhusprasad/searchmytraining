@@ -103,7 +103,7 @@ public class CalenderService implements ICalenderService {
 		CalenderEntity calenderEntity = new CalenderEntity();
 
 		calenderEntity.setCourseTitle(tpcalDTO.getCourseTitle());
-		calenderEntity.setCalenderType(tpcalDTO.getCalenderType());
+		calenderEntity.setCalenderType(String.valueOf(tpcalDTO.getCalenderType()));
 		calenderEntity.setPrice(tpcalDTO.getPrice());
 		calenderEntity.setFromDate(convertStringToTimestamp(tpcalDTO.getFromDate()));
 		calenderEntity.setToDate(convertStringToTimestamp(tpcalDTO.getToDate()));

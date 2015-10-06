@@ -16,8 +16,6 @@ import javax.persistence.Table;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.searchmytraining.common.constant.CalenderType;
-
 @Component
 @Scope("prototype")
 @Entity
@@ -34,7 +32,7 @@ public class CalenderEntity implements Serializable {
 	private String courseTitle;
 
 	@Column(name = "calenderType")
-	private CalenderType calenderType;
+	private String calenderType;
 
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = IndustryEntity.class)
 	@JoinColumn(name = "industryId")
@@ -149,11 +147,11 @@ public class CalenderEntity implements Serializable {
 		this.courseTitle = courseTitle;
 	}
 
-	public CalenderType getCalenderType() {
+	public String getCalenderType() {
 		return calenderType;
 	}
 
-	public void setCalenderType(CalenderType calenderType) {
+	public void setCalenderType(String calenderType) {
 		this.calenderType = calenderType;
 	}
 
