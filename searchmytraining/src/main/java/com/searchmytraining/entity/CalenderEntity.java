@@ -1,7 +1,6 @@
 package com.searchmytraining.entity;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -31,10 +30,10 @@ public class CalenderEntity implements Serializable {
 	@Column(name = "calenderId")
 	private Integer calenderId;
 	
-	@Column(name = "title")
+	@Column(name = "courseTitle")
 	private String courseTitle;
 
-	@Column(name = "calType")
+	@Column(name = "calenderType")
 	private CalenderType calenderType;
 
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = IndustryEntity.class)
@@ -71,15 +70,15 @@ public class CalenderEntity implements Serializable {
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="cityId")
-	private CityEntity city;
+	private CityEntity cityId;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="stateId")
-	private StateEntity state;
+	private StateEntity stateId;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="countryId")
-	private CountryEntity country;
+	private CountryEntity countryId;
 	
 	@Column(name = "pincode")
 	private int pincode;
@@ -122,17 +121,17 @@ public class CalenderEntity implements Serializable {
 	private Date createdOn;
 
 	@Column(name = "createdBy")
-	private UserEntity createdBy;
+	private Integer createdBy;
 
 	@Column(name = "updatedOn")
 	private Date updatedOn;
 
 	@Column(name = "updatedBy")
-	private UserEntity updatedBy;
+	private Integer updatedBy;
 
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = UserEntity.class)
-	@JoinColumn(name = "trnProId")
-	private UserEntity user;
+	@JoinColumn(name = "userId")
+	private UserEntity userId;
 
 	public Integer getCalenderId() {
 		return calenderId;
@@ -238,28 +237,28 @@ public class CalenderEntity implements Serializable {
 		this.landmark = landmark;
 	}
 
-	public CityEntity getCity() {
-		return city;
+	public CityEntity getCityId() {
+		return cityId;
 	}
 
-	public void setCity(CityEntity city) {
-		this.city = city;
+	public void setCityId(CityEntity cityId) {
+		this.cityId = cityId;
 	}
 
-	public StateEntity getState() {
-		return state;
+	public StateEntity getStateId() {
+		return stateId;
 	}
 
-	public void setState(StateEntity state) {
-		this.state = state;
+	public void setStateId(StateEntity stateId) {
+		this.stateId = stateId;
 	}
 
-	public CountryEntity getCountry() {
-		return country;
+	public CountryEntity getCountryId() {
+		return countryId;
 	}
 
-	public void setCountry(CountryEntity country) {
-		this.country = country;
+	public void setCountryId(CountryEntity countryId) {
+		this.countryId = countryId;
 	}
 
 	public int getPincode() {
@@ -366,27 +365,27 @@ public class CalenderEntity implements Serializable {
 		this.updatedOn = updatedOn;
 	}
 
-	public UserEntity getUser() {
-		return user;
+	public UserEntity getUserId() {
+		return userId;
 	}
 
-	public void setUser(UserEntity user) {
-		this.user = user;
+	public void setUserId(UserEntity userId) {
+		this.userId = userId;
 	}
 
-	public UserEntity getCreatedBy() {
+	public Integer getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(UserEntity createdBy) {
+	public void setCreatedBy(Integer createdBy) {
 		this.createdBy = createdBy;
 	}
 
-	public UserEntity getUpdatedBy() {
+	public Integer getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(UserEntity updatedBy) {
+	public void setUpdatedBy(Integer updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 	

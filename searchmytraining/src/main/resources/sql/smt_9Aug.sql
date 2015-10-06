@@ -826,3 +826,13 @@ ALTER TABLE `searchmytraining`.`tbl_trngcalender`
 CHANGE COLUMN `createdOn` `createdOn` DATE NULL DEFAULT NULL COMMENT '' ,
 CHANGE COLUMN `updatedOn` `updatedOn` DATE NULL DEFAULT NULL COMMENT '' ;
 
+ALTER TABLE `searchmytraining`.`tbl_trngcalender` 
+ADD COLUMN `userId` INT(11) NOT NULL COMMENT '' AFTER `updatedBy`;
+
+ALTER TABLE `searchmytraining`.`tbl_trngcalender` 
+CHANGE COLUMN `city` `cityId` INT(11) NOT NULL COMMENT '' ,
+CHANGE COLUMN `state` `stateId` INT(11) NOT NULL COMMENT '' ,
+CHANGE COLUMN `country` `countryId` INT(11) NOT NULL COMMENT '' ;
+
+ALTER TABLE `searchmytraining`.`tbl_trngcalender` 
+CHANGE COLUMN `calenderId` `calenderId` INT(11) NOT NULL AUTO_INCREMENT COMMENT '' ;
