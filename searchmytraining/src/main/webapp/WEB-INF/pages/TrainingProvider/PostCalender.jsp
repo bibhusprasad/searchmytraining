@@ -137,16 +137,15 @@ function GetDateFormat(controlName) {
 
 
 function postCalender() {
-	var flag = CalenderValidate();
-	alert(flag);
+	var flag = validatePostCalenderOnSubmit();
+	//var flag = CalenderValidate();
 	var trainingProviderCalenderDTO = null;
 	var hour = $('#Chour').val();
 	var min = $('#Cmin').val();
 	var ampm = $('#Campm').val();
 	var allTime = hour+":"+min+":"+ampm;
 
-	if (true) {
-		alert("hi");
+	if (flag) {
 		try {
 			$.ajax({
 						url : './calender/postCalender',
@@ -214,6 +213,8 @@ function postCalender() {
 
 
 
+
+
 </script>
 
 </head>
@@ -223,32 +224,39 @@ function postCalender() {
 		<div class="acord_cont">
 			<form id="Add_calender" method="post" enctype="multipart/form-data">
 
+				
 				<div class="title">
-					<label>Course Title:</label> <input type="text" id="ctitle"
+					<label><b>Course Title</b><font color="red">*</font></label><input type="text" id="ctitle" 
 						placeholder="Title" name="ctitle" maxlength="100"/>
+						<span id="errorctitle" class="errorm"><text>.</text></span>
 				</div>
+				
 				<div class="Ctype">
-					<label>Type Of Calendar:</label> <select id="Ctype" name="Ctype">
+					<label><b>Type Of Calendar</b><font color="red">*</font></label> <select id="Ctype" name="Ctype">
 					</select>
+					<span id="errorCtype" class="errorm"><text>.</text></span>
 				</div>
 				<div class="Industry">
-					<label>Industry Type:</label> <select id="Itype" name="Itype">
+					<label><b>Industry Type</b><font color="red">*</font></label> <select id="Itype" name="Itype">
 					</select>
+					<span id="errorItype" class="errorm"><text>.</text></span>
 				</div>
 				
 				<div class="price">
-					<label>Price:</label> <input type="text" id="cPrice"
+					<label><b>Price</b></label> <input type="text" id="cPrice"
 						placeholder="Price" name="cPrice" onkeypress="return isNumber(event)"/>
 						<input type="checkbox" id="cpBox" name="cpBox" /><span>Click to Hide Price</span>
 				</div>
 				
 				<div class="date">
-				<label>From Date:</label> <input type="text" id="Fdate" name="Fdate"/> 
-				<label>To Date:</label> <input type="text" id="Tdate" name="Tdate"/>
+				<label><b>From Date</b><font color="red">*</font></label> <input type="text" id="Fdate" name="Fdate"/> 
+				<label><b>To Date</b><font color="red">*</font></label> <input type="text" id="Tdate" name="Tdate"/>
+				<span id="errorFdate" class="errorm"><text>.</text></span>
+				<span id="errorTdate" class="errorm"><text>.</text></span>
 				</div>
 								
 				<div class="Ctime">
-					<label>Time:</label><select id="Chour" name="Chour">
+					<label><b>Time</b><font color="red">*</font></label><select id="Chour" name="Chour">
 						<option>HH</option></select>
 					<select id="Cmin" name="Cmin">
 						<option>MM</option>
@@ -257,49 +265,54 @@ function postCalender() {
 						<option value="am">AM</option>
 						<option value="am">PM</option>
 					</select>
+					<span id="errorChour" class="errorm"><text>.</text></span>
 				</div>
 				
 				<div class="caddress1">
-					<label>Address Line1:</label><input type="text" name="Caddress1" id="Caddress1" height="30"/>
+					<label><b>Address Line1</b></label><input type="text" name="Caddress1" id="Caddress1" height="30"/>
 				</div>
 				
 				<div class="caddress2">
-					<label>Address Line2:</label><input type="text" name="Caddress2" id="Caddress2" height="30"/>
+					<label><b>Address Line2</b></label><input type="text" name="Caddress2" id="Caddress2" height="30"/>
 				</div>
 				
 				<div class="Clmark">
-					<label>Landmark:</label><input type="text" name="Clmark" id="Clmark"/>
+					<label><b>Landmark</b></label><input type="text" name="Clmark" id="Clmark"/>
 				</div>
 				
 				<div class="ccity">
-					<label>City:</label> <select id="place" name="place">
+					<label><b>City</b><font color="red">*</font></label> <select id="place" name="place">
 					</select>
+					<span id="errorplace" class="errorm"><text>.</text></span>
 				</div>
 				
 				<div class="cstate">
-					<label>State:</label> <select id="state" name="state">
+					<label><b>State<b></b><font color="red">*</font></label> <select id="state" name="state">
 					</select>
+					<span id="errorstate" class="errorm"><text>.</text></span>
 				</div>
 				
 				<div class="ccountry">
-					<label>Country:</label><input type="text" name="Ccountry" id="Ccountry" value="India" readonly/> 
+					<label><b>Country</b></label><input type="text" name="Ccountry" id="Ccountry" value="India" readonly/> 
 				</div>
 				
 				<div class="cpincode">
-					<label>Pin Code:</label><input type="text" name="Cpincode" id="Cpincode" maxlength="6" onkeypress="return isNumber(event)"/> 
+					<label><b>Pin Code</b></label><input type="text" name="Cpincode" id="Cpincode" maxlength="6" onkeypress="return isNumber(event)"/> 
 				</div>
 				
 				<div class="cquickview">
-					<label>Programme brief for Quick View Section:</label>
+					<label><b>Programme brief for Quick View Section</b><font color="red">*</font></label>
 					<input type="text" id="Qview" name="Qview"/>
+					<span id="errorQview" class="errorm"><text>.</text></span>
 				</div>
 				
 				<div class="cprogover">
-					<label>Programme Overview:</label><input type="text" id="Pview" name="Pview"/>
+					<label><b>Programme Overview</b><font color="red">*</font></label><input type="text" id="Pview" name="Pview"/>
+					<span id="errorPview" class="errorm"><text>.</text></span>
 				</div>
 				
 				<div class="ctakeaway">
-					<label>Your take away from the programme:</label><input type="text" id="Taway" name="Taway"/>
+					<label><b>Your take away from the programme</b></label><input type="text" id="Taway" name="Taway"/>
 				</div>
 				
 				<div class="cmethod">
@@ -311,19 +324,20 @@ function postCalender() {
 				</div>
 				
 				<div class="ckeyword">
-					<label>Keywords:</label><input type="text" id="kword" name="kword"/>
+					<label><b>Keywords</b><font color="red">*</font></label><input type="text" id="kword" name="kword"/>
+					<span id="errorkword" class="errorm"><text>.</text></span>
 				</div>
 								
 				<div class="cfacdetails">
-					<label>Faculty Details for this programme:</label><input type="text" id="fdetails" name="fdetails"/>
+					<label><b>Faculty Details for this programme</b></label><input type="text" id="fdetails" name="fdetails"/>
 				</div>
 				
 				<div class="chowtoregi">
-					<label>How to Register:</label><input type="text" id="helpregister" name="helpregister" onkeydown="isAlphaNumeric()"/>
+					<label><b>How to Register</b></label><input type="text" id="helpregister" name="helpregister" onkeydown="isAlphaNumeric()"/>
 				</div>
 				
 				<div class="ctrainprov">
-					<label>Details of Training Providers:</label><input type="text" id="TPdetails" name="TPdetails"/>
+					<label><b>Details of Training Providers</b></label><input type="text" id="TPdetails" name="TPdetails"/>
 				</div>
 				
 				<!-- <div class="description">
@@ -360,7 +374,7 @@ function postCalender() {
 					<input type="button" id="PPC" value="Preview & Post Calendar"/>
 					<input type="button" id="SPL" value="Save & Post Later" onclick="postCalender()"/>
 				</div>
-				
+				<label><font color="red">*</font>Indicates mandatory field</label>
 				<input type="hidden" name="userType" value="trainer">
 			</form>
 		</div>
