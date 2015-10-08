@@ -65,6 +65,7 @@ $('#Fdate,#Tdate').datepicker();
 							loadCity();
 							loadCalenderType();
 							loadState();
+							loadAddress();
 						});
 						
 						function loadIndustries()
@@ -84,7 +85,9 @@ $('#Fdate,#Tdate').datepicker();
 						function loadCity(){
 							var cities = '${cities}';
 							var jsoncities = $.parseJSON(cities);
-							$('#place').find('option').remove().end();
+							$('#cities').val(JSON.stringify(jsoncities));
+							$( "body" ).data( "jsonciti", jsoncities );
+				   			$('#place').find('option').remove().end();
 							$('#place').attr('enabled','true');
 							$('#place').append(
 									$("<option value='0'></option>").text("--Select--"));
@@ -110,6 +113,7 @@ $('#Fdate,#Tdate').datepicker();
 						function loadState(){
 							var states = '${states}';
 							var jsonstates = $.parseJSON(states);
+							$('#states').val(JSON.stringify(jsonstates));
 							$('#state').find('option').remove().end();
 							$('#state').attr('enabled','true');
 							$('#state').append(
@@ -119,9 +123,59 @@ $('#Fdate,#Tdate').datepicker();
 									$("<option></option>").text(this.stateName).val(this.stateId));
 							});
 						}
+						function loadAddress(){
+							var jTpaddress = '${address}';
+							var jsonTpaddress = $.parseJSON(jTpaddress);
+							$('#HCaddress1').val(jsonTpaddress[0].buildingNo);
+							$('#HCaddress2').val(jsonTpaddress[0].street);
+							$('#HClmark').val(jsonTpaddress[0].landmark);
+							$('#HCpincode').val(jsonTpaddress[0].pincode);
+							$('#Hcity').val(jsonTpaddress[0].city.cityName);
+							$('#Hstate').val(jsonTpaddress[0].city.state.stateName);
+							$('#cityId').val(jsonTpaddress[0].city.cityId);
+							$('#stateId').val(jsonTpaddress[0].city.state.stateId);
+						}
+
+						function loadStatelist(){
+							var oldstates=JSON.parse($('#states').val());
+							$('#state').find('option').remove().end();
+							$('#state').attr('enabled','true');
+							$('#state').append($("<option value='0'></option>").text("--Select--"));
+							$.each(oldstates, function (index, field) {
+								$('#state').append($("<option></option>").text(field.stateName).val(field.stateId));
+							});
+							
+						}
+						function loadcitylist(){
+							var oldcity=JSON.parse($('#cities').val());
+							$('#place').find('option').remove().end();
+							$('#place').attr('enabled','true');
+							$('#place').append($("<option value='0'></option>").text("--Select--"));
+							jQuery.each(oldcity, function(index, item) {
+								$('#place').append($("<option></option>").text(item.cityName).val(item.cityId));
+							});
+						}
 </script>
 
 <script type="text/javascript">
+$('body').on('click', '#autoPopulateAddress', function (e) {	 
+if($('#autoPopulateAddress').attr('checked')){
+	$('#Caddress1').val($('#HCaddress1').val());
+	$('#Caddress2').val($('#HCaddress2').val());
+	$('#Clmark').val($('#HClmark').val());
+	$('#Cpincode').val($('#HCpincode').val());
+	$("#place").html("<option value="+$('#cityId').val()+">"+$('#Hcity').val()+"</option>");
+	$("#state").html("<option value="+$('#stateId').val()+">"+$('#Hstate').val()+"</option>");
+}else{
+	$('#Caddress1').val('');
+	$('#Caddress2').val('');
+	$('#Clmark').val('');
+	$('#Cpincode').val('');
+	loadStatelist();
+	loadcitylist();
+}
+	
+});
 function GetDateFormat(controlName) {
     if ($('#' + controlName).val() != "") {      
         var d1 = Date.parse($('#' + controlName).val());
@@ -138,13 +192,10 @@ function GetDateFormat(controlName) {
 
 function postCalender() {
 	var flag = validatePostCalenderOnSubmit();
-	//var flag = CalenderValidate();
-	var trainingProviderCalenderDTO = null;
 	var hour = $('#Chour').val();
 	var min = $('#Cmin').val();
 	var ampm = $('#Campm').val();
 	var allTime = hour+":"+min+":"+ampm;
-
 	if (flag) {
 		try {
 			$.ajax({
@@ -267,9 +318,9 @@ function postCalender() {
 					</select>
 					<span id="errorChour" class="errorm"><text>.</text></span>
 				</div>
-				
 				<div class="caddress1">
 					<label><b>Address Line1</b></label><input type="text" name="Caddress1" id="Caddress1" height="30"/>
+					<span class="caddress1"><input type="checkbox" id="autoPopulateAddress">Auto Populate Address</span>
 				</div>
 				
 				<div class="caddress2">
@@ -390,5 +441,16 @@ function postCalender() {
 			<div id="viewall"></div>
 		</div>
 	</div>
+	<input type="hidden" id="HCaddress1" value="">
+	<input type="hidden" id="HCaddress2" value="">
+	<input type="hidden" id="HClmark" value="">
+	<input type="hidden" id="HCpincode" value="">
+	<input type="hidden" id="Hcity" value="">
+	<input type="hidden" id="Hstate" value="">
+	<input type="hidden" id="cityId" value="">
+	<input type="hidden" id="stateId" value="">
+	<input type="hidden" id="cities" value="">
+	<input type="hidden" id="states" value="">
 </body>
 </html>
+

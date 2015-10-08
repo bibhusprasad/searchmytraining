@@ -69,7 +69,6 @@ $("#CDesc").on("keyup",function(e){
 })
 
 $("#fileupload").on("change",function(e){
-	alert("dsfsdf")
 	if($("#fileupload").val()==""){
 
 		$("#fileupload").focus();

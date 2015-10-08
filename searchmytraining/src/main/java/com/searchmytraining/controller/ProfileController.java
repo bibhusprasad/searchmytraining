@@ -26,6 +26,7 @@ import com.searchmytraining.dto.EmploymentDTO;
 import com.searchmytraining.dto.InstituteDTO;
 import com.searchmytraining.dto.LocationDTO;
 import com.searchmytraining.dto.ProfessionalAssociationDTO;
+import com.searchmytraining.entity.LocationEntity;
 import com.searchmytraining.entity.TrainerEntity;
 import com.searchmytraining.entity.UserEntity;
 import com.searchmytraining.service.ICityService;
@@ -48,6 +49,8 @@ public class ProfileController {
 	@Autowired
 	private ITrainingProviderService trainerservice;
 	
+	@Autowired
+	private ILocationService iLocationService;
 	@Autowired
 	private ICityService iCityService;
 	@Autowired
@@ -125,8 +128,10 @@ public class ProfileController {
 				new JSONArray(iCityService.getAllCities()));
 		model.addAttribute("states",
 				new JSONArray(iStateService.getAllStates()));
+		List<LocationEntity> address=new ArrayList<LocationEntity>();
+		address.add(iLocationService.findLocDet((Integer) session.getAttribute("userid")));
+		model.addAttribute("address",new JSONArray(address));
 		List<String> calType = new ArrayList<String>();
-		
 		UserEntity user=null;
 		Integer userId=(Integer) session.getAttribute("userid");
 		user=userService.getUser(userId);
