@@ -1,5 +1,6 @@
 package com.searchmytraining.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,8 +8,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,11 +24,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.searchmytraining.common.constant.CalenderType;
 import com.searchmytraining.common.constant.SearchMyTrainingConstant;
 import com.searchmytraining.dto.TrainingProviderCalenderDTO;
+import com.searchmytraining.entity.TrainerEntity;
 import com.searchmytraining.entity.UserEntity;
 import com.searchmytraining.exception.SearchMyTrainingException;
 import com.searchmytraining.service.ICalenderService;
+import com.searchmytraining.service.ITrainingProviderService;
 import com.searchmytraining.service.IUserService;
 import com.searchmytraining.wrapper.RespnoseWrapper;
 
@@ -41,6 +47,9 @@ public class UploadFileController {
 	private IUserService userService;
 	
 	@Autowired
+	private ITrainingProviderService trainerservice;
+	
+	@Autowired
 	private RespnoseWrapper respnoseWrapper;
 
 	private final Logger log = Logger.getLogger(this.getClass().getName());
@@ -49,7 +58,7 @@ public class UploadFileController {
 			produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8,consumes ="application/x-www-form-urlencoded")
 	@ResponseBody
 	public RespnoseWrapper postCalenderRegistration(
-			@RequestBody /*@Valid*/ TrainingProviderCalenderDTO trainingProviderCalenderDTO, BindingResult result,
+			@RequestBody @Valid TrainingProviderCalenderDTO trainingProviderCalenderDTO, BindingResult result,
 			ModelMap model, HttpServletRequest request,
 			@RequestParam (required = false) CommonsMultipartFile fileUpload,
 			HttpServletResponse response, HttpSession session)
@@ -164,4 +173,48 @@ public class UploadFileController {
 	 * 
 	 * }
 	 */
-}
+		@RequestMapping(value = "/calender/previewCalender", method = RequestMethod.POST, produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8)
+		public String previewAndPostCalender(
+				@RequestBody /*@Valid*/ TrainingProviderCalenderDTO trainingProviderCalenderDTO, BindingResult result,
+				ModelMap model, HttpServletRequest request,
+				HttpServletResponse response, HttpSession session)
+				throws SearchMyTrainingException {
+			Map<String, String> errorMsg = new HashMap<>();
+			try {
+				if (result.hasErrors()) {
+					respnoseWrapper.setResponseWrapperId((long) Math.random());
+					respnoseWrapper.setValidationError(true);
+					List<FieldError> errors = result.getFieldErrors();
+					for (FieldError error : errors) {
+						errorMsg.put(error.getField(), error.getDefaultMessage());
+						log.error(error.getField() + " : "
+								+ error.getDefaultMessage());
+					}
+					respnoseWrapper.setErrorMsg(errorMsg);
+					respnoseWrapper.setSuccessMessage(false);
+					return null;
+				} else {
+					UserEntity user = null;
+					Integer userId = (Integer) session.getAttribute("userid");
+					user = userService.getUser(userId);
+					if (null != user) {
+						session.setAttribute("userid", user.getUserId());
+						TrainerEntity trainer = trainerservice.getTrainerByUserid(user
+								.getUserId().longValue());
+						if (trainer != null) {
+							session.setAttribute("trainer", trainer);
+						}
+					}
+					List<TrainingProviderCalenderDTO> trainingProviderCalenders = new ArrayList<TrainingProviderCalenderDTO>();
+					trainingProviderCalenders.add(trainingProviderCalenderDTO);
+					respnoseWrapper.setValidationError(false);
+					respnoseWrapper.setSuccessMessage(true);
+					model.addAttribute("trainingProviderCalenders", trainingProviderCalenders);
+				}
+			} catch (Exception e) {
+				log.error("exception occured", e);
+			}
+			return "pages/TrainingProvider/PreviewCalender";
+		}
+	}
+	

@@ -188,7 +188,77 @@ function GetDateFormat(controlName) {
     }
 }
 
-
+function previewC() {
+	//var flag = validatePostCalenderOnSubmit();
+	var hour = $('#Chour').val();
+	var min = $('#Cmin').val();
+	var ampm = $('#Campm').val();
+	var allTime = hour+":"+min+":"+ampm;
+	if (true) {
+		try {
+			$.ajax({
+						url : './calender/previewCalender',
+						type : 'post',
+						dataType : 'json',
+						stringify : true,
+						data:JSON.stringify({
+								"courseTitle" : $('#ctitle').val(),
+								"calenderType" : $('#Ctype').val(),
+								"industryId" : $('#Itype').val(),
+								"price" : $('#cPrice').val(),
+								"saveDraft" : false,
+								"showPrice" :false,
+								"fromDate" : $('#Fdate').val(),
+								"toDate" : $('#Tdate').val(),
+								"time" : allTime,
+								"addressLine1" : $('#Caddress1').val(),
+								"addressLine2" : $('#Caddress2').val(),
+								"landmark" : $('#Clmark').val(),
+								"city" : $('#place').val(),
+								"state" : $('#state').val(),
+								"country" : $('#Ccountry').val(),
+								"pincode" : $('#Cpincode').val(),
+								"trngQuickView" : $('#Qview').val(),
+								"trngOverView" : $('#Pview').val(),
+								"trngTakeAway" : $('#Taway').val(),
+								"trngMethodology" : $('#Tmethod').val(),
+								"trngAttandant" : $('#wsa').val(),
+								"trainingKey" : $('#kword').val(),
+								"facultyDetails" : $('#fdetails').val(),
+								"howtoregister" : $('#helpregister').val(),
+								"detailsOfProvider" : $('#TPdetails').val()
+								}),
+						contentType : "application/json",
+						success : function(response) {
+							if (response.errorMsg) {
+								$.map(
+									response.errorMsg,
+								  		function(val, key) {
+											if (key == "traineetype")
+												$('#error00').text(val);
+											else if (key == "corporatename")
+												$('#error00').text(val);
+											else if (key == "name")
+												$('#error01').text(val);
+											else if (key == "contact")
+												$('#error02').text(val);
+											else if (key == "email")
+												$('#error04').text(val);
+											else if (key == "password")
+												$('#error04').text(val);
+												});
+							} else if(response.successMessage) {
+								dologin($('#email').val(),$('#pass1').val());
+							}else{
+								console.log(response);
+							}
+						}
+					});
+		} catch (ex) {
+			alert("Exception: " + ex);
+		}
+	}
+}
 
 function postCalender() {
 	var flag = validatePostCalenderOnSubmit();
@@ -279,18 +349,18 @@ function postCalender() {
 				<div class="title">
 					<label><b>Course Title</b><font color="red">*</font></label><input type="text" id="ctitle" 
 						placeholder="Title" name="ctitle" maxlength="100"/>
-						<span id="errorctitle" class="errorm"><text>.</text></span>
+						<span id="errorctitle" class="errorm"></span>
 				</div>
 				
 				<div class="Ctype">
 					<label><b>Type Of Calendar</b><font color="red">*</font></label> <select id="Ctype" name="Ctype">
 					</select>
-					<span id="errorCtype" class="errorm"><text>.</text></span>
+					<span id="errorCtype" class="errorm"></span>
 				</div>
 				<div class="Industry">
 					<label><b>Industry Type</b><font color="red">*</font></label> <select id="Itype" name="Itype">
 					</select>
-					<span id="errorItype" class="errorm"><text>.</text></span>
+					<span id="errorItype" class="errorm"></span>
 				</div>
 				
 				<div class="price">
@@ -302,8 +372,8 @@ function postCalender() {
 				<div class="date">
 				<label><b>From Date</b><font color="red">*</font></label> <input type="text" id="Fdate" name="Fdate"/> 
 				<label><b>To Date</b><font color="red">*</font></label> <input type="text" id="Tdate" name="Tdate"/>
-				<span id="errorFdate" class="errorm"><text>.</text></span>
-				<span id="errorTdate" class="errorm"><text>.</text></span>
+				<span id="errorFdate" class="errorm"></span>
+				<span id="errorTdate" class="errorm"></span>
 				</div>
 								
 				<div class="Ctime">
@@ -316,11 +386,11 @@ function postCalender() {
 						<option value="am">AM</option>
 						<option value="am">PM</option>
 					</select>
-					<span id="errorChour" class="errorm"><text>.</text></span>
+					<span id="errorChour" class="errorm"></span>
 				</div>
 				<div class="caddress1">
 					<label><b>Address Line1</b></label><input type="text" name="Caddress1" id="Caddress1" height="30"/>
-					<span class="caddress1"><input type="checkbox" id="autoPopulateAddress">Auto Populate Address</span>
+					<span><input type="checkbox" id="autoPopulateAddress">Auto Populate Address</span>
 				</div>
 				
 				<div class="caddress2">
@@ -334,13 +404,13 @@ function postCalender() {
 				<div class="ccity">
 					<label><b>City</b><font color="red">*</font></label> <select id="place" name="place">
 					</select>
-					<span id="errorplace" class="errorm"><text>.</text></span>
+					<span id="errorplace" class="errorm"></span>
 				</div>
 				
 				<div class="cstate">
 					<label><b>State<b></b><font color="red">*</font></label> <select id="state" name="state">
 					</select>
-					<span id="errorstate" class="errorm"><text>.</text></span>
+					<span id="errorstate" class="errorm"></span>
 				</div>
 				
 				<div class="ccountry">
@@ -354,12 +424,12 @@ function postCalender() {
 				<div class="cquickview">
 					<label><b>Programme brief for Quick View Section</b><font color="red">*</font></label>
 					<input type="text" id="Qview" name="Qview"/>
-					<span id="errorQview" class="errorm"><text>.</text></span>
+					<span id="errorQview" class="errorm"></span>
 				</div>
 				
 				<div class="cprogover">
 					<label><b>Programme Overview</b><font color="red">*</font></label><input type="text" id="Pview" name="Pview"/>
-					<span id="errorPview" class="errorm"><text>.</text></span>
+					<span id="errorPview" class="errorm"></span>
 				</div>
 				
 				<div class="ctakeaway">
@@ -376,7 +446,7 @@ function postCalender() {
 				
 				<div class="ckeyword">
 					<label><b>Keywords</b><font color="red">*</font></label><input type="text" id="kword" name="kword"/>
-					<span id="errorkword" class="errorm"><text>.</text></span>
+					<span id="errorkword" class="errorm"></span>
 				</div>
 								
 				<div class="cfacdetails">
@@ -422,8 +492,8 @@ function postCalender() {
 				</div>
 				
 				<div class="submit">
-					<input type="button" id="PPC" value="Preview & Post Calendar"/>
-					<input type="button" id="SPL" value="Save & Post Later" onclick="postCalender()"/>
+					<input type="button" id="PPC" value="Preview & Post Calendar" onclick="previewC();"/>
+					<input type="button" id="SPL" value="Save & Post Later" onclick="postCalender();"/>
 				</div>
 				<label><font color="red">*</font>Indicates mandatory field</label>
 				<input type="hidden" name="userType" value="trainer">
