@@ -5,7 +5,8 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<%@page import="com.searchmytraining.dto.TrainerDTO,com.searchmytraining.entity.UserEntity"%>
+<%@page
+	import="com.searchmytraining.dto.TrainerDTO,com.searchmytraining.entity.UserEntity"%>
 <html lang=''>
 <head>
 
@@ -20,19 +21,21 @@ and open the template in the editor.
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/form.css"
 	type="text/css">
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/tabs.css"
 	type="text/css">
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/accordion.css"
 	type="text/css">
-	
-	
-	
-	
-	
-	 <link rel="stylesheet"href="<%=request.getContextPath()%>/resources/css/tooltip.css"type="text/css"> 
+
+
+
+
+
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/tooltip.css"
+	type="text/css">
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/jquery/jquery-1.10.2.js"></script>
 <script type="text/javascript"
@@ -48,7 +51,7 @@ and open the template in the editor.
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/AddDel.js"></script>
 
-	<script type="text/javascript"
+<script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/include.js"></script>
 
 <script>
@@ -87,6 +90,19 @@ function FPload() {
 	        });
 	
 }
+
+function MCalenderload() {
+	$("#home-content").load("./MPcalender", function(responseText, statusText, xhr){
+	                if(statusText == "success"){
+						console.log("manage calender loaded successfully");
+			        }
+	                if(statusText == "error"){
+	                	console.log("manage calender loading failed");   
+		            }
+	        });
+}
+
+
 
 
 function TCload() {
@@ -133,28 +149,26 @@ function TIload() {
 	<%@include file="../../layouts/Header-1.jsp"%>
 	<div class="container">
 		<div class=" container-form-wrapar">
-			<div class="space">
-				
-			</div>
+			<div class="space"></div>
 			<!--==================================tab code start========================================================-->
 
 			<div id="w" class="clearfix">
 				<ul id="sidemenu">
 					<li><a href="" onclick="FPload();" class="open"><strong>Profile</strong></a></li>
-                    <li><a href="" onclick="TCload();"><strong>Calender</strong></a></li>
-					<li><a href="" onclick="TIload();" ><strong>Insights</strong></a></li>
-
-					<li><a href=""onclick="TSload();"><strong>Settings</strong></a></li>
-
+					<li><a href="" onclick="TCload();"><strong>Post
+								Calendar</strong></a></li>
+					<li><a href="" onclick="MCalenderload();"><strong>Manage Calendar</strong></a>
+					<li><a href="" onclick="TIload();"><strong>Insights</strong></a></li>
+					<li><a href="" onclick="TSload();"><strong>Settings</strong></a></li>
 					<li><a href="#contact-content"><strong>Send SMS</strong></a></li>
 					<li><a href="#contact-content"><strong>Send Email</strong></a>
 					</li>
-					
+
 				</ul>
 				<div id="content">
 					<div id="home-content" class="contentblock">
 						<!--<h1>Update Profile</h1>-->
-						
+
 
 					</div>
 					<div id="contact-content" class="contentblock hidden">
@@ -163,15 +177,15 @@ function TIload() {
 
 					</div>
 					<!-- @end #home-content -->
-                      
-					
-				
-			</div>
-			<!-- @end #w -->
 
-			<!--===========================================accord drop form script===================================================================-->
 
-			<script>
+
+				</div>
+				<!-- @end #w -->
+
+				<!--===========================================accord drop form script===================================================================-->
+
+				<script>
 				$('#acord1').accordion({
 					collapsible : true
 				});
@@ -183,16 +197,16 @@ function TIload() {
 					collapsible : true
 				});
 			</script>
-			<!--===========================================accord drop form script end===================================================================-->
+				<!--===========================================accord drop form script end===================================================================-->
 
 
+			</div>
 		</div>
-	</div>
-	
+
 	</div>
 
-	
 
-<%@include file="../../layouts/footer.jsp"%>
+
+	<%@include file="../../layouts/footer.jsp"%>
 </body>
 </html>

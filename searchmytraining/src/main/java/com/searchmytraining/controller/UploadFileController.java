@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.searchmytraining.common.constant.SearchMyTrainingConstant;
 import com.searchmytraining.dto.TrainingProviderCalenderDTO;
-import com.searchmytraining.entity.TrainerEntity;
 import com.searchmytraining.entity.UserEntity;
 import com.searchmytraining.exception.SearchMyTrainingException;
 import com.searchmytraining.service.ICalenderService;
@@ -47,10 +45,11 @@ public class UploadFileController {
 
 	private final Logger log = Logger.getLogger(this.getClass().getName());
 
-	@RequestMapping(value = "/calender/postCalender", method = RequestMethod.POST, produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8)
+	@RequestMapping(value = "/calender/postCalender", method = RequestMethod.POST,
+			produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8,consumes ="application/x-www-form-urlencoded")
 	@ResponseBody
 	public RespnoseWrapper postCalenderRegistration(
-			@RequestBody @Valid TrainingProviderCalenderDTO trainingProviderCalenderDTO, BindingResult result,
+			@RequestBody /*@Valid*/ TrainingProviderCalenderDTO trainingProviderCalenderDTO, BindingResult result,
 			ModelMap model, HttpServletRequest request,
 			@RequestParam (required = false) CommonsMultipartFile fileUpload,
 			HttpServletResponse response, HttpSession session)

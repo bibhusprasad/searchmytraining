@@ -42,13 +42,13 @@ import com.searchmytraining.wrapper.RespnoseWrapper;
 
 @Controller
 public class ProfileController {
-	
+
 	@Autowired
 	private IInstituteServiceDetails instituteservice;
-	
+
 	@Autowired
 	private ITrainingProviderService trainerservice;
-	
+
 	@Autowired
 	private ILocationService iLocationService;
 	@Autowired
@@ -57,85 +57,81 @@ public class ProfileController {
 	private IStateService iStateService;
 	@Autowired
 	private IndustryService industryservice;
-	
+
 	@Autowired
 	private IUserService userService;
-	
+
 	@Autowired
 	private ILocationService locservice;
-	
+
 	@Autowired
 	private IEmploymentService emplservice;
-	
+
 	@Autowired
 	private IContactInfoService contactinfoservice;
-	
-	@RequestMapping(value="/updateinstitutedetails",method = RequestMethod.POST, produces={"application/json"}, consumes={"application/json"})
+
+	@RequestMapping(value = "/updateinstitutedetails", method = RequestMethod.POST, produces = { "application/json" }, consumes = { "application/json" })
 	@ResponseBody
-	public InstituteDTO updateInstituteDetails(@RequestBody InstituteDTO institutedto)
-	{
+	public InstituteDTO updateInstituteDetails(
+			@RequestBody InstituteDTO institutedto) {
 		System.out.println(institutedto.getUserid());
 		instituteservice.updateInstituteDetails(institutedto);
 		return null;
-		/*return institutedto;*/
+		/* return institutedto; */
 	}
-	
-	@RequestMapping(value="/updatecontactinfo",method = RequestMethod.POST, produces={"application/json"}, consumes={"application/json"})
+
+	@RequestMapping(value = "/updatecontactinfo", method = RequestMethod.POST, produces = { "application/json" }, consumes = { "application/json" })
 	@ResponseBody
-	public void updateContactInfo(@RequestBody @Valid ContactDTO contactdto)
-	{
+	public void updateContactInfo(@RequestBody @Valid ContactDTO contactdto) {
 		System.out.println("in updateContactInfo...");
 		System.out.println(contactdto);
 		contactinfoservice.updateContactInfoDet(contactdto);
 	}
-	
-	@RequestMapping(value="/updatelocinfo",method = RequestMethod.POST, produces={"application/json"}, consumes={"application/json"})
+
+	@RequestMapping(value = "/updatelocinfo", method = RequestMethod.POST, produces = { "application/json" }, consumes = { "application/json" })
 	@ResponseBody
-	public void updateLocInfo(@RequestBody LocationDTO instlocdto)
-	{
+	public void updateLocInfo(@RequestBody LocationDTO instlocdto) {
 		System.out.println("in updateLocInfo...");
 		locservice.updateLocationInfo(instlocdto);
 	}
-	
-	@RequestMapping(value="/updateassociationinfo",method = RequestMethod.POST, produces={"application/json"}, consumes={"application/json"})
+
+	@RequestMapping(value = "/updateassociationinfo", method = RequestMethod.POST, produces = { "application/json" }, consumes = { "application/json" })
 	@ResponseBody
-	public void updateProfessionalAssociation(@RequestBody ProfessionalAssociationDTO associationdto)
-	{
+	public void updateProfessionalAssociation(
+			@RequestBody ProfessionalAssociationDTO associationdto) {
 		instituteservice.updateProfessionalAssociations(associationdto);
 	}
-	
-	@RequestMapping(value="/updateclientdetails",method = RequestMethod.POST, produces={"application/json"}, consumes={"application/json"})
+
+	@RequestMapping(value = "/updateclientdetails", method = RequestMethod.POST, produces = { "application/json" }, consumes = { "application/json" })
 	@ResponseBody
-	public void updateClientDetails(@RequestBody ClientDetailsDTO clientdetailsdto)
-	{
-		instituteservice.updateClientDetails(clientdetailsdto);	
+	public void updateClientDetails(
+			@RequestBody ClientDetailsDTO clientdetailsdto) {
+		instituteservice.updateClientDetails(clientdetailsdto);
 	}
-	
-	@RequestMapping(value="/updateFreedetails",method = RequestMethod.POST, produces={"application/json"}, consumes={"application/json"})
-	/*@ResponseBody*/
-	public void updateFreeDetails(@RequestBody  Object obj)
-	{
-		System.out.println("In UpdateFreeDetails "+obj.getClass());
-		/*instituteservice.updateClientDetails(clientdetailsdto);	*/
+
+	@RequestMapping(value = "/updateFreedetails", method = RequestMethod.POST, produces = { "application/json" }, consumes = { "application/json" })
+	/* @ResponseBody */
+	public void updateFreeDetails(@RequestBody Object obj) {
+		System.out.println("In UpdateFreeDetails " + obj.getClass());
+		/* instituteservice.updateClientDetails(clientdetailsdto); */
 	}
 
 	@RequestMapping("/TPcalender")
-	public String TPcalender(ModelMap model,HttpSession session)
-	{
+	public String TPcalender(ModelMap model, HttpSession session) {
 		model.addAttribute("industries",
 				new JSONArray(industryservice.getIndustries()));
-		model.addAttribute("cities",
-				new JSONArray(iCityService.getAllCities()));
+		model.addAttribute("cities", new JSONArray(iCityService.getAllCities()));
 		model.addAttribute("states",
 				new JSONArray(iStateService.getAllStates()));
-		List<LocationEntity> address=new ArrayList<LocationEntity>();
-		address.add(iLocationService.findLocDet((Integer) session.getAttribute("userid")));
-		model.addAttribute("address",new JSONArray(address));
+		List<LocationEntity> address = new ArrayList<LocationEntity>();
+		address.add(iLocationService.findLocDet((Integer) session
+				.getAttribute("userid")));
+		model.addAttribute("address", new JSONArray(address));
 		List<String> calType = new ArrayList<String>();
-		UserEntity user=null;
-		Integer userId=(Integer) session.getAttribute("userid");
-		user=userService.getUser(userId);
-		if(null != user){
+		UserEntity user = null;
+		Integer userId = (Integer) session.getAttribute("userid");
+		user = userService.getUser(userId);
+		if (null != user) {
 			session.setAttribute("userid", user.getUserId());
 			TrainerEntity trainer = trainerservice.getTrainerByUserid(user
 					.getUserId().longValue());
@@ -147,32 +143,50 @@ public class ProfileController {
 			calType.add(cal.getVal());
 		}
 		model.addAttribute("calenderTypes", new JSONArray(calType));
-		//return "pages/TrainingProvider/TPcalender";
+		// return "pages/TrainingProvider/TPcalender";
 		return "pages/TrainingProvider/PostCalender";
 	}
-	
-	@RequestMapping(value="/updateempdet",method = RequestMethod.POST,produces={"application/json"}, consumes={"application/json"})
+
+	@RequestMapping(value = "/updateempdet", method = RequestMethod.POST, produces = { "application/json" }, consumes = { "application/json" })
 	@ResponseBody
-	public RespnoseWrapper updateEmploymentdet(@RequestBody @Valid EmploymentDTO empldto,BindingResult result,ModelMap model)
-	{
+	public RespnoseWrapper updateEmploymentdet(
+			@RequestBody @Valid EmploymentDTO empldto, BindingResult result,
+			ModelMap model) {
 		RespnoseWrapper responsewrapper = new RespnoseWrapper();
-		if(result.hasErrors())
-		{
+		if (result.hasErrors()) {
 			responsewrapper.setValidationError(true);
-			List<FieldError> errors=result.getFieldErrors();
-			Map<String,String> errorMsg = new HashMap<String, String>();
-			for(FieldError error: errors)
-			{
+			List<FieldError> errors = result.getFieldErrors();
+			Map<String, String> errorMsg = new HashMap<String, String>();
+			for (FieldError error : errors) {
 				errorMsg.put(error.getField(), error.getDefaultMessage());
 			}
 			responsewrapper.setErrorMsg(errorMsg);
 			return responsewrapper;
-		}
-		else
-		{
+		} else {
 			responsewrapper.setValidationError(false);
 			emplservice.updateEmpldet(empldto);
 			return responsewrapper;
 		}
+	}
+
+	@RequestMapping("/MPcalender")
+	public String manageCalender(ModelMap model, HttpSession session) {
+		List<String> calType = new ArrayList<String>();
+		for (CalenderType cal : CalenderType.values()) {
+			calType.add(cal.getVal());
+		}
+		model.addAttribute("calenderTypes", new JSONArray(calType));
+		UserEntity user = null;
+		Integer userId = (Integer) session.getAttribute("userid");
+		user = userService.getUser(userId);
+		if (null != user) {
+			session.setAttribute("userid", user.getUserId());
+			TrainerEntity trainer = trainerservice.getTrainerByUserid(user
+					.getUserId().longValue());
+			if (trainer != null) {
+				session.setAttribute("trainer", trainer);
+			}
+		}
+		return "pages/TrainingProvider/manageCalender";
 	}
 }
