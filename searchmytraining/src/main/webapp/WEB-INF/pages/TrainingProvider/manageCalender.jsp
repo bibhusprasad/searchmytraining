@@ -9,7 +9,7 @@
 	src="<%=request.getContextPath()%>/resources/js/Validations/calender_validation.js"></script>
 
 <script type="text/javascript">
-$('#Sdate').datepicker();
+	$('#Sdate').datepicker();
 
 	$('#acord2').accordion({
 		collapsible : true
@@ -54,7 +54,7 @@ $('#Sdate').datepicker();
 					});
 </script>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function() {
 		loadCalenderType();
 		$('#Sdate').datepicker();
@@ -65,10 +65,10 @@ $('#Sdate').datepicker();
 		$('#Calendertype').find('option').remove().end();
 		$('#Calendertype').attr('enabled', 'true');
 		$('#Calendertype').append(
-				$("<option value='0'></option>").text(
-						"--Select--"));
-		jQuery.each(jsoncalenderTypes,function(index, item) {
-			$('#Calendertype').append($("<option></option>").text(item).val(item));
+				$("<option value='0'></option>").text("--Select--"));
+		jQuery.each(jsoncalenderTypes, function(index, item) {
+			$('#Calendertype').append(
+					$("<option></option>").text(item).val(item));
 		});
 	}
 	function manageCalender() {
@@ -131,6 +131,35 @@ $('#Sdate').datepicker();
 				<input type="hidden" name="userType" value="trainer">
 			</form>
 		</div>
+		<h3 class="acord_head">Manage Calendar</h3>
+		<div class="acord_cont">
+			<div id="tabcontent">
+				<div id="home-content" class="contentblock">
+					<div class="Calender_wrapar">
+						<div id="calender_show" class="tablesorter">
+							<div>
+								<span style="padding: 2px;">Title</span> <span>Calendar
+									Type</span> <span>Start Date</span> <span>End Date</span> <span>Posted
+									Date</span> <span>Status</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="template" style="display: none;">
+			<div>
+				<span id="CTitle"></span> <span id="Calendar_Type"></span> <span
+					id="Start_Date"></span> <span id="End_Date"></span> <span
+					id="Posted_Date"></span> <span id="Status"></span>
+			</div>
+
+		</div>
 	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//OnReady();
+		});
+	</script>
 </body>
 </html>
