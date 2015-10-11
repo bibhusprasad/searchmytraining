@@ -13,6 +13,7 @@ public class RespnoseWrapper {
 	private Map<String, String> errorMsg;
 	private boolean validationError;
 	private boolean successMessage;
+	private boolean previewCal;
 
 	public Long getResponseWrapperId() {
 		return responseWrapperId;
@@ -45,4 +46,13 @@ public class RespnoseWrapper {
 	public void setSuccessMessage(boolean successMessage) {
 		this.successMessage = successMessage;
 	}
+
+	public boolean isPreviewCal() {
+		return previewCal;
+	}
+
+	public void setPreviewCal(boolean previewCal) {
+		this.previewCal = previewCal;
+	}
+	
 }

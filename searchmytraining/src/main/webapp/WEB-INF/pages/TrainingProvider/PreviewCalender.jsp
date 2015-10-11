@@ -4,10 +4,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/datepicker/cdate.js"></script>
+<script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/Validations/calender_validation.js"></script>
 
 <script type="text/javascript">
-$('#Sdate').datepicker();
+	$('#Sdate').datepicker();
 
 	$('#acord2').accordion({
 		collapsible : true
@@ -52,18 +54,19 @@ $('#Sdate').datepicker();
 					});
 </script>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function() {
-		loadPCDTO();
+		loadPreviewCalenderType();
 	});
-	
-	function loadPCDTO() {
-		var trainingProviderCalenders = '${trainingProviderCalenders}';
-		console.log(pcalender);
+	function loadPreviewCalenderType() {
+		var calenderTypes = '${calenderTypes}';
+		var jsoncalenderTypes = $.parseJSON(calenderTypes);
+		console.log(jsoncalenderTypes);
 	}
 </script>
 </head>
 <body>
-	Alok kumar dash(bibhu gandimara)
+	populate preview calender as table 
+	quick view and details view.
 </body>
 </html>

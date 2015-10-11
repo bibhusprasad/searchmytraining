@@ -26,6 +26,7 @@ import com.searchmytraining.dto.EmploymentDTO;
 import com.searchmytraining.dto.InstituteDTO;
 import com.searchmytraining.dto.LocationDTO;
 import com.searchmytraining.dto.ProfessionalAssociationDTO;
+import com.searchmytraining.dto.TrainingProviderCalenderDTO;
 import com.searchmytraining.entity.LocationEntity;
 import com.searchmytraining.entity.TrainerEntity;
 import com.searchmytraining.entity.UserEntity;
@@ -188,5 +189,25 @@ public class ProfileController {
 			}
 		}
 		return "pages/TrainingProvider/manageCalender";
+	}
+	
+	@RequestMapping("/Pcalender")
+	public String previewCalender(ModelMap model, HttpSession session) {
+		TrainingProviderCalenderDTO aCalenderDTO=(TrainingProviderCalenderDTO) session.getAttribute("trainingProviderCalenders");
+		List<TrainingProviderCalenderDTO> caList=new ArrayList<TrainingProviderCalenderDTO>();
+		caList.add(aCalenderDTO);
+		model.addAttribute("calenderTypes", new JSONArray(caList));
+		UserEntity user = null;
+		Integer userId = (Integer) session.getAttribute("userid");
+		user = userService.getUser(userId);
+		if (null != user) {
+			session.setAttribute("userid", user.getUserId());
+			TrainerEntity trainer = trainerservice.getTrainerByUserid(user
+					.getUserId().longValue());
+			if (trainer != null) {
+				session.setAttribute("trainer", trainer);
+			}
+		}
+		return "pages/TrainingProvider/PreviewCalender";
 	}
 }

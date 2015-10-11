@@ -189,12 +189,12 @@ function GetDateFormat(controlName) {
 }
 
 function previewC() {
-	//var flag = validatePostCalenderOnSubmit();
+	var flag = validatePostCalenderOnSubmit();
 	var hour = $('#Chour').val();
 	var min = $('#Cmin').val();
 	var ampm = $('#Campm').val();
 	var allTime = hour+":"+min+":"+ampm;
-	if (true) {
+	if (flag) {
 		try {
 			$.ajax({
 						url : './calender/previewCalender',
@@ -248,7 +248,10 @@ function previewC() {
 												$('#error04').text(val);
 												});
 							} else if(response.successMessage) {
-								dologin($('#email').val(),$('#pass1').val());
+								if(response.previewCal){
+									alert("success");
+									PreviewCal();
+								}
 							}else{
 								console.log(response);
 							}
@@ -320,7 +323,7 @@ function postCalender() {
 												$('#error04').text(val);
 												});
 							} else if(response.successMessage) {
-								dologin($('#email').val(),$('#pass1').val());
+								
 							}else{
 								console.log(response);
 							}
@@ -330,6 +333,16 @@ function postCalender() {
 			alert("Exception: " + ex);
 		}
 	}
+}
+function PreviewCal() {
+	$("#home-content").load("./Pcalender", function(responseText, statusText, xhr){
+	                if(statusText == "success"){
+						console.log("manage calender loaded successfully");
+			        }
+	                if(statusText == "error"){
+	                	console.log("manage calender loading failed");   
+		            }
+	        });
 }
 
 
@@ -454,7 +467,7 @@ function postCalender() {
 				</div>
 				
 				<div class="chowtoregi">
-					<label><b>How to Register</b></label><input type="text" id="helpregister" name="helpregister" onkeydown="isAlphaNumeric()"/>
+					<label><b>How to Register</b></label><input type="text" id="helpregister" name="helpregister"/>
 				</div>
 				
 				<div class="ctrainprov">
