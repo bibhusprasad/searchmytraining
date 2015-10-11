@@ -27,7 +27,9 @@ import com.searchmytraining.dto.InstituteDTO;
 import com.searchmytraining.dto.LocationDTO;
 import com.searchmytraining.dto.ProfessionalAssociationDTO;
 import com.searchmytraining.dto.TrainingProviderCalenderDTO;
+import com.searchmytraining.entity.IndustryEntity;
 import com.searchmytraining.entity.LocationEntity;
+import com.searchmytraining.entity.StateEntity;
 import com.searchmytraining.entity.TrainerEntity;
 import com.searchmytraining.entity.UserEntity;
 import com.searchmytraining.service.ICityService;
@@ -196,6 +198,14 @@ public class ProfileController {
 		TrainingProviderCalenderDTO aCalenderDTO=(TrainingProviderCalenderDTO) session.getAttribute("trainingProviderCalenders");
 		List<TrainingProviderCalenderDTO> caList=new ArrayList<TrainingProviderCalenderDTO>();
 		caList.add(aCalenderDTO);
+		
+		IndustryEntity industryEntity = industryservice.getIndustryById(aCalenderDTO.getIndustryId());
+		session.setAttribute("industryType", industryEntity.getIndstrName());
+		
+		StateEntity stateEntity = iStateService.getStateEntityById(aCalenderDTO.getState());
+		session.setAttribute("stateName", stateEntity.getStateName());
+		
+		
 		model.addAttribute("calenderTypes", new JSONArray(caList));
 		UserEntity user = null;
 		Integer userId = (Integer) session.getAttribute("userid");
