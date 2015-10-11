@@ -13,7 +13,7 @@ import com.searchmytraining.service.SearchService;
 public class SearchServiceImpl implements SearchService {
 
 	@Autowired
-	public SerachInstituteDAO searchdao;
+	private SerachInstituteDAO searchdao;
 	
 	@Override
 	public List<InstituteSearchEntity> searchInstitues(String keyword, String city) {

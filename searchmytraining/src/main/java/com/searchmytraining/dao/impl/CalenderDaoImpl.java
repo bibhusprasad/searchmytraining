@@ -43,13 +43,13 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 	private EntityManager entityManager;
 
 	@Autowired
-	public StandardAnalyzer analyzer;
+	private StandardAnalyzer analyzer;
 
 	@Autowired
-	public QueryParser queryParser;
+	private QueryParser queryParser;
 
 	@Autowired
-	public ICityService cityservice;
+	private ICityService cityservice;
 
 	@Override
 	@Transactional

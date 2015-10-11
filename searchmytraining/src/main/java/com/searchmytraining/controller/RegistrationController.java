@@ -54,36 +54,36 @@ public class RegistrationController {
 	private RespnoseWrapper respnoseWrapper;
 	
 	@Autowired
-	public ITraineeService iTraineeService;
+	private ITraineeService iTraineeService;
 
 	private final Logger log = Logger.getLogger(this.getClass().getName());
 
 	@Autowired
-	public IUserService userservice;
+	private IUserService userservice;
 
 	@Autowired
-	public IIndustrySerivice industryservice;
+	private IIndustrySerivice industryservice;
 
 	@Autowired
-	public IIndustryCategoryService industrycategoryser;
+	private IIndustryCategoryService industrycategoryser;
 
 	@Autowired
-	public IIndustrySubCategoryService indsubcatindservice;
+	private IIndustrySubCategoryService indsubcatindservice;
 
 	@Autowired
-	public IEmploymentService employmentservice;
+	private IEmploymentService employmentservice;
 
 	@Autowired
-	public ILocationService locservice;
+	private ILocationService locservice;
 
 	@Autowired
-	public IStateService stateservice;
+	private IStateService stateservice;
 	
 	@Autowired
-	public ICityService cityservice;
+	private ICityService cityservice;
 	
 	@Autowired
-	public ICountryService countryservice;
+	private ICountryService countryservice;
 
 	@RequestMapping(value = "/registration/trainee" ,method = RequestMethod.POST, produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8)
 	@ResponseBody

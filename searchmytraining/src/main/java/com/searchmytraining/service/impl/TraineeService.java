@@ -30,22 +30,17 @@ public class TraineeService implements ITraineeService {
 	private final Logger log = Logger.getLogger(this.getClass().getName());
 
 	@Autowired
-	public StatusDAO statusDAO;
-	
+	private StatusDAO statusDAO;
 	@Autowired
-	public TraineeDAO traineeDAO;
-	
+	private TraineeDAO traineeDAO;
 	@Autowired
-	public UserDAO userDAO;
-	
+	private UserDAO userDAO;
 	@Autowired
-	public RoleDAO roleDAO;
-	
+	private RoleDAO roleDAO;
 	@Autowired
-	public DozerBeanMapper mapper;
-	
+	private DozerBeanMapper mapper;
 	@Autowired
-	public BCryptPasswordEncoder encoder;
+	private BCryptPasswordEncoder encoder;
 	
 	@Override
 	@Transactional

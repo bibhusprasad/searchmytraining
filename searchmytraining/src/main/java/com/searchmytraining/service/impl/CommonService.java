@@ -11,7 +11,7 @@ import com.searchmytraining.service.ICommonService;
 public class CommonService implements ICommonService {
 
 	@Autowired
-	public RoleDAO role;
+	private RoleDAO role;
 	
 	@Override
 	public RoleEntity getRoleByUserId(Long userId) {

@@ -13,7 +13,7 @@ import com.searchmytraining.service.ICityService;
 public class CityService implements ICityService {
 
 	@Autowired
-	public CityDAO citydao;
+	private CityDAO citydao;
 	
 	@Override
 	public List<CityEntity> getCities(Integer stateid) {

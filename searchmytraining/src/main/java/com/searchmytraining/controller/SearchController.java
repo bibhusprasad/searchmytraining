@@ -26,13 +26,13 @@ import com.searchmytraining.service.SearchService;
 public class SearchController {
 	
 	@Autowired
-	public WebApplicationContext context;
+	private WebApplicationContext context;
 	
 	@Autowired
-	public ICalenderService calendarservice;
+	private ICalenderService calendarservice;
 	
 	@Autowired
-	public SearchService searchservice;
+	private SearchService searchservice;
 	
 	
 	@RequestMapping(value="/dosearch",method = RequestMethod.GET)

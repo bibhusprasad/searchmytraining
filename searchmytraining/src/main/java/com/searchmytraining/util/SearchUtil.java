@@ -23,7 +23,7 @@ import com.searchmytraining.entity.CalenderEntity;
 public class SearchUtil {
 	
 	@Autowired
-	public WebApplicationContext context;
+	private WebApplicationContext context;
 	
 	public static String basePath;
 	public static String basePath1;

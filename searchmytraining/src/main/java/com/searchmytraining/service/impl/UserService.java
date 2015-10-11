@@ -13,10 +13,9 @@ import com.searchmytraining.service.IUserService;
 public class UserService implements IUserService {
 
 	@Autowired
-	public UserDAO userdao;
-	
+	private UserDAO userdao;
 	@Autowired
-	public RoleDAO roleDAO;
+	private RoleDAO roleDAO;
 	
 	
 	@Override

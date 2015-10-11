@@ -40,33 +40,33 @@ import com.searchmytraining.service.IFreelancerService;
 public class FreelancerService implements IFreelancerService
 {
 	@Autowired
-	public WebApplicationContext context;
+	private WebApplicationContext context;
 	@Autowired
-	public FreelancerDAO freelancerdao;
+	private FreelancerDAO freelancerdao;
 	@Autowired
-	public DozerBeanMapper mapper;
+	private DozerBeanMapper mapper;
 	@Autowired
-	public RoleDAO roledao;
+	private RoleDAO roledao;
 	@Autowired
-	public StatusDAO statusdao;
+	private StatusDAO statusdao;
 	@Autowired
-	public UserDAO userdao;
+	private UserDAO userdao;
 	@Autowired
-	public ICityService cityservice;
+	private ICityService cityservice;
 	@Autowired
-	public BCryptPasswordEncoder encoder;
+	private BCryptPasswordEncoder encoder;
 	@Autowired
-	public IFreeeLCertificationAwrdDAO certidao;
+	private IFreeeLCertificationAwrdDAO certidao;
 	@Autowired
-	public IFLProfileDAO flprofiledao;
+	private IFLProfileDAO flprofiledao;
 	@Autowired
-	public IPhoneDAO phonedao;
+	private IPhoneDAO phonedao;
 	@Autowired
-	public IPhoneTypeDAO phonetypedao;
+	private IPhoneTypeDAO phonetypedao;
 	@Autowired
-	public IEducationDegreeDAO edudegreedao;
+	private IEducationDegreeDAO edudegreedao;
 	@Autowired
-	public IEducationDAO edudao;
+	private IEducationDAO edudao;
 	
 	@Override
 	@Transactional

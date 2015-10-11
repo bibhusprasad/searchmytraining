@@ -15,7 +15,7 @@ import com.searchmytraining.service.IAdminChartService;
 public class AdminChartService implements IAdminChartService {
 	
 	@Autowired
-	public WebApplicationContext context;
+	private WebApplicationContext context;
 	
 	@Override
 	public List<ChartEntity> tpfRegistered() {

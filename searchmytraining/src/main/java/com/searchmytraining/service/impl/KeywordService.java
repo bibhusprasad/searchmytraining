@@ -10,7 +10,7 @@ import com.searchmytraining.service.IKeywordService;
 @Service
 public class KeywordService implements IKeywordService {
 	@Autowired
-	KeywordDAO keyDao;
+	private KeywordDAO keyDao;
 
 	@Override
 	@Transactional

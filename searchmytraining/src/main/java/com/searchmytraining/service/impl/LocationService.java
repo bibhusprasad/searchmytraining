@@ -17,13 +17,13 @@ import com.searchmytraining.service.ILocationService;
 public class LocationService implements ILocationService {
 
 	@Autowired
-	public ILocationInfoDAO locationdao;
+	private ILocationInfoDAO locationdao;
 	@Autowired
-	public DozerBeanMapper mapper;
+	private DozerBeanMapper mapper;
 	@Autowired
-	public UserDAO userdao;	
+	private UserDAO userdao;	
 	@Autowired
-	public CityDAO citydao;
+	private CityDAO citydao;
 	
 	@Override
 	@Transactional

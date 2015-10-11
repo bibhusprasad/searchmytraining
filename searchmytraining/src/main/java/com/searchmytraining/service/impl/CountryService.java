@@ -13,7 +13,7 @@ import com.searchmytraining.service.ICountryService;
 public class CountryService implements ICountryService {
 
 	@Autowired
-	public CountryDAO countrydao;
+	private CountryDAO countrydao;
 	
 	@Override
 	public CountryEntity getCountry(Long id) {

@@ -13,7 +13,7 @@ import com.searchmytraining.service.IIndustrySubCategoryService;
 public class IndustrySubCategoryService implements IIndustrySubCategoryService {
 
 	@Autowired
-	public IIndustrySubCategoryDAO subcatdao;
+	private IIndustrySubCategoryDAO subcatdao;
 	
 	@Override
 	public List<IndustrySubCategoryEntity> getIndustrySubCategories(Integer subid) {

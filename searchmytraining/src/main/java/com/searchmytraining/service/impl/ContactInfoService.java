@@ -24,17 +24,17 @@ import com.searchmytraining.service.IUserService;
 public class ContactInfoService implements IContactInfoService {
 
 	@Autowired
-	public WebApplicationContext context;
+	private WebApplicationContext context;
 	@Autowired
-	public DozerBeanMapper mapper;
+	private DozerBeanMapper mapper;
 	@Autowired
-	public IUserService userservice;
+	private IUserService userservice;
 	@Autowired
-	public IPhoneTypeDAO phonetypedao;
+	private IPhoneTypeDAO phonetypedao;
 	@Autowired
-	public IPhoneDAO phonedao;
+	private IPhoneDAO phonedao;
 	@Autowired
-	public IContactInfoDAO contactdao;
+	private IContactInfoDAO contactdao;
 	@Override
 	@Transactional
 	public void updateContactInfoDet(ContactDTO contactdto) {

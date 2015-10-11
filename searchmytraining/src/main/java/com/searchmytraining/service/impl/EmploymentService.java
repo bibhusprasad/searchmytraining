@@ -18,15 +18,16 @@ import com.searchmytraining.service.IUserService;
 public class EmploymentService implements IEmploymentService {
 
 	@Autowired
-	public IEmploymentDAO empldao;
+	private IEmploymentDAO empldao;
 	
 	@Autowired
-	public DozerBeanMapper mapper;
+	private DozerBeanMapper mapper;
 	
 	@Autowired
-	public IUserService userservice;
+	private IUserService userservice;
 	
-	@Autowired IIndustrySubCategoryService indsubservcie;
+	@Autowired 
+	private IIndustrySubCategoryService indsubservcie;
 	
 	@Override
 	@Transactional

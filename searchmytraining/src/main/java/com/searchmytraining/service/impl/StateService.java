@@ -13,7 +13,7 @@ import com.searchmytraining.service.IStateService;
 public class StateService implements IStateService {
 
 	@Autowired
-	public StateDAO statedao;
+	private StateDAO statedao;
 	
 	@Override
 	public List<StateEntity> getStates(Integer countryid) {

@@ -18,7 +18,7 @@ import com.searchmytraining.service.ICityService;
 public class MyController {
 	
 	@Autowired
-	public ICityService cityservice;
+	private ICityService cityservice;
 	
 
 	@RequestMapping("/")

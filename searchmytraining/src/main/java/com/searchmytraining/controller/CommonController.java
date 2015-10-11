@@ -38,21 +38,21 @@ import com.searchmytraining.service.IStateService;
 public class CommonController {
 	
 	@Autowired
-	public WebApplicationContext context;
+	private WebApplicationContext context;
 	@Autowired
-	public IIndustryCategoryService industrycatservice;
+	private IIndustryCategoryService industrycatservice;
 	@Autowired
-	public IIndustrySubCategoryService industrysubcatservice;
+	private IIndustrySubCategoryService industrysubcatservice;
 	@Autowired
-	public IStateService state;
+	private IStateService state;
 	@Autowired
-	public ICityService city;
+	private ICityService city;
 	@Autowired
-	public ICommonService commonservice;
+	private ICommonService commonservice;
 	@Autowired
-	public IInstituteServiceDetails instituteservice;
+	private IInstituteServiceDetails instituteservice;
 	@Autowired
-	public IFreelancerService freelancerservice;
+	private IFreelancerService freelancerservice;
 	
 	@RequestMapping("/getIndustryCategory")
 	@ResponseBody

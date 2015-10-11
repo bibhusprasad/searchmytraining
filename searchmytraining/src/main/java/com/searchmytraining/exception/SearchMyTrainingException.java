@@ -5,15 +5,10 @@ import java.io.Serializable;
 public class SearchMyTrainingException extends RuntimeException {
 
 	private static final long serialVersionUID = -7932257545586762153L;
-
 	private ErrorCode errorCode;
-
 	private ResponseCode responseCode;
-
 	private Serializable object;
-	
 	private String message;
-
 	public SearchMyTrainingException(ErrorCode errorCode) {
 		super();
 		this.errorCode = errorCode;

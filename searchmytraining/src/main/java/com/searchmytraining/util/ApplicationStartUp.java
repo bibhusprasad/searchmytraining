@@ -43,13 +43,11 @@ public class ApplicationStartUp implements ServletContextListener{
 
 	
 	@Autowired
-	public ICalenderService calenderservice;
-	
+	private ICalenderService calenderservice;
 	@Autowired
-	public SearchService searchservice;
-	
+	private SearchService searchservice;
 	@Autowired
-	public WebApplicationContext context;
+	private WebApplicationContext context;
 	
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {

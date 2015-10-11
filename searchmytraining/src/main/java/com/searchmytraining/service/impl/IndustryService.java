@@ -13,7 +13,7 @@ import com.searchmytraining.service.IIndustrySerivice;
 public class IndustryService implements IIndustrySerivice {
 
 	@Autowired
-	public IIndustryDAO industrydao;
+	private IIndustryDAO industrydao;
 	
 	
 	@Override

@@ -32,13 +32,13 @@ import com.searchmytraining.service.IIndustrySerivice;
 public class AdminController 
 {
 	@Autowired
-	public ICountryService countryservice;
+	private ICountryService countryservice;
 	@Autowired
-	public IIndustrySerivice industryservice;
+	private IIndustrySerivice industryservice;
 	@Autowired
-	public IAdminChartService chartservice;
+	private IAdminChartService chartservice;
 	@Autowired
-	public ICalenderService calservice;
+	private ICalenderService calservice;
 	
 	@RequestMapping("/adminLogin")
 	public String adminlogin()

@@ -24,17 +24,17 @@ import com.searchmytraining.service.IUserService;
 public class RequestController {
 
 	@Autowired
-	public WebApplicationContext context;
+	private WebApplicationContext context;
 	@Autowired
-	public IGroupTrainingRequestService groupTrainingService;
+	private IGroupTrainingRequestService groupTrainingService;
 	@Autowired
-	public ITrainingEnquiryService trainingService;
+	private ITrainingEnquiryService trainingService;
 	@Autowired
-	public EmailNotificationService emailNotificationService;
+	private EmailNotificationService emailNotificationService;
 	@Autowired
-	public ITrainingEnquiryService trainingenquiryservice;
+	private ITrainingEnquiryService trainingenquiryservice;
 	@Autowired
-	public IUserService userserice;
+	private IUserService userserice;
 	
 	
 	@RequestMapping(value = "/requesttraining", method = RequestMethod.POST, produces="application/json")	

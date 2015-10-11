@@ -45,21 +45,21 @@ import com.searchmytraining.wrapper.RespnoseWrapper;
 public class FreeLancerController {
 	
 	@Autowired
-	public WebApplicationContext context;
+	private WebApplicationContext context;
 	@Autowired
-	public IFreelancerService freelancerservice;
+	private IFreelancerService freelancerservice;
 	@Autowired
-	public IUserService userservice;
+	private IUserService userservice;
 	@Autowired
-	public ILocationService locservice;
+	private ILocationService locservice;
 	@Autowired
-	public IStateService stateservice;
+	private IStateService stateservice;
 	@Autowired
-	public ICityService cityservice;
+	private ICityService cityservice;
 	@Autowired
-	public ICountryService countryservice;
+	private ICountryService countryservice;
 	@Autowired
-	public IContactInfoService contactservice;
+	private IContactInfoService contactservice;
 	
 	@RequestMapping(value = "/flregister", method = RequestMethod.POST, produces = { "application/json" }, consumes = { "application/json" })
 	@ResponseBody

@@ -16,11 +16,11 @@ import com.searchmytraining.service.ITrainingEnquiryService;
 public class TrainingEnquiryService implements ITrainingEnquiryService {
 
 	@Autowired
-	public TrainingEnquiryDao trainingDao;
+	private TrainingEnquiryDao trainingDao;
 	@Autowired
-	public DozerBeanMapper mapper;
+	private DozerBeanMapper mapper;
 	@Autowired
-	public ICityService cityservice;
+	private ICityService cityservice;
 	
 	@Transactional
 	public void saveTrainingEnquiry(TrainingEnquiryDTO trainingenquirydto) {

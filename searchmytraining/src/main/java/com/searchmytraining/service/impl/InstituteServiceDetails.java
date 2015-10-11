@@ -41,31 +41,31 @@ import com.searchmytraining.service.IInstituteServiceDetails;
 public class InstituteServiceDetails implements IInstituteServiceDetails {
 
 	@Autowired
-	public WebApplicationContext context;
+	private WebApplicationContext context;
 	@Autowired
-	public InstituteDAO institutedao;
+	private InstituteDAO institutedao;
 	@Autowired
-	public IContactInfoDAO contactinfodao;
+	private IContactInfoDAO contactinfodao;
 	@Autowired
-	public UserDAO userdao;
+	private UserDAO userdao;
 	@Autowired
-	public DozerBeanMapper mapper;
+	private DozerBeanMapper mapper;
 	@Autowired
-	public IPhoneTypeDAO phonetypedao;
+	private IPhoneTypeDAO phonetypedao;
 	@Autowired
-	public IPhoneDAO phonedao;
+	private IPhoneDAO phonedao;
 	@Autowired
-	public CityDAO citydao;
+	private CityDAO citydao;
 	@Autowired
-	public ILocationInfoDAO locationdao;
+	private ILocationInfoDAO locationdao;
 	@Autowired
-	public IProfessionalAssociationDAO assocdao;
+	private IProfessionalAssociationDAO assocdao;
 	@Autowired
-	public IClientDAO clientdao;
+	private IClientDAO clientdao;
 	@Autowired
-	public TrainingCategoryDAO trngcatdao;
+	private TrainingCategoryDAO trngcatdao;
 	@Autowired
-	public IIndustrySubCategoryDAO subcatdao;
+	private IIndustrySubCategoryDAO subcatdao;
 	
 	
 	@Override

@@ -20,7 +20,7 @@ public class SMTAuthenticationProvider extends DaoAuthenticationProvider {
 
 	@Autowired
 	@Qualifier("userAttemptsDao")
-	IUserAttemptsDAO userAttemptsDao;
+	private IUserAttemptsDAO userAttemptsDao;
 
 	public IUserAttemptsDAO getUserAttemptsDao() {
 		return userAttemptsDao;

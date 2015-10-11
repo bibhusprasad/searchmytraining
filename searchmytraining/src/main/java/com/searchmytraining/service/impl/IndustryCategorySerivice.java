@@ -13,7 +13,7 @@ import com.searchmytraining.service.IIndustryCategoryService;
 public class IndustryCategorySerivice implements IIndustryCategoryService {
 
 	@Autowired
-	public IIndustryCategoryDAO industrycatdao;
+	private IIndustryCategoryDAO industrycatdao;
 	
 	@Override
 	public List<IndustryCategoryEntity> getIndustryCategories() {
