@@ -1,5 +1,6 @@
 package com.searchmytraining.controller;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.searchmytraining.common.constant.SearchMyTrainingConstant;
+import com.searchmytraining.dto.CalenderDetailsDTO;
 import com.searchmytraining.dto.TrainingProviderCalenderDTO;
+import com.searchmytraining.entity.CalenderEntity;
 import com.searchmytraining.entity.TrainerEntity;
 import com.searchmytraining.entity.UserEntity;
 import com.searchmytraining.exception.SearchMyTrainingException;
@@ -44,6 +48,9 @@ public class UploadFileController {
 	@Autowired
 	private ITrainingProviderService trainerservice;
 
+	@Autowired
+	private ICalenderService iCalenderService;
+	
 	@Autowired
 	private RespnoseWrapper respnoseWrapper;
 
@@ -129,6 +136,52 @@ public class UploadFileController {
 		}
 		return null;
 	}
+	
+	@RequestMapping(value = "/calender/getCalenderDetails", method = RequestMethod.POST, produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8, consumes = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8)
+	@ResponseBody
+	public RespnoseWrapper getCalenderDetails(
+			@RequestBody @Valid CalenderDetailsDTO calenderDetailsDTO,
+			ModelMap model, HttpServletRequest request, BindingResult result,
+			HttpServletResponse response, HttpSession session)
+			throws SearchMyTrainingException {
+		Map<String, String> errorMsg = new HashMap<>();
+		try {
+			if (result.hasErrors()) {
+				respnoseWrapper.setResponseWrapperId((long) Math.random());
+				respnoseWrapper.setValidationError(true);
+				List<FieldError> errors = result.getFieldErrors();
+				for (FieldError error : errors) {
+					errorMsg.put(error.getField(), error.getDefaultMessage());
+					log.error(error.getField() + " : "
+							+ error.getDefaultMessage());
+				}
+				respnoseWrapper.setErrorMsg(errorMsg);
+				respnoseWrapper.setSuccessMessage(false);
+				return respnoseWrapper;
+			} else {
+				UserEntity user = null;
+				Integer userId = (Integer) session.getAttribute("userid");
+				user = userService.getUser(userId);
+				if (null != user) {
+					session.setAttribute("userid", user.getUserId());
+				}
+				List<CalenderEntity> calEntities = null;
+				calEntities = iCalenderService.getUserCalenderDetails(userId, calenderDetailsDTO);
+				if(null != calEntities){
+					respnoseWrapper.setSuccessMessage(true);
+					respnoseWrapper.setData((Serializable) calEntities);
+				}else{
+					respnoseWrapper.setSuccessMessage(false);
+					respnoseWrapper.setData("no record found");
+				}
+				return respnoseWrapper;
+			}
+		} catch (Exception e) {
+			log.error("exception occured", e);
+		}
+		return null;
+	}
+		
 	/*
 	 * @RequestMapping(method = RequestMethod.POST) public String
 	 * create(HttpServletRequest request,

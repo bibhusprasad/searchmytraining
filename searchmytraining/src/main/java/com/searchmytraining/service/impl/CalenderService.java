@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.searchmytraining.controller.SMTException;
 import com.searchmytraining.dao.CalenderDAO;
+import com.searchmytraining.dto.CalenderDetailsDTO;
 import com.searchmytraining.dto.SearchCalendarDTO;
 import com.searchmytraining.dto.TrainingProviderCalenderDTO;
 import com.searchmytraining.entity.CalenderEntity;
@@ -96,6 +97,11 @@ public class CalenderService implements ICalenderService {
 	      return null;
 	    }
 	}
+	@Override
+	public List<CalenderEntity> getUserCalenderDetails(Integer userId,CalenderDetailsDTO calenderDetailsDTO ) {
+		return calenderDAO.getUserCalender(userId,calenderDetailsDTO);
+	}
+	
 
 	@Override
 	public void savePostCalenser(TrainingProviderCalenderDTO tpcalDTO, UserEntity user)

@@ -1,5 +1,6 @@
 package com.searchmytraining.wrapper;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import org.springframework.context.annotation.Scope;
@@ -14,6 +15,8 @@ public class RespnoseWrapper {
 	private boolean validationError;
 	private boolean successMessage;
 	private boolean previewCal;
+	private Serializable data;
+
 
 	public Long getResponseWrapperId() {
 		return responseWrapperId;
@@ -53,6 +56,14 @@ public class RespnoseWrapper {
 
 	public void setPreviewCal(boolean previewCal) {
 		this.previewCal = previewCal;
+	}
+
+	public Serializable getData() {
+		return data;
+	}
+
+	public void setData(Serializable data) {
+		this.data = data;
 	}
 	
 }

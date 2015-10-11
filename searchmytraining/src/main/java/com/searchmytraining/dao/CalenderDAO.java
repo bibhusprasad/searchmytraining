@@ -3,6 +3,7 @@ package com.searchmytraining.dao;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.searchmytraining.dto.CalenderDetailsDTO;
 import com.searchmytraining.dto.SearchCalendarDTO;
 import com.searchmytraining.entity.CalenderEntity;
 
@@ -17,4 +18,6 @@ public interface CalenderDAO
 	public void removeCalender(long calenderId);
 	public List<CalenderEntity> getCalendersByKeyword(String kyeword) throws Exception;
 	public List<CalenderEntity> getCalendersOnSearch(SearchCalendarDTO searchcaldto);
+	public List<CalenderEntity> getUserCalender(Integer userId,
+			CalenderDetailsDTO calenderDetailsDTO);
 }

@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.searchmytraining.common.constant.CalenderType;
 
@@ -82,6 +83,8 @@ public class TrainingProviderCalenderDTO {
 	
 	@Size(min=0, max=500,message="Training Provider details Must be between {min} to {max}")
 	private String detailsOfProvider;
+	
+	private CommonsMultipartFile multipartfile;
 
 	public String getCourseTitle() {
 		return courseTitle;
@@ -281,5 +284,13 @@ public class TrainingProviderCalenderDTO {
 
 	public void setToDate(String toDate) {
 		this.toDate = toDate;
-	}	
+	}
+
+	public CommonsMultipartFile getMultipartfile() {
+		return multipartfile;
+	}
+
+	public void setMultipartfile(CommonsMultipartFile multipartfile) {
+		this.multipartfile = multipartfile;
+	}
 }

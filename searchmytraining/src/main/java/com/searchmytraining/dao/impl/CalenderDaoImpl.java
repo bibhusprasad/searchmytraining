@@ -3,7 +3,11 @@ package com.searchmytraining.dao.impl;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -28,8 +32,10 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.searchmytraining.common.constant.CalenderType;
 import com.searchmytraining.dao.AbstractJpaDAO;
 import com.searchmytraining.dao.CalenderDAO;
+import com.searchmytraining.dto.CalenderDetailsDTO;
 import com.searchmytraining.dto.SearchCalendarDTO;
 import com.searchmytraining.entity.CalenderEntity;
 import com.searchmytraining.service.ICityService;
@@ -200,6 +206,31 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 		typedquery.setParameter(2, searchcaldto.getIndustrysubcatid());
 		typedquery.setParameter(3, searchcaldto.getFromdate());
 		typedquery.setParameter(4, searchcaldto.getTodate());
+		return typedquery.getResultList();
+	}
+
+	public Timestamp convertStringToTimestamp(String datesString) {
+	    try {
+	      DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+	      Date date = (Date) formatter.parse(datesString);
+	      java.sql.Timestamp timeStampDate = new Timestamp(date.getTime());
+	      return timeStampDate;
+	    } catch (ParseException e) {
+	      return null;
+	    }
+	}
+	@Override
+	public List<CalenderEntity> getUserCalender(Integer userId,
+			CalenderDetailsDTO calenderDetailsDTO) {
+		String strquery = "select cal from CalenderEntity cal where cal.fromDate >=? AND " +
+				" cal.saveDraft=? AND cal.calenderType=? AND  cal.userId.userId=?" +
+				" ORDER BY cal.calenderId DESC";
+		TypedQuery<CalenderEntity> typedquery = entityManager.createQuery(
+				strquery, CalenderEntity.class);
+		typedquery.setParameter(1, convertStringToTimestamp(calenderDetailsDTO.getFromDate()));
+		typedquery.setParameter(2, calenderDetailsDTO.isSaveDraft());
+		typedquery.setParameter(3, calenderDetailsDTO.getCalenderType().toString());
+		typedquery.setParameter(4, userId);
 		return typedquery.getResultList();
 	}
 }

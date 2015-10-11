@@ -6,6 +6,9 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/datepicker/cdate.js"></script>
 <script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/jquery/jquery.tinyscrollbar.min.js"></script>
+
+<script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/Validations/calender_validation.js"></script>
 
 <script type="text/javascript">
@@ -121,19 +124,19 @@
 					<label><b>Status</b><font color="red">*</font></label> <select
 						id="Status" name="Status">
 						<option value="-1">--Select Type--</option>
-						<option value="0">posted and published calendars</option>
-						<option value="1">Draft Calendars</option>
+						<option value="true">posted and published calendars</option>
+						<option value="false">Draft Calendars</option>
 					</select> <span id="errorCtype" class="errorm"></span>
 				</div>
 				<div class="submit">
-					<input type="button" id="getCalender" value="getCalender" />
+					<input type="button" id="getCalender" value="getCalender" onclick="LoadCalenderDetails();"/>
 				</div>
 				<input type="hidden" name="userType" value="trainer">
 			</form>
 		</div>
 		<h3 class="acord_head">Manage Calendar</h3>
 		<div class="acord_cont">
-			<div id="tabcontent">
+			<div id="tabcontent" style="height: 300px;">
 				<div id="home-content" class="contentblock">
 					<div class="Calender_wrapar">
 						<div id="calender_show" class="tablesorter">
@@ -145,18 +148,57 @@
 						</div>
 					</div>
 				</div>
+				<div class="panelContent" id="homeCalenderScroll">
+					<div class="scrollbar">
+						<div class="track">
+							<div class="thumb">
+								<div class="end"></div>
+							</div>
+						</div>
+					</div>
+					<div class="viewport">
+						<div class="overview" id="calList"></div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div id="template" style="display: none;">
-			<div>
-				<span id="CTitle"></span> <span id="Calendar_Type"></span> <span
-					id="Start_Date"></span> <span id="End_Date"></span> <span
-					id="Posted_Date"></span> <span id="Status"></span>
-			</div>
 
+	</div>
+	<div id="template" style="display: none;">
+		<div>
+			<span id="ctitle"></span> <span id="caltype"></span> <span
+				id="startDate"></span> <span id="EndDate"></span> <span
+				id="PostedDate"> </span> <span id="Status"></span>
 		</div>
+
 	</div>
 	<script type="text/javascript">
+		function LoadCalenderDetails() {
+			try {
+					$.ajax({
+								url : './calender/getCalenderDetails',
+								type : 'post',
+								dataType : 'json',
+								stringify : true,
+								data:JSON.stringify({
+										"calenderType" : $('#Calendertype').val(),
+										"fromDate" : $('#Sdate').val(),
+										"saveDraft" : $('#Status').val()									
+										}),
+								contentType : "application/json",
+								success : function(response) {
+									if(response.successMessage) {
+										console.log(response);
+									}else{
+										console.log(response);
+									}
+								}
+							});
+				} catch (ex) {
+					alert("Exception: " + ex);
+				}
+		}
+	
 		$(document).ready(function() {
 			//OnReady();
 		});
