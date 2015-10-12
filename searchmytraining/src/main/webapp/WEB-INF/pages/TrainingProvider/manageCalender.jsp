@@ -133,17 +133,16 @@
 				</div>
 				<input type="hidden" name="userType" value="trainer">
 			</form>
-		</div>
-		<h3 class="acord_head">Manage Calendar</h3>
-		<div class="acord_cont">
+			<br><br><br><br>
 			<div id="tabcontent" style="height: 300px;">
 				<div id="home-content" class="contentblock">
 					<div class="Calender_wrapar">
 						<div id="calender_show" class="tablesorter">
-							<div>
-								<span style="padding: 2px;">Title</span> <span>Calendar
-									Type</span> <span>Start Date</span> <span>End Date</span> <span>Posted
-									Date</span> <span>Status</span>
+							<div style="margin-right: 400px;">
+								<span style="padding: 3px;">Title</span> <span style="padding: 3px;">Calendar
+									Type</span> <span style="padding: 3px;">Start Date</span> <span style="padding: 3px;">End Date</span> 
+									<span style="padding: 3px;">Posted
+									Date</span> <span style="padding: 3px;">Status</span>
 							</div>
 						</div>
 					</div>
@@ -161,6 +160,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</div>
 
 	</div>
@@ -188,9 +188,17 @@
 								contentType : "application/json",
 								success : function(response) {
 									if(response.successMessage) {
-										console.log(response);
+										if(!isEmpty(response.data) && response.data.length>0){
+											tempMarkup = $("#homeCalenderScroll #calList").clone();
+									        tempMarkup.empty();
+									        $('#calList').append(populateCalender(tempMarkup, response.data).html());
+										}else{
+											tempMarkup = $("#homeCalenderScroll #calList").clone();
+									        tempMarkup.empty();
+									        $('#calList').append("No result Found");
+										}
+										
 									}else{
-										console.log(response);
 									}
 								}
 							});
@@ -198,10 +206,53 @@
 					alert("Exception: " + ex);
 				}
 		}
-	
-		$(document).ready(function() {
-			//OnReady();
+		function isEmpty(value){
+			return (value == null || value == 'undefined' || value =="");
+		}
+		function prettyDate(date) {
+		    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+		                  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+		    return months[date.getUTCMonth()] + ' ' + date.getUTCDate()+' '+date.getUTCyear();
+		}
+		function convertDate(value){
+			var pubDate = new Date(value);
+			var weekday=new Array("Sun","Mon","Tue","Wed","Thu","Fri","Sat");
+			var monthname=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+			var formattedDate = weekday[pubDate.getDay()] + ' ' + monthname[pubDate.getMonth()] + ' ' 
+			                    + pubDate.getDate() + ', ' + pubDate.getFullYear()
+			return formattedDate;
+		}
+				
+		populateCalender = function (tempMarkup,response) {
+			$.each(response,function(index,element) {
+			var markup = $($("#template").html());
+			$(markup).attr("id", element.calenderId);
+			if(!isEmpty(element.courseTitle)){
+				$(markup).find('#ctitle').html(element.courseTitle);
+			}
+			if(!isEmpty(element.calenderType)){
+				$(markup).find('#caltype').html(element.calenderType);
+			}
+			if(!isEmpty(element.fromDate)){
+				$(markup).find('#startDate').html(convertDate(element.fromDate));
+			}
+			if(!isEmpty(element.toDate)){
+				$(markup).find('#EndDate').html(convertDate(element.toDate));
+			}
+			if(!isEmpty(element.updatedOn)){
+				$(markup).find('#PostedDate').html(convertDate(element.updatedOn));
+			}
+			alert(element.saveDraft);
+			if(element.saveDraft){
+				$(markup).find('#Status').html("Posted");
+			}else{
+				$(markup).find('#Status').html("Saved As Draft");
+			}
+			tempMarkup.append(markup);
 		});
+		return tempMarkup;
+		};
 	</script>
 </body>
 </html>
