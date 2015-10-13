@@ -122,7 +122,7 @@ public class CalenderService implements ICalenderService {
 		calenderEntity.setAddressLine1(tpcalDTO.getAddressLine1());
 		calenderEntity.setAddressLine2(tpcalDTO.getAddressLine2());
 		calenderEntity.setLandmark(tpcalDTO.getLandmark());
-		calenderEntity.setCityId(iCityService.getCity((Integer)tpcalDTO.getCity()));
+		calenderEntity.setCityName(tpcalDTO.getCity());
 		calenderEntity.setStateId(iStateService.getStateEntityById((Integer)tpcalDTO
 				.getState()));
 		calenderEntity.setCountryId(iCountryService.getCountry(tpcalDTO

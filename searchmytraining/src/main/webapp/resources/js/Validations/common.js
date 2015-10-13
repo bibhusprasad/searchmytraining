@@ -102,12 +102,12 @@ $('#Chour').on('change keyup',function(e){
 	
 });
 
-$('#place').on('change keyup',function(e){
+$('#place').on('keyup',function(e){
 	var img = '<img src ="resources/images/error.png">';
 	if($('#place').val()=='' || $('#place').val() == '0' ){
 		
 		$('#place').focus();
-		  $('#errorplace').html(img).append("   please enter City");
+		  $('#errorplace').html(img).append("please enter City");
                       return false;
 	}
 	else{
@@ -115,7 +115,6 @@ $('#place').on('change keyup',function(e){
 	}
 	
 });
-
 
 $('#state').on('change keyup',function(e){
 	var img = '<img src ="resources/images/error.png">';

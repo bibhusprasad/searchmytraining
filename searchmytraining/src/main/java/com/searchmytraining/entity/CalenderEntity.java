@@ -66,9 +66,9 @@ public class CalenderEntity implements Serializable {
 	@Column(name = "landmark")
 	private String landmark;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="cityId")
-	private CityEntity cityId;
+	
+	@JoinColumn(name="cityName")  
+	private String cityName;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="stateId")
@@ -235,12 +235,12 @@ public class CalenderEntity implements Serializable {
 		this.landmark = landmark;
 	}
 
-	public CityEntity getCityId() {
-		return cityId;
+	public String getCityName() {
+		return cityName;
 	}
 
-	public void setCityId(CityEntity cityId) {
-		this.cityId = cityId;
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
 
 	public StateEntity getStateId() {

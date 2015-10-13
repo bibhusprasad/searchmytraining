@@ -44,7 +44,7 @@ public class TrainingProviderCalenderDTO {
 	private String landmark;
 	
 	@NotNull(message="Please enter a valid city")     
-	private int city;
+	private String city;
 	
 	@NotNull(message="Please enter a valid state")     
 	private int state;
@@ -166,11 +166,11 @@ public class TrainingProviderCalenderDTO {
 		this.landmark = landmark;
 	}
 
-	public int getCity() {
+	public String getCity() {
 		return city;
 	}
 
-	public void setCity(int city) {
+	public void setCity(String city) {
 		this.city = city;
 	}
 

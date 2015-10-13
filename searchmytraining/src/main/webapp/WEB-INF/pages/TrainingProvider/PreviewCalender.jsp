@@ -56,121 +56,155 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		loadPreviewCalenderType();
+		previewCalenderDietailsView();
+		previewCalenderQuickView();
 	});
-	function loadPreviewCalenderType() {
-			alert("Please enter Alok");
+	function previewCalenderDetailsView() {
 			
 			var calenderTypes = '${calenderTypes}';
 			var calenderdetails = $.parseJSON(calenderTypes);
 			console.log(calenderdetails[0])
 			var calenderDetail = calenderdetails[0];
 			
-			$('<tr/>').appendTo($('#quickViewTable'))
+			$('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Course Title :-"))
 	        .append($('<td/>').text(calenderDetail.courseTitle))
 	        
-	        $('<tr/>').appendTo($('#quickViewTable'))
+	        $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Type of Calender :-"))
 	        .append($('<td/>').text(calenderDetail.calenderType.val))
 	        
-	        $('<tr/>').appendTo($('#quickViewTable'))
+	        $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Idustry Type :-"))
 	        .append($('<td/>').text("${sessionScope.industryType}"))
 	        
-	        $('<tr/>').appendTo($('#quickViewTable'))
+	        $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Price :-"))
 	        .append($('<td/>').text(calenderDetail.price))
 	        
-	        $('<tr/>').appendTo($('#quickViewTable'))
+	        $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("From Date :-"))
 	        .append($('<td/>').text(calenderDetail.fromDate))
 	        
-	        $('<tr/>').appendTo($('#quickViewTable'))
+	        $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("To Date :-"))
 	        .append($('<td/>').text(calenderDetail.toDate))
 	        
-	         $('<tr/>').appendTo($('#quickViewTable'))
+	         $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Address Line1 :-"))
 	        .append($('<td/>').text(calenderDetail.addressLine1))
 	        
-	         $('<tr/>').appendTo($('#quickViewTable'))
+	         $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Address Line2 :-"))
 	        .append($('<td/>').text(calenderDetail.addressLine2))
 	        
-	         $('<tr/>').appendTo($('#quickViewTable'))
+	         $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Landmark :-"))
 	        .append($('<td/>').text(calenderDetail.landmark))
 	        
-	         $('<tr/>').appendTo($('#quickViewTable'))
+	         $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("City:-"))
 	        .append($('<td/>').text(calenderDetail.city))
 	        
-	         $('<tr/>').appendTo($('#quickViewTable'))
+	         $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("State :-"))
 	        .append($('<td/>').text("${sessionScope.stateName}"))
 	        
-	         $('<tr/>').appendTo($('#quickViewTable'))
+	         $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Country :-"))
 	        .append($('<td/>').text(calenderDetail.country))
 	        
-	         $('<tr/>').appendTo($('#quickViewTable'))
+	         $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Pin Code:-"))
 	        .append($('<td/>').text(calenderDetail.pincode))
 	        
-	         $('<tr/>').appendTo($('#quickViewTable'))
+	         $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Programme brief for Quick View Section :-"))
 	        .append($('<td/>').text(calenderDetail.trngQuickView))
 	        
-	        $('<tr/>').appendTo($('#quickViewTable'))
+	        $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Programme Overview :-"))
 	        .append($('<td/>').text(calenderDetail.trngOverView))
 	        
-	        $('<tr/>').appendTo($('#quickViewTable'))
+	        $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Your take away from the programme :-"))
 	        .append($('<td/>').text(calenderDetail.trngTakeAway))
 	        
-	        $('<tr/>').appendTo($('#quickViewTable'))
+	        $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Training Methodology :-"))
 	        .append($('<td/>').text(calenderDetail.trngMethodology))
 	        
-	        $('<tr/>').appendTo($('#quickViewTable'))
+	        $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Who should attend :-"))
 	        .append($('<td/>').text(calenderDetail.trngAttandant))
 	        
-	         $('<tr/>').appendTo($('#quickViewTable'))
+	         $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Keywords :-"))
 	        .append($('<td/>').text(calenderDetail.trainingKey))
 	        
-	         $('<tr/>').appendTo($('#quickViewTable'))
+	         $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Faculty Details for this programme :-"))
 	        .append($('<td/>').text(calenderDetail.facultyDetails))
 	        
-	        $('<tr/>').appendTo($('#quickViewTable'))
+	        $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("How to Register :-"))
 	        .append($('<td/>').text(calenderDetail.howtoregister))
 	        
-	         $('<tr/>').appendTo($('#quickViewTable'))
+	         $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Details of Training Providers :-"))
 	        .append($('<td/>').text(calenderDetail.detailsOfProvider))
-	        
-
 
 	}
 	
-<%-- function quickView() {
-
-		$("#quickView_calender").load("<%=request.getContextPath()%>
-	/getRecentelyAdded",
-				function(responseText, statusText, xhr) {
-					if (statusText == "success")
-						/*  alert("Successfully loaded the content!"); */
-						if (statusText == "error")
-							alert("An error occurred: " + xhr.status + " - "
-									+ xhr.statusText);
-				});
-
-	} --%>
+	function previewCalenderQuickView() {
+		
+		var calenderTypes = '${calenderTypes}';
+		var calenderdetails = $.parseJSON(calenderTypes);
+		console.log(calenderdetails[0])
+		var calenderDetail = calenderdetails[0];
+		
+		$('<tr/>').appendTo($('#quickViewTable'))
+        .append($('<td/>').text("Course Title :-"))
+        .append($('<td/>').text(calenderDetail.courseTitle))
+        
+        $('<tr/>').appendTo($('#quickViewTable'))
+        .append($('<td/>').text("Type of Calender :-"))
+        .append($('<td/>').text(calenderDetail.calenderType.val))
+        
+        $('<tr/>').appendTo($('#quickViewTable'))
+        .append($('<td/>').text("Idustry Type :-"))
+        .append($('<td/>').text("${sessionScope.industryType}"))
+        
+        $('<tr/>').appendTo($('#quickViewTable'))
+        .append($('<td/>').text("From Date :-"))
+        .append($('<td/>').text(calenderDetail.fromDate))
+        
+        $('<tr/>').appendTo($('#quickViewTable'))
+        .append($('<td/>').text("To Date :-"))
+        .append($('<td/>').text(calenderDetail.toDate))
+        
+         $('<tr/>').appendTo($('#quickViewTable'))
+        .append($('<td/>').text("City:-"))
+        .append($('<td/>').text(calenderDetail.city))
+        
+         $('<tr/>').appendTo($('#quickViewTable'))
+        .append($('<td/>').text("State :-"))
+        .append($('<td/>').text("${sessionScope.stateName}"))
+        
+         $('<tr/>').appendTo($('#quickViewTable'))
+        .append($('<td/>').text("Programme brief for Quick View Section :-"))
+        .append($('<td/>').text(calenderDetail.trngQuickView))
+        
+        $('<tr/>').appendTo($('#quickViewTable'))
+        .append($('<td/>').text("Programme Overview :-"))
+        .append($('<td/>').text(calenderDetail.trngOverView))
+        
+         $('<tr/>').appendTo($('#quickViewTable'))
+        .append($('<td/>').text("Keywords :-"))
+        .append($('<td/>').text(calenderDetail.trainingKey))
+        
+}
+	
 </script>
 <script type="text/javascript">
 $('#acord2').accordion({
@@ -225,7 +259,7 @@ $('#Fdate,#Tdate').datepicker();
 	<div id="acord2" class="acord">
 		<h3 class="acord_head">Details View</h3>
 		<div class="acord_cont">
-			<table id="quickViewTable"></table>
+			<table id="detailsViewTable"></table>
 		</div>
 		<h3 class="acord_head">Quick View</h3>
 		<div class="acord_cont">

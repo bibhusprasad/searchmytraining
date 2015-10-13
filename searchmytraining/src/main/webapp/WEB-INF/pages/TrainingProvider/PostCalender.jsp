@@ -62,7 +62,7 @@ $('#Fdate,#Tdate').datepicker();
 						$(document).ready(function() {
 							$('#Fdate,#Tdate').datepicker();
 							loadIndustries();
-							loadCity();
+							/* loadCity(); */
 							loadCalenderType();
 							loadState();
 							loadAddress();
@@ -82,21 +82,6 @@ $('#Fdate,#Tdate').datepicker();
 							});
 						}
 
-						function loadCity(){
-							var cities = '${cities}';
-							var jsoncities = $.parseJSON(cities);
-							$('#cities').val(JSON.stringify(jsoncities));
-							$( "body" ).data( "jsonciti", jsoncities );
-				   			$('#place').find('option').remove().end();
-							$('#place').attr('enabled','true');
-							$('#place').append(
-									$("<option value='0'></option>").text("--Select--"));
-							jQuery.each(jsoncities, function(index, item) {
-								$('#place').append(
-									$("<option></option>").text(this.cityName).val(this.cityId));
-							});
-						}
-						
 						function loadCalenderType(){
 							var calenderTypes = '${calenderTypes}';
 							var jsoncalenderTypes = $.parseJSON(calenderTypes);
@@ -146,15 +131,7 @@ $('#Fdate,#Tdate').datepicker();
 							});
 							
 						}
-						function loadcitylist(){
-							var oldcity=JSON.parse($('#cities').val());
-							$('#place').find('option').remove().end();
-							$('#place').attr('enabled','true');
-							$('#place').append($("<option value='0'></option>").text("--Select--"));
-							jQuery.each(oldcity, function(index, item) {
-								$('#place').append($("<option></option>").text(item.cityName).val(item.cityId));
-							});
-						}
+						
 </script>
 
 <script type="text/javascript">
@@ -164,15 +141,15 @@ if($('#autoPopulateAddress').attr('checked')){
 	$('#Caddress2').val($('#HCaddress2').val());
 	$('#Clmark').val($('#HClmark').val());
 	$('#Cpincode').val($('#HCpincode').val());
-	$("#place").html("<option value="+$('#cityId').val()+">"+$('#Hcity').val()+"</option>");
+	$("#place").val($('#Hcity').val());
 	$("#state").html("<option value="+$('#stateId').val()+">"+$('#Hstate').val()+"</option>");
 }else{
 	$('#Caddress1').val('');
 	$('#Caddress2').val('');
 	$('#Clmark').val('');
+	$('#place').val('');
 	$('#Cpincode').val('');
 	loadStatelist();
-	loadcitylist();
 }
 	
 });
@@ -415,8 +392,7 @@ function PreviewCal() {
 				</div>
 				
 				<div class="ccity">
-					<label><b>City</b><font color="red">*</font></label> <select id="place" name="place">
-					</select>
+					<label><b>City</b><font color="red">*</font></label><input type="text" name="place" id="place"/>
 					<span id="errorplace" class="errorm"></span>
 				</div>
 				
@@ -474,22 +450,6 @@ function PreviewCal() {
 					<label><b>Details of Training Providers</b></label><input type="text" id="TPdetails" name="TPdetails"/>
 				</div>
 				
-				<!-- <div class="description">
-					<label>Description:</label> <input type="text" id="CDesc"
-						placeholder="Description" name="CDesc" />
-				</div>
-				<div class="keyCode">
-					<label>KeyCode:</label>
-					<ul class="tags">
-
-						<li class="tagAdd taglist"><input type="text" id="tags-field"
-						name="tags-field" />
-						</li>
-					</ul>
-				</div>
-				
- -->				
- 
  				<div class="browse">
 					<label>Upload Calender:</label> <input id="uploadFile"
 						placeholder="Choose File" disabled="disabled" />
