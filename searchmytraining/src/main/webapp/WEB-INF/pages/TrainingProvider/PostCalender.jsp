@@ -226,7 +226,6 @@ function previewC() {
 												});
 							} else if(response.successMessage) {
 								if(response.previewCal){
-									alert("success");
 									PreviewCal();
 								}
 							}else{
@@ -300,7 +299,7 @@ function postCalender() {
 												$('#error04').text(val);
 												});
 							} else if(response.successMessage) {
-								
+								uploadCalender();
 							}else{
 								console.log(response);
 							}
@@ -322,6 +321,16 @@ function PreviewCal() {
 	        });
 }
 
+function uploadCalender() {
+	$("#home-content").load("./success/calender", function(responseText, statusText, xhr){
+	                if(statusText == "success"){
+						console.log("manage calender loaded successfully");
+			        }
+	                if(statusText == "error"){
+	                	console.log("manage calender loading failed");   
+		            }
+	        });
+}
 
 
 
@@ -449,21 +458,7 @@ function PreviewCal() {
 				<div class="ctrainprov">
 					<label><b>Details of Training Providers</b></label><input type="text" id="TPdetails" name="TPdetails"/>
 				</div>
-				
- 				<div class="browse">
-					<label>Upload Calender:</label> <input id="uploadFile"
-						placeholder="Choose File" disabled="disabled" />
-					<span class="fileUpload btn btn-primary">
-						<span>Brouchure</span> <input type="file" class="upload"
-							id="fileupload" name="fileUpload" accept="application/pdf" />
-					</span>
-					<script type="text/javascript">
-						document.getElementById("fileupload").onchange = function() {
-							document.getElementById("uploadFile").value = this.value;
-						};
-					</script>
-				</div>
-				
+
 				<div class="submit">
 					<input type="button" id="PPC" value="Preview & Post Calendar" onclick="previewC();"/>
 					<input type="button" id="SPL" value="Save & Post Later" onclick="postCalender();"/>
