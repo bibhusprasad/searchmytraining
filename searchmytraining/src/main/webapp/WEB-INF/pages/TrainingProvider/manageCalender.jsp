@@ -143,6 +143,7 @@
 									Type</span> <span style="padding: 3px;">Start Date</span> <span style="padding: 3px;">End Date</span> 
 									<span style="padding: 3px;">Posted
 									Date</span> <span style="padding: 3px;">Status</span>
+									
 							</div>
 						</div>
 					</div>
@@ -169,10 +170,29 @@
 			<span id="ctitle"></span> <span id="caltype"></span> <span
 				id="startDate"></span> <span id="EndDate"></span> <span
 				id="PostedDate"> </span> <span id="Status"></span>
+				<span id="Edit" class="editcal"><a href="#">EDIT</a></span>
+				<span><input type="checkbox" id="cpBox" name="cpBox" />delete</span>
 		</div>
 
 	</div>
 	<script type="text/javascript">
+	$('body').on('click', '.editcal', function (e){
+		try {
+			$.ajax({
+						url : './calender/editCalender/'+$(this).attr("calId"),
+						type : 'post',
+						dataType : 'json',
+						stringify : true,
+						contentType : "application/json",
+						success : function(response) {
+							
+						}
+					});
+		} catch (ex) {
+			alert("Exception: " + ex);
+		}
+	});
+	
 		function LoadCalenderDetails() {
 			try {
 					$.ajax({
@@ -231,6 +251,7 @@
 			if(!isEmpty(element.courseTitle)){
 				$(markup).find('#ctitle').html(element.courseTitle);
 			}
+			$(markup).find('#Edit').attr("calId", element.calenderId);
 			if(!isEmpty(element.calenderType)){
 				$(markup).find('#caltype').html(element.calenderType);
 			}
@@ -243,7 +264,6 @@
 			if(!isEmpty(element.updatedOn)){
 				$(markup).find('#PostedDate').html(convertDate(element.updatedOn));
 			}
-			alert(element.saveDraft);
 			if(element.saveDraft){
 				$(markup).find('#Status').html("Posted");
 			}else{

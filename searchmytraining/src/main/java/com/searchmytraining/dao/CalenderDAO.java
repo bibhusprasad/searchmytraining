@@ -20,4 +20,5 @@ public interface CalenderDAO
 	public List<CalenderEntity> getCalendersOnSearch(SearchCalendarDTO searchcaldto);
 	public List<CalenderEntity> getUserCalender(Integer userId,
 			CalenderDetailsDTO calenderDetailsDTO);
+	public List<CalenderEntity> getCalenderDetailByCalId(Integer userId,Integer calId);
 }

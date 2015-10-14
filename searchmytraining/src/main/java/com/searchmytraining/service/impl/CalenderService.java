@@ -146,4 +146,10 @@ public class CalenderService implements ICalenderService {
 		calenderDAO.addCalender(calenderEntity);
 	}
 
+	@Override
+	public List<CalenderEntity> getCalenderDetailByCalId(Integer userId,
+			Integer calId) {
+		return calenderDAO.getCalenderDetailByCalId(userId,calId);
+	}
+
 }

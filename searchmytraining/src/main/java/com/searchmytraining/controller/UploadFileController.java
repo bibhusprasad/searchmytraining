@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -247,4 +248,36 @@ public class UploadFileController {
 		}
 		return "pages/TrainingProvider/TrainingProviderProfile";
 	}
+	
+	@RequestMapping("/calender/editCalender/{calId}")
+	public String editCalender(@PathVariable(value = "calId") Integer calId,ModelMap model, HttpSession session) {
+		try{
+			UserEntity user = null;
+			Integer userId = (Integer) session.getAttribute("userid");
+			user = userService.getUser(userId);
+			if (null != user) {
+				session.setAttribute("userid", user.getUserId());
+				TrainerEntity trainer = trainerservice.getTrainerByUserid(user
+						.getUserId().longValue());
+				if (trainer != null) {
+					session.setAttribute("trainer", trainer);
+				}
+			}
+			List<CalenderEntity> calEntities = null;
+			calEntities = iCalenderService.getCalenderDetailByCalId(userId,calId);
+			if (null != calEntities) {
+				session.setAttribute("calEntities", calEntities);
+			} else {
+				respnoseWrapper.setSuccessMessage(false);
+				respnoseWrapper.setData("no record found");
+			}
+			
+			return "pages/TrainingProvider/EditCalender";	
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
 }

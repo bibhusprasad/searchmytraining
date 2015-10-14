@@ -32,7 +32,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.searchmytraining.common.constant.CalenderType;
 import com.searchmytraining.dao.AbstractJpaDAO;
 import com.searchmytraining.dao.CalenderDAO;
 import com.searchmytraining.dto.CalenderDetailsDTO;
@@ -231,6 +230,16 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 		typedquery.setParameter(2, calenderDetailsDTO.isSaveDraft());
 		typedquery.setParameter(3, calenderDetailsDTO.getCalenderType().toString());
 		typedquery.setParameter(4, userId);
+		return typedquery.getResultList();
+	}
+
+	@Override
+	public List<CalenderEntity> getCalenderDetailByCalId(Integer userId,
+			Integer calId) {
+		String strquery = "select cal from CalenderEntity cal where cal.userId.userId = ? AND cal.calenderId=?";
+		TypedQuery<CalenderEntity> typedquery = entityManager.createQuery(strquery, CalenderEntity.class);
+		typedquery.setParameter(1,userId);
+		typedquery.setParameter(2, calId);
 		return typedquery.getResultList();
 	}
 }

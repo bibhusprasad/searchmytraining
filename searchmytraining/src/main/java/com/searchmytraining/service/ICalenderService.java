@@ -21,7 +21,7 @@ public interface ICalenderService
 	public List<CalenderEntity> getCalendersByKeyword(String kyeword) throws Exception;
 	public List<CalenderEntity> getCalendersOnSearch(SearchCalendarDTO searchcaldto);
 	public void savePostCalenser(TrainingProviderCalenderDTO trainingProviderCalenderDTO, UserEntity user) throws SMTException;
-	List<CalenderEntity> getUserCalenderDetails(Integer userId,
-			CalenderDetailsDTO calenderDetailsDTO);
+	List<CalenderEntity> getUserCalenderDetails(Integer userId,CalenderDetailsDTO calenderDetailsDTO);
+	List<CalenderEntity> getCalenderDetailByCalId(Integer userId, Integer calId);
 	
 }
