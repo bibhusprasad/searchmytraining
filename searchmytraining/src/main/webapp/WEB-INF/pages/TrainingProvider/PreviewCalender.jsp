@@ -9,7 +9,7 @@
 	src="<%=request.getContextPath()%>/resources/js/Validations/calender_validation.js"></script>
 
 <script type="text/javascript">
-	$('#Sdate').datepicker();
+	/* $('#Sdate').datepicker(); */
 
 	$('#acord2').accordion({
 		collapsible : true
@@ -56,7 +56,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		previewCalenderDietailsView();
+		previewCalenderDetailsView();
 		previewCalenderQuickView();
 	});
 	function previewCalenderDetailsView() {
@@ -205,6 +205,66 @@
         
 }
 	
+function postCalender() {
+		var calenderTypes = '${calenderTypes}';
+		var calenderdetails = $.parseJSON(calenderTypes);
+			try {
+				$.ajax({
+							url : './calender/postCalender',
+							type : 'post',
+							dataType : 'json',
+							stringify : true,
+							data:JSON.stringify({
+									"courseTitle" :calenderdetails[0].courseTitle,
+									"calenderType" : calenderdetails[0].calenderType.val,
+									"industryId" : calenderdetails[0].industryId,
+									"price" : calenderdetails[0].price,
+									"saveDraft" : false,
+									"showPrice" :false,
+									"fromDate" : calenderdetails[0].fromDate,
+									"toDate" : calenderdetails[0].toDate,
+									"time" : calenderdetails[0].time,
+									"addressLine1" : calenderdetails[0].addressLine1,
+									"addressLine2" : calenderdetails[0].addressLine2,
+									"landmark" : calenderdetails[0].landmark,
+									"city" : calenderdetails[0].city,
+									"state" : calenderdetails[0].state,
+									"country" : calenderdetails[0].country,
+									"pincode" : calenderdetails[0].pincode,
+									"trngQuickView" : calenderdetails[0].trngQuickView,
+									"trngOverView" : calenderdetails[0].trngOverView,
+									"trngTakeAway" : calenderdetails[0].trngTakeAway,
+									"trngMethodology" : calenderdetails[0].trngMethodology,
+									"trngAttandant" : calenderdetails[0].trngAttandant,
+									"trainingKey" : calenderdetails[0].trainingKey,
+									"facultyDetails" :calenderdetails[0].facultyDetails,
+									"howtoregister" : calenderdetails[0].howtoregister,
+									"detailsOfProvider" : calenderdetails[0].detailsOfProvider
+									}),
+							contentType : "application/json",
+							success : function(response) {
+								if(response.successMessage) {
+									uploadCalender();
+								}else{
+									console.log(response);
+								}
+							}
+						});
+			} catch (ex) {
+				alert("Exception: " + ex);
+			}
+	}
+function uploadCalender() {
+	$("#home-content").load("./success/calender", function(responseText, statusText, xhr){
+	                if(statusText == "success"){
+						console.log("manage calender loaded successfully");
+			        }
+	                if(statusText == "error"){
+	                	console.log("manage calender loading failed");   
+		            }
+	        });
+}
+
 </script>
 <script type="text/javascript">
 $('#acord2').accordion({
@@ -218,7 +278,7 @@ $.get('View', function(data) {
     $('#viewall').append(data);
 });
 
-$('#Fdate,#Tdate').datepicker();
+/* $('#Fdate,#Tdate').datepicker(); */
 </script>
 <script type="text/javascript">
 	$(document)
@@ -253,6 +313,7 @@ $('#Fdate,#Tdate').datepicker();
 											}
 										});
 					});
+			
 	</script>
 </head>
 <body>
@@ -260,6 +321,7 @@ $('#Fdate,#Tdate').datepicker();
 		<h3 class="acord_head">Details View</h3>
 		<div class="acord_cont">
 			<table id="detailsViewTable"></table>
+			<input type="button" id="SPL" value="Post Calender" onclick="postCalender();"/>
 		</div>
 		<h3 class="acord_head">Quick View</h3>
 		<div class="acord_cont">
