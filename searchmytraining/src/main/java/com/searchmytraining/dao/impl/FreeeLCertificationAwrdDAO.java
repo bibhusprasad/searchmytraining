@@ -29,7 +29,7 @@ public class FreeeLCertificationAwrdDAO extends
 		TypedQuery<CertificationAwardEntity> typedqry = entityManager
 				.createQuery(strqry, CertificationAwardEntity.class);
 		try {
-			typedqry.setParameter(1, userid.intValue());
+			typedqry.setParameter(1, userid.longValue());
 			CertificationAwardEntity certientity = typedqry.getSingleResult();
 			return certientity;
 		} catch (NoResultException e) {

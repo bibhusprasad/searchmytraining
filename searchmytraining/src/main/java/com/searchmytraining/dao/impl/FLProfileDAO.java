@@ -28,9 +28,9 @@ public class FLProfileDAO extends AbstractJpaDAO<FreeLancerProfileEntity>
 		String strqry = "from FreeLancerProfileEntity flprofdet where flprofdet.user.userId=?";
 		TypedQuery<FreeLancerProfileEntity> typedqry = entityManager
 				.createQuery(strqry, FreeLancerProfileEntity.class);
-		typedqry.setParameter(1, userId.intValue());
+		typedqry.setParameter(1, userId.longValue());
 		try {
-			typedqry.setParameter(1, userId.intValue());
+			typedqry.setParameter(1, userId.longValue());
 			FreeLancerProfileEntity entity = typedqry.getSingleResult();
 			return entity;
 		} catch (NoResultException e) {

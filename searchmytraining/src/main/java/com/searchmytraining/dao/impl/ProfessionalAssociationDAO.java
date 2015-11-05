@@ -35,9 +35,9 @@ public class ProfessionalAssociationDAO extends
 		String strquery = "from ProfessionalAssociationEntity prof where prof.user.userId=?";
 		TypedQuery<ProfessionalAssociationEntity> typedquery = entitymanager
 				.createQuery(strquery, ProfessionalAssociationEntity.class);
-		typedquery.setParameter(1, userid.intValue());
+		typedquery.setParameter(1, userid.longValue());
 		try {
-			typedquery.setParameter(1, userid.intValue());
+			typedquery.setParameter(1, userid.longValue());
 			List<ProfessionalAssociationEntity> associations = typedquery
 					.getResultList();
 			return associations;

@@ -33,9 +33,9 @@ public class EducationDAO extends AbstractJpaDAO<EducationEntity> implements
 		String strqry = "from EducationEntity edu where edu.user.userId=?";
 		TypedQuery<EducationEntity> typedqry = entityManager.createQuery(
 				strqry, EducationEntity.class);
-		typedqry.setParameter(1, userId.intValue());
+		typedqry.setParameter(1, userId.longValue());
 		try {
-			typedqry.setParameter(1, userId.intValue());
+			typedqry.setParameter(1, userId.longValue());
 			return typedqry.getSingleResult();
 		} catch (NoResultException e) {
 			return null;

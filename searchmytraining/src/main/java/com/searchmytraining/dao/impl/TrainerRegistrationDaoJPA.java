@@ -36,7 +36,7 @@ public class TrainerRegistrationDaoJPA extends AbstractJpaDAO<TrainerEntity>
 		String query = "from TrainerEntity trainer where trainer.user.userId=?";
 		TypedQuery<TrainerEntity> typedquery = entitymanager.createQuery(query,
 				TrainerEntity.class);
-		typedquery.setParameter(1, userid.intValue());
+		typedquery.setParameter(1, userid.longValue());
 		TrainerEntity trainer = typedquery.getSingleResult();
 		return trainer;
 	}

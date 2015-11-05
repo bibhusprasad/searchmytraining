@@ -34,7 +34,7 @@ public class ContactInfo extends AbstractJpaDAO<ContactInfoEntity> implements
 		String strquery = "from ContactInfoEntity contact where contact.user.userId=?";
 		TypedQuery<ContactInfoEntity> typedquery = entitymanager.createQuery(
 				strquery, ContactInfoEntity.class);
-		typedquery.setParameter(1, userid.intValue());
+		typedquery.setParameter(1, userid.longValue());
 		ContactInfoEntity contactInfoEntity = null;
 		try {
 			contactInfoEntity=typedquery.getSingleResult();

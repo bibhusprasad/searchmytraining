@@ -32,7 +32,7 @@ public class UserDaoImpl extends AbstractJpaDAO<UserEntity> implements UserDAO {
 		return getMaxId("UserEntity", idcolumn);
 	}
 
-	public UserEntity getUser(Integer id) {
+	public UserEntity getUser(long id) {
 		setClazz(UserEntity.class);
 		UserEntity user = findOne(id);
 		return user;
@@ -88,4 +88,5 @@ public class UserDaoImpl extends AbstractJpaDAO<UserEntity> implements UserDAO {
 		query.setParameter("password", userEntity.getPassword())
 				.setParameter("userId", userEntity.getUserId()).executeUpdate();
 	}
+
 }

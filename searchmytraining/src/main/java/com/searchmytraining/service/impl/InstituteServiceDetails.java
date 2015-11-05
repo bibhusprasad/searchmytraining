@@ -183,7 +183,7 @@ public class InstituteServiceDetails implements IInstituteServiceDetails {
 	@Transactional
 	public TrainingCategoryEntity addTrainingCategoryEntity(TrainingCategoryDTO trainingcategorydto,Long userId){
 		TrainingCategoryEntity trainingcategoryentity = mapper.map(trainingcategorydto, TrainingCategoryEntity.class);
-		UserEntity user = userdao.getUser(userId.intValue());
+		UserEntity user = userdao.getUser(userId.longValue());
 		IndustrySubCategoryEntity subcatentity = subcatdao.getIndustrySubCategory(trainingcategorydto.getTrainingcategory());
 		trainingcategoryentity.setUser(user);
 		trainingcategoryentity.setSubcatentity(subcatentity);

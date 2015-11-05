@@ -34,9 +34,9 @@ public class ClientDAO extends AbstractJpaDAO<ClientEntity> implements
 		String strquery = "from ClientEntity client where client.user.userId=?";
 		TypedQuery<ClientEntity> typedquery = entitymanager.createQuery(
 				strquery, ClientEntity.class);
-		typedquery.setParameter(1, userid.intValue());
+		typedquery.setParameter(1, userid.longValue());
 		try {
-			typedquery.setParameter(1, userid.intValue());
+			typedquery.setParameter(1, userid.longValue());
 			List<ClientEntity> clientlist = typedquery.getResultList();
 			if (clientlist.size() != 0)
 				return clientlist;

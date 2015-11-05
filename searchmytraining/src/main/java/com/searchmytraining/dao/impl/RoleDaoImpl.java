@@ -28,9 +28,9 @@ public class RoleDaoImpl extends AbstractJpaDAO<RoleEntity> implements RoleDAO {
 		String strqry = "from RoleEntity role where role.user.userId=?";
 		TypedQuery<RoleEntity> typdqry = entityManager.createQuery(strqry,
 				RoleEntity.class);
-		typdqry.setParameter(1, userId.intValue());
+		typdqry.setParameter(1, userId.longValue());
 		try {
-			typdqry.setParameter(1, userId.intValue());
+			typdqry.setParameter(1, userId.longValue());
 			return typdqry.getSingleResult();
 		} catch (NoResultException e) {
 			return null;

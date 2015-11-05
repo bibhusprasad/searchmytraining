@@ -39,7 +39,7 @@ public class InstituteDaoImpl extends AbstractJpaDAO<InstituteEntity> implements
 		String strquery = "from InstituteEntity inst where inst.user.userId=?";
 		TypedQuery<InstituteEntity> typedquery = entityManager.createQuery(
 				strquery, InstituteEntity.class);
-			typedquery.setParameter(1, userid.intValue());
+			typedquery.setParameter(1, userid.longValue());
 			InstituteEntity instituteEntity=null;
 			try {
 				instituteEntity= typedquery.getSingleResult();

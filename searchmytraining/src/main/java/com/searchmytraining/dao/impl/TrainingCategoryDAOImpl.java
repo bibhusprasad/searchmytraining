@@ -32,9 +32,9 @@ public class TrainingCategoryDAOImpl extends
 		String strqry = "from TrainingCategoryEntity trngcat where trngcat.user.userId=?";
 		TypedQuery<TrainingCategoryEntity> typedqry = entityManager
 				.createQuery(strqry, TrainingCategoryEntity.class);
-		typedqry.setParameter(1, userId.intValue());
+		typedqry.setParameter(1, userId.longValue());
 		try {
-			typedqry.setParameter(1, userId.intValue());
+			typedqry.setParameter(1, userId.longValue());
 			return typedqry.getResultList();
 		} catch (NoResultException e) {
 			return null;

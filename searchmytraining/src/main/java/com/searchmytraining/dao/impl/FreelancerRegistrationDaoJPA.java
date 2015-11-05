@@ -39,9 +39,9 @@ public class FreelancerRegistrationDaoJPA extends
 		String strquery = "from FreelancerEntity flentity where flentity.user.userId=?";
 		TypedQuery<FreelancerEntity> typedquery = entityManager.createQuery(
 				strquery, FreelancerEntity.class);
-		typedquery.setParameter(1, userid.intValue());
+		typedquery.setParameter(1, userid.longValue());
 		try {
-			typedquery.setParameter(1, userid.intValue());
+			typedquery.setParameter(1, userid.longValue());
 			FreelancerEntity flentity = typedquery.getSingleResult();
 			return flentity;
 		} catch (NoResultException e) {
