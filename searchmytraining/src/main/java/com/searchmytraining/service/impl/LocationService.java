@@ -37,7 +37,7 @@ public class LocationService implements ILocationService {
 	}
 
 	@Override
-	public LocationEntity findLocDet(Integer userid) {
+	public LocationEntity findLocDet(Long userid) {
 		return locationdao.findLocDet(userid);
 	}
 }

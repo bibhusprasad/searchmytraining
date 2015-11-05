@@ -37,7 +37,7 @@ import com.searchmytraining.exception.SearchMyTrainingException;
 import com.searchmytraining.service.ICalenderService;
 import com.searchmytraining.service.ITrainingProviderService;
 import com.searchmytraining.service.IUserService;
-import com.searchmytraining.wrapper.RespnoseWrapper;
+import com.searchmytraining.wrapper.ResponseWrapper;
 
 /*import com.searchmytraining.service.IKeywordService;*/
 
@@ -57,13 +57,13 @@ public class UploadFileController {
 	private ICalenderService iCalenderService;
 
 	@Autowired
-	private RespnoseWrapper respnoseWrapper;
+	private ResponseWrapper respnoseWrapper;
 
 	private final Logger log = Logger.getLogger(this.getClass().getName());
 
 	@RequestMapping(value = "/calender/postCalender", method = RequestMethod.POST, produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8, consumes = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8)
 	@ResponseBody
-	public RespnoseWrapper postCalenderRegistration(
+	public ResponseWrapper postCalenderRegistration(
 			@RequestBody @Valid TrainingProviderCalenderDTO trainingProviderCalenderDTO,
 			BindingResult result, ModelMap model, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session)
@@ -100,7 +100,7 @@ public class UploadFileController {
 
 	@RequestMapping(value = "/calender/previewCalender", method = RequestMethod.POST, produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8, consumes = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8)
 	@ResponseBody
-	public RespnoseWrapper previewCalenderRegistration(
+	public ResponseWrapper previewCalenderRegistration(
 			@RequestBody @Valid TrainingProviderCalenderDTO trainingProviderCalenderDTO,
 			ModelMap model, HttpServletRequest request, BindingResult result,
 			HttpServletResponse response, HttpSession session)
@@ -145,7 +145,7 @@ public class UploadFileController {
 
 	@RequestMapping(value = "/calender/getCalenderDetails", method = RequestMethod.POST, produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8, consumes = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8)
 	@ResponseBody
-	public RespnoseWrapper getCalenderDetails(
+	public ResponseWrapper getCalenderDetails(
 			@RequestBody @Valid CalenderDetailsDTO calenderDetailsDTO,
 			ModelMap model, HttpServletRequest request, BindingResult result,
 			HttpServletResponse response, HttpSession session)

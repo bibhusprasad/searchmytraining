@@ -5,6 +5,6 @@ import com.searchmytraining.entity.LocationEntity;
 public interface ILocationInfoDAO {
 	
 	public void insertLocation(LocationEntity entity);
-	public LocationEntity findLocDet(Integer userid);
+	public LocationEntity findLocDet(Long userid);
 
 }

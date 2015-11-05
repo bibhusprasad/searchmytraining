@@ -44,10 +44,10 @@ public class TraineeService implements ITraineeService {
 	
 	@Override
 	@Transactional
-	public Map<Integer,Boolean> registerTrainee(TraineeDTO traineedto) throws SearchMyTrainingException{
+	public Map<Long,Boolean> registerTrainee(TraineeDTO traineedto) throws SearchMyTrainingException{
 		TraineeEntity traineeentity = mapper.map(traineedto, TraineeEntity.class);
 		log.debug(traineeentity);
-		Map<Integer,Boolean> statusMap=new HashMap<Integer,Boolean>();
+		Map<Long,Boolean> statusMap=new HashMap<Long,Boolean>();
 		UserEntity userEntity = null;
 		RoleEntity roleEntity = null;
 		//one is default for new registration
@@ -78,7 +78,7 @@ public class TraineeService implements ITraineeService {
 	}
 
 	@Override
-	public TraineeEntity getTrainee(Integer userid) {
+	public TraineeEntity getTrainee(Long userid) {
 		return traineeDAO.getTrainee(userid);
 	}
 

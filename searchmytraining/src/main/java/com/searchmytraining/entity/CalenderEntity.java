@@ -119,13 +119,13 @@ public class CalenderEntity implements Serializable {
 	private Date createdOn;
 
 	@Column(name = "createdBy")
-	private Integer createdBy;
+	private Long createdBy;
 
 	@Column(name = "updatedOn")
 	private Date updatedOn;
 
 	@Column(name = "updatedBy")
-	private Integer updatedBy;
+	private Long updatedBy;
 
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = UserEntity.class)
 	@JoinColumn(name = "userId")
@@ -371,20 +371,20 @@ public class CalenderEntity implements Serializable {
 		this.userId = userId;
 	}
 
-	public Integer getCreatedBy() {
+	public Long getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(Integer createdBy) {
-		this.createdBy = createdBy;
+	public void setCreatedBy(Long long1) {
+		this.createdBy = long1;
 	}
 
-	public Integer getUpdatedBy() {
+	public Long getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(Integer updatedBy) {
-		this.updatedBy = updatedBy;
+	public void setUpdatedBy(Long long1) {
+		this.updatedBy = long1;
 	}
 	
 }

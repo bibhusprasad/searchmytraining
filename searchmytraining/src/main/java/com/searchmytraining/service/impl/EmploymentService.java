@@ -41,7 +41,7 @@ public class EmploymentService implements IEmploymentService {
 	}
 
 	@Override
-	public EmploymentEntity findEmplDet(Integer userid) {
+	public EmploymentEntity findEmplDet(Long userid) {
 		return empldao.findEmplDet(userid);
 	}
 	

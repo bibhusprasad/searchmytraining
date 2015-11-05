@@ -5,5 +5,5 @@ import com.searchmytraining.entity.LocationEntity;
 
 public interface ILocationService {
 	public void updateLocationInfo(LocationDTO instlocdto);
-	public LocationEntity findLocDet(Integer userid);
+	public LocationEntity findLocDet(Long long1);
 }

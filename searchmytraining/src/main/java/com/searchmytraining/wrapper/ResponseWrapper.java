@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
-public class RespnoseWrapper {
+public class ResponseWrapper {
 
 	private Long responseWrapperId;
 	private Map<String, String> errorMsg;

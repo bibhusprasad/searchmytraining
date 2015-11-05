@@ -60,7 +60,7 @@ public class PasswordMngtService implements IPasswordMgntService{
 	@Transactional
 	public void savePassword(Long userId, String password) {
 		UserEntity userEntity = new UserEntity();
-		userEntity.setUserId(new Integer(userId.intValue()));
+		userEntity.setUserId(new Long(userId.longValue()));
 		userEntity.setPassword(encoder.encode(password));
 		userDao.savePassword(userEntity);
 	}

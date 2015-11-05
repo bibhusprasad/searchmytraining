@@ -5,6 +5,6 @@ import com.searchmytraining.entity.TraineeEntity;
 public interface TraineeDAO {
 	
 	public void registerTrainee(TraineeEntity entity);
-	public TraineeEntity getTrainee(Integer userid);
+	public TraineeEntity getTrainee(Long userid);
 
 }

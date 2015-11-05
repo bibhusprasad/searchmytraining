@@ -23,7 +23,7 @@ public class TraineeDaoJPA extends AbstractJpaDAO<TraineeEntity> implements
 	}
 
 	@Override
-	public TraineeEntity getTrainee(Integer userid) {
+	public TraineeEntity getTrainee(Long userid) {
 		String query = "from TraineeEntity trainee where trainee.user.userId=?";
 		TypedQuery<TraineeEntity> typedquery = entitymanager.createQuery(query,
 				TraineeEntity.class);

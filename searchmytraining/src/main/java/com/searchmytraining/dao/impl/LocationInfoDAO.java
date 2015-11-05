@@ -38,7 +38,7 @@ public class LocationInfoDAO extends AbstractJpaDAO<LocationEntity> implements
 	}
 
 	@Override
-	public LocationEntity findLocDet(Integer userid) {
+	public LocationEntity findLocDet(Long userid) {
 		String query = "from LocationEntity empl where empl.user.userId=?";
 		TypedQuery<LocationEntity> typedquery = entitymanager.createQuery(
 				query, LocationEntity.class);

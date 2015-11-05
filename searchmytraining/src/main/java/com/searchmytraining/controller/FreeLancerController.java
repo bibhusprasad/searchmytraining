@@ -38,7 +38,8 @@ import com.searchmytraining.service.IFreelancerService;
 import com.searchmytraining.service.ILocationService;
 import com.searchmytraining.service.IStateService;
 import com.searchmytraining.service.IUserService;
-import com.searchmytraining.wrapper.RespnoseWrapper;
+import com.searchmytraining.wrapper.ResponseWrapper;
+
 
 @Controller
 @RequestMapping(value="/freelancer")
@@ -146,7 +147,7 @@ public class FreeLancerController {
 	
 	@RequestMapping(value="/freelcertiawardDet",method=RequestMethod.POST)
 	@ResponseBody
-	public RespnoseWrapper updateCertifactionAwrdDet(@RequestBody CertificationAwardDTO certidto, ModelMap model)
+	public ResponseWrapper updateCertifactionAwrdDet(@RequestBody CertificationAwardDTO certidto, ModelMap model)
 	{
 		System.out.println(certidto.getAwrdDetails());
 		freelancerservice.updateCertiAndAwardInfo(certidto);
@@ -201,7 +202,7 @@ public class FreeLancerController {
 	
 	@RequestMapping(value="/updateedudetails/{chetan}",  method = RequestMethod.POST, produces={"application/json"}, consumes ={"application/json"})
 	@ResponseBody
-	public RespnoseWrapper updateEduDetails(@PathVariable("chetan") Integer userId,@RequestBody EducationDTO edudto,ModelMap model)
+	public ResponseWrapper updateEduDetails(@PathVariable("chetan") Integer userId,@RequestBody EducationDTO edudto,ModelMap model)
 	{
 		System.out.println("userId: "+userId);
 		System.out.println(edudto);

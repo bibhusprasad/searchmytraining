@@ -6,5 +6,5 @@ import com.searchmytraining.entity.EmploymentEntity;
 public interface IEmploymentService {
 
 	public void updateEmpldet(EmploymentDTO empldto);
-	public EmploymentEntity findEmplDet(Integer userid);
+	public EmploymentEntity findEmplDet(Long long1);
 }

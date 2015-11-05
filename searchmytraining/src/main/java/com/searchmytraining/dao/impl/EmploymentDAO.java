@@ -34,7 +34,7 @@ public class EmploymentDAO extends AbstractJpaDAO<EmploymentEntity> implements
 	}
 
 	@Override
-	public EmploymentEntity findEmplDet(Integer userid) {
+	public EmploymentEntity findEmplDet(Long userid) {
 		String query = "from EmploymentEntity empl where empl.user.userId=?";
 		TypedQuery<EmploymentEntity> typedquery = entitymanager.createQuery(
 				query, EmploymentEntity.class);

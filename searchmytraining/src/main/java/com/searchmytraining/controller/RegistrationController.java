@@ -44,14 +44,14 @@ import com.searchmytraining.service.ILocationService;
 import com.searchmytraining.service.IStateService;
 import com.searchmytraining.service.ITraineeService;
 import com.searchmytraining.service.IUserService;
-import com.searchmytraining.wrapper.RespnoseWrapper;
+import com.searchmytraining.wrapper.ResponseWrapper;
 
 @Controller
 @SessionAttributes("userid")
 public class RegistrationController {
 
 	@Autowired
-	private RespnoseWrapper respnoseWrapper;
+	private ResponseWrapper respnoseWrapper;
 	
 	@Autowired
 	private ITraineeService iTraineeService;
@@ -87,7 +87,7 @@ public class RegistrationController {
 
 	@RequestMapping(value = "/registration/trainee" ,method = RequestMethod.POST, produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8)
 	@ResponseBody
-	public RespnoseWrapper traineeRegistration(@RequestBody @Valid TraineeDTO traineedto, BindingResult bindingResult,
+	public ResponseWrapper traineeRegistration(@RequestBody @Valid TraineeDTO traineedto, BindingResult bindingResult,
 			ModelMap model, HttpServletRequest request,Locale locale,HttpSession session) throws SearchMyTrainingException{
 		Map<String, String> errorMsg = new HashMap<String, String>();
 		try{
@@ -104,7 +104,7 @@ public class RegistrationController {
 				return respnoseWrapper;
 			} else {
 				respnoseWrapper.setValidationError(false);
-				Map<Integer,Boolean> statusmap = iTraineeService.registerTrainee(traineedto);
+				Map<Long, Boolean> statusmap = iTraineeService.registerTrainee(traineedto);
 				session.setAttribute("userid", statusmap.keySet().iterator().next());
 				if(!statusmap.values().iterator().next()){
 					respnoseWrapper.setSuccessMessage(false);

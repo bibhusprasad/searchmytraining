@@ -55,7 +55,7 @@ import com.searchmytraining.service.ITrainingProviderService;
 	
 	@Override
 	@Transactional
-	public Integer registerTrainer(TrainerDTO trainerdto) {
+	public Long registerTrainer(TrainerDTO trainerdto) {
 		UserEntity userEntity = (UserEntity)context.getBean("userEntity");
 		StatusEntity status = statusdao.getStatus(1);
 		TrainerEntity entity = mapper.map(trainerdto, TrainerEntity.class);

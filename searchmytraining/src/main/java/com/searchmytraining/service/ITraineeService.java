@@ -7,7 +7,7 @@ import com.searchmytraining.entity.TraineeEntity;
 
 public interface ITraineeService {
 	
-	public Map<Integer,Boolean> registerTrainee(TraineeDTO traineedto);
+	public Map<Long, Boolean> registerTrainee(TraineeDTO traineedto);
 	
-	public TraineeEntity getTrainee(Integer userid);
+	public TraineeEntity getTrainee(Long long1);
 }

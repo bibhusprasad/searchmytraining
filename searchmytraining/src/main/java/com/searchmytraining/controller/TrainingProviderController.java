@@ -53,7 +53,7 @@ import com.searchmytraining.service.ILocationService;
 import com.searchmytraining.service.IStateService;
 import com.searchmytraining.service.ITrainingProviderService;
 import com.searchmytraining.service.IUserService;
-import com.searchmytraining.wrapper.RespnoseWrapper;
+import com.searchmytraining.wrapper.ResponseWrapper;
 
 @Controller
 public class TrainingProviderController {
@@ -93,11 +93,11 @@ public class TrainingProviderController {
 
 	@RequestMapping(value = "/trainingprovider_reg", method = RequestMethod.POST, produces = { "application/json" }, consumes = { "application/json" })
 	@ResponseBody
-	public RespnoseWrapper TrainingProviderRegistration(
+	public ResponseWrapper TrainingProviderRegistration(
 			@RequestBody @Valid TrainerDTO trainerdto, BindingResult result,
 			ModelMap model, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
-		RespnoseWrapper response1 = new RespnoseWrapper();
+		ResponseWrapper response1 = new ResponseWrapper();
 		response1.setValidationError(true);
 		response1.setResponseWrapperId(501l);
 		if (result.hasErrors()) {
@@ -114,7 +114,7 @@ public class TrainingProviderController {
 			response1.setErrorMsg(errorMsg);
 		} else {
 			response1.setValidationError(false);
-			Integer userid = trainerservice.registerTrainer(trainerdto);
+			Long userid = trainerservice.registerTrainer(trainerdto);
 			session.setAttribute("userid", userid);
 		}
 		return response1;

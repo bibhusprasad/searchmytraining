@@ -25,7 +25,7 @@ public class UserEntity implements Serializable{
 	@Id
 	@Column(name="userId")
 	@GeneratedValue
-	private Integer userId;
+	private Long userId;
 	
 	@Column(name="username")
 	private String userName;
@@ -79,7 +79,7 @@ public class UserEntity implements Serializable{
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-	public Integer getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 	public StatusEntity getStatus() {
@@ -91,8 +91,8 @@ public class UserEntity implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUserId(Long integer) {
+		this.userId = integer;
 	}
 	public String getUserName() {
 		return userName;

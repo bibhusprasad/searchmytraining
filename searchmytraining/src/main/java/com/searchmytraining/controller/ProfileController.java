@@ -41,7 +41,7 @@ import com.searchmytraining.service.IStateService;
 import com.searchmytraining.service.ITrainingProviderService;
 import com.searchmytraining.service.IUserService;
 import com.searchmytraining.service.impl.IndustryService;
-import com.searchmytraining.wrapper.RespnoseWrapper;
+import com.searchmytraining.wrapper.ResponseWrapper;
 
 @Controller
 public class ProfileController {
@@ -127,7 +127,7 @@ public class ProfileController {
 		model.addAttribute("states",
 				new JSONArray(iStateService.getAllStates()));
 		List<LocationEntity> address = new ArrayList<LocationEntity>();
-		address.add(iLocationService.findLocDet((Integer) session
+		address.add(iLocationService.findLocDet((Long) session
 				.getAttribute("userid")));
 		model.addAttribute("address", new JSONArray(address));
 		List<String> calType = new ArrayList<String>();
@@ -152,10 +152,10 @@ public class ProfileController {
 
 	@RequestMapping(value = "/updateempdet", method = RequestMethod.POST, produces = { "application/json" }, consumes = { "application/json" })
 	@ResponseBody
-	public RespnoseWrapper updateEmploymentdet(
+	public ResponseWrapper updateEmploymentdet(
 			@RequestBody @Valid EmploymentDTO empldto, BindingResult result,
 			ModelMap model) {
-		RespnoseWrapper responsewrapper = new RespnoseWrapper();
+		ResponseWrapper responsewrapper = new ResponseWrapper();
 		if (result.hasErrors()) {
 			responsewrapper.setValidationError(true);
 			List<FieldError> errors = result.getFieldErrors();
