@@ -56,12 +56,12 @@ public abstract class AbstractJpaDAO<T extends Serializable> {
 		}
 	}
 
-	public Integer getMaxId(String classname, String idcolumn) {
+	public Long getMaxId(String classname, String idcolumn) {
 
 		String query = "select max(e." + idcolumn + ") from " + classname
 				+ " e";
 		Query q = entityManager.createQuery(query);
-		Integer maxid = (Integer) q.getSingleResult();
+		Long maxid = (Long) q.getSingleResult();
 		return maxid;
 	}
 

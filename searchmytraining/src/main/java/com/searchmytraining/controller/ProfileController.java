@@ -132,7 +132,7 @@ public class ProfileController {
 		model.addAttribute("address", new JSONArray(address));
 		List<String> calType = new ArrayList<String>();
 		UserEntity user = null;
-		Integer userId = (Integer) session.getAttribute("userid");
+		Long userId = (Long) session.getAttribute("userid");
 		user = userService.getUser(userId);
 		if (null != user) {
 			session.setAttribute("userid", user.getUserId());
@@ -180,7 +180,7 @@ public class ProfileController {
 		}
 		model.addAttribute("calenderTypes", new JSONArray(calType));
 		UserEntity user = null;
-		Integer userId = (Integer) session.getAttribute("userid");
+		Long userId = (Long) session.getAttribute("userid");
 		user = userService.getUser(userId);
 		if (null != user) {
 			session.setAttribute("userid", user.getUserId());
@@ -208,7 +208,7 @@ public class ProfileController {
 		
 		model.addAttribute("calenderTypes", new JSONArray(caList));
 		UserEntity user = null;
-		Integer userId = (Integer) session.getAttribute("userid");
+		Long userId = (Long) session.getAttribute("userid");
 		user = userService.getUser(userId);
 		if (null != user) {
 			session.setAttribute("userid", user.getUserId());

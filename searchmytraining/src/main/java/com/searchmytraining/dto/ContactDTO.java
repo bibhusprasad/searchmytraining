@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Email;
 
 public class ContactDTO {
 
-	private Integer userid;
+	private Long userid;
 	@Email
 	private String email;
 	private String website;
@@ -34,10 +34,10 @@ public class ContactDTO {
 		this.contactpersonname = contactpersonname;
 	}
 
-	public Integer getUserid() {
+	public Long getUserid() {
 		return userid;
 	}
-	public void setUserid(Integer userid) {
+	public void setUserid(Long userid) {
 		this.userid = userid;
 	}
 	public ArrayList<Integer> getPhonetypeid() {

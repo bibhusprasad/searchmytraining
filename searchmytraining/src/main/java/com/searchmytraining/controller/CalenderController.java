@@ -73,12 +73,6 @@ public class CalenderController {
 		iCalnder.updateCalender(entity);
 	}
 
-	@RequestMapping("/deletCalender")
-	public void deleteCalenderById(Long calId) {
-
-		iCalnder.removeCalender(calId);
-	}
-	
 	@RequestMapping(value="/getContacted",method=RequestMethod.GET)
 	public void getContacted(@RequestParam("trngId") Integer trngId)
 	{

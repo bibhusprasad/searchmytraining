@@ -30,7 +30,7 @@ public class InstituteDaoImpl extends AbstractJpaDAO<InstituteEntity> implements
 	}
 
 	@Override
-	public Integer getMaxUserId(String idcolumn) {
+	public Long getMaxUserId(String idcolumn) {
 		return getMaxId("InstituteEntity", idcolumn);
 	}
 

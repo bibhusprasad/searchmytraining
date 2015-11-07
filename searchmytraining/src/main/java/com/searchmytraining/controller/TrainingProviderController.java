@@ -126,7 +126,7 @@ public class TrainingProviderController {
 			ModelMap model, HttpSession session) {
 		UserEntity user = null;
 		if (null == username) {
-			Integer userId = (Integer) session.getAttribute("userid");
+			Long userId = (Long) session.getAttribute("userid");
 			user = userservice.getUser(userId);
 		} else {
 			user = userservice.getUser(username);

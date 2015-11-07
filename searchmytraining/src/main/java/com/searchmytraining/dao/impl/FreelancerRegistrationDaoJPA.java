@@ -30,7 +30,7 @@ public class FreelancerRegistrationDaoJPA extends
 	}
 
 	@Override
-	public Integer getMaxUserId(String idcolumn) {
+	public Long getMaxUserId(String idcolumn) {
 		return getMaxId("FreelancerEntity", idcolumn);
 	}
 

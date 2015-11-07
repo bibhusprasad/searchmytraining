@@ -27,7 +27,7 @@ public class TrainerRegistrationDaoJPA extends AbstractJpaDAO<TrainerEntity>
 	}
 
 	@Override
-	public Integer getMaxUserId(String idcolumn) {
+	public Long getMaxUserId(String idcolumn) {
 		return getMaxId("TrainerEntity", idcolumn);
 	}
 

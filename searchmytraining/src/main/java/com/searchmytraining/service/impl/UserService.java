@@ -24,14 +24,14 @@ public class UserService implements IUserService {
 		userdao.addUser(entity);
 	}
 	
-	public Integer getMaxUserId(String idcolumn)
+	public Long getMaxUserId(String idcolumn)
 	{
 		return userdao.getMaxUserId(idcolumn);
 	}
 
 	@Override
 	@Transactional
-	public UserEntity getUser(Integer id) {
+	public UserEntity getUser(Long id) {
 		return userdao.getUser(id);
 	}
 

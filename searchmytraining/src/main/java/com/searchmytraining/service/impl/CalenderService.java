@@ -70,9 +70,11 @@ public class CalenderService implements ICalenderService {
 	}
 
 	@Override
-	public void removeCalender(long calenderId) {
-		calenderDAO.removeCalender(calenderId);
-
+	public void removeCalender(Integer calenderId,long userId) {
+		List<CalenderEntity> calenderEntities=calenderDAO.getCalenderDetailByCalId(userId,calenderId);
+		if(null != calenderEntities && calenderEntities.size()>0){
+			calenderDAO.deleteCalenderDetailByCalId(userId, calenderId);
+		}
 	}
 
 	@Override
@@ -98,7 +100,7 @@ public class CalenderService implements ICalenderService {
 	    }
 	}
 	@Override
-	public List<CalenderEntity> getUserCalenderDetails(Integer userId,CalenderDetailsDTO calenderDetailsDTO ) {
+	public List<CalenderEntity> getUserCalenderDetails(Long userId,CalenderDetailsDTO calenderDetailsDTO ) {
 		return calenderDAO.getUserCalender(userId,calenderDetailsDTO);
 	}
 	
@@ -147,7 +149,7 @@ public class CalenderService implements ICalenderService {
 	}
 
 	@Override
-	public List<CalenderEntity> getCalenderDetailByCalId(Integer userId,
+	public List<CalenderEntity> getCalenderDetailByCalId(Long userId,
 			Integer calId) {
 		return calenderDAO.getCalenderDetailByCalId(userId,calId);
 	}

@@ -28,7 +28,7 @@ public class UserDaoImpl extends AbstractJpaDAO<UserEntity> implements UserDAO {
 	}
 
 	@Override
-	public Integer getMaxUserId(String idcolumn) {
+	public Long getMaxUserId(String idcolumn) {
 		return getMaxId("UserEntity", idcolumn);
 	}
 

@@ -14,7 +14,7 @@ public class EmploymentDTO {
 	private String employer;
 	@NotEmpty(message="Job Profile may not be empty")
 	private String jobProfile;
-	private Integer userid;
+	private Long userid;
 	public String getEmploymentType() {
 		return employmentType;
 	}
@@ -39,10 +39,11 @@ public class EmploymentDTO {
 	public void setJobProfile(String jobProfile) {
 		this.jobProfile = jobProfile;
 	}
-	public Integer getUserid() {
+	
+	public Long getUserid() {
 		return userid;
 	}
-	public void setUserid(Integer userid) {
+	public void setUserid(Long userid) {
 		this.userid = userid;
 	}
 	@Override

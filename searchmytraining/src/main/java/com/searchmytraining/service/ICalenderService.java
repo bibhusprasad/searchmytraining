@@ -17,11 +17,11 @@ public interface ICalenderService
 	public List<CalenderEntity> getUserCalender(Integer userId);
 	public List<CalenderEntity> getAllCalender();
 	public String updateCalender(CalenderEntity entity);
-	public void removeCalender(long calenderId);
 	public List<CalenderEntity> getCalendersByKeyword(String kyeword) throws Exception;
 	public List<CalenderEntity> getCalendersOnSearch(SearchCalendarDTO searchcaldto);
 	public void savePostCalenser(TrainingProviderCalenderDTO trainingProviderCalenderDTO, UserEntity user) throws SMTException;
-	List<CalenderEntity> getUserCalenderDetails(Integer userId,CalenderDetailsDTO calenderDetailsDTO);
-	List<CalenderEntity> getCalenderDetailByCalId(Integer userId, Integer calId);
+	List<CalenderEntity> getUserCalenderDetails(Long userId,CalenderDetailsDTO calenderDetailsDTO);
+	List<CalenderEntity> getCalenderDetailByCalId(Long userId, Integer calId);
+	void removeCalender(Integer calenderId, long userId);
 	
 }

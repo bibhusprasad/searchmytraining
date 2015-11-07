@@ -14,7 +14,7 @@ import com.searchmytraining.entity.PhoneEntity;
 
 public interface IFreelancerService
 {
-	public Integer registerFreelancer(FreelancerDTO freelancerDto);
+	public Long registerFreelancer(FreelancerDTO freelancerDto);
 	public FreelancerEntity getFreeLancerDetByUserId(Long userid);
 	public CertificationAwardEntity getCertificationDetByUserId(Long userid);
 	public void insertFlProfDet(FreeLancerProfileEntity entity);

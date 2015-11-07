@@ -83,7 +83,7 @@ public class UploadFileController {
 				respnoseWrapper.setSuccessMessage(false);
 				return respnoseWrapper;
 			} else {
-				UserEntity user = userService.getUser((Integer) session
+				UserEntity user = userService.getUser((Long) session
 						.getAttribute("userid"));
 				calnderService.savePostCalenser(trainingProviderCalenderDTO,
 						user);
@@ -121,7 +121,7 @@ public class UploadFileController {
 				return respnoseWrapper;
 			} else {
 				UserEntity user = null;
-				Integer userId = (Integer) session.getAttribute("userid");
+				Long userId = (Long) session.getAttribute("userid");
 				user = userService.getUser(userId);
 				if (null != user) {
 					session.setAttribute("userid", user.getUserId());
@@ -166,7 +166,7 @@ public class UploadFileController {
 				return respnoseWrapper;
 			} else {
 				UserEntity user = null;
-				Integer userId = (Integer) session.getAttribute("userid");
+				Long userId = (Long) session.getAttribute("userid");
 				user = userService.getUser(userId);
 				if (null != user) {
 					session.setAttribute("userid", user.getUserId());
@@ -193,7 +193,7 @@ public class UploadFileController {
 	public String previewCalender(ModelMap model, HttpSession session) {
 		session.removeAttribute("trainingProviderCalenders");
 		UserEntity user = null;
-		Integer userId = (Integer) session.getAttribute("userid");
+		Long userId = (Long) session.getAttribute("userid");
 		user = userService.getUser(userId);
 		if (null != user) {
 			session.setAttribute("userid", user.getUserId());
@@ -211,7 +211,7 @@ public class UploadFileController {
 			@RequestParam CommonsMultipartFile fileUpload, HttpSession session) {
 		try {
 			UserEntity user = null;
-			Integer userId = (Integer) session.getAttribute("userid");
+			Long userId = (Long) session.getAttribute("userid");
 			user = userService.getUser(userId);
 			if (null != user) {
 				session.setAttribute("userid", user.getUserId());
@@ -253,7 +253,7 @@ public class UploadFileController {
 	public String editCalender(@PathVariable(value = "calId") Integer calId,ModelMap model, HttpSession session) {
 		try{
 			UserEntity user = null;
-			Integer userId = (Integer) session.getAttribute("userid");
+			Long userId = (Long) session.getAttribute("userid");
 			user = userService.getUser(userId);
 			if (null != user) {
 				session.setAttribute("userid", user.getUserId());
@@ -278,6 +278,29 @@ public class UploadFileController {
 		}
 		return null;
 		
+	}
+	
+	@RequestMapping("/calender/deleteCalender/{calId}")
+	public ResponseWrapper deleteCalender(@PathVariable(value = "calId") Integer calId,ModelMap model, HttpSession session) {
+		try{
+			UserEntity user = null;
+			Long userId = (Long) session.getAttribute("userid");
+			user = userService.getUser(userId);
+			if (null != user) {
+				session.setAttribute("userid", user.getUserId());
+				TrainerEntity trainer = trainerservice.getTrainerByUserid(user
+						.getUserId().longValue());
+				if (trainer != null) {
+					session.setAttribute("trainer", trainer);
+				}
+			}
+			iCalenderService.removeCalender(calId, userId);
+			model.addAttribute("deletecalId", calId);
+			respnoseWrapper.setSuccessMessage(true);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return respnoseWrapper;
 	}
 	
 }

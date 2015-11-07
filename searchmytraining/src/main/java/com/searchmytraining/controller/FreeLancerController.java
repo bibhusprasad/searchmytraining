@@ -65,7 +65,7 @@ public class FreeLancerController {
 	@RequestMapping(value = "/flregister", method = RequestMethod.POST, produces = { "application/json" }, consumes = { "application/json" })
 	@ResponseBody
 	public FreelancerDTO flRegistration(@RequestBody FreelancerDTO freelancerDto,HttpSession session) throws Exception {
-		Integer userid = freelancerservice.registerFreelancer(freelancerDto);
+		Long userid = freelancerservice.registerFreelancer(freelancerDto);
 		UserEntity user = userservice.getUser(userid);
 		session.setAttribute("user", user);
 		return freelancerDto;

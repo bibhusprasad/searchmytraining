@@ -171,7 +171,7 @@
 				id="startDate"></span> <span id="EndDate"></span> <span
 				id="PostedDate"> </span> <span id="Status"></span>
 				<span id="Edit" class="editcal"><a href="#">EDIT</a></span>
-				<span><input type="checkbox" id="cpBox" name="cpBox" />delete</span>
+				<span id="Delete" class="deletecal"><input type="checkbox" id="cpBox" name="cpBox" />Delete</span>
 		</div>
 
 	</div>
@@ -186,6 +186,23 @@
 						contentType : "application/json",
 						success : function(response) {
 							
+						}
+					});
+		} catch (ex) {
+			alert("Exception: " + ex);
+		}
+	});
+	
+	$('body').on('click', '.deletecal', function (e){
+		try {
+			$.ajax({
+						url : './calender/deleteCalender/'+$(this).attr("calId"),
+						type : 'post',
+						dataType : 'json',
+						stringify : true,
+						contentType : "application/json",
+						success : function(response) {
+							$('div[id=' +$(this).attr("calId")+']').remove();
 						}
 					});
 		} catch (ex) {
@@ -252,6 +269,8 @@
 				$(markup).find('#ctitle').html(element.courseTitle);
 			}
 			$(markup).find('#Edit').attr("calId", element.calenderId);
+			$(markup).find('#Delete').attr("calId", element.calenderId);
+			
 			if(!isEmpty(element.calenderType)){
 				$(markup).find('#caltype').html(element.calenderType);
 			}

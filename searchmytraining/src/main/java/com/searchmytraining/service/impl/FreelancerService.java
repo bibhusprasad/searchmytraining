@@ -70,7 +70,7 @@ public class FreelancerService implements IFreelancerService
 	
 	@Override
 	@Transactional
-	public Integer registerFreelancer(FreelancerDTO freelancerDto) {
+	public Long registerFreelancer(FreelancerDTO freelancerDto) {
 		StatusEntity status = statusdao.getStatus(1);
 		FreelancerEntity entity = mapper.map(freelancerDto, FreelancerEntity.class);
 		UserEntity user = (UserEntity)context.getBean("userEntity");

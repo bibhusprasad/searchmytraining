@@ -98,7 +98,7 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 	}
 
 	@Override
-	public void removeCalender(long calenderId) {
+	public void removeCalender(Integer calenderId) {
 		deleteById(calenderId);
 	}
 
@@ -219,7 +219,7 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 	    }
 	}
 	@Override
-	public List<CalenderEntity> getUserCalender(Integer userId,
+	public List<CalenderEntity> getUserCalender(Long userId,
 			CalenderDetailsDTO calenderDetailsDTO) {
 		String strquery = "select cal from CalenderEntity cal where cal.fromDate >=? AND " +
 				" cal.saveDraft=? AND cal.calenderType=? AND  cal.userId.userId=?" +
@@ -234,12 +234,22 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 	}
 
 	@Override
-	public List<CalenderEntity> getCalenderDetailByCalId(Integer userId,
+	public List<CalenderEntity> getCalenderDetailByCalId(Long userId,
 			Integer calId) {
 		String strquery = "select cal from CalenderEntity cal where cal.userId.userId = ? AND cal.calenderId=?";
 		TypedQuery<CalenderEntity> typedquery = entityManager.createQuery(strquery, CalenderEntity.class);
 		typedquery.setParameter(1,userId);
 		typedquery.setParameter(2, calId);
 		return typedquery.getResultList();
+	}
+	
+	@Override
+	public int deleteCalenderDetailByCalId(Long userId,
+			Integer calId) {
+		String strquery = "delete from CalenderEntity cal where cal.userId.userId = ? AND cal.calenderId=?";
+		TypedQuery<CalenderEntity> typedquery = entityManager.createQuery(strquery, CalenderEntity.class);
+		typedquery.setParameter(1,userId);
+		typedquery.setParameter(2, calId);
+		return typedquery.executeUpdate();
 	}
 }
