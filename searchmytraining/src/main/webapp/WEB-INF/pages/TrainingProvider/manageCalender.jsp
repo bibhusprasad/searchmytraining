@@ -215,7 +215,6 @@
 						contentType : "application/json",
 						success : function(response) {
 							if(response.successMessage) {
-								alert("hi");
 								$('div[id=' +caller.attr("calId")+']').remove();								
 							}
 						}
