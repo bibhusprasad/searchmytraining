@@ -170,28 +170,43 @@
 			<span id="ctitle"></span> <span id="caltype"></span> <span
 				id="startDate"></span> <span id="EndDate"></span> <span
 				id="PostedDate"> </span> <span id="Status"></span>
-				<span id="Edit" class="editcal"><a href="#">EDIT</a></span>
+				<span id="Edit" class="editcal" onclick="editCalender($(this));"><a href="#">EDIT</a></span>
 				<span id="Delete" class="deletecal"><input type="checkbox" id="cpBox" name="cpBox" />Delete</span>
 		</div>
 
 	</div>
 	<script type="text/javascript">
-	$('body').on('click', '.editcal', function (e){
+	function editCalender(caller){
 		try {
 			$.ajax({
-						url : './calender/editCalender/'+$(this).attr("calId"),
+						url : './calender/editCalender',
 						type : 'post',
 						dataType : 'json',
+						data:caller.attr("calId"),									
 						stringify : true,
 						contentType : "application/json",
 						success : function(response) {
-							
+							if(response.successMessage) {
+								alert("hi");
+								TCload();								
+							}
 						}
 					});
 		} catch (ex) {
 			alert("Exception: " + ex);
 		}
-	});
+	}
+	
+	function TCload() {
+		$("#home-content").load("./TPcalender", function(responseText, statusText, xhr)
+		        {
+		                if(statusText == "success")
+		                        /* alert("Successfully loaded the content!"); */
+		                if(statusText == "error")
+		                        alert("An error occurred: " + xhr.status + " - " + xhr.statusText);
+		        });
+		
+	}
 	
 	$('body').on('click', '.deletecal', function (e){
 		try {

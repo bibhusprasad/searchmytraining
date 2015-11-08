@@ -12,22 +12,7 @@
 	src="<%=request.getContextPath()%>/resources/js/Validations/calender_validation.js"></script>
 
 <script type="text/javascript">
-$('#acord2').accordion({
-	collapsible : true
-});
-$.get('Resent', function(data) {
-    $('#resent').append(data);
-});
-
-$.get('View', function(data) {
-    $('#viewall').append(data);
-});
-
-$('#Fdate,#Tdate').datepicker();
-</script>
-<script type="text/javascript">
-	$(document)
-			.ready(function() {
+	$(document).ready(function() {
 					$('.tagRemove').click(function(event) {
 						alert("see you")
 						event.preventDefault();
@@ -57,16 +42,24 @@ $('#Fdate,#Tdate').datepicker();
 												}
 											}
 										});
-					});
-						
-						$(document).ready(function() {
-							$('#Fdate,#Tdate').datepicker();
-							loadIndustries();
-							/* loadCity(); */
-							loadCalenderType();
-							loadState();
-							loadAddress();
+						$('#acord2').accordion({
+							collapsible : true
 						});
+						$.get('Resent', function(data) {
+						    $('#resent').append(data);
+						});
+
+						$.get('View', function(data) {
+						    $('#viewall').append(data);
+						});
+
+						$('#Fdate,#Tdate').datepicker();
+						$('#Fdate,#Tdate').datepicker();
+						loadIndustries();
+						loadCalenderType();
+						loadState();
+						loadAddress();
+					});
 						
 						function loadIndustries()
 						{

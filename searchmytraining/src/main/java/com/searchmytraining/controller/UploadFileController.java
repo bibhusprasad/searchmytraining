@@ -46,7 +46,7 @@ public class UploadFileController {
 
 	@Autowired
 	private ICalenderService calnderService;
-
+	
 	@Autowired
 	private IUserService userService;
 
@@ -253,8 +253,10 @@ public class UploadFileController {
 		return "pages/TrainingProvider/TrainingProviderProfile";
 	}
 	
-	@RequestMapping("/calender/editCalender/{calId}")
-	public String editCalender(@PathVariable(value = "calId") Integer calId,ModelMap model, HttpSession session) {
+	@RequestMapping(value = "/calender/editCalender", method = RequestMethod.POST, produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8, consumes = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8)
+	@ResponseBody
+	public ResponseWrapper editCalender(@RequestBody Integer calId,ModelMap model, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
 		try{
 			UserEntity user = null;
 			Long userId = (Long) session.getAttribute("userid");
@@ -270,18 +272,14 @@ public class UploadFileController {
 			List<CalenderEntity> calEntities = null;
 			calEntities = iCalenderService.getCalenderDetailByCalId(userId,calId);
 			if (null != calEntities) {
-				session.setAttribute("calEntities", calEntities);
-			} else {
-				respnoseWrapper.setSuccessMessage(false);
-				respnoseWrapper.setData("no record found");
+				respnoseWrapper.setData((Serializable) calEntities);
+				respnoseWrapper.setSuccessMessage(true);
+				session.setAttribute("editcalDetails", calEntities);
 			}
-			
-			return "pages/TrainingProvider/EditCalender";	
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return null;
-		
+		return respnoseWrapper;
 	}
 	
 	@RequestMapping("/calender/deleteCalender/{calId}")
