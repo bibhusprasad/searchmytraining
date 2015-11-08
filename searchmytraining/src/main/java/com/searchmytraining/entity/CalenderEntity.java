@@ -114,7 +114,6 @@ public class CalenderEntity implements Serializable {
 	@Column(name = "brochure")
 	private byte[] brochure;
 
-	//table  log
 	@Column(name = "createdOn")
 	private Date createdOn;
 

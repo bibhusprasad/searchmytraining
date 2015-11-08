@@ -19,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,8 +37,6 @@ import com.searchmytraining.service.ICalenderService;
 import com.searchmytraining.service.ITrainingProviderService;
 import com.searchmytraining.service.IUserService;
 import com.searchmytraining.wrapper.ResponseWrapper;
-
-/*import com.searchmytraining.service.IKeywordService;*/
 
 @Controller
 public class UploadFileController {
@@ -269,7 +266,7 @@ public class UploadFileController {
 					session.setAttribute("trainer", trainer);
 				}
 			}
-			List<CalenderEntity> calEntities = null;
+			CalenderEntity calEntities = null;
 			calEntities = iCalenderService.getCalenderDetailByCalId(userId,calId);
 			if (null != calEntities) {
 				respnoseWrapper.setData((Serializable) calEntities);
@@ -282,23 +279,25 @@ public class UploadFileController {
 		return respnoseWrapper;
 	}
 	
-	@RequestMapping("/calender/deleteCalender/{calId}")
-	public ResponseWrapper deleteCalender(@PathVariable(value = "calId") Integer calId,ModelMap model, HttpSession session) {
+	@RequestMapping(value = "/calender/deleteCalender", method = RequestMethod.POST, produces = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8, consumes = SearchMyTrainingConstant.APPLICATION_JSON_CHARSET_UTF_8)
+	@ResponseBody
+	public ResponseWrapper deleteCalender(@RequestBody Integer calId,ModelMap model, HttpSession session) {
 		try{
 			UserEntity user = null;
 			Long userId = (Long) session.getAttribute("userid");
 			user = userService.getUser(userId);
 			if (null != user) {
 				session.setAttribute("userid", user.getUserId());
-				TrainerEntity trainer = trainerservice.getTrainerByUserid(user
-						.getUserId().longValue());
+				TrainerEntity trainer = trainerservice.getTrainerByUserid(user.getUserId().longValue());
 				if (trainer != null) {
 					session.setAttribute("trainer", trainer);
 				}
 			}
-			iCalenderService.removeCalender(calId, userId);
-			model.addAttribute("deletecalId", calId);
+			CalenderEntity calEntities = null;
+			calEntities = iCalenderService.getCalenderDetailByCalId(userId,calId);
+			iCalenderService.removeCalender(calEntities);
 			respnoseWrapper.setSuccessMessage(true);
+			respnoseWrapper.setData(calId);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

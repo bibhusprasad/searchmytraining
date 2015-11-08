@@ -37,7 +37,6 @@ import com.searchmytraining.dao.CalenderDAO;
 import com.searchmytraining.dto.CalenderDetailsDTO;
 import com.searchmytraining.dto.SearchCalendarDTO;
 import com.searchmytraining.entity.CalenderEntity;
-import com.searchmytraining.service.ICityService;
 import com.searchmytraining.util.SearchUtil;
 
 @Repository
@@ -52,9 +51,6 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 
 	@Autowired
 	private QueryParser queryParser;
-
-	@Autowired
-	private ICityService cityservice;
 
 	@Override
 	@Transactional
@@ -98,8 +94,8 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 	}
 
 	@Override
-	public void removeCalender(Integer calenderId) {
-		deleteById(calenderId);
+	public void removeCalender(CalenderEntity calentity) {
+		delete(calentity);
 	}
 
 	@Override
@@ -111,15 +107,10 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 			Directory dir = FSDirectory.open(path);
 			IndexReader reader = DirectoryReader.open(dir);
 			IndexSearcher searcher = new IndexSearcher(reader);
-			/*
-			 * QueryParser queryParser = new
-			 * QueryParser("BasicSearchString",analyzer);
-			 */
 			Query query = queryParser.parse(keyword);
 			TopDocs topDocs = searcher.search(query, 10);
 			ScoreDoc[] scoreDosArray = topDocs.scoreDocs;
 			for (ScoreDoc scoredoc : scoreDosArray) {
-				// Retrieve the matched document and show relevant details
 				Document doc = searcher.doc(scoredoc.doc);
 				cal = new CalenderEntity();
 				cal.setCalenderId(Integer.parseInt(doc.getField("calenderId")
@@ -234,22 +225,14 @@ public class CalenderDaoImpl extends AbstractJpaDAO<CalenderEntity> implements
 	}
 
 	@Override
-	public List<CalenderEntity> getCalenderDetailByCalId(Long userId,
+	@Transactional
+	public CalenderEntity getCalenderDetailByCalId(Long userId,
 			Integer calId) {
 		String strquery = "select cal from CalenderEntity cal where cal.userId.userId = ? AND cal.calenderId=?";
 		TypedQuery<CalenderEntity> typedquery = entityManager.createQuery(strquery, CalenderEntity.class);
 		typedquery.setParameter(1,userId);
 		typedquery.setParameter(2, calId);
-		return typedquery.getResultList();
+		return typedquery.getSingleResult();
 	}
-	
-	@Override
-	public int deleteCalenderDetailByCalId(Long userId,
-			Integer calId) {
-		String strquery = "delete from CalenderEntity cal where cal.userId.userId = ? AND cal.calenderId=?";
-		TypedQuery<CalenderEntity> typedquery = entityManager.createQuery(strquery, CalenderEntity.class);
-		typedquery.setParameter(1,userId);
-		typedquery.setParameter(2, calId);
-		return typedquery.executeUpdate();
-	}
+
 }

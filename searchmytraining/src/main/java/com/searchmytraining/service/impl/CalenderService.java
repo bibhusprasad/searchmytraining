@@ -66,10 +66,10 @@ public class CalenderService implements ICalenderService {
 	}
 
 	@Override
-	public void removeCalender(Integer calenderId,long userId) {
-		List<CalenderEntity> calenderEntities=calenderDAO.getCalenderDetailByCalId(userId,calenderId);
-		if(null != calenderEntities && calenderEntities.size()>0){
-			calenderDAO.deleteCalenderDetailByCalId(userId, calenderId);
+	@Transactional
+	public void removeCalender(CalenderEntity calentity) {
+		if(null != calentity){
+			calenderDAO.removeCalender(calentity);
 		}
 	}
 
@@ -145,7 +145,7 @@ public class CalenderService implements ICalenderService {
 	}
 
 	@Override
-	public List<CalenderEntity> getCalenderDetailByCalId(Long userId,
+	public CalenderEntity getCalenderDetailByCalId(Long userId,
 			Integer calId) {
 		return calenderDAO.getCalenderDetailByCalId(userId,calId);
 	}

@@ -171,7 +171,7 @@
 				id="startDate"></span> <span id="EndDate"></span> <span
 				id="PostedDate"> </span> <span id="Status"></span>
 				<span id="Edit" class="editcal" onclick="editCalender($(this));"><a href="#">EDIT</a></span>
-				<span id="Delete" class="deletecal"><input type="checkbox" id="cpBox" name="cpBox" />Delete</span>
+				<span id="Delete" class="deletecal" onclick="deleteCalender($(this));"><input type="checkbox" id="cpBox" name="cpBox" />Delete</span>
 		</div>
 
 	</div>
@@ -187,7 +187,6 @@
 						contentType : "application/json",
 						success : function(response) {
 							if(response.successMessage) {
-								alert("hi");
 								TCload();								
 							}
 						}
@@ -198,32 +197,33 @@
 	}
 	
 	function TCload() {
-		$("#home-content").load("./TPcalender", function(responseText, statusText, xhr)
-		        {
-		                if(statusText == "success")
-		                        /* alert("Successfully loaded the content!"); */
-		                if(statusText == "error")
-		                        alert("An error occurred: " + xhr.status + " - " + xhr.statusText);
-		        });
-		
+		$("#home-content").load("./TPcalender", function(responseText, statusText, xhr) {
+                if(statusText == "success")
+                if(statusText == "error")
+                alert("An error occurred: " + xhr.status + " - " + xhr.statusText);
+		 });
 	}
 	
-	$('body').on('click', '.deletecal', function (e){
+	function deleteCalender(caller){
 		try {
 			$.ajax({
-						url : './calender/deleteCalender/'+$(this).attr("calId"),
+						url : './calender/deleteCalender',
 						type : 'post',
 						dataType : 'json',
 						stringify : true,
+						data :caller.attr("calId"),
 						contentType : "application/json",
 						success : function(response) {
-							$('div[id=' +$(this).attr("calId")+']').remove();
+							if(response.successMessage) {
+								alert("hi");
+								$('div[id=' +caller.attr("calId")+']').remove();								
+							}
 						}
 					});
 		} catch (ex) {
 			alert("Exception: " + ex);
 		}
-	});
+	}
 	
 		function LoadCalenderDetails() {
 			try {

@@ -15,11 +15,10 @@ public interface CalenderDAO
 	public List<CalenderEntity> getUserCalender(Integer userId);
 	public List<CalenderEntity> getAllCalender();
 	public String updateCalender(CalenderEntity entity);
-	public void removeCalender(Integer calenderId);
+	public void removeCalender(CalenderEntity calentity);
 	public List<CalenderEntity> getCalendersByKeyword(String kyeword) throws Exception;
 	public List<CalenderEntity> getCalendersOnSearch(SearchCalendarDTO searchcaldto);
 	public List<CalenderEntity> getUserCalender(Long userId,
 			CalenderDetailsDTO calenderDetailsDTO);
-	public List<CalenderEntity> getCalenderDetailByCalId(Long userId,Integer calId);
-	int deleteCalenderDetailByCalId(Long userId, Integer calId);
+	public CalenderEntity getCalenderDetailByCalId(Long userId,Integer calId);
 }
