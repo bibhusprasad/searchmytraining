@@ -59,6 +59,10 @@
 						loadCalenderType();
 						loadState();
 						loadAddress();
+						var editflag='${isEditFlag}';
+						if (editflag) {
+							populateCalendarDetails();
+						}
 					});
 						
 						function loadIndustries()
@@ -122,6 +126,39 @@
 							$.each(oldstates, function (index, field) {
 								$('#state').append($("<option></option>").text(field.stateName).val(field.stateId));
 							});
+							
+						}
+						
+						function populateCalendarDetails(){
+							var calenderList = '${calenderList}';
+							var calender = $.parseJSON(calenderList);
+							console.log(calender);
+							
+							/* $('#Ctype').val(),
+							"industryId" : $('#Itype').val(),
+							"price" : $('#cPrice').val(),
+							"saveDraft" : false,
+							"showPrice" :false,
+							"fromDate" : $('#Fdate').val(),
+							"toDate" : $('#Tdate').val(),
+							"time" : allTime,
+							"addressLine1" : $('#Caddress1').val(),
+							"addressLine2" : $('#Caddress2').val(),
+							"landmark" : $('#Clmark').val(),
+							"city" : $('#place').val(),
+							"state" : $('#state').val(),
+							"country" : $('#Ccountry').val(),
+							"pincode" : $('#Cpincode').val(),
+							"trngQuickView" : $('#Qview').val(),
+							"trngOverView" : $('#Pview').val(),
+							"trngTakeAway" : $('#Taway').val(),
+							"trngMethodology" : $('#Tmethod').val(),
+							"trngAttandant" : $('#wsa').val(),
+							"trainingKey" : $('#kword').val(),
+							"facultyDetails" : $('#fdetails').val(),
+							"howtoregister" : $('#helpregister').val(),
+							"detailsOfProvider" : $('#TPdetails').val()
+							 */
 							
 						}
 						

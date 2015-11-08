@@ -266,13 +266,8 @@ public class UploadFileController {
 					session.setAttribute("trainer", trainer);
 				}
 			}
-			CalenderEntity calEntities = null;
-			calEntities = iCalenderService.getCalenderDetailByCalId(userId,calId);
-			if (null != calEntities) {
-				respnoseWrapper.setData((Serializable) calEntities);
-				respnoseWrapper.setSuccessMessage(true);
-				session.setAttribute("editcalDetails", calEntities);
-			}
+			session.setAttribute("editCalId", calId);
+			respnoseWrapper.setSuccessMessage(true);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
