@@ -25,6 +25,8 @@ public class TrainingProviderCalenderDTO {
 	
 	private boolean showPrice;
 	
+	private boolean isEdit;
+	
 	@NotNull(message="Please enter a valid date")     
 	private String fromDate;
 	
@@ -292,5 +294,13 @@ public class TrainingProviderCalenderDTO {
 
 	public void setMultipartfile(CommonsMultipartFile multipartfile) {
 		this.multipartfile = multipartfile;
+	}
+
+	public boolean isEdit() {
+		return isEdit;
+	}
+
+	public void setEdit(boolean isEdit) {
+		this.isEdit = isEdit;
 	}
 }

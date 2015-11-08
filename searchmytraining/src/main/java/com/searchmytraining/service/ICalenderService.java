@@ -23,5 +23,6 @@ public interface ICalenderService
 	List<CalenderEntity> getUserCalenderDetails(Long userId,CalenderDetailsDTO calenderDetailsDTO);
 	List<CalenderEntity> getCalenderDetailByCalId(Long userId, Integer calId);
 	void removeCalender(Integer calenderId, long userId);
+	public void updateCalender(TrainingProviderCalenderDTO trainingProviderCalenderDTO, UserEntity user);
 	
 }

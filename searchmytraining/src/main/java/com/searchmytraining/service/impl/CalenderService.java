@@ -20,7 +20,6 @@ import com.searchmytraining.entity.CalenderEntity;
 import com.searchmytraining.entity.IndustryEntity;
 import com.searchmytraining.entity.UserEntity;
 import com.searchmytraining.service.ICalenderService;
-import com.searchmytraining.service.ICityService;
 import com.searchmytraining.service.ICountryService;
 import com.searchmytraining.service.IIndustrySerivice;
 import com.searchmytraining.service.IStateService;
@@ -32,9 +31,6 @@ public class CalenderService implements ICalenderService {
 
 	@Autowired
 	private IIndustrySerivice iIndustrySerivice;
-
-	@Autowired
-	private ICityService iCityService;
 
 	@Autowired
 	private IStateService iStateService;
@@ -105,32 +101,23 @@ public class CalenderService implements ICalenderService {
 	}
 	
 
-	@Override
-	public void savePostCalenser(TrainingProviderCalenderDTO tpcalDTO, UserEntity user)
-			throws SMTException {
+	private CalenderEntity setcalenderDetails(TrainingProviderCalenderDTO tpcalDTO,UserEntity user){
 		CalenderEntity calenderEntity = new CalenderEntity();
-
 		calenderEntity.setCourseTitle(tpcalDTO.getCourseTitle());
 		calenderEntity.setCalenderType(String.valueOf(tpcalDTO.getCalenderType()));
 		calenderEntity.setPrice(tpcalDTO.getPrice());
 		calenderEntity.setFromDate(convertStringToTimestamp(tpcalDTO.getFromDate()));
 		calenderEntity.setToDate(convertStringToTimestamp(tpcalDTO.getToDate()));
 		calenderEntity.setTime(tpcalDTO.getTime());
-		// create industry sub category
-		IndustryEntity industryEntity = iIndustrySerivice
-				.getIndustryById((Integer)tpcalDTO.getIndustryId());
+		IndustryEntity industryEntity = iIndustrySerivice.getIndustryById((Integer)tpcalDTO.getIndustryId());
 		calenderEntity.setIndustryId(industryEntity);
-
 		calenderEntity.setAddressLine1(tpcalDTO.getAddressLine1());
 		calenderEntity.setAddressLine2(tpcalDTO.getAddressLine2());
 		calenderEntity.setLandmark(tpcalDTO.getLandmark());
 		calenderEntity.setCityName(tpcalDTO.getCity());
-		calenderEntity.setStateId(iStateService.getStateEntityById((Integer)tpcalDTO
-				.getState()));
-		calenderEntity.setCountryId(iCountryService.getCountry(tpcalDTO
-				.getCountry()));
+		calenderEntity.setStateId(iStateService.getStateEntityById((Integer)tpcalDTO.getState()));
+		calenderEntity.setCountryId(iCountryService.getCountry(tpcalDTO.getCountry()));
 		calenderEntity.setPincode(tpcalDTO.getPincode());
-
 		calenderEntity.setTrngQuickView(tpcalDTO.getTrngQuickView());
 		calenderEntity.setTrngOverView(tpcalDTO.getTrngOverView());
 		calenderEntity.setTrngTakeAway(tpcalDTO.getTrngTakeAway());
@@ -145,6 +132,15 @@ public class CalenderService implements ICalenderService {
 		calenderEntity.setHowtoregister(tpcalDTO.getHowtoregister());
 		calenderEntity.setDetailsOfProvider(tpcalDTO.getDetailsOfProvider());
 		calenderEntity.setUserId(user);
+		return calenderEntity;
+	}
+	
+	
+	@Override
+	public void savePostCalenser(TrainingProviderCalenderDTO tpcalDTO, UserEntity user)
+			throws SMTException {
+		CalenderEntity calenderEntity = null;
+		calenderEntity = setcalenderDetails(tpcalDTO, user);
 		calenderDAO.addCalender(calenderEntity);
 	}
 
@@ -152,6 +148,14 @@ public class CalenderService implements ICalenderService {
 	public List<CalenderEntity> getCalenderDetailByCalId(Long userId,
 			Integer calId) {
 		return calenderDAO.getCalenderDetailByCalId(userId,calId);
+	}
+
+	@Override
+	public void updateCalender(TrainingProviderCalenderDTO tpcalDTO, UserEntity user) {
+		CalenderEntity calenderEntity = null;
+		calenderEntity = setcalenderDetails(tpcalDTO, user);
+		calenderDAO.updateCalender(calenderEntity);
+		
 	}
 
 }

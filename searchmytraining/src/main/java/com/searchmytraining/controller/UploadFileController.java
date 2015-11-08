@@ -85,8 +85,12 @@ public class UploadFileController {
 			} else {
 				UserEntity user = userService.getUser((Long) session
 						.getAttribute("userid"));
-				calnderService.savePostCalenser(trainingProviderCalenderDTO,
-						user);
+				if(trainingProviderCalenderDTO.isEdit()){
+					calnderService.updateCalender(trainingProviderCalenderDTO,user);
+				}else{
+					calnderService.savePostCalenser(trainingProviderCalenderDTO,user);
+				}
+				
 				respnoseWrapper.setValidationError(false);
 				respnoseWrapper.setSuccessMessage(true);
 			}
