@@ -362,9 +362,43 @@ function uploadCalender() {
 	        });
 }
 
+function getIndSubCat() {
+		var id = $("#Itype").val();
+		$.ajax({
+			type : "POST",
+			url : "/searchmytraining/common/getIndustryCategory",
+			dataType : 'json',
+			data : "id=" + id,
+			success : function(response) {
+				$('#indSubCat').html('');
+				jQuery.each(response, function(index, item) {
+					$('#indSubCat').append(this.trnIndstrCatId+" "+this.indstrCatName+"<div></div>");
+				});
+				$('#indSubCat').attr("style", "display:block;");
+			},
+		});
+	}
 
-
-
+/* function industrySubCategory() {
+	var subid = $('#industrycatid').val();
+	$.ajax({
+		type : "POST",
+		url : "/searchmytraining/common/getIndustrySubCategory",
+		dataType : 'json',
+		data : "subid=" + subid,
+		success : function(response) {
+			$('#industrysubcatid').find('option').remove().end();
+			$('#industrysubcatid').attr('enabled', 'true');
+			$('#industrysubcatid').append(
+					$("<option value='0'></option>").text("--Select--"));
+			jQuery.each(response, function(index, item) {
+				$('#industrysubcatid').append(
+						$("<option></option>").text(this.indstrSubCatName).val(
+								this.trnIndstrSubCatId));
+			});
+		},
+	});
+} */
 </script>
 
 </head>
@@ -386,10 +420,16 @@ function uploadCalender() {
 					</select>
 					<span id="errorCtype" class="errorm"></span>
 				</div>
-				<div class="Industry">
+				<div class="Industry" onchange="getIndSubCat();">
 					<label><b>Industry Type</b><font color="red">*</font></label> <select id="Itype" name="Itype">
 					</select>
 					<span id="errorItype" class="errorm"></span>
+				</div>
+				<div>
+				<textarea rows="4" cols="7" id="indSubCat" style="display: none;"></textarea>
+				</div>
+				<div>
+				<textarea rows="4" cols="7" id="indSubsubCat" style="display: none;"></textarea>
 				</div>
 				
 				<div class="price">
