@@ -153,6 +153,10 @@
 	         $('<tr/>').appendTo($('#detailsViewTable'))
 	        .append($('<td/>').text("Details of Training Providers :-"))
 	        .append($('<td/>').text(calenderDetail.detailsOfProvider))
+	        
+	        
+	        $("#isPEdit").val(calenderDetail.isEdit);
+	        
 
 	}
 	
@@ -203,6 +207,8 @@
         .append($('<td/>').text("Keywords :-"))
         .append($('<td/>').text(calenderDetail.trainingKey))
         
+        $("#isPEdit").val(calenderDetail.isEdit);
+        
 }
 	
 function postCalender() {
@@ -239,7 +245,8 @@ function postCalender() {
 									"trainingKey" : calenderdetails[0].trainingKey,
 									"facultyDetails" :calenderdetails[0].facultyDetails,
 									"howtoregister" : calenderdetails[0].howtoregister,
-									"detailsOfProvider" : calenderdetails[0].detailsOfProvider
+									"detailsOfProvider" : calenderdetails[0].detailsOfProvider,
+									"isEdit" : $("#isPEdit").val()
 									}),
 							contentType : "application/json",
 							success : function(response) {
@@ -328,5 +335,6 @@ $.get('View', function(data) {
 			<table id="quickViewTable"></table>
 		</div>
 	</div>
+	<input type="hidden" id="isPEdit" value="">
 </body>
 </html>

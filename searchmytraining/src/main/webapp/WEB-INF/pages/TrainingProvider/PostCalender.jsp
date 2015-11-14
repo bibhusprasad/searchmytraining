@@ -129,36 +129,62 @@
 							
 						}
 						
+						function formatDate(dateObject){
+							var d = new Date(dateObject);
+							var day = d.getDate();
+							var month = d.getMonth()+1;
+							var year = d.getFullYear();
+							if (day < 10) {
+								day = "0" + day;
+							}
+							if (month < 10) {
+								month = "0" + month;
+							}
+							var date = day + "/" + month + "/" + year;
+							return date;
+						}
+						
 						function populateCalendarDetails(){
 							var calenderList = '${calenderList}';
-							var calender = $.parseJSON(calenderList);
-							console.log(calender);
+							var editflag = '${isEditFlag}';
+							var calenders = $.parseJSON(calenderList);
+							var calender = calenders[0];
+							console.log(editflag);
+							$('#ctitle').val(calender.courseTitle);
+							$('#Ctype').val(calender.calenderType);
 							
-							/* $('#Ctype').val(),
-							"industryId" : $('#Itype').val(),
-							"price" : $('#cPrice').val(),
-							"saveDraft" : false,
-							"showPrice" :false,
-							"fromDate" : $('#Fdate').val(),
-							"toDate" : $('#Tdate').val(),
-							"time" : allTime,
-							"addressLine1" : $('#Caddress1').val(),
-							"addressLine2" : $('#Caddress2').val(),
-							"landmark" : $('#Clmark').val(),
-							"city" : $('#place').val(),
-							"state" : $('#state').val(),
-							"country" : $('#Ccountry').val(),
-							"pincode" : $('#Cpincode').val(),
-							"trngQuickView" : $('#Qview').val(),
-							"trngOverView" : $('#Pview').val(),
-							"trngTakeAway" : $('#Taway').val(),
-							"trngMethodology" : $('#Tmethod').val(),
-							"trngAttandant" : $('#wsa').val(),
-							"trainingKey" : $('#kword').val(),
-							"facultyDetails" : $('#fdetails').val(),
-							"howtoregister" : $('#helpregister').val(),
-							"detailsOfProvider" : $('#TPdetails').val()
-							 */
+							$('#Itype').val(calender.industryId.trnIndstrId);
+							$('#cPrice').val(calender.price);
+							//"saveDraft" : false;
+							$('#cpBox').val(calender.showPrice);
+							$('#Fdate').val(formatDate(calender.fromDate));
+							$('#Tdate').val(formatDate(calender.toDate));
+							
+							$('#isEdit').val(editflag);
+
+							var time = calender.time;
+							var timeString = time.split(":");
+							$('#Chour').val(timeString[0]);
+							$('#Cmin').val(timeString[1]);
+							$('#Campm').val(timeString[2]);
+							
+							$('#Caddress1').val(calender.addressLine1);
+							$('#Caddress2').val(calender.addressLine2);
+							$('#Clmark').val(calender.landmark);
+							$('#place').val(calender.cityName);
+							$("#state").val(calender.stateId.stateId);
+							$('#Ccountry').val(calender.countryId.countryName);
+							$('#Cpincode').val(calender.pincode);
+							$('#Qview').val(calender.trngQuickView);
+							$('#Pview').val(calender.trngOverView);
+							$('#Taway').val(calender.trngTakeAway);
+							$('#Tmethod').val(calender.trngMethodology);
+							$('#wsa').val(calender.trngAttandant);
+							$('#kword').val(calender.trainingKey);
+							$('#fdetails').val(calender.facultyDetails);
+							$('#helpregister').val(calender.howtoregister);
+							$('#TPdetails').val(calender.detailsOfProvider);
+							 
 							
 						}
 						
@@ -201,6 +227,7 @@ function previewC() {
 	var min = $('#Cmin').val();
 	var ampm = $('#Campm').val();
 	var allTime = hour+":"+min+":"+ampm;
+	console.log($('#isEdit').val());
 	if (flag) {
 		try {
 			$.ajax({
@@ -233,7 +260,8 @@ function previewC() {
 								"trainingKey" : $('#kword').val(),
 								"facultyDetails" : $('#fdetails').val(),
 								"howtoregister" : $('#helpregister').val(),
-								"detailsOfProvider" : $('#TPdetails').val()
+								"detailsOfProvider" : $('#TPdetails').val(),
+								"isEdit" :$('#isEdit').val()
 								}),
 						contentType : "application/json",
 						success : function(response) {
@@ -307,7 +335,8 @@ function postCalender() {
 								"trainingKey" : $('#kword').val(),
 								"facultyDetails" : $('#fdetails').val(),
 								"howtoregister" : $('#helpregister').val(),
-								"detailsOfProvider" : $('#TPdetails').val()
+								"detailsOfProvider" : $('#TPdetails').val(),
+								"isEdit" :$('#isEdit').val()
 								}),
 						contentType : "application/json",
 						success : function(response) {
@@ -446,7 +475,8 @@ function getIndSubCat() {
 				</div>
 								
 				<div class="Ctime">
-					<label><b>Time</b><font color="red">*</font></label><select id="Chour" name="Chour">
+					<label><b>Time</b><font color="red">*</font></label>
+					<select id="Chour" name="Chour">
 						<option>HH</option></select>
 					<select id="Cmin" name="Cmin">
 						<option>MM</option>
@@ -559,6 +589,8 @@ function getIndSubCat() {
 	<input type="hidden" id="stateId" value="">
 	<input type="hidden" id="cities" value="">
 	<input type="hidden" id="states" value="">
+	<input type="hidden" id="isEdit" value="">
+	 
 </body>
 </html>
 
