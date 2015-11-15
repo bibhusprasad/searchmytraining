@@ -364,7 +364,7 @@ a:hover { color: #7299cf; }*/
 	overflow: auto;
 }
 
-.section_wrapar .middle_part #tabcontent .Calender_wrapar table {
+.section_wrapar .middle_part #tabcontent .Calender_wrapar table,.mancaltab {
 	width: 100%;
 	height: 100%;
 	border: 1px solid #ccc;
@@ -390,7 +390,7 @@ a:hover { color: #7299cf; }*/
 	font-size: 15px;
 }
 
-.section_wrapar .middle_part #tabcontent .Calender_wrapar table th {
+.section_wrapar .middle_part #tabcontent .Calender_wrapar table th,.managecaldiv {
 	padding: 15px 10px;
 	text-align: center;
 	vertical-align: bottom;

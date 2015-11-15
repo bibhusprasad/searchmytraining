@@ -30,4 +30,8 @@ public class IndustrySubCategoryService implements IIndustrySubCategoryService {
 		return subcatdao.getAllIndustrySubCategories();
 	}
 
+	@Override
+	public List<IndustrySubCategoryEntity> getIndustrySubCat(List<Integer> subids) {
+		return subcatdao.getIndustrySubCategory(subids);
+	}
 }

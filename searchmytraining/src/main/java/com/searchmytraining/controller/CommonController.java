@@ -34,9 +34,9 @@ import com.searchmytraining.service.IInstituteServiceDetails;
 import com.searchmytraining.service.IStateService;
 
 @Controller
-@RequestMapping(value="/common")
+@RequestMapping(value = "/common")
 public class CommonController {
-	
+
 	@Autowired
 	private WebApplicationContext context;
 	@Autowired
@@ -53,76 +53,71 @@ public class CommonController {
 	private IInstituteServiceDetails instituteservice;
 	@Autowired
 	private IFreelancerService freelancerservice;
-	
+
 	@RequestMapping("/getIndustryCategory")
 	@ResponseBody
-	public List<IndustryCategoryEntity> getIndustryCategory(@RequestParam("id") Integer industryid, ModelMap model)
-	{
+	public List<IndustryCategoryEntity> getIndustryCategory(@RequestParam("id") Integer industryid, ModelMap model) {
 		List<IndustryCategoryEntity> l = industrycatservice.getIndustryCategories(industryid);
 		model.addAttribute("industrycategories", l);
 		return l;
 	}
-	
+
 	@RequestMapping("/getIndustrySubCategory")
 	@ResponseBody
-	public List<IndustrySubCategoryEntity> getIndustrySubCategory(@RequestParam("subid") Integer industrysubid, ModelMap model)
-	{
-		System.out.println("caughed by getIndustrySubCategory method... subid:"+industrysubid);
+	public List<IndustrySubCategoryEntity> getIndustrySubCategory(@RequestParam("subid") Integer industrysubid,
+			ModelMap model) {
+		System.out.println("caughed by getIndustrySubCategory method... subid:" + industrysubid);
 		return industrysubcatservice.getIndustrySubCategories(industrysubid);
 	}
-	
+
 	@RequestMapping("/getstates")
 	@ResponseBody
-	public List<StateEntity> getStates(@RequestParam("countryid") Integer countryid)
-	{
+	public List<StateEntity> getStates(@RequestParam("countryid") Integer countryid) {
 		System.out.println("in getStates(...)");
 		return state.getStates(countryid.intValue());
 	}
-	
+
 	@RequestMapping("/getCities")
 	@ResponseBody
-	public List<CityEntity> getCitites(@RequestParam("stateid") Integer stateid)
-	{
+	public List<CityEntity> getCitites(@RequestParam("stateid") Integer stateid) {
 		return city.getCities(stateid.intValue());
 	}
-	
+
 	@RequestMapping("/downloadPicture/{userId}")
-	public String downloadPicture(@PathVariable("userId") Integer userId, HttpServletResponse response)
-	{
+	public String downloadPicture(@PathVariable("userId") Integer userId, HttpServletResponse response) {
 		RoleEntity role = commonservice.getRoleByUserId(userId.longValue());
-		ActorDetails actordetails = (ActorDetails)context.getBean("actorDetails");
-		if(role.getROLE().equalsIgnoreCase("TPF"))
-		{
+		ActorDetails actordetails = (ActorDetails) context.getBean("actorDetails");
+		if (role.getROLE().equalsIgnoreCase("TPF")) {
 			FreeLancerProfileEntity flprofentity = freelancerservice.getFLProfileDet(userId.longValue());
 			actordetails.setUser(flprofentity.getUser());
 			actordetails.setName(flprofentity.getFullname());
 			actordetails.setPicture(flprofentity.getPhotograph());
-		}
-		else if(role.getROLE().equalsIgnoreCase("TPI"))
-		{
+		} else if (role.getROLE().equalsIgnoreCase("TPI")) {
 			InstituteEntity institute = instituteservice.getInstituteInfo(userId.longValue());
-			if(institute.getInstitutelogo()!=null)
-			{
+			if (institute.getInstitutelogo() != null) {
 				actordetails.setUser(institute.getUser());
 				actordetails.setName(institute.getCompanyName());
 				actordetails.setPicture(institute.getInstitutelogo());
 			}
 		}
-		try
-		{
-			response.setHeader("Content-Disposition", "inline;filename=\""+actordetails.getName()+"\"");
+		try {
+			response.setHeader("Content-Disposition", "inline;filename=\"" + actordetails.getName() + "\"");
 			OutputStream out = response.getOutputStream();
 			response.setContentType("image/gif");
 			ByteArrayInputStream bis = new ByteArrayInputStream(actordetails.getPicture());
 			IOUtils.copy(bis, out);
 			out.flush();
 			out.close();
-		}
-		catch(IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
+	@RequestMapping("/getIndustrySubCategories")
+	@ResponseBody
+	public List<IndustrySubCategoryEntity> getIndustrySubCategories(@RequestParam("subid") List<Integer> industrysubids,
+			ModelMap model) {
+		return industrysubcatservice.getIndustrySubCat(industrysubids);
+	}
 }

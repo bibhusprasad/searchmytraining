@@ -44,5 +44,16 @@ public class IndustrySubCategoryDAO extends
 		setClazz(IndustrySubCategoryEntity.class);
 		return findAll();
 	}
+	
+	@Override
+	@Cacheable(value = "industrySubCatCache")
+	public List<IndustrySubCategoryEntity> getIndustrySubCategory(
+			List<Integer> subids) {
+		String query = "select indsubcategory from IndustrySubCategoryEntity indsubcategory where indsubcategory.industrycategory.trnIndstrCatId in ?1";
+		TypedQuery<IndustrySubCategoryEntity> query1 = entityManager
+				.createQuery(query, IndustrySubCategoryEntity.class);
+		query1.setParameter(1, subids);
+		return query1.getResultList();
+	}
 
 }

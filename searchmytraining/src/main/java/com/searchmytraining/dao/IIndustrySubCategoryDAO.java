@@ -9,4 +9,5 @@ public interface IIndustrySubCategoryDAO {
 	public List<IndustrySubCategoryEntity> getIndustrySubCategories(Integer subid);
 	public List<IndustrySubCategoryEntity> getAllIndustrySubCategories();
 	public IndustrySubCategoryEntity getIndustrySubCategory(Integer industrysubcatid);
+	public List<IndustrySubCategoryEntity> getIndustrySubCategory(List<Integer> subids);
 }

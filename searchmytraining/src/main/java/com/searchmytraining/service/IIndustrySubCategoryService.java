@@ -9,5 +9,6 @@ public interface IIndustrySubCategoryService {
 	public List<IndustrySubCategoryEntity> getIndustrySubCategories(Integer subid);
 	public List<IndustrySubCategoryEntity> getAllIndustrySubCategories();
 	public IndustrySubCategoryEntity getIndustrySubCategory(Integer industrysubcatid);
+	public List<IndustrySubCategoryEntity> getIndustrySubCat(List<Integer> subids);
 
 }

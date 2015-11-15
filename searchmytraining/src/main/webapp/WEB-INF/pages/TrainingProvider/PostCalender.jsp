@@ -184,8 +184,32 @@
 							$('#fdetails').val(calender.facultyDetails);
 							$('#helpregister').val(calender.howtoregister);
 							$('#TPdetails').val(calender.detailsOfProvider);
-							 
-							
+							var calender = $.parseJSON(calenderList);
+							/* $('#Ctype').val(),
+							"industryId" : $('#Itype').val(),
+							"price" : $('#cPrice').val(),
+							"saveDraft" : false,
+							"showPrice" :false,
+							"fromDate" : $('#Fdate').val(),
+							"toDate" : $('#Tdate').val(),
+							"time" : allTime,
+							"addressLine1" : $('#Caddress1').val(),
+							"addressLine2" : $('#Caddress2').val(),
+							"landmark" : $('#Clmark').val(),
+							"city" : $('#place').val(),
+							"state" : $('#state').val(),
+							"country" : $('#Ccountry').val(),
+							"pincode" : $('#Cpincode').val(),
+							"trngQuickView" : $('#Qview').val(),
+							"trngOverView" : $('#Pview').val(),
+							"trngTakeAway" : $('#Taway').val(),
+							"trngMethodology" : $('#Tmethod').val(),
+							"trngAttandant" : $('#wsa').val(),
+							"trainingKey" : $('#kword').val(),
+							"facultyDetails" : $('#fdetails').val(),
+							"howtoregister" : $('#helpregister').val(),
+							"detailsOfProvider" : $('#TPdetails').val()
+							 */						
 						}
 						
 </script>
@@ -401,33 +425,41 @@ function getIndSubCat() {
 			success : function(response) {
 				$('#indSubCat').html('');
 				jQuery.each(response, function(index, item) {
-					$('#indSubCat').append(this.trnIndstrCatId+" "+this.indstrCatName+"<div></div>");
+					$('#indSubCat').append("<input id='" + this.trnIndstrCatId + "' type='checkbox' class='subcat' value='" + this.indstrCatName +"'/><label>'" + this.indstrCatName + "'</label><div></div>");
 				});
 				$('#indSubCat').attr("style", "display:block;");
 			},
 		});
 	}
 
-/* function industrySubCategory() {
-	var subid = $('#industrycatid').val();
+$('body').on('click', '#indSubCat .subcat', function (e) {
+	 var ids=[];
+	 $('#indSubCat input:checked').each(function(){
+		 ids.push($(this).attr("id"));
+	 });
+	 if(ids.length >0){
+		industrySubCategory(ids)
+	}else{
+		$('#indSubsubCat').attr("style", "display:none;");
+	}  
+});
+
+function industrySubCategory(ids) {
+	var tList = ids.join();
 	$.ajax({
 		type : "POST",
-		url : "/searchmytraining/common/getIndustrySubCategory",
+		url : "/searchmytraining/common/getIndustrySubCategories",
 		dataType : 'json',
-		data : "subid=" + subid,
+		data: {"subid": tList},
 		success : function(response) {
-			$('#industrysubcatid').find('option').remove().end();
-			$('#industrysubcatid').attr('enabled', 'true');
-			$('#industrysubcatid').append(
-					$("<option value='0'></option>").text("--Select--"));
+			$('#indSubsubCat').html('');
 			jQuery.each(response, function(index, item) {
-				$('#industrysubcatid').append(
-						$("<option></option>").text(this.indstrSubCatName).val(
-								this.trnIndstrSubCatId));
+				$('#indSubsubCat').append("<input id='" + this.trnIndstrSubCatId + "' type='checkbox' class='subsubcat' value='" + this.indstrSubCatName +"'/><label>'" + this.indstrSubCatName + "'</label><div></div>");
 			});
+			$('#indSubsubCat').attr("style", "display:block;");
 		},
 	});
-} */
+} 
 </script>
 
 </head>
@@ -454,11 +486,9 @@ function getIndSubCat() {
 					</select>
 					<span id="errorItype" class="errorm"></span>
 				</div>
-				<div>
-				<textarea rows="4" cols="7" id="indSubCat" style="display: none;"></textarea>
+				<div id="indSubCat" style="display: none;">
 				</div>
-				<div>
-				<textarea rows="4" cols="7" id="indSubsubCat" style="display: none;"></textarea>
+				<div id="indSubsubCat" style="display: none;">
 				</div>
 				
 				<div class="price">
