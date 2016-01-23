@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns:sec="http://www.springframework.org/schema/security"
-	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
-        http://www.springframework.org/schema/beans     
-        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-        http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
+<beans:beans xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+        
 	<sec:http auto-config="true">
 		<sec:session-management>
 			<sec:concurrency-control max-sessions="1"
@@ -16,7 +17,7 @@
 		<!-- <sec:form-login login-page="/login" default-target-url="/main" authentication-failure-url="/loginError" 
 			/> -->
 		<sec:intercept-url pattern="/main" access="ROLE_ADMIN" />
-		<sec:intercept-url pattern="/trainingprovider_updateprofile" access="ROLE_TPI" />
+		<sec:intercept-url pattern="/trainingprovider_updateprofile/**" access="ROLE_TPI" />
 		<sec:intercept-url pattern="/sendOTP" access="ROLE_ANONYMOUS" />
 		<sec:intercept-url pattern="/tpf" access="ROLE_TPF" />
 <!--  AJAX based login -->

@@ -4,10 +4,13 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-
-	<definition name="public" template="/WEB-INF/layouts/default.jsp">
+	
+	<definition name="commonTemplate" template="/WEB-INF/layouts/commonTemplate.jsp">
 		<put-attribute name="title" value="application_name" />
+		<put-attribute name="header" value="/WEB-INF/pages/common/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/pages/common/footer.jsp" />
 		<put-list-attribute name="jsfilesList">
+		
 		</put-list-attribute>
 	</definition>
 		
