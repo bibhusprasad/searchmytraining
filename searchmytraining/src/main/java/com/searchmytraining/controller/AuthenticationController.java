@@ -47,7 +47,6 @@ public class AuthenticationController {
 	@RequestMapping(value = "/authentication-success", method = RequestMethod.GET)
 	public ResponseEntity<String> authenticationSuccess(
 			HttpServletRequest request) {
-		System.out.println("in...authentication-success");
 		Authentication authentication = SecurityContextHolder.getContext()
 				.getAuthentication();
 

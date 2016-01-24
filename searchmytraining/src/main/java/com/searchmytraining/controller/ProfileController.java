@@ -130,7 +130,7 @@ public class ProfileController {
 		/* instituteservice.updateClientDetails(clientdetailsdto); */
 	}
 
-	@RequestMapping("/TPcalender")
+	@RequestMapping("/postcalender")
 	public String TPcalender(ModelMap model, HttpSession session) {
 		model.addAttribute("industries", new JSONArray(industryservice.getIndustries()));
 		model.addAttribute("cities", new JSONArray(iCityService.getAllCities()));
@@ -161,7 +161,7 @@ public class ProfileController {
 			model.addAttribute("isEditFlag", true);
 		}
 		model.addAttribute("calenderTypes", new JSONArray(calType));
-		return "pages/TrainingProvider/PostCalender";
+		return "tp/postCalender";
 	}
 
 	@RequestMapping(value = "/updateempdet", method = RequestMethod.POST, produces = {
@@ -186,7 +186,7 @@ public class ProfileController {
 		}
 	}
 
-	@RequestMapping("/MPcalender")
+	@RequestMapping("/managecalender")
 	public String manageCalender(ModelMap model, HttpSession session) {
 		List<String> calType = new ArrayList<String>();
 		for (CalenderType cal : CalenderType.values()) {
@@ -203,7 +203,7 @@ public class ProfileController {
 				session.setAttribute("trainer", trainer);
 			}
 		}
-		return "pages/TrainingProvider/manageCalender";
+		return "tp/manageCalender";
 	}
 
 	@RequestMapping("/Pcalender")

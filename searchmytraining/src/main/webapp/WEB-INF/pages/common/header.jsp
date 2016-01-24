@@ -9,8 +9,8 @@
 					class="icon-bar"></span><span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="index.html"> <img
-				src="<%=request.getContextPath()%>/resources/new/images/logo.png" alt=""
-				title="Image Title" />
+				src="<%=request.getContextPath()%>/resources/new/images/logo.png"
+				alt="" title="Image Title" />
 			</a>
 		</div>
 		<div class="collapse navbar-collapse" id="main-nav-collapse">
@@ -33,8 +33,10 @@
 						<li class="link-content">
 							<div class="row row-eq-height row-col-border">
 								<ul class="dropdown-menu-items-list">
-									<li><a href='post-calendar.html'>Post Calendar</a></li>
-									<li><a href='manage-calendar.html'>Manage Calendar</a></li>
+									<li><a href='' onclick="postCalenderload();">Post
+											Calendar</a></li>
+									<li><a href='' onclick="ManageCalenderload();">Manage
+											Calendar</a></li>
 								</ul>
 							</div>
 						</li>
@@ -76,3 +78,34 @@
 		</div>
 	</div>
 </nav>
+<script type="text/javascript">
+	function postCalenderload() {
+		$.ajax({
+			url : "./postcalender",
+			type : "POST",
+			contentType : "application/json",
+			success : function(responseText, statusText, xhr) {
+				if (statusText == "success") {
+				}
+				if (statusText == "error") {
+				}
+			},
+			error : loginFailed
+		});
+	}
+
+	function ManageCalenderload() {
+		$.ajax({
+			url : "./managecalender",
+			type : "POST",
+			contentType : "application/json",
+			success : function(responseText, statusText, xhr) {
+				if (statusText == "success") {
+				}
+				if (statusText == "error") {
+				}
+			},
+			error : loginFailed
+		});
+	}
+</script>

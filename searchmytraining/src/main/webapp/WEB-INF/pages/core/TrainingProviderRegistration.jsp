@@ -47,8 +47,7 @@ function trainerRegistration(path) {
 
 							} else {
 								alert("Thank you for Your Registration, Please Update Your Profile: SMT");
-								doLoginTP();
-								/*window.location.href = path	+ "/trainingprovider_updateprofile";*/
+								window.location.href="<%=request.getContextPath()%>/trainingprovider_updateprofile";
 							}
 
 						}
@@ -62,15 +61,13 @@ function trainerRegistration(path) {
 
 function doLoginTP()
 {
-	console.log("in doLogin()... :-)..hi");
 	var username = $('#email1').val();
 	var password1=$('#password').val();
-	console.log("username: "+username+"\npassword: "+password1);
 	var credentials = {username:$('#email1').val(),password:$('#password').val()};
 	$.ajax({
 		url : "${ctx}/searchmytraining/j_spring_security_check",
 		type : "POST",
-		//contentType : "application/json",
+		contentType : "application/json",
 		beforeSend : function(xhr) {
 			xhr.withCredentials = true;
 		},

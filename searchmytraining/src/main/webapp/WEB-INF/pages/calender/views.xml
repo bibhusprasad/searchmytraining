@@ -16,4 +16,18 @@
 		</put-list-attribute>
 	</definition>
 	
+	<definition extends="commonTemplate" name="tp/postCalender">
+		<put-attribute name="title" value="web_title" />
+		<put-attribute name="bodysection" value="/WEB-INF/pages/calender/postCalender.jsp" />
+		<put-list-attribute name="jsfilesList">
+		</put-list-attribute>
+	</definition>
+	
+	<definition extends="commonTemplate" name="tp/manageCalender">
+		<put-attribute name="title" value="web_title" />
+		<put-attribute name="bodysection" value="/WEB-INF/pages/calender/manageCalender.jsp" />
+		<put-list-attribute name="jsfilesList">
+		</put-list-attribute>
+	</definition>
+	
 </tiles-definitions>

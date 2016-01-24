@@ -181,7 +181,7 @@ public class MyController {
 	@RequestMapping("/TPR")
 	public String TPR(ModelMap model) {
 		model.addAttribute("cities", cityservice.getAllCities());		
-		return "pages/TrainingProvider/TrainingProviderRegistration";
+		return "core/tpr";
 	}
 	@RequestMapping("/GTR")
 	public String GTR(ModelMap model) {
