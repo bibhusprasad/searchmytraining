@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+	
+	<definition extends="commonTemplate" name="tp/updateProfile">
+		<put-attribute name="title" value="web_title" />
+		<put-attribute name="bodysection" value="/WEB-INF/pages/calender/searchOverview.jsp" />
+		<put-list-attribute name="jsfilesList">
+		</put-list-attribute>
+	</definition>
+	
+	<definition extends="default" name="index">
+		<put-attribute name="title" value="web_title" />
+		<put-attribute name="body" value="/WEB-INF/index.jsp" />
+		<put-list-attribute name="jsfilesList">
+		</put-list-attribute>
+	</definition>
+	
+</tiles-definitions>

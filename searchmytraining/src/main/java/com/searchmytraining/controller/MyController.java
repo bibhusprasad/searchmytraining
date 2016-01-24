@@ -196,11 +196,11 @@ public class MyController {
 	
 	@RequestMapping("/sign")
 	public String sign() {
-		return "pages/Sign-In";
+		return "core/signIn";
 	}
 	@RequestMapping("/LoginH")
 	public String LoginH() {
-		return "pages/HomePageLogin";
+		return "core/defaultLogin";
 	}
 	
 	/*@RequestMapping("/forgotpassword")

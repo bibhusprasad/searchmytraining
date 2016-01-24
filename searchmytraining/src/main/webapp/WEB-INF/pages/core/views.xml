@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+	<definition extends="default" name="core/signIn">
+		<put-attribute name="title" value="web_title" />
+		<put-attribute name="body" value="/WEB-INF/pages/core/signIn.jsp" />
+		<put-list-attribute name="jsfilesList">
+		</put-list-attribute>
+	</definition>
+
+<definition extends="default" name="core/defaultLogin">
+		<put-attribute name="title" value="web_title" />
+		<put-attribute name="body" value="/WEB-INF/pages/core/defaultLoginPage.jsp" />
+		<put-list-attribute name="jsfilesList">
+		</put-list-attribute>
+	</definition>
+
+</tiles-definitions>

@@ -146,7 +146,7 @@ public class TrainingProviderController {
 			actordetails.setPicture(instituteinfo.getInstitutelogo());
 			session.setAttribute("actordetails", actordetails);
 		}
-		return "pages/TrainingProvider/TrainingProviderProfile";
+		return "tp/updateProfile";
 	}
 
 	@RequestMapping("/trainerprofile")
@@ -221,8 +221,7 @@ public class TrainingProviderController {
 			model.addAttribute("phonetypes", phonetypedao.getAllPhoneTypes());
 			model.addAttribute("countries", countryservice.getAllCountries());
 		} else {
-			System.out.println("Please Login again...");
-			return "pages/Sign-In";
+			return "core/signIn";
 		}
 
 		return "pages/TrainingProvider/TPprofile";

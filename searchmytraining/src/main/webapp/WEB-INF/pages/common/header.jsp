@@ -9,7 +9,7 @@
 					class="icon-bar"></span><span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="index.html"> <img
-				src="images/logo.png" alt="Image Alternative text"
+				src="<%=request.getContextPath()%>/resources/new/images/logo.png" alt=""
 				title="Image Title" />
 			</a>
 		</div>

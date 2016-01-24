@@ -1,17 +1,17 @@
 <%@ include file="includes.jspf"%>
-<spring:url value="/css/bootstrap.css" var="bootstrap_css" />
-<spring:url value="/css/font-awesome.css" var="fontawesome_css" />
-<spring:url value="/css/styles.css" var="styles_css" />
+<spring:url value="/resources/new/css/bootstrap.css" var="bootstrap_css" />
+<spring:url value="/resources/new/css/font-awesome.css" var="fontawesome_css" />
+<spring:url value="/resources/new/css/styles.css" var="styles_css" />
 
-<spring:url value="/js/jquery.js" var="jquery_url" />
-<spring:url value="js/bootstrap.js" var="bootstrap_url" />
-<spring:url value="js/icheck.js" var="icheck_url" />
-<spring:url value="js/ionrangeslider.js" var="ionrangeslider_url" />
-<spring:url value="js/jqzoom.js" var="jqzoom_js" />
-<spring:url value="js/card-payment.js" var="cardpayment_js" />
-<spring:url value="js/owl-carousel.js" var="owlcarousel_js" />
-<spring:url value="js/magnific.js" var="magnific_js" />
-<spring:url value="js/custom.js" var="custom_js" />
+<spring:url value="/resources/new/js/jquery.js" var="jquery_url" />
+<spring:url value="/resources/new/js/bootstrap.js" var="bootstrap_url" />
+<spring:url value="/resources/new/js/icheck.js" var="icheck_url" />
+<spring:url value="/resources/new/js/ionrangeslider.js" var="ionrangeslider_url" />
+<spring:url value="/resources/new/js/jqzoom.js" var="jqzoom_js" />
+<spring:url value="/resources/new/js/card-payment.js" var="cardpayment_js" />
+<spring:url value="/resources/new/js/owl-carousel.js" var="owlcarousel_js" />
+<spring:url value="/resources/new/js/magnific.js" var="magnific_js" />
+<spring:url value="/resources/new/js/custom.js" var="custom_js" />
 
 <tilesx:useAttribute name="title" />
 <!DOCTYPE html>

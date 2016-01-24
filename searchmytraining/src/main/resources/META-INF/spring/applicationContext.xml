@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:beans="http://www.springframework.org/schema/beans" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop" 
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:task="http://www.springframework.org/schema/task"
-	xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 	                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
 	                    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
@@ -16,9 +12,8 @@
                         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
                         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
                         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
-                        
-	<import resource="services.xml" />
-	<!-- <import resource="spring-security.xml" /> -->
+
+	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<context:component-scan base-package="com.searchmytraining" />
 	<context:annotation-config />
@@ -27,12 +22,6 @@
 		sender. -->
 	<!-- <context:property-placeholder location="properties/mail.properties" 
 		/> -->
-
-	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> <property 
-		name="url" value="jdbc:mysql://localhost:3306/searchmytraining" /> <property 
-		name="username" value="root" /> <property name="password" value="123456" 
-		/> </bean> -->
 
 	<bean id="emf"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -51,17 +40,10 @@
 
 	</bean>
 
-	<!-- <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
-		<property name="locations"> <list> <value>classPath:/properties/dev.properties</value> 
-		<value>classPath:/properties/prod.properties</value> </list> </property> 
-		<property name="placeholderPrefix" value="$file{" /> <property name="systemPropertiesModeName" 
-		value="SYSTEM_PROPERTIES_MODE_OVERRIDE" /> <property name="ignoreUnresolvablePlaceholders" 
-		value="true" /> <property name="order" value="0" /> </bean> -->
-
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName" value="java:comp/env/jdbc/searchmytraining" />
 	</bean>
-
+	
 	<!--Add Transaction support -->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="emf" />
@@ -92,15 +74,6 @@
 	<bean id="lucenedocument" class="org.apache.lucene.document.Document"
 		scope="prototype" />
 
-	<!-- ******** Email Service Configuration ******** -->
-
-	<!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl" 
-		p:host="smtp.gmail.com" p:username="ping2chetan@gmail.com" p:password="c#et@n777"> 
-		<property name="javaMailProperties"> <props> <prop key="mail.smtp.auth">true</prop> 
-		<prop key="mail.smtp.starttls.enable">true</prop> </props> </property> </bean> -->
-
-
-
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="25" />
@@ -112,10 +85,7 @@
 				<prop key="mail.smtp.auth">true</prop>
 				<prop key="mail.smtp.starttls.enable">true</prop>
 				<prop key="mail.debug">true</prop>
-				<!-- <prop key="mail.smtp.socketFactory.port">25</prop>
-				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
-				<prop key="mail.smtp.socketFactory.fallback">false</prop> -->
-			</props>
+				</props>
 		</property>
 	</bean>
 	<bean id="velocityEngine"
@@ -127,10 +97,6 @@
 			</value>
 		</property>
 	</bean>
-
-	<!-- <bean id="emailNotificationService" class="com.searchmytraining.service.impl.EmailNotificationServiceImpl"> 
-		<property name="mailSender" ref="mailSender" /> <property name="velocityEngine" 
-		ref="velocityEngine" /> </bean> -->
 
 	<!--caching configuration -->
 

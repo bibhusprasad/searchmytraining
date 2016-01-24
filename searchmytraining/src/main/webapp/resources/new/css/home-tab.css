@@ -1,0 +1,27 @@
+.panel-heading {
+  padding: 0px!important; 
+  border:0px!important;
+}
+.nav-tabs>li.active>a{
+	 border:0px!important;
+}
+.tab-pane a{
+	color:#444!important;
+}
+.nav-tabs {
+    border-bottom:0px!important;
+}
+.panel-success {
+    border-color: rgba(45, 165, 218, 0.29)!important;
+}
+.panel-success>.panel-heading {
+    color: #444!important;
+    background-color: rgba(45, 165, 218, 0.29)!important;
+    border-color: rgba(45, 165, 218, 0.29)!important;
+}
+.tab-pane ul li{
+    list-style: none;
+}
+ul{
+    padding: 0px;
+}

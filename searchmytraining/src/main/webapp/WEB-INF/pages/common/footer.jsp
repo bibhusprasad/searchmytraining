@@ -105,7 +105,7 @@
 	</div>
 	<div class="get-in-touch">
 		<div class="touc-text">Get In Touch</div>
-		<img src="images/rbow.png" width="160" alt="rbow.png">
+		<img src="<%=request.getContextPath()%>/resources/new/images/rbow.png" width="160" alt="rbow.png">
 
 	</div>
 </footer>
