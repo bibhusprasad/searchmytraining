@@ -829,7 +829,7 @@ ALTER TABLE `searchmytraining`.`tbl_trngcalender`
 ADD COLUMN `userId` bigint(20) NOT NULL COMMENT '' AFTER `updatedBy`;
 
 ALTER TABLE `searchmytraining`.`tbl_trngcalender` 
-CHANGE COLUMN `cityId` `cityName` VARCHAR(50) NOT NULL COMMENT '' ,
+CHANGE COLUMN `city` `cityName` VARCHAR(50) NOT NULL COMMENT '' ,
 CHANGE COLUMN `state` `stateId` INT(11) NOT NULL COMMENT '' ,
 CHANGE COLUMN `country` `countryId` INT(11) NOT NULL COMMENT '' ;
 

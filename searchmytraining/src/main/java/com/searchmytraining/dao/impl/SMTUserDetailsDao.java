@@ -61,8 +61,7 @@ public class SMTUserDetailsDao {
 		}
 		if (null == smtUser) {
 			throw new UsernameNotFoundException(
-					"The user name or password entered is not correct",
-					username);
+					"The user name or password entered is not correct"+username);
 		}
 		return smtUser;
 	}
